@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: var(--rojo);
+}
+
+.pedidos_div {
+	background: var(--verde);
+	border: 10px solid #FFD700;
+	color: var(--blanco);
+	text-align: center;
+	padding: 20px;
+	font-size: 4em;
+	margin-top: 20px;
+}
+
+.seleccionar_mesa {
+	padding: 40px;
+	border-radius: 20px;
+	background: var(--blanco);
+	border: none;
+	position: absolute;
+	top: 30%;
+	left: 10%;
+}

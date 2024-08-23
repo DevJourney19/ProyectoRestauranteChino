@@ -1,0 +1,14 @@
+@charset "UTF-8";
+/*Defini los colores para poder trabajar más rápido*/
+:root {
+	--rojo: #D51818;
+	--amarillo: #FFD700;
+	--verde: #014301;
+	--blanco: #FFFFFF;
+}
+
+.restaurante_nombre {
+	color: var(--amarillo);
+	font-size: 52px;
+	margin: 20px;
+}
