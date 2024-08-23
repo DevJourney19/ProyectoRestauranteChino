@@ -16,16 +16,18 @@ body {
 	color: var(--blanco);
 	text-align: center;
 	padding: 20px;
-	font-size: 4em;
+	font-size: 7em;
 	margin-top: 20px;
 }
 
-.seleccionar_mesa {
+.aniadir_pedido {
 	padding: 40px;
 	border-radius: 20px;
 	background: var(--blanco);
 	border: none;
 	position: absolute;
-	top: 30%;
-	left: 10%;
+	top: 19%;
+	left: 14%;
+	width: 700px;
+	font-size: 4em;
 }
