@@ -6,8 +6,8 @@
 	box-sizing: border-box;
 }
 
-body {
-	background: var(--rojo);
+.body{
+	 background-color: red;
 }
 
 .pedidos_div {
@@ -23,7 +23,7 @@ body {
 .aniadir_pedido {
 	padding: 40px;
 	border-radius: 20px;
-	background: var(--blanco);
+	background: var(--verde);
 	border: none;
 	position: absolute;
 	top: 19%;
