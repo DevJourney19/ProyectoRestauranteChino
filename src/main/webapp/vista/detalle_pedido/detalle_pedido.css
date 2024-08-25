@@ -9,3 +9,13 @@
 	font-size: 7em;
 	margin-top: 20px;
 }
+
+.circulito {
+	position: relative;
+}
+
+.number {
+	position: absolute;
+	right:9px;
+	top:2px;
+}
