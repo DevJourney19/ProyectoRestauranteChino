@@ -16,6 +16,28 @@
 
 .number {
 	position: absolute;
-	right:9px;
-	top:2px;
+	right: 9px;
+	top: 2px;
+}
+
+.toggle_tabla_detalle_pedidos_nada {
+	display: none;
+}
+
+.toggle_tabla_detalle_pedidos {
+	display: block;
+}
+
+/*@media queries*/
+@media ( min-width : 576px) {
+	
+	.boton_deta_pedi {
+		width: 1000px;
+	}
+}
+@media ( min-width : 1200px) {
+	
+	.boton_deta_pedi {
+		width: 100px;
+	}
 }
