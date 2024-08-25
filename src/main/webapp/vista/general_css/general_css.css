@@ -7,6 +7,17 @@
 	--blanco: #FFFFFF;
 }
 
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: monospace;
+}
+
+body {
+	background-color: var(--rojo);
+}
+
 .restaurante_nombre {
 	color: var(--amarillo);
 	font-size: 52px;

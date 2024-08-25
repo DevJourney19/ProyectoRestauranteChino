@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.detalle_pedido_div {
+	background: var(--verde);
+	border: 10px solid #FFD700;
+	color: var(--blanco);
+	text-align: center;
+	padding: 20px;
+	font-size: 7em;
+	margin-top: 20px;
+}

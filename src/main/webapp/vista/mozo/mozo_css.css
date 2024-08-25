@@ -1,14 +1,7 @@
 @charset "UTF-8";
 
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
 
-.body{
-	 background-color: red;
-}
+
 
 .pedidos_div {
 	background: var(--verde);
@@ -19,15 +12,21 @@
 	font-size: 7em;
 	margin-top: 20px;
 }
-
+body{
+	background-color: var(--rojo);
+}
 .aniadir_pedido {
 	padding: 40px;
 	border-radius: 20px;
-	background: var(--verde);
+	background: var(--blanco);
 	border: none;
-	position: absolute;
-	top: 19%;
-	left: 14%;
-	width: 700px;
+	position: relative;
+/* 	top: 19%; */
+/* 	left: 14%; */
+/* 	width: 70px; */
 	font-size: 4em;
+	color: black;
+	outline: none;
+	text-decoration: none;
 }
+
