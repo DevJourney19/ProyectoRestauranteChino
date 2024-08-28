@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="mesas.css">
-<%@ include file="../fragmentos/head.jsp"%>
-<title>Admin | Mesas</title>
+<link rel="stylesheet" href="pedidos.css">
+<%@ include file="../fragmentos/head.jsp" %>
+<title>Admin | Pedidos</title>
 </head>
 <body>
 	<div class="d-flex flex-row">
@@ -26,20 +26,14 @@
 					<div class="mb-3">
 						<div
 							class=" text-center d-flex align-items-center justify-content-between">
-							<h1>Gestión de Mesas</h1>
-							<span class="fs-3 numero-mesas">200 mesas</span>
+							<h1>Gestión de Pedidos</h1>
+							<span class="fs-3 numero-mesas">200 pedidos</span>
 						</div>
 						<div
-							class="d-flex align-items-center justify-content-between gap-4">
-							<div class="d-flex align-items-center gap-2">
-								<!-- Apareceran mas botones con categorias -->
-								<button class="btn-filtrar">
-									Filtrar <i class="lni lni-funnel"></i>
-								</button>
-							</div>
+							class="d-flex align-items-center justify-content-end gap-4">
 							<button class="btn-agregar" type="button" data-bs-toggle="modal"
 								data-bs-target="#modalAddEdit">
-								Nueva Mesa <i class="lni lni-plus"></i>
+								Nuevo Pedido <i class="lni lni-plus"></i>
 							</button>
 						</div>
 					</div>
@@ -51,7 +45,7 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<h1 class="modal-title fs-3 fw-semibold" id="exampleModalLabel">
-										Agrega Otra Mesa</h1>
+										Agrega Pedido</h1>
 									<button type="button" class="btn-close" data-bs-dismiss="modal"
 										aria-label="Close"></button>
 								</div>
@@ -59,15 +53,13 @@
 									<form action="" class="needs-validation" novalidate>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<div>
-												<label for="salon">N&ordm; Salon</label> <input
-													type="number" class="form-control" id="salon"
-													aria-describedby="emailHelp" placeholder="Enter Number"
-													name="numSalon" required>
+												<label for="salon">N&ordm; Salon</label> 												<input type="number" class="form-control" id="salon" aria-describedby="emailHelp" placeholder="Enter Number" name="numSalon" required>
 											</div>
 											<div>
-												<label for="mesa">N&ordm; Mesa</label> <input type="number"
-													class="form-control" id="mesa" placeholder="Enter Number"
-													name="numMesa" required>
+												<label for="mesa">N&ordm; Mesa</label> 
+												<input
+													type="number" class="form-control"
+													id="mesa" placeholder="Enter Number" name="numMesa" required>
 											</div>
 										</div>
 
@@ -82,8 +74,7 @@
 							</div>
 						</div>
 					</div>
-
-
+					
 					<!-- Modal de Eliminar -->
 					<div class="modal fade" id="staticBackdrop"
 						data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -95,7 +86,7 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body fw-medium fs-4">
-								Estas seguro de eliminar la Mesa? 
+								Estas seguro de eliminar este Pedido? 
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-warning"
@@ -111,51 +102,55 @@
 							<thead>
 								<tr>
 									<th>Id</th>
-									<th>N&ordm; Salon</th>
+									<!-- Puede ir DNI o nombre para utilizar api de buscar datos -->
+									<th>DNI Cliente</th>
 									<th>N&ordm; Mesa</th>
 									<th>Estado</th>
+									<th>Total Pago</th>
 									<th>Fecha Creacion</th>
+									<th>Ver Detalle Pedido</th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td>1</td>
+									<td>95784638</td>
 									<td>1</td>
-									<td>1</td>
-									<td><span class="estado-libre">Libre</span></td>
+									<td><span class="estado-cancelado">Cancelado</span></td>
+									<td>35.6</td>
 									<td><%=new Date()%></td>
+									<td><a href="" class="fs-4 icon-see d-flex justify-content-center"><i class="fw-semibold lni lni-eye"></i></a></td>
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
-											<button class="icon-action" data-bs-toggle="modal"
-												data-bs-target="#staticBackdrop">
-												<i class="lni lni-trash-can fs-4"></i>
-											</button>
-											<!-- Abrir Modal Editar -->
-											<button class="icon-action">
-												<i class="lni lni-pencil fs-4"></i>
-											</button>
+												<button class="icon-action" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+													<i class="lni lni-trash-can fs-4"></i>
+												</button>
+												<button class="icon-action">
+													<i class="lni lni-pencil fs-4"></i>
+												</button>
 										</div>
 									</td>
 								</tr>
 								<tr>
 									<td>1</td>
-									<td>1</td>
+									<td>95784638</td>
 									<td>2</td>
-									<td><span class="estado-ocupado">Ocupado</span></td>
+									<td><span class="estado-pendiente">Pendiente</span></td>
+									<td>35.6</td>
 									<td><%=new Date()%></td>
+									<td><a href="" class="fs-4 icon-see d-flex justify-content-center"><i class="fw-semibold lni lni-eye"></i></a></td>
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
-											<button class="icon-action" data-bs-toggle="modal"
+												<button class="icon-action" data-bs-toggle="modal"
 												data-bs-target="#staticBackdrop">
-												<i class="lni lni-trash-can fs-4"></i>
-											</button>
-											<!-- Abrir Modal Editar -->
-											<button class="icon-action">
-												<i class="lni lni-pencil fs-4"></i>
-											</button>
+													<i class="lni lni-trash-can fs-4"></i>
+												</button>
+												<button class="icon-action">
+													<i class="lni lni-pencil fs-4"></i>
+												</button>
 										</div>
 									</td>
 								</tr>
