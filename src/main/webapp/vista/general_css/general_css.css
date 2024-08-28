@@ -1,25 +1,17 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 /*Defini los colores para poder trabajar más rápido*/
 :root {
 	--rojo: #D51818;
-	--amarillo: #FFD700;
+	--amarillo: #FFC700;
 	--verde: #014301;
-	--blanco: #FFFFFF;
+	--blanco: #f9f9f9;
+	--gray:#E1E1E1;
 }
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: monospace;
-}
-
-body {
-	background-color: var(--rojo);
-}
-
-.restaurante_nombre {
-	color: var(--amarillo);
-	font-size: 52px;
-	margin: 20px;
+	font-family: 'Poppins', sans-serif;
 }
