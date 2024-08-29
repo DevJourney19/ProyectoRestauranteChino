@@ -9,7 +9,7 @@
 <title>Mozo</title>
 <%@include file="../fragmentos/link_bootstrap.jsp"%>
 <link href="../general_css/general_css.css" rel="stylesheet" />
-<link href="mozo_css.css" rel="stylesheet" />
+<link href="pedido_css.css" rel="stylesheet" />
 
 
 </head>

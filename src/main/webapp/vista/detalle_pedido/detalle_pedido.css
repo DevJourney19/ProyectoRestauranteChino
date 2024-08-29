@@ -3,11 +3,10 @@
 .detalle_pedido_div {
 	font-weight: 600;
 	background: var(--verde);
-	border: 10px solid #FFD700;
 	color: var(--amarillo);
 	text-align: center;
-	padding: 20px;
-	font-size: 7em;
+	padding: 10px;
+	font-size: 4em;
 	margin-top: 20px;
 }
 
@@ -49,6 +48,14 @@
 	background: var(--verde);
 	color: var(--blanco);
 	transform: translateY(-8px);
+}
+
+.card_plato {
+	padding: 10px;
+	
+}
+.card_body_plato{
+	width: 100%;
 }
 
 /*@media queries*/
