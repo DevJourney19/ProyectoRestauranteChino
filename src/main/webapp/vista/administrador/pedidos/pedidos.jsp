@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="pedidos.css">
-<%@ include file="../fragmentos/head.jsp" %>
+<%@ include file="../fragmentos/head.jsp"%>
 <title>Admin | Pedidos</title>
 </head>
 <body>
@@ -29,8 +29,7 @@
 							<h1>Gestión de Pedidos</h1>
 							<span class="fs-3 numero-mesas">200 pedidos</span>
 						</div>
-						<div
-							class="d-flex align-items-center justify-content-end gap-4">
+						<div class="d-flex align-items-center justify-content-end gap-4">
 							<button class="btn-agregar" type="button" data-bs-toggle="modal"
 								data-bs-target="#modalAddEdit">
 								Nuevo Pedido <i class="lni lni-plus"></i>
@@ -52,30 +51,38 @@
 								<div class="modal-body">
 									<form action="" class="needs-validation" novalidate>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div>
-												<label for="salon">N&ordm; Salon</label> 												<input type="number" class="form-control" id="salon" aria-describedby="emailHelp" placeholder="Enter Number" name="numSalon" required>
-											</div>
-											<div>
-												<label for="mesa">N&ordm; Mesa</label> 
-												<input
-													type="number" class="form-control"
-													id="mesa" placeholder="Enter Number" name="numMesa" required>
-											</div>
+											<label for="cliente">DNI Cliente</label> <input type="text"
+												class="form-control" id="client"
+												aria-describedby="emailHelp" placeholder="Enter Number"
+												name="cliente" required>
+										</div>
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<label for="cliente">N&ordm; Mesa</label> <input
+												type="number" step="1" class="form-control" id="client"
+												aria-describedby="emailHelp" placeholder="Enter Mesa"
+												name="numMesa" required>
+										</div>
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<label for="totalPagar">Total</label> <input type="number"
+												step="0.01" class="form-control" id="totalPagar"
+												aria-describedby="emailHelp" placeholder="Enter Total"
+												name="totalPagar" required>
 										</div>
 
 										<div class="modal-footer">
 
 											<button type="button" class="btn btn-danger"
 												data-bs-dismiss="modal">Cerrar</button>
-											<button type="submit" class="btn btn-warning">Crear</button>
+											<button type="submit" class="btn btn-warning">
+											Agregar Detalle</button>
 										</div>
 									</form>
 								</div>
 							</div>
 						</div>
 					</div>
-					
-					<!-- Modal de Eliminar -->
+
+					<!-- Modal de Eliminar -> recibir un data value -->
 					<div class="modal fade" id="staticBackdrop"
 						data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
 						aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -86,12 +93,18 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body fw-medium fs-4">
-								Estas seguro de eliminar este Pedido? 
+									<p>Estas seguro de eliminar este Pedido?</p>
+									<p>#1</p>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-warning"
 										data-bs-dismiss="modal">Cancelar</button>
-									<button type="button" class="btn btn-danger d-flex align-items-center gap-2"> <i class="lni lni-trash-can"></i>Eliminar</button>
+									<form action="">
+										<button type="button"
+											class="btn btn-danger d-flex align-items-center gap-2">
+											<i class="lni lni-trash-can"></i>Eliminar
+										</button>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -120,16 +133,20 @@
 									<td><span class="estado-cancelado">Cancelado</span></td>
 									<td>35.6</td>
 									<td><%=new Date()%></td>
-									<td><a href="" class="fs-4 icon-see d-flex justify-content-center"><i class="fw-semibold lni lni-eye"></i></a></td>
+									<!-- pasar un id del pedido para filtrar -->
+									<td><a href="detalle_pedido.jsp"
+										class="fs-4 icon-see d-flex justify-content-center"><i
+											class="fw-semibold lni lni-eye"></i></a></td>
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
-												<button class="icon-action" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-													<i class="lni lni-trash-can fs-4"></i>
-												</button>
-												<button class="icon-action">
-													<i class="lni lni-pencil fs-4"></i>
-												</button>
+											<button class="icon-action" data-bs-toggle="modal"
+												data-bs-target="#staticBackdrop">
+												<i class="lni lni-trash-can fs-4"></i>
+											</button>
+											<button class="icon-action">
+												<i class="lni lni-pencil fs-4"></i>
+											</button>
 										</div>
 									</td>
 								</tr>
@@ -140,17 +157,20 @@
 									<td><span class="estado-pendiente">Pendiente</span></td>
 									<td>35.6</td>
 									<td><%=new Date()%></td>
-									<td><a href="" class="fs-4 icon-see d-flex justify-content-center"><i class="fw-semibold lni lni-eye"></i></a></td>
+									<!-- pasar un id del pedido para filtrar -->
+									<td><a href="detalle_pedido.jsp"
+										class="fs-4 icon-see d-flex justify-content-center"><i
+											class="fw-semibold lni lni-eye"></i></a></td>
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
-												<button class="icon-action" data-bs-toggle="modal"
+											<button class="icon-action" data-bs-toggle="modal"
 												data-bs-target="#staticBackdrop">
-													<i class="lni lni-trash-can fs-4"></i>
-												</button>
-												<button class="icon-action">
-													<i class="lni lni-pencil fs-4"></i>
-												</button>
+												<i class="lni lni-trash-can fs-4"></i>
+											</button>
+											<button class="icon-action">
+												<i class="lni lni-pencil fs-4"></i>
+											</button>
 										</div>
 									</td>
 								</tr>

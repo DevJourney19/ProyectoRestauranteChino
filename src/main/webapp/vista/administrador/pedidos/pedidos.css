@@ -72,3 +72,23 @@
 	display:flex;
 	border-radius:99%;
 }
+
+.regresar{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+
+.regresar a{
+	display:flex;
+	align-items:center;
+	gap:10px;
+	background-color:var(--amarillo) !important;
+	color:black;
+	padding:5px 15px;
+	border-radius:10px;
+}
+
+.regresar a i, .regresar a{
+	font-weight:600;
+}

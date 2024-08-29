@@ -84,7 +84,7 @@
 					</div>
 
 
-					<!-- Modal de Eliminar -->
+					<!-- Modal de Eliminar -> recibir un data value-->
 					<div class="modal fade" id="staticBackdrop"
 						data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
 						aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -95,12 +95,14 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body fw-medium fs-4">
-								Estas seguro de eliminar la Mesa? 
+								<p>Estas seguro de eliminar la mesa?</p>
+								<p>#1</p>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-warning"
 										data-bs-dismiss="modal">Cancelar</button>
-									<button type="button" class="btn btn-danger d-flex align-items-center gap-2"> <i class="lni lni-trash-can"></i>Eliminar</button>
+										<form action="">
+									<button type="button" class="btn btn-danger d-flex align-items-center gap-2"> <i class="lni lni-trash-can"></i>Eliminar</button></form>
 								</div>
 							</div>
 						</div>
