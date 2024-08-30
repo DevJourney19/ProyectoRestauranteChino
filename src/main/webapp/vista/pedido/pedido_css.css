@@ -1,32 +1,59 @@
 @charset "UTF-8";
 
-
-
-
 .pedidos_div {
 	background: var(--verde);
-	border: 10px solid #FFD700;
 	color: var(--blanco);
 	text-align: center;
 	padding: 20px;
-	font-size: 7em;
+	font-size: 4em;
 	margin-top: 20px;
 }
-body{
-	background-color: var(--rojo);
+
+body {
+	background-color: #f8f8f8;
 }
+
 .aniadir_pedido {
-	padding: 40px;
+	padding: 20px;
 	border-radius: 20px;
-	background: var(--blanco);
+	background: var(--amarillo);
 	border: none;
 	position: relative;
-/* 	top: 19%; */
-/* 	left: 14%; */
-/* 	width: 70px; */
-	font-size: 4em;
+	/* 	top: 19%; */
+	/* 	left: 14%; */
+	/* 	width: 70px; */
+	font-size: 2em;
 	color: black;
 	outline: none;
 	text-decoration: none;
 }
 
+.mesa_numero {
+	background-color: var(--verde);
+	color: white;
+	width: 40px;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.pedido_especifico_numero_pedido {
+	position: absolute;
+	font-size: 0.9rem;
+	top: 40px;
+	left: 63px;
+}
+
+.completado {
+	position: absolute;
+	top: 24px;
+	right: 10px;
+	background: #ceffd0;
+	border-radius: 6px;
+	font-size: 0.9rem;
+	padding: 2px;
+	padding-left:6px;
+}
+.overflow_tabla{
+	height: 100px;
+	overflow: scroll;
+}

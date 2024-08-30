@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body {
+	background-color: #f9f9f9;
+}
+
 .detalle_pedido_div {
 	font-weight: 600;
 	background: var(--verde);
@@ -21,17 +25,18 @@
 }
 
 .toggle_tabla_detalle_pedidos_nada {
-	display: none;
+	display: none !important;
 }
 
 .toggle_tabla_detalle_pedidos {
-	display: block;
+	display: flex !important;
 }
 
 .fondo_verde_productos {
-	background: var(--verde);
-	border: 10px solid #FFD700;
+	background: transparent;
+	/* 	border: 10px solid #FFD700; */
 	padding: 20px;
+	/* 	margin-left: 30px; */
 }
 
 .estilo_btn_1 {
@@ -52,10 +57,14 @@
 
 .card_plato {
 	padding: 10px;
-	
 }
-.card_body_plato{
+
+.card_body_plato {
 	width: 100%;
+}
+
+.resumen_pago {
+	display: flex;
 }
 
 /*@media queries*/
@@ -69,6 +78,9 @@
 	.boton_deta_pedi {
 		width: 1000px;
 	}
+	.tabla_detalle_pedidos {
+		width: 50%;
+	}
 }
 
 @media ( min-width : 768px) {
@@ -80,5 +92,11 @@
 @media ( min-width : 1200px) {
 	.boton_deta_pedi {
 		width: 100px;
+	}
+	.combinado_tabla_y_productos {
+		flex-direction: row !important;
+	}
+	.tabla_detalle_pedidos {
+		width: 30%;
 	}
 }

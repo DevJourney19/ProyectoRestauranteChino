@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.mesa {
+	background: #f3f3f3;
+	border: 2px solid lightgray;
+	padding: 10px;
+	height: 200px;
+	width: 300px;
+}
+
+.seleccionar_mesa_titulo {
+	background: var(--verde);
+	color: #ffffff;
+	font-size: 4rem;
+}
+
+.opciones_busqueda_mesa {
+	font-size: 3rem;
+	padding: 20px;
+	
+}
+
+.busqueda_mesa {
+	font-size: 3rem;
+	padding: 20px;
+}
+
+@media (min-width: 992px){
+	.opciones_busqueda_mesa{
+		font-size: 2rem;
+	}
+}
