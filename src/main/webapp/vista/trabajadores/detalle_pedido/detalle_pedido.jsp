@@ -3,19 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<%@include file="../fragmentos/link_bootstrap.jsp"%>
-<link href="../general_css/general_css.css" rel="stylesheet" />
+<%@include file="../fragmentos/head.jsp"%>
 <link href="detalle_pedido.css" rel="stylesheet">
-<meta charset="UTF-8">
 <title>Detalle Pedido</title>
 </head>
 <body>
-	<div class="detalle_pedido_div">Menu</div>
+	<div class="titulo_detalle_pedido">Noche en Pekín 北京之夜</div>
+	<div class="container detalle_pedido_div">Menu</div>
 	<!-- 	my-lg-5 -->
 	<button onclick="myFunction()"
-		class="d-flex w-25 justify-content-center mx-auto btn btn-warning my-3 boton_deta_pedi">Mostrar
+		class=" d-flex  justify-content-center mx-auto btn btn-warning my-3 boton_deta_pedi">Mostrar
 		resumen de pedido</button>
 
 
@@ -32,14 +29,15 @@
 
 			<hr />
 			<div class="p-3">
-				<div div class=" fs-5" style="display: inline; font-weight: 600">Total
+				<div class=" fs-5" style="display: inline; font-weight: 600">Total
 					de objetos (6)</div>
 				<div style="height: 300px; overflow: scroll;">
 
 					<div
 						class="d-flex p-2 m-2 align-items-center justify-content-center"
 						style="border: 1px solid lightgray; border-radius: 10px; gap: 16px;">
-						<img src="../img/arroz_chaufa.png" style="width: 60px" alt="img">
+						<img src="../../img/arroz_chaufa.png" style="width: 60px"
+							alt="img">
 						<h6 class="mx-2 " style="font-weight: 600">
 							Arroz Chaufa<br /> (S/. 18) x2
 						</h6>
@@ -48,7 +46,8 @@
 					<div
 						class="d-flex p-2 m-2 align-items-center justify-content-center"
 						style="border: 1px solid lightgray; border-radius: 10px; gap: 16px;">
-						<img src="../img/arroz_chaufa.png" style="width: 60px" alt="img">
+						<img src="../../img/arroz_chaufa.png" style="width: 60px"
+							alt="img">
 						<h6 class="mx-2 " style="font-weight: 600">
 							Arroz Chaufa<br /> (S/. 18) x2
 						</h6>
@@ -57,7 +56,8 @@
 					<div
 						class="d-flex p-2 m-2 align-items-center justify-content-center"
 						style="border: 1px solid lightgray; border-radius: 10px; gap: 16px;">
-						<img src="../img/arroz_chaufa.png" style="width: 60px" alt="img">
+						<img src="../../img/arroz_chaufa.png" style="width: 60px"
+							alt="img">
 						<h6 class="mx-2 " style="font-weight: 600">
 							Arroz Chaufa<br /> (S/. 18) x2
 						</h6>
@@ -66,7 +66,8 @@
 					<div
 						class="d-flex p-2 m-2 align-items-center justify-content-center"
 						style="border: 1px solid lightgray; border-radius: 10px; gap: 16px;">
-						<img src="../img/arroz_chaufa.png" style="width: 60px" alt="img">
+						<img src="../../img/arroz_chaufa.png" style="width: 60px"
+							alt="img">
 						<h6 class="mx-2 " style="font-weight: 600">
 							Arroz Chaufa<br /> (S/. 18) x2
 						</h6>
@@ -75,7 +76,8 @@
 					<div
 						class="d-flex p-2 m-2 align-items-center justify-content-center"
 						style="border: 1px solid lightgray; border-radius: 10px; gap: 16px;">
-						<img src="../img/arroz_chaufa.png" style="width: 60px" alt="img">
+						<img src="../../img/arroz_chaufa.png" style="width: 60px"
+							alt="img">
 						<h6 class="mx-2 " style="font-weight: 600">
 							Arroz Chaufa<br /> (S/. 18) x2
 						</h6>
@@ -84,7 +86,28 @@
 					<div
 						class="d-flex p-2 m-2 align-items-center justify-content-center"
 						style="border: 1px solid lightgray; border-radius: 10px; gap: 16px;">
-						<img src="../img/arroz_chaufa.png" style="width: 60px" alt="img">
+						<img src="../../img/arroz_chaufa.png" style="width: 60px"
+							alt="img">
+						<h6 class="mx-2 " style="font-weight: 600">
+							Arroz Chaufa<br /> (S/. 18) x2
+						</h6>
+						<i class="fas fa-solid fa-trash fa-xl mx-2" style="color: red;"></i>
+					</div>
+					<div
+						class="d-flex p-2 m-2 align-items-center justify-content-center"
+						style="border: 1px solid lightgray; border-radius: 10px; gap: 16px;">
+						<img src="../../img/arroz_chaufa.png" style="width: 60px"
+							alt="img">
+						<h6 class="mx-2 " style="font-weight: 600">
+							Arroz Chaufa<br /> (S/. 18) x2
+						</h6>
+						<i class="fas fa-solid fa-trash fa-xl mx-2" style="color: red;"></i>
+					</div>
+					<div
+						class="d-flex p-2 m-2 align-items-center justify-content-center"
+						style="border: 1px solid lightgray; border-radius: 10px; gap: 16px;">
+						<img src="../../img/arroz_chaufa.png" style="width: 60px"
+							alt="img">
 						<h6 class="mx-2 " style="font-weight: 600">
 							Arroz Chaufa<br /> (S/. 18) x2
 						</h6>
@@ -97,7 +120,7 @@
 				<div class="d-flex p-2 m-2 flex-column fs-5"
 					style="border: 1px solid lightgray; border-radius: 10px; font-weight: 600">
 
-					<div >Resumen de pago</div>
+					<div>Resumen de pago</div>
 					<div class="d-flex justify-content-evenly ">
 						<div>Precio:</div>
 						<div>S/. 18.00</div>
@@ -127,28 +150,28 @@
 		<div class="d-flex justify-content-center">
 
 			<!-- INICIO UNION DIVS BUSQUEDA Y CARD_PRODUCTS -->
-			<div style="left: 20px;">
+			<div>
 				<!-- Inicio BUSQUEDA -->
-				<div class="container py-4">
+				<div class="py-4">
 					<h2>
 						<label for="buscar" class="text-dark">Buscar producto</label>
 					</h2>
-					<div class="contorno_buscar">
 
-						<div class="container-fluid">
-							<form class="d-flex" role="search">
-								<input class="form-control me-2" type="search"
-									placeholder="Buscar" aria-label="Search">
-								<button class="btn btn-warning" type="submit">Buscar</button>
-							</form>
-							<div class=" d-flex mt-3 gap-2 rounded">
-								<button class="btn btn-warning">Todo</button>
-								<button class="btn btn-warning">Segundos</button>
-								<button class="btn btn-warning">Sopas</button>
-								<button class="btn btn-warning">Otros</button>
-							</div>
-						</div>
+
+
+					<form class="d-flex" role="search">
+						<input class="form-control me-2" type="search"
+							placeholder="Buscar" aria-label="Search">
+						<button class="btn btn-warning" type="submit">Buscar</button>
+					</form>
+					<div class=" d-flex mt-3 gap-1 rounded">
+						<button class="btn btn-warning">Todo</button>
+						<button class="btn btn-warning">Segundos</button>
+						<button class="btn btn-warning">Sopas</button>
+						<button class="btn btn-warning">Otros</button>
 					</div>
+
+
 				</div>
 				<!-- Fin BUSQUEDA -->
 
@@ -160,7 +183,7 @@
 						<div class="col">
 							<div class="shadow-sm card card_plato"
 								style="border: 2px solid #FFD700; border-radius: 15px">
-								<img src="../img/arroz_chaufa.png" style="width: 200px"
+								<img src="../../img/arroz_chaufa.png" style="width: 200px"
 									class="mx-auto card-img-top" alt="chaufa">
 								<div class="card-body ">
 									<h1 class="card-title text-center mb-3">
@@ -179,14 +202,14 @@
 											<i class="fa-solid fa-circle fa-2x"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-minus fa-2xs"
-												style="color: #000000; position: absolute; bottom: 12px; left: 6px"></i>
+												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
 											</i>
 											<!-- fin del circulo -->
 											<div>1</div>
 											<i class="fa-solid fa-circle fa-2x"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-plus fa-2xs"
-												style="color: #000000; position: absolute; bottom: 12px; left: 6px"></i>
+												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
 											</i>
 										</div>
 									</div>
@@ -199,7 +222,7 @@
 						<div class="col">
 							<div class="shadow-sm card card_plato"
 								style="border: 2px solid #FFD700; border-radius: 15px">
-								<img src="../img/arroz_chaufa.png" style="width: 200px"
+								<img src="../../img/arroz_chaufa.png" style="width: 200px"
 									class="mx-auto card-img-top" alt="chaufa">
 								<div class="card-body ">
 									<h1 class="card-title text-center mb-3">
@@ -218,14 +241,14 @@
 											<i class="fa-solid fa-circle fa-2x"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-minus fa-2xs"
-												style="color: #000000; position: absolute; bottom: 12px; left: 6px"></i>
+												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
 											</i>
 											<!-- fin del circulo -->
 											<div>1</div>
 											<i class="fa-solid fa-circle fa-2x"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-plus fa-2xs"
-												style="color: #000000; position: absolute; bottom: 12px; left: 6px"></i>
+												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
 											</i>
 										</div>
 									</div>
@@ -237,7 +260,7 @@
 						<div class="col">
 							<div class="shadow-sm card card_plato"
 								style="border: 2px solid #FFD700; border-radius: 15px">
-								<img src="../img/arroz_chaufa.png" style="width: 200px"
+								<img src="../../img/arroz_chaufa.png" style="width: 200px"
 									class="mx-auto card-img-top" alt="chaufa">
 								<div class="card-body ">
 									<h1 class="card-title text-center mb-3">
@@ -256,14 +279,14 @@
 											<i class="fa-solid fa-circle fa-2x"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-minus fa-2xs"
-												style="color: #000000; position: absolute; bottom: 12px; left: 6px"></i>
+												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
 											</i>
 											<!-- fin del circulo -->
 											<div>1</div>
 											<i class="fa-solid fa-circle fa-2x"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-plus fa-2xs"
-												style="color: #000000; position: absolute; bottom: 12px; left: 6px"></i>
+												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
 											</i>
 										</div>
 									</div>
@@ -275,7 +298,7 @@
 						<div class="col">
 							<div class="shadow-sm card card_plato"
 								style="border: 2px solid #FFD700; border-radius: 15px">
-								<img src="../img/arroz_chaufa.png" style="width: 200px"
+								<img src="../../img/arroz_chaufa.png" style="width: 200px"
 									class="mx-auto card-img-top" alt="chaufa">
 								<div class="card-body ">
 									<h1 class="card-title text-center mb-3">
@@ -294,14 +317,166 @@
 											<i class="fa-solid fa-circle fa-2x"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-minus fa-2xs"
-												style="color: #000000; position: absolute; bottom: 12px; left: 6px"></i>
+												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
 											</i>
 											<!-- fin del circulo -->
 											<div>1</div>
 											<i class="fa-solid fa-circle fa-2x"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-plus fa-2xs"
-												style="color: #000000; position: absolute; bottom: 12px; left: 6px"></i>
+												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
+											</i>
+										</div>
+									</div>
+									<a href="#"
+										class="d-flex justify-content-center estilo_btn_1 py-3">Agregar</a>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="shadow-sm card card_plato"
+								style="border: 2px solid #FFD700; border-radius: 15px">
+								<img src="../../img/arroz_chaufa.png" style="width: 200px"
+									class="mx-auto card-img-top" alt="chaufa">
+								<div class="card-body ">
+									<h1 class="card-title text-center mb-3">
+										<b>Arroz Chaufa</b>
+									</h1>
+									<div class="d-flex justify-content-evenly mb-4">
+										<h1 class="mt-3 ">
+											<b>S/. 18</b>
+										</h1>
+
+										<div
+											class="d-flex justify-content-center align-items-center px-2 rounded-pill mt-3"
+											style="background: lightgray; gap: 10px; height: 35px;">
+
+											<!-- inicio del circulo -->
+											<i class="fa-solid fa-circle fa-2x"
+												style="color: #fafafa; position: relative"> <i
+												class="fa-solid fa-minus fa-2xs"
+												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
+											</i>
+											<!-- fin del circulo -->
+											<div>1</div>
+											<i class="fa-solid fa-circle fa-2x"
+												style="color: #fafafa; position: relative"> <i
+												class="fa-solid fa-plus fa-2xs"
+												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
+											</i>
+										</div>
+									</div>
+									<a href="#"
+										class="d-flex justify-content-center estilo_btn_1 py-3">Agregar</a>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="shadow-sm card card_plato"
+								style="border: 2px solid #FFD700; border-radius: 15px">
+								<img src="../../img/arroz_chaufa.png" style="width: 200px"
+									class="mx-auto card-img-top" alt="chaufa">
+								<div class="card-body ">
+									<h1 class="card-title text-center mb-3">
+										<b>Arroz Chaufa</b>
+									</h1>
+									<div class="d-flex justify-content-evenly mb-4">
+										<h1 class="mt-3 ">
+											<b>S/. 18</b>
+										</h1>
+
+										<div
+											class="d-flex justify-content-center align-items-center px-2 rounded-pill mt-3"
+											style="background: lightgray; gap: 10px; height: 35px;">
+
+											<!-- inicio del circulo -->
+											<i class="fa-solid fa-circle fa-2x"
+												style="color: #fafafa; position: relative"> <i
+												class="fa-solid fa-minus fa-2xs"
+												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
+											</i>
+											<!-- fin del circulo -->
+											<div>1</div>
+											<i class="fa-solid fa-circle fa-2x"
+												style="color: #fafafa; position: relative"> <i
+												class="fa-solid fa-plus fa-2xs"
+												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
+											</i>
+										</div>
+									</div>
+									<a href="#"
+										class="d-flex justify-content-center estilo_btn_1 py-3">Agregar</a>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="shadow-sm card card_plato"
+								style="border: 2px solid #FFD700; border-radius: 15px">
+								<img src="../../img/arroz_chaufa.png" style="width: 200px"
+									class="mx-auto card-img-top" alt="chaufa">
+								<div class="card-body ">
+									<h1 class="card-title text-center mb-3">
+										<b>Arroz Chaufa</b>
+									</h1>
+									<div class="d-flex justify-content-evenly mb-4">
+										<h1 class="mt-3 ">
+											<b>S/. 18</b>
+										</h1>
+
+										<div
+											class="d-flex justify-content-center align-items-center px-2 rounded-pill mt-3"
+											style="background: lightgray; gap: 10px; height: 35px;">
+
+											<!-- inicio del circulo -->
+											<i class="fa-solid fa-circle fa-2x"
+												style="color: #fafafa; position: relative"> <i
+												class="fa-solid fa-minus fa-2xs"
+												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
+											</i>
+											<!-- fin del circulo -->
+											<div>1</div>
+											<i class="fa-solid fa-circle fa-2x"
+												style="color: #fafafa; position: relative"> <i
+												class="fa-solid fa-plus fa-2xs"
+												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
+											</i>
+										</div>
+									</div>
+									<a href="#"
+										class="d-flex justify-content-center estilo_btn_1 py-3">Agregar</a>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="shadow-sm card card_plato"
+								style="border: 2px solid #FFD700; border-radius: 15px">
+								<img src="../../img/arroz_chaufa.png" style="width: 200px"
+									class="mx-auto card-img-top" alt="chaufa">
+								<div class="card-body ">
+									<h1 class="card-title text-center mb-3">
+										<b>Arroz Chaufa</b>
+									</h1>
+									<div class="d-flex justify-content-evenly mb-4">
+										<h1 class="mt-3 ">
+											<b>S/. 18</b>
+										</h1>
+
+										<div
+											class="d-flex justify-content-center align-items-center px-2 rounded-pill mt-3"
+											style="background: lightgray; gap: 10px; height: 35px;">
+
+											<!-- inicio del circulo -->
+											<i class="fa-solid fa-circle fa-2x"
+												style="color: #fafafa; position: relative"> <i
+												class="fa-solid fa-minus fa-2xs"
+												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
+											</i>
+											<!-- fin del circulo -->
+											<div>1</div>
+											<i class="fa-solid fa-circle fa-2x"
+												style="color: #fafafa; position: relative"> <i
+												class="fa-solid fa-plus fa-2xs"
+												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
 											</i>
 										</div>
 									</div>
@@ -311,12 +486,9 @@
 							</div>
 						</div>
 
-						<!-- fin de card 6 -->
+						<!-- Fin CARD PRODUCTO -->
 					</div>
-
 				</div>
-				<!-- Fin CARD PRODUCTO -->
-
 			</div>
 		</div>
 	</div>
@@ -325,5 +497,3 @@
 	<script src="detalle_pedido.js"></script>
 </body>
 </html>
-<!-- <script src="https://kit.fontawesome.com/c353473263.js" -->
-<!-- 		crossorigin="anonymous"></script> -->

@@ -11,12 +11,12 @@
 .seleccionar_mesa_titulo {
 	background: var(--verde);
 	color: #ffffff;
-	font-size: 4rem;
+	font-size: 2rem;
 }
 
 .opciones_busqueda_mesa {
-	font-size: 3rem;
-	padding: 20px;
+	font-size: 1rem;
+	padding: 10px;
 	
 }
 
@@ -27,6 +27,7 @@
 
 @media (min-width: 992px){
 	.opciones_busqueda_mesa{
-		font-size: 2rem;
+		font-size: 1.2rem;
+		width: 75%;
 	}
 }

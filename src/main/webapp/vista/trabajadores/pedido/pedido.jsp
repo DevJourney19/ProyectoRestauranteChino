@@ -3,14 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta charset="UTF-8">
-<title>Mozo</title>
-<%@include file="../fragmentos/link_bootstrap.jsp"%>
-<link href="../general_css/general_css.css" rel="stylesheet" />
-<link href="pedido_css.css" rel="stylesheet" />
 
+<title>Mozo</title>
+<%@include file="../fragmentos/head.jsp"%>
+<link href="pedido_css.css" rel="stylesheet" />
 
 </head>
 <body class="body">
@@ -21,24 +17,24 @@
 		class="container w-100 d-flex justify-content-center 
 	align-items-center p-4">
 		<a class="aniadir_pedido" href="../mesa/mesa.jsp"> <img
-			src="../img/boton-mas.png" style="widh: 40px; height: 40px">
+			src="../../img/boton-mas.png" style="widh: 40px; height: 40px">
 			Añadir Pedido
 		</a>
 	</div>
 
 	<div class="container" style="background-color: transparent">
 		<div class="p-3 border rounded bg-white"
-			style="width: 300px; position: relative">
+			style="width: 320px; position: relative">
 			<div class="mesa_numero">M01</div>
 			<div
-				style="position: absolute; top: 20px; left: 62px; font-size: 1.2rem">Cliente</div>
+				style="position: absolute; top: 20px; left: 62px; font-size: 1rem">Cliente</div>
 			<div class="completado">
 				<i class="fa-solid fa-square-check" style="color: #000000;"></i>
 				Completado
 			</div>
 			<div class="pedido_especifico_numero_pedido">Pedido #0000000</div>
 			<div class="d-flex justify-content-between mt-2"
-				style="font-size: 0.9rem">
+				style="font-size: 0.7rem">
 				<div>29/08/2024</div>
 				<div>21:00 PM</div>
 			</div>
@@ -46,38 +42,38 @@
 			<div class="table-responsive ">
 				<table class="table text-center" style="border: transparent;">
 					<thead>
-						<tr style="font-size: 1rem">
+						<tr style="font-size: 0.8rem">
 							<th>Producto</th>
 							<th>Cantidad</th>
-							<th>Importe+incl.</th>
+							<th>Subtotal</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr style="font-size: 1rem">
+						<tr style="font-size: 0.8rem">
 							<th>Chaufa</th>
 							<th>2</th>
 							<th>S/. 40</th>
 
 						</tr>
-						<tr style="font-size: 1rem">
+						<tr style="font-size: 0.8rem">
 							<th>Chaufa</th>
 							<th>2</th>
 							<th>S/. 40</th>
 
 						</tr>
-						<tr style="font-size: 1rem">
+						<tr style="font-size: 0.8rem">
 							<th>Chaufa</th>
 							<th>2</th>
 							<th>S/. 40</th>
 
 						</tr>
-						<tr style="font-size: 1rem">
+						<tr style="font-size: 0.8rem">
 							<th>Chaufa</th>
 							<th>2</th>
 							<th>S/. 40</th>
 
 						</tr>
-						<tr style="font-size: 1rem">
+						<tr style="font-size: 0.8rem">
 							<th>Chaufa</th>
 							<th>2</th>
 							<th>S/. 40</th>
@@ -88,7 +84,7 @@
 				</table>
 				<hr />
 				<div class="d-flex justify-content-between mb-3"
-					style="font-size: 1rem; font-weight: 600">
+					style="font-size: 0.8rem; font-weight: 600">
 					<div>Total</div>
 					<div>S/. 200</div>
 				</div>

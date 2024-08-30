@@ -32,20 +32,20 @@ body {
 	background-color: var(--verde);
 	color: white;
 	width: 40px;
-	padding: 10px;
+	padding: 6px;
 	border-radius: 5px;
 }
 
 .pedido_especifico_numero_pedido {
 	position: absolute;
-	font-size: 0.9rem;
+	font-size: 0.7rem;
 	top: 40px;
 	left: 63px;
 }
 
 .completado {
 	position: absolute;
-	top: 24px;
+	top: 20px;
 	right: 10px;
 	background: #ceffd0;
 	border-radius: 6px;
