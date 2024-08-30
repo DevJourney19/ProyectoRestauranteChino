@@ -1,13 +1,15 @@
 @charset "UTF-8";
 
+body {
+	background-color: #f9f9f9;
+}
+
 .detalle_pedido_div {
 	font-weight: 600;
-	background: var(--verde);
-	border: 10px solid #FFD700;
 	color: var(--amarillo);
-	text-align: center;
-	padding: 20px;
-	font-size: 7em;
+	text-align: left;
+	padding: 4px;
+	font-size: 2em;
 	margin-top: 20px;
 }
 
@@ -22,17 +24,18 @@
 }
 
 .toggle_tabla_detalle_pedidos_nada {
-	display: none;
+	display: none !important;
 }
 
 .toggle_tabla_detalle_pedidos {
-	display: block;
+	display: flex !important;
 }
 
 .fondo_verde_productos {
-	background: var(--verde);
-	border: 10px solid #FFD700;
+	background: transparent;
+	/* 	border: 10px solid #FFD700; */
 	padding: 20px;
+	/* 	margin-left: 30px; */
 }
 
 .estilo_btn_1 {
@@ -51,16 +54,45 @@
 	transform: translateY(-8px);
 }
 
+.card_plato {
+	padding: 10px;
+}
+
+.card_body_plato {
+	width: 100%;
+}
+
+.resumen_pago {
+	display: flex;
+}
+
+.titulo_detalle_pedido {
+	background: black;
+	color: white;
+	text-align: center;
+	font-size: 2rem;
+	padding: 10px;
+}
+
 /*@media queries*/
 @media ( min-width : 1px) {
 	.contenedor_cards {
 		width: 300px;
 	}
+	.boton_deta_pedi {
+		width: 200px;
+		background: #0059ff;
+		color: white;
+		border: none;
+	}
 }
 
 @media ( min-width : 576px) {
 	.boton_deta_pedi {
-		width: 1000px;
+		width: 300px;
+	}
+	.tabla_detalle_pedidos {
+		width: 50%;
 	}
 }
 
@@ -72,6 +104,12 @@
 
 @media ( min-width : 1200px) {
 	.boton_deta_pedi {
-		width: 100px;
+		width: 300px;
+	}
+	.combinado_tabla_y_productos {
+		flex-direction: row !important;
+	}
+	.tabla_detalle_pedidos {
+		width: 30%;
 	}
 }
