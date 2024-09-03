@@ -41,7 +41,8 @@
 						<h6 class="mx-2 " style="font-weight: 600">
 							Arroz Chaufa<br /> (S/. 18) x2
 						</h6>
-						<i class="fas fa-solid fa-trash fa-xl mx-2" style="color: red;"></i>
+						<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
+							style="color: red;"></i>
 					</div>
 					<div
 						class="d-flex p-2 m-2 align-items-center justify-content-center"
@@ -51,7 +52,8 @@
 						<h6 class="mx-2 " style="font-weight: 600">
 							Arroz Chaufa<br /> (S/. 18) x2
 						</h6>
-						<i class="fas fa-solid fa-trash fa-xl mx-2" style="color: red;"></i>
+						<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
+							style="color: red;"></i>
 					</div>
 					<div
 						class="d-flex p-2 m-2 align-items-center justify-content-center"
@@ -61,7 +63,8 @@
 						<h6 class="mx-2 " style="font-weight: 600">
 							Arroz Chaufa<br /> (S/. 18) x2
 						</h6>
-						<i class="fas fa-solid fa-trash fa-xl mx-2" style="color: red;"></i>
+						<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
+							style="color: red;"></i>
 					</div>
 					<div
 						class="d-flex p-2 m-2 align-items-center justify-content-center"
@@ -71,7 +74,8 @@
 						<h6 class="mx-2 " style="font-weight: 600">
 							Arroz Chaufa<br /> (S/. 18) x2
 						</h6>
-						<i class="fas fa-solid fa-trash fa-xl mx-2" style="color: red;"></i>
+						<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
+							style="color: red;"></i>
 					</div>
 					<div
 						class="d-flex p-2 m-2 align-items-center justify-content-center"
@@ -81,7 +85,8 @@
 						<h6 class="mx-2 " style="font-weight: 600">
 							Arroz Chaufa<br /> (S/. 18) x2
 						</h6>
-						<i class="fas fa-solid fa-trash fa-xl mx-2" style="color: red;"></i>
+						<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
+							style="color: red;"></i>
 					</div>
 					<div
 						class="d-flex p-2 m-2 align-items-center justify-content-center"
@@ -91,7 +96,8 @@
 						<h6 class="mx-2 " style="font-weight: 600">
 							Arroz Chaufa<br /> (S/. 18) x2
 						</h6>
-						<i class="fas fa-solid fa-trash fa-xl mx-2" style="color: red;"></i>
+						<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
+							style="color: red;"></i>
 					</div>
 					<div
 						class="d-flex p-2 m-2 align-items-center justify-content-center"
@@ -101,7 +107,8 @@
 						<h6 class="mx-2 " style="font-weight: 600">
 							Arroz Chaufa<br /> (S/. 18) x2
 						</h6>
-						<i class="fas fa-solid fa-trash fa-xl mx-2" style="color: red;"></i>
+						<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
+							style="color: red;"></i>
 					</div>
 					<div
 						class="d-flex p-2 m-2 align-items-center justify-content-center"
@@ -111,7 +118,8 @@
 						<h6 class="mx-2 " style="font-weight: 600">
 							Arroz Chaufa<br /> (S/. 18) x2
 						</h6>
-						<i class="fas fa-solid fa-trash fa-xl mx-2" style="color: red;"></i>
+						<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
+							style="color: red;"></i>
 					</div>
 				</div>
 			</div>
@@ -152,12 +160,10 @@
 			<!-- INICIO UNION DIVS BUSQUEDA Y CARD_PRODUCTS -->
 			<div>
 				<!-- Inicio BUSQUEDA -->
-				<div class="py-4">
+				<div class="py-4 px-xl-5">
 					<h2>
 						<label for="buscar" class="text-dark">Buscar producto</label>
 					</h2>
-
-
 
 					<form class="d-flex" role="search">
 						<input class="form-control me-2" type="search"
@@ -178,13 +184,13 @@
 				<!-- Inicio CARD PRODUCTO -->
 				<div class="container py-2 contenedor_cards">
 					<div
-						class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xxl-3 g-4 py-2">
+						class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xxl-3 g-4 py-2 px-xl-5">
 						<!-- inicio card 1 -->
 						<div class="col">
 							<div class="shadow-sm card card_plato"
 								style="border: 2px solid #FFD700; border-radius: 15px">
 								<img src="../../img/arroz_chaufa.png" style="width: 200px"
-									class="mx-auto card-img-top" alt="chaufa">
+									class="mx-auto card-img-top" alt="chaufa"><div class="contador_suma_resta" id="contador_suma_resta">+2</div>
 								<div class="card-body ">
 									<h1 class="card-title text-center mb-3">
 										<b>Arroz Chaufa</b>
@@ -196,10 +202,10 @@
 
 										<div
 											class="d-flex justify-content-center align-items-center px-2 rounded-pill mt-3"
-											style="background: lightgray; gap: 10px; height: 35px;">
+											style="background: lightgray; gap: 10px; height: 35px;" id="barrita_suma_resta">
 
 											<!-- inicio del circulo -->
-											<i class="fa-solid fa-circle fa-2x"
+											<i class="fa-solid fa-circle fa-2x circulito_card"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-minus fa-2xs"
 												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
@@ -214,7 +220,7 @@
 										</div>
 									</div>
 									<a href="#"
-										class="d-flex justify-content-center estilo_btn_1 py-3">Agregar</a>
+										class="d-flex justify-content-center estilo_btn_1 py-3 agregar_btn">Agregar</a>
 								</div>
 							</div>
 						</div>
@@ -253,7 +259,7 @@
 										</div>
 									</div>
 									<a href="#"
-										class="d-flex justify-content-center estilo_btn_1 py-3">Agregar</a>
+										class="d-flex justify-content-center estilo_btn_1 py-3 agregar_btn">Agregar</a>
 								</div>
 							</div>
 						</div>
@@ -291,7 +297,7 @@
 										</div>
 									</div>
 									<a href="#"
-										class="d-flex justify-content-center estilo_btn_1 py-3">Agregar</a>
+										class="d-flex justify-content-center estilo_btn_1 py-3 agregar_btn">Agregar</a>
 								</div>
 							</div>
 						</div>
@@ -329,7 +335,7 @@
 										</div>
 									</div>
 									<a href="#"
-										class="d-flex justify-content-center estilo_btn_1 py-3">Agregar</a>
+										class="d-flex justify-content-center estilo_btn_1 py-3 agregar_btn">Agregar</a>
 								</div>
 							</div>
 						</div>
@@ -367,7 +373,7 @@
 										</div>
 									</div>
 									<a href="#"
-										class="d-flex justify-content-center estilo_btn_1 py-3">Agregar</a>
+										class="d-flex justify-content-center estilo_btn_1 py-3 agregar_btn">Agregar</a>
 								</div>
 							</div>
 						</div>
@@ -405,7 +411,7 @@
 										</div>
 									</div>
 									<a href="#"
-										class="d-flex justify-content-center estilo_btn_1 py-3">Agregar</a>
+										class="d-flex justify-content-center estilo_btn_1 py-3 agregar_btn">Agregar</a>
 								</div>
 							</div>
 						</div>
@@ -443,7 +449,7 @@
 										</div>
 									</div>
 									<a href="#"
-										class="d-flex justify-content-center estilo_btn_1 py-3">Agregar</a>
+										class="d-flex justify-content-center estilo_btn_1 py-3 agregar_btn">Agregar</a>
 								</div>
 							</div>
 						</div>
@@ -481,7 +487,7 @@
 										</div>
 									</div>
 									<a href="#"
-										class="d-flex justify-content-center estilo_btn_1 py-3">Agregar</a>
+										class="d-flex justify-content-center estilo_btn_1 py-3 agregar_btn">Agregar</a>
 								</div>
 							</div>
 						</div>
