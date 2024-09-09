@@ -55,15 +55,3 @@ icono_eliminar.forEach(t => {
 	})
 })
 
-const circulito_card = document.querySelectorAll(".circulito_card");
-circulito_card.forEach(t => t.addEventListener("click", function() {
-	let barrita = document.getElementById("barrita_suma_resta");
-	let numero_contador = "<h5 style='position:absolute;top:0px'>+1</h5>"
-	barrita.innerHTML += numero_contador;
-	setTimeout(function() {
-		
-		barrita.innerHTML -= numero_contador;
-	}, 2000);
-}))
-
-

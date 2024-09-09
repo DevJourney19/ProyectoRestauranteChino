@@ -59,13 +59,13 @@
 												<label for="cantidad">Cantidad</label> <input type="number"
 													step="1" class="form-control" id="cantidad"
 													aria-describedby="emailHelp" placeholder="Enter Mesa"
-													name="numMesa" required>
+													name="numMesa" required min="0" max="500">
 											</div>
 											<div class="col-12 col-md">
 												<label for="subtotal">Subtotal</label> <input type="number"
 													step="0.01" class="form-control" id="subtotal"
 													aria-describedby="emailHelp" placeholder="Enter Total"
-													name="totalPagar" required>
+													name="totalPagar" required min="0">
 											</div>
 										</div>
 
