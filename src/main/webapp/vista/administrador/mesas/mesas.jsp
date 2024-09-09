@@ -64,12 +64,12 @@
 												<label for="salon">N&ordm; Salon</label> <input
 													type="number" class="form-control" id="salon"
 													aria-describedby="emailHelp" placeholder="Enter Number"
-													name="numSalon" required>
+													name="numSalon" required min="0" max="500">
 											</div>
 											<div>
 												<label for="mesa">N&ordm; Mesa</label> <input type="number"
 													class="form-control" id="mesa" placeholder="Enter Number"
-													name="numMesa" required>
+													name="numMesa" required min="0" max="500">
 											</div>
 										</div>
 

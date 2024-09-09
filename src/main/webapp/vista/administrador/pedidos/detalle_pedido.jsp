@@ -52,25 +52,26 @@
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<label for="cliente">Platos</label>
 											<!-- realizar busqueda -->
-											<select class="form-select" aria-label="Default select example" required>
-  <option selected>Seleccionar Platos</option>
-  <option value="1">Arroz Con Pollo - Principal</option>
-  <option value="2">Cheescake - Postre</option>
-  <option value="3">Ceviche - Principal</option>
-</select>
+											<select class="form-select"
+												aria-label="Default select example" required>
+												<option selected>Seleccionar Platos</option>
+												<option value="1">Arroz Con Pollo - Principal</option>
+												<option value="2">Cheescake - Postre</option>
+												<option value="3">Ceviche - Principal</option>
+											</select>
 										</div>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<div>
 												<label for="cantidad">Cantidad</label> <input type="number"
 													step="1" class="form-control" id="cantidad"
 													aria-describedby="emailHelp" placeholder="Enter Mesa"
-													name="numMesa" required>
+													name="numMesa" required min="0" max="500">
 											</div>
 											<div>
 												<label for="subtotal">Subtotal</label> <input type="number"
 													step="0.01" class="form-control" id="subtotal"
 													aria-describedby="emailHelp" placeholder="Enter Total"
-													name="totalPagar" required>
+													name="totalPagar" required min="0">
 											</div>
 										</div>
 
@@ -167,7 +168,8 @@
 						</table>
 					</div>
 					<div class="regresar">
-						<a href="pedidos.jsp"><i class="lni lni-arrow-left"></i>Regresar Pedidos</a>
+						<a href="pedidos.jsp"><i class="lni lni-arrow-left"></i>Regresar
+							Pedidos</a>
 					</div>
 				</div>
 			</main>

@@ -81,27 +81,27 @@
 
                                                 <div class="form-group">
                                                     <label for="costo_unitario">Costo Unitario:</label>
-                                                    <input type="number" class="form-control" id="costo_unitario" name="costo_unitario" step="0.01" required>
+                                                    <input type="number" min="0" max="500" class="form-control" id="costo_unitario" name="costo_unitario" step="0.01" required>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="inventario_inicial">Inventario Inicial:</label>
-                                                    <input type="number" class="form-control" id="inventario_inicial" name="inventario_inicial" required>
+                                                    <input type="number" min="0" max="500" class="form-control" id="inventario_inicial" name="inventario_inicial" required>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="stock_inicial">Stock Inicial:</label>
-                                                    <input type="number" class="form-control" id="stock_inicial" name="stock_inicial" required>
+                                                    <input type="number" min="0" max="500" class="form-control" id="stock_inicial" name="stock_inicial" required>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="stock_minimo">Stock Mínimo:</label>
-                                                    <input type="number" class="form-control" id="stock_minimo" name="stock_minimo" required>
+                                                    <input type="number" min="0" max="500" class="form-control" id="stock_minimo" name="stock_minimo" required>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="dias_caducidad">Días de Caducidad:</label>
-                                                    <input type="number" class="form-control" id="dias_caducidad" name="dias_caducidad" required>
+                                                    <input type="number" min="0" max="500" class="form-control" id="dias_caducidad" name="dias_caducidad" required>
                                                 </div>
                                             </div>
 
@@ -208,5 +208,6 @@
                 </main>
             </div>
         </div>
+        <script src="inventario.js"></script>
     </body>
 </html>
