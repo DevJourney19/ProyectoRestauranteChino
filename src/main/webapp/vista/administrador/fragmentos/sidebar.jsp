@@ -9,7 +9,7 @@
 				<li class="sidebar-item"><a href="#" class="sidebar-link d-flex align-items-center gap-2">
 						<i class="lni lni-users"></i> <span>Usuarios</span>
 				</a></li>
-				<li class="sidebar-item"><a href="#" class="sidebar-link d-flex align-items-center gap-2">
+				<li class="sidebar-item"><a href="../menu/menu.jsp" class="sidebar-link d-flex align-items-center gap-2">
 						<i class="lni lni-service"></i> <span>Menu</span>
 				</a></li>
 				<li class="sidebar-item"><a href="../inventario/inventario.jsp" class="sidebar-link d-flex align-items-center gap-2">
@@ -21,12 +21,12 @@
 				<li class="sidebar-item"><a href="../mesas/mesas.jsp" class="sidebar-link d-flex align-items-center gap-2">
 						<i class="lni lni-airtable"></i> <span>Mesas</span>
 				</a></li>
-				<li class="sidebar-item"><a href="#" class="sidebar-link d-flex align-items-center gap-2">
+				<!-- <li class="sidebar-item"><a href="#" class="sidebar-link d-flex align-items-center gap-2">
 						<i class="lni lni-stats-up"></i> <span>Reportes</span>
-				</a></li>
+				</a></li> -->
 			</ul>
 			<div class="sidebar-footer">
-				<a href="#" class="sidebar-link d-flex align-items-center gap-2"> <i class="lni lni-exit"></i> <span>Logout</span>
+				<a href="../login.jsp" class="sidebar-link d-flex align-items-center gap-2"> <i class="lni lni-exit"></i> <span>Logout</span>
 				</a>
 			</div>
 		</aside>
