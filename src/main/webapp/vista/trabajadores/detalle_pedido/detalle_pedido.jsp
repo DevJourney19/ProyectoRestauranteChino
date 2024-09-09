@@ -190,7 +190,7 @@
 							<div class="shadow-sm card card_plato"
 								style="border: 2px solid #FFD700; border-radius: 15px">
 								<img src="../../img/arroz_chaufa.png" style="width: 200px"
-									class="mx-auto card-img-top" alt="chaufa"><div class="contador_suma_resta" id="contador_suma_resta">+2</div>
+									class="mx-auto card-img-top" alt="chaufa"><div class="contador_suma_resta" id="contador_suma_resta"></div>
 								<div class="card-body ">
 									<h1 class="card-title text-center mb-3">
 										<b>Arroz Chaufa</b>
@@ -202,7 +202,7 @@
 
 										<div
 											class="d-flex justify-content-center align-items-center px-2 rounded-pill mt-3"
-											style="background: lightgray; gap: 10px; height: 35px;" id="barrita_suma_resta">
+											style="background: lightgray; gap: 10px; height: 35px;">
 
 											<!-- inicio del circulo -->
 											<i class="fa-solid fa-circle fa-2x circulito_card"
@@ -212,7 +212,7 @@
 											</i>
 											<!-- fin del circulo -->
 											<div>1</div>
-											<i class="fa-solid fa-circle fa-2x"
+											<i class="fa-solid fa-circle fa-2x circulito_card"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-plus fa-2xs"
 												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
@@ -229,7 +229,7 @@
 							<div class="shadow-sm card card_plato"
 								style="border: 2px solid #FFD700; border-radius: 15px">
 								<img src="../../img/arroz_chaufa.png" style="width: 200px"
-									class="mx-auto card-img-top" alt="chaufa">
+									class="mx-auto card-img-top" alt="chaufa"><div class="contador_suma_resta" id="contador_suma_resta"></div>
 								<div class="card-body ">
 									<h1 class="card-title text-center mb-3">
 										<b>Arroz Chaufa</b>
@@ -244,14 +244,14 @@
 											style="background: lightgray; gap: 10px; height: 35px;">
 
 											<!-- inicio del circulo -->
-											<i class="fa-solid fa-circle fa-2x"
+											<i class="fa-solid fa-circle fa-2x circulito_card"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-minus fa-2xs"
 												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
 											</i>
 											<!-- fin del circulo -->
 											<div>1</div>
-											<i class="fa-solid fa-circle fa-2x"
+											<i class="fa-solid fa-circle fa-2x circulito_card"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-plus fa-2xs"
 												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
@@ -267,7 +267,7 @@
 							<div class="shadow-sm card card_plato"
 								style="border: 2px solid #FFD700; border-radius: 15px">
 								<img src="../../img/arroz_chaufa.png" style="width: 200px"
-									class="mx-auto card-img-top" alt="chaufa">
+									class="mx-auto card-img-top" alt="chaufa"><div class="contador_suma_resta" id="contador_suma_resta"></div>
 								<div class="card-body ">
 									<h1 class="card-title text-center mb-3">
 										<b>Arroz Chaufa</b>
@@ -282,14 +282,14 @@
 											style="background: lightgray; gap: 10px; height: 35px;">
 
 											<!-- inicio del circulo -->
-											<i class="fa-solid fa-circle fa-2x"
+											<i class="fa-solid fa-circle fa-2x circulito_card"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-minus fa-2xs"
 												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
 											</i>
 											<!-- fin del circulo -->
 											<div>1</div>
-											<i class="fa-solid fa-circle fa-2x"
+											<i class="fa-solid fa-circle fa-2x circulito_card"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-plus fa-2xs"
 												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
@@ -305,7 +305,7 @@
 							<div class="shadow-sm card card_plato"
 								style="border: 2px solid #FFD700; border-radius: 15px">
 								<img src="../../img/arroz_chaufa.png" style="width: 200px"
-									class="mx-auto card-img-top" alt="chaufa">
+									class="mx-auto card-img-top" alt="chaufa"><div class="contador_suma_resta" id="contador_suma_resta"></div>
 								<div class="card-body ">
 									<h1 class="card-title text-center mb-3">
 										<b>Arroz Chaufa</b>
@@ -320,14 +320,14 @@
 											style="background: lightgray; gap: 10px; height: 35px;">
 
 											<!-- inicio del circulo -->
-											<i class="fa-solid fa-circle fa-2x"
+											<i class="fa-solid fa-circle fa-2x circulito_card"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-minus fa-2xs"
 												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
 											</i>
 											<!-- fin del circulo -->
 											<div>1</div>
-											<i class="fa-solid fa-circle fa-2x"
+											<i class="fa-solid fa-circle fa-2x circulito_card"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-plus fa-2xs"
 												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
@@ -343,7 +343,7 @@
 							<div class="shadow-sm card card_plato"
 								style="border: 2px solid #FFD700; border-radius: 15px">
 								<img src="../../img/arroz_chaufa.png" style="width: 200px"
-									class="mx-auto card-img-top" alt="chaufa">
+									class="mx-auto card-img-top" alt="chaufa"><div class="contador_suma_resta" id="contador_suma_resta"></div>
 								<div class="card-body ">
 									<h1 class="card-title text-center mb-3">
 										<b>Arroz Chaufa</b>
@@ -358,14 +358,14 @@
 											style="background: lightgray; gap: 10px; height: 35px;">
 
 											<!-- inicio del circulo -->
-											<i class="fa-solid fa-circle fa-2x"
+											<i class="fa-solid fa-circle fa-2x circulito_card"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-minus fa-2xs"
 												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
 											</i>
 											<!-- fin del circulo -->
 											<div>1</div>
-											<i class="fa-solid fa-circle fa-2x"
+											<i class="fa-solid fa-circle fa-2x circulito_card"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-plus fa-2xs"
 												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
@@ -381,7 +381,7 @@
 							<div class="shadow-sm card card_plato"
 								style="border: 2px solid #FFD700; border-radius: 15px">
 								<img src="../../img/arroz_chaufa.png" style="width: 200px"
-									class="mx-auto card-img-top" alt="chaufa">
+									class="mx-auto card-img-top" alt="chaufa"><div class="contador_suma_resta" id="contador_suma_resta"></div>
 								<div class="card-body ">
 									<h1 class="card-title text-center mb-3">
 										<b>Arroz Chaufa</b>
@@ -396,14 +396,14 @@
 											style="background: lightgray; gap: 10px; height: 35px;">
 
 											<!-- inicio del circulo -->
-											<i class="fa-solid fa-circle fa-2x"
+											<i class="fa-solid fa-circle fa-2x circulito_card"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-minus fa-2xs"
 												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
 											</i>
 											<!-- fin del circulo -->
 											<div>1</div>
-											<i class="fa-solid fa-circle fa-2x"
+											<i class="fa-solid fa-circle fa-2x circulito_card"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-plus fa-2xs"
 												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
@@ -419,7 +419,7 @@
 							<div class="shadow-sm card card_plato"
 								style="border: 2px solid #FFD700; border-radius: 15px">
 								<img src="../../img/arroz_chaufa.png" style="width: 200px"
-									class="mx-auto card-img-top" alt="chaufa">
+									class="mx-auto card-img-top" alt="chaufa"><div class="contador_suma_resta" id="contador_suma_resta"></div>
 								<div class="card-body ">
 									<h1 class="card-title text-center mb-3">
 										<b>Arroz Chaufa</b>
@@ -434,14 +434,14 @@
 											style="background: lightgray; gap: 10px; height: 35px;">
 
 											<!-- inicio del circulo -->
-											<i class="fa-solid fa-circle fa-2x"
+											<i class="fa-solid fa-circle fa-2x circulito_card"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-minus fa-2xs"
 												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
 											</i>
 											<!-- fin del circulo -->
 											<div>1</div>
-											<i class="fa-solid fa-circle fa-2x"
+											<i class="fa-solid fa-circle fa-2x circulito_card"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-plus fa-2xs"
 												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
@@ -457,7 +457,7 @@
 							<div class="shadow-sm card card_plato"
 								style="border: 2px solid #FFD700; border-radius: 15px">
 								<img src="../../img/arroz_chaufa.png" style="width: 200px"
-									class="mx-auto card-img-top" alt="chaufa">
+									class="mx-auto card-img-top" alt="chaufa"><div class="contador_suma_resta" id="contador_suma_resta"></div>
 								<div class="card-body ">
 									<h1 class="card-title text-center mb-3">
 										<b>Arroz Chaufa</b>
@@ -472,14 +472,14 @@
 											style="background: lightgray; gap: 10px; height: 35px;">
 
 											<!-- inicio del circulo -->
-											<i class="fa-solid fa-circle fa-2x"
+											<i class="fa-solid fa-circle fa-2x circulito_card"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-minus fa-2xs"
 												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
 											</i>
 											<!-- fin del circulo -->
 											<div>1</div>
-											<i class="fa-solid fa-circle fa-2x"
+											<i class="fa-solid fa-circle fa-2x circulito_card"
 												style="color: #fafafa; position: relative"> <i
 												class="fa-solid fa-plus fa-2xs"
 												style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>

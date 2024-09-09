@@ -55,15 +55,49 @@ icono_eliminar.forEach(t => {
 	})
 })
 
+//Se activa para poder detectar el clic al circulo de aumentar cantidad de producto
 const circulito_card = document.querySelectorAll(".circulito_card");
+//Se activa para todos
 circulito_card.forEach(t => t.addEventListener("click", function() {
-	let barrita = document.getElementById("barrita_suma_resta");
-	let numero_contador = "<h5 style='position:absolute;top:0px'>+1</h5>"
-	barrita.innerHTML += numero_contador;
-	setTimeout(function() {
-		
-		barrita.innerHTML -= numero_contador;
-	}, 2000);
-}))
+	//Llama a la ubicación de un div que se encuentra al costado de la imagen
+	let barrita = document.getElementById("contador_suma_resta");
 
+	//Crear un nuevo div para el contador
+	let numeroContador = document.createElement("div");
+	//Agregamos un texto al contenido del div
+	numeroContador.textContent = "-1";
+	//Quiero que ese div se encuentre en la misma posición que barrita
+	numeroContador.classList.add("contador_suma_resta");
+	//Hacemos que barrita tenga un hijo div llamado numeroContador
+	barrita.appendChild(numeroContador);
+	
+	//Añadir clase para animación (aparecerá cuando se de clic en el botón)
+	barrita.classList.add("contador_suma_resta_mover");
+
+	//Eliminar el div después de 2 segundos
+	setTimeout(function() {
+		//Si en 2 segundos sigue existiendo el contenido de texto entonces se elimina
+		if (numeroContador) {
+			//Eliminar al createElement("div")
+			numeroContador.remove();
+		}
+		//Si no hay más elementos, eliminar la clase de animación
+		if (barrita.children.length === 0) {
+			//Remueve el efecto de movimiento para que nuevos elementos puedan obtener ese efecto
+			barrita.classList.remove("contador_suma_resta_mover");
+		}
+
+	}, 500);
+}))
+	
+//	barrita.classList.add("contador_suma_resta_mover");
+//	
+//	barrita.innerHTML = "<div>+1</div>"
+	
+//	barrita.innerHTML+= too;
+	
+//	let numero_contador = "<div>+1</div>"
+//	barrita.innerHTML += numero_contador;
+//		barrita.classList.remove("contador_suma_resta_mover");
+//		barrita.innerHTML = "";
 
