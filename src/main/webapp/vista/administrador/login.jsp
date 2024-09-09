@@ -38,7 +38,7 @@
                 </div>                
 
                 <button type="submit" class="login-btn">INICIAR SESIÓN</button>
-                <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                <a href="pedidos/pedidos.jsp" class="forgot-password">¿Olvidaste tu contraseña?</a>
             </form>
         </div>
 
