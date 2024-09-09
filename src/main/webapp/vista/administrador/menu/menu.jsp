@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../css/menu.css">
+<link rel="stylesheet" href="./menu.css">
 <%@ include file="../fragmentos/head.jsp"%>
 <title>Admin | Menú</title>
 </head>

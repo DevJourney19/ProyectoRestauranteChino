@@ -86,8 +86,6 @@
 		</div>
 
 	</div>
-
-
 	<script src="https://kit.fontawesome.com/c353473263.js"></script>
 </body>
 </html>
