@@ -39,6 +39,7 @@
 						</div>
 					</div>
 
+
 					<!-- Modal Agregar-->
 					<div class="modal fade" id="modalAdd" tabindex="-1"
 						aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -72,20 +73,20 @@
 											<div class="col-12 col-md">
 												<label for="costo_unitario">Costo Unitario</label> <input
 													type="number" class="form-control" id="costo_unitario"
-													name="costo_unitario" step="0.01" required>
+													name="costo_unitario" step="0.01" required min="0" max="500">
 											</div>
 										</div>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<div class="col-12 col-md">
 												<label for="inventario_inicial">Inventario Inicial</label> <input
 													type="number" class="form-control" id="inventario_inicial"
-													name="inventario_inicial" required>
+													name="inventario_inicial" required min="0" max="1000">
 											</div>
 
 											<div class="col-12 col-md">
 												<label for="stock_inicial">Stock Actual</label> <input
 													type="number" class="form-control" id="stock_inicial"
-													name="stock_inicial" required>
+													name="stock_inicial" required min="0" max="1000">
 											</div>
 										</div>
 
@@ -93,14 +94,14 @@
 											<div class="col-12 col-md">
 												<label for="stock_minimo">Stock Mínimo</label> <input
 													type="number" class="form-control" id="stock_minimo"
-													name="stock_minimo" required>
+													name="stock_minimo" required min="0" max="1000">
 											</div>
 
 
 											<div class="col-12 col-md">
 												<label for="dias_caducidad">Días de Caducidad:</label> <input
 													type="number" class="form-control" id="dias_caducidad"
-													name="dias_caducidad" required>
+													name="dias_caducidad" required min="0" max="500">
 											</div>
 										</div>
 
@@ -149,20 +150,21 @@
 											<div class="col-12 col-md">
 												<label for="costo_unitario">Costo Unitario</label> <input
 													type="number" class="form-control" id="costo_unitario"
-													name="costo_unitario" step="0.01" required>
+													name="costo_unitario" step="0.01" required min="0"
+													max="500">
 											</div>
 										</div>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<div class="col-12 col-md">
 												<label for="inventario_inicial">Inventario Inicial</label> <input
 													type="number" class="form-control" id="inventario_inicial"
-													name="inventario_inicial" required>
+													name="inventario_inicial" required min="0" max="1000">
 											</div>
 
 											<div class="col-12 col-md">
 												<label for="stock_inicial">Stock Actual</label> <input
 													type="number" class="form-control" id="stock_inicial"
-													name="stock_inicial" required>
+													name="stock_inicial" required min="0" max="1000">
 											</div>
 										</div>
 
@@ -170,14 +172,14 @@
 											<div class="col-12 col-md">
 												<label for="stock_minimo">Stock Mínimo</label> <input
 													type="number" class="form-control" id="stock_minimo"
-													name="stock_minimo" required>
+													name="stock_minimo" required min="0" max="1000">
 											</div>
 
 
 											<div class="col-12 col-md">
 												<label for="dias_caducidad">Días de Caducidad:</label> <input
 													type="number" class="form-control" id="dias_caducidad"
-													name="dias_caducidad" required>
+													name="dias_caducidad" required min="0" max="500">
 											</div>
 										</div>
 
@@ -295,5 +297,6 @@
 			</main>
 		</div>
 	</div>
+	<script type="text/javascript" src="inventario.js"></script>
 </body>
 </html>

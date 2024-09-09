@@ -54,13 +54,13 @@
 											<label for="cliente">N&ordm; Mesa</label> <input
 												type="number" step="1" class="form-control" id="client"
 												aria-describedby="emailHelp" placeholder="Enter Mesa"
-												name="numMesa" required>
+												name="numMesa" required min="0" max="500">
 										</div>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<label for="totalPagar">Total</label> <input type="number"
 												step="0.01" class="form-control" id="totalPagar"
 												aria-describedby="emailHelp" placeholder="Enter Total"
-												name="totalPagar" required>
+												name="totalPagar" required min="0" >
 										</div>
 
 										<div class="modal-footer">
