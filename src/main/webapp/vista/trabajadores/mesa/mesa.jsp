@@ -10,7 +10,6 @@
 </head>
 <body>
 	<main>
-		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main-content">
 			<div class="p-3 text-white seleccionar_mesa_titulo text-center">
 				<i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
