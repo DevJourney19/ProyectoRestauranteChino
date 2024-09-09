@@ -13,32 +13,26 @@
 	<div class="d-flex flex-row">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
-			<nav class="navbar navbar-expand d-flex align-items-center">
-				<button class="toggler-btn" type="button">
-					<i class="lni lni-text-align-left"></i>
-				</button>
-				<div class="navbar-logo collapsed" id="logo">
-					<a href="#">Noche en Pekín 北京之夜</a>
-				</div>
-			</nav>
-			<main class="p-3 mx-5">
+			<%@ include file="../fragmentos/nav.jsp"%>
+			<main class="p-3 mx-lg-5">
 				<div class="container-fluid">
 					<div class="mb-3">
 						<div
-							class=" text-center d-flex align-items-center justify-content-between">
+							class="text-center d-md-flex align-items-center justify-content-between flex-wrap">
 							<h1>Gestión de Pedidos</h1>
-							<span class="fs-3 numero-mesas">200 pedidos</span>
+							<span class="fs-3 numero-mesas text-center">200 pedidos</span>
 						</div>
-						<div class="d-flex align-items-center justify-content-end gap-4">
+						<div
+							class="d-flex align-items-center justify-content-center mt-2 mt-md-0 justify-content-md-end gap-4">
 							<button class="btn-agregar" type="button" data-bs-toggle="modal"
-								data-bs-target="#modalAddEdit">
+								data-bs-target="#modalAdd">
 								Nuevo Pedido <i class="lni lni-plus"></i>
 							</button>
 						</div>
 					</div>
 
-					<!-- Modal Agregar o Editar (para verificar editar solo ver la url)-->
-					<div class="modal fade" id="modalAddEdit" tabindex="-1"
+					<!-- Modal Agregar -->
+					<div class="modal fade" id="modalAdd" tabindex="-1"
 						aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog-centered modal-dialog">
 							<div class="modal-content">
@@ -74,7 +68,52 @@
 											<button type="button" class="btn btn-danger"
 												data-bs-dismiss="modal">Cerrar</button>
 											<button type="submit" class="btn btn-warning">
-											Agregar Detalle</button>
+												Agregar Pedido</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Modal Editar -->
+					<div class="modal fade" id="modalEdit" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog-centered modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h1 class="modal-title fs-3 fw-semibold" id="exampleModalLabel">
+										Editar Pedido</h1>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<form action="" class="needs-validation" novalidate>
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<label for="cliente">DNI Cliente</label> <input type="text"
+												class="form-control" id="client"
+												aria-describedby="emailHelp" placeholder="Enter Number"
+												name="cliente" required>
+										</div>
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<label for="cliente">N&ordm; Mesa</label> <input
+												type="number" step="1" class="form-control" id="client"
+												aria-describedby="emailHelp" placeholder="Enter Mesa"
+												name="numMesa" required>
+										</div>
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<label for="totalPagar">Total</label> <input type="number"
+												step="0.01" class="form-control" id="totalPagar"
+												aria-describedby="emailHelp" placeholder="Enter Total"
+												name="totalPagar" required>
+										</div>
+
+										<div class="modal-footer">
+
+											<button type="button" class="btn btn-danger"
+												data-bs-dismiss="modal">Cerrar</button>
+											<button type="submit" class="btn btn-warning">
+												Editar Pedido</button>
 										</div>
 									</form>
 								</div>
@@ -144,7 +183,8 @@
 												data-bs-target="#staticBackdrop">
 												<i class="lni lni-trash-can fs-4"></i>
 											</button>
-											<button class="icon-action">
+											<button class="icon-action" data-bs-toggle="modal"
+												data-bs-target="#modalEdit">
 												<i class="lni lni-pencil fs-4"></i>
 											</button>
 										</div>
