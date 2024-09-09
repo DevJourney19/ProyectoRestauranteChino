@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+body {
+    background-color: #f8f8f8;
+}
+
+h1 {
+    color: var(--verde);
+    margin-bottom: 20px;
+}
+
+.table {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.badge {
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.btn {
+    margin-right: 10px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.titulo_mesas {
+    background-color: #004400; /* Color verde oscuro */
+    padding: 20px;
+    text-align: left;
+}
+
+.titulo_mesas h1 {
+    color: white;
+    font-size: 2rem;
+}
+
+.titulo_mesas i {
+    margin-right: 10px;
+}
