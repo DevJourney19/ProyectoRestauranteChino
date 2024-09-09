@@ -15,24 +15,17 @@
 	<div class="d-flex flex-row">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
-			<nav class="navbar navbar-expand d-flex align-items-center">
-				<button class="toggler-btn" type="button">
-					<i class="lni lni-text-align-left"></i>
-				</button>
-				<div class="navbar-logo collapsed" id="logo">
-					<a href="#">Noche en Pekín 北京之夜</a>
-				</div>
-			</nav>
-			<main class="p-3 mx-5">
+			<%@ include file="../fragmentos/nav.jsp"%>
+			<main class="p-3 mx-lg-5">
 				<div class="container-fluid">
 					<div class="mb-3">
 						<div
-							class=" text-center d-flex align-items-center justify-content-between">
+							class=" text-center d-md-flex align-items-center justify-content-between">
 							<h1>Gestión de Mesas</h1>
 							<span class="fs-3 numero-mesas">200 mesas</span>
 						</div>
 						<div
-							class="d-flex align-items-center justify-content-between gap-4">
+							class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between gap-md-4 gap-3">
 							<div class="d-flex align-items-center gap-2">
 								<!-- Apareceran mas botones con categorias -->
 								<button class="btn-filtrar">
@@ -40,14 +33,14 @@
 								</button>
 							</div>
 							<button class="btn-agregar" type="button" data-bs-toggle="modal"
-								data-bs-target="#modalAddEdit">
+								data-bs-target="#modalAdd">
 								Nueva Mesa <i class="lni lni-plus"></i>
 							</button>
 						</div>
 					</div>
 
-					<!-- Modal Agregar o Editar (para verificar editar solo ver la url)-->
-					<div class="modal fade" id="modalAddEdit" tabindex="-1"
+					<!-- Modal Agregar-->
+					<div class="modal fade" id="modalAdd" tabindex="-1"
 						aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog-centered modal-dialog">
 							<div class="modal-content">
@@ -60,13 +53,13 @@
 								<div class="modal-body">
 									<form action="" class="needs-validation" novalidate>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div>
+											<div class="col-12 col-md">
 												<label for="salon">N&ordm; Salon</label> <input
 													type="number" class="form-control" id="salon"
 													aria-describedby="emailHelp" placeholder="Enter Number"
 													name="numSalon" required>
 											</div>
-											<div>
+											<div class="col-12 col-md">
 												<label for="mesa">N&ordm; Mesa</label> <input type="number"
 													class="form-control" id="mesa" placeholder="Enter Number"
 													name="numMesa" required>
@@ -78,6 +71,45 @@
 											<button type="button" class="btn btn-danger"
 												data-bs-dismiss="modal">Cerrar</button>
 											<button type="submit" class="btn btn-warning">Crear</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Modal Editar-->
+					<div class="modal fade" id="modalEdit" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog-centered modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h1 class="modal-title fs-3 fw-semibold" id="exampleModalLabel">
+										Editar Mesa</h1>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<form action="" class="needs-validation" novalidate>
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<div class="col-12 col-md">
+												<label for="salon">N&ordm; Salon</label> <input
+													type="number" class="form-control" id="salon"
+													aria-describedby="emailHelp" placeholder="Enter Number"
+													name="numSalon" required>
+											</div>
+											<div class="col-12 col-md">
+												<label for="mesa">N&ordm; Mesa</label> <input type="number"
+													class="form-control" id="mesa" placeholder="Enter Number"
+													name="numMesa" required>
+											</div>
+										</div>
+
+										<div class="modal-footer">
+
+											<button type="button" class="btn btn-danger"
+												data-bs-dismiss="modal">Cerrar</button>
+											<button type="submit" class="btn btn-warning">Guardar</button>
 										</div>
 									</form>
 								</div>
@@ -97,14 +129,18 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body fw-medium fs-4">
-								<p>Estas seguro de eliminar la mesa?</p>
-								<p>#1</p>
+									<p>Estas seguro de eliminar la mesa?</p>
+									<p>#1</p>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-warning"
 										data-bs-dismiss="modal">Cancelar</button>
-										<form action="">
-									<button type="button" class="btn btn-danger d-flex align-items-center gap-2"> <i class="lni lni-trash-can"></i>Eliminar</button></form>
+									<form action="">
+										<button type="button"
+											class="btn btn-danger d-flex align-items-center gap-2">
+											<i class="lni lni-trash-can"></i>Eliminar
+										</button>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -137,7 +173,8 @@
 												<i class="lni lni-trash-can fs-4"></i>
 											</button>
 											<!-- Abrir Modal Editar -->
-											<button class="icon-action">
+											<button class="icon-action" data-bs-toggle="modal"
+												data-bs-target="#modalEdit">
 												<i class="lni lni-pencil fs-4"></i>
 											</button>
 										</div>

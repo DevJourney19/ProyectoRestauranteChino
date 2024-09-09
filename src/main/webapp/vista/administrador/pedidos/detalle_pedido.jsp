@@ -13,31 +13,25 @@
 	<div class="d-flex flex-row">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
-			<nav class="navbar navbar-expand d-flex align-items-center">
-				<button class="toggler-btn" type="button">
-					<i class="lni lni-text-align-left"></i>
-				</button>
-				<div class="navbar-logo collapsed" id="logo">
-					<a href="#">Noche en Pekín 北京之夜</a>
-				</div>
-			</nav>
-			<main class="p-3 mx-5">
+			<%@ include file="../fragmentos/nav.jsp"%>
+			<main class="p-3 mx-lg-5">
 				<div class="container-fluid">
 					<div class="mb-3">
 						<div
-							class=" text-center d-flex align-items-center justify-content-between">
+							class="text-center d-flex align-items-center justify-content-center justify-content-md-start">
 							<h1>Gestión de Detalle Pedido</h1>
 						</div>
-						<div class="d-flex align-items-center justify-content-end gap-4">
+						<div
+							class="d-flex align-items-center justify-content-center mt-2 mt-md-0 justify-content-md-end gap-4">
 							<button class="btn-agregar" type="button" data-bs-toggle="modal"
-								data-bs-target="#modalAddEdit">
+								data-bs-target="#modalAdd">
 								Agregar Detalles Pedidos <i class="lni lni-plus"></i>
 							</button>
 						</div>
 					</div>
 
 					<!-- Modal Agregar o Editar (para verificar editar solo ver la url)-->
-					<div class="modal fade" id="modalAddEdit" tabindex="-1"
+					<div class="modal fade" id="modalAdd" tabindex="-1"
 						aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog-centered modal-dialog">
 							<div class="modal-content">
@@ -52,21 +46,22 @@
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<label for="cliente">Platos</label>
 											<!-- realizar busqueda -->
-											<select class="form-select" aria-label="Default select example" required>
-  <option selected>Seleccionar Platos</option>
-  <option value="1">Arroz Con Pollo - Principal</option>
-  <option value="2">Cheescake - Postre</option>
-  <option value="3">Ceviche - Principal</option>
-</select>
+											<select class="form-select"
+												aria-label="Default select example" required>
+												<option selected>Seleccionar Platos</option>
+												<option value="1">Arroz Con Pollo - Principal</option>
+												<option value="2">Cheescake - Postre</option>
+												<option value="3">Ceviche - Principal</option>
+											</select>
 										</div>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div>
+											<div class="col-12 col-md">
 												<label for="cantidad">Cantidad</label> <input type="number"
 													step="1" class="form-control" id="cantidad"
 													aria-describedby="emailHelp" placeholder="Enter Mesa"
 													name="numMesa" required>
 											</div>
-											<div>
+											<div class="col-12 col-md">
 												<label for="subtotal">Subtotal</label> <input type="number"
 													step="0.01" class="form-control" id="subtotal"
 													aria-describedby="emailHelp" placeholder="Enter Total"
@@ -80,6 +75,58 @@
 												data-bs-dismiss="modal">Cerrar</button>
 											<button type="submit" class="btn btn-warning">
 												Agregar</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Modal Editar -->
+					<div class="modal fade" id="modalEdit" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog-centered modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h1 class="modal-title fs-3 fw-semibold" id="exampleModalLabel">
+										Editar Detalle</h1>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<form action="" class="needs-validation" novalidate>
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<label for="cliente">Platos</label>
+											<!-- realizar busqueda -->
+											<select class="form-select"
+												aria-label="Default select example" required>
+												<option selected>Seleccionar Platos</option>
+												<option value="1">Arroz Con Pollo - Principal</option>
+												<option value="2">Cheescake - Postre</option>
+												<option value="3">Ceviche - Principal</option>
+											</select>
+										</div>
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<div class="col-12 col-md">
+												<label for="cantidad">Cantidad</label> <input type="number"
+													step="1" class="form-control" id="cantidad"
+													aria-describedby="emailHelp" placeholder="Enter Mesa"
+													name="numMesa" required>
+											</div>
+											<div class="col-12 col-md">
+												<label for="subtotal">Subtotal</label> <input type="number"
+													step="0.01" class="form-control" id="subtotal"
+													aria-describedby="emailHelp" placeholder="Enter Total"
+													name="totalPagar" required>
+											</div>
+										</div>
+
+										<div class="modal-footer">
+
+											<button type="button" class="btn btn-danger"
+												data-bs-dismiss="modal">Cerrar</button>
+											<button type="submit" class="btn btn-warning">
+												Editar</button>
 										</div>
 									</form>
 								</div>
@@ -157,7 +204,8 @@
 												data-bs-target="#staticBackdrop">
 												<i class="lni lni-trash-can fs-4"></i>
 											</button>
-											<button class="icon-action">
+											<button class="icon-action" data-bs-toggle="modal"
+												data-bs-target="#modalEdit">
 												<i class="lni lni-pencil fs-4"></i>
 											</button>
 										</div>
@@ -167,7 +215,8 @@
 						</table>
 					</div>
 					<div class="regresar">
-						<a href="pedidos.jsp"><i class="lni lni-arrow-left"></i>Regresar Pedidos</a>
+						<a href="pedidos.jsp"><i class="lni lni-arrow-left"></i>Regresar
+							Pedidos</a>
 					</div>
 				</div>
 			</main>
