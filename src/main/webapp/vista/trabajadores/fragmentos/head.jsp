@@ -14,6 +14,9 @@
 	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 	crossorigin="anonymous"></script>
 <link href="../../general_css/general_css.css" rel="stylesheet" />
+<link href="../fragmentos/sidebar.css" rel="stylesheet">
+<script defer src="../fragmentos/sidebar.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	

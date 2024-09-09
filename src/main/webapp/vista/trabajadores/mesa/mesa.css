@@ -1,5 +1,16 @@
 @charset "UTF-8";
 
+main {
+	display:flex;
+	flex-direction:row;
+	width:100%;
+	min-height:100vh;
+}
+
+.main-content{
+	width:100%;
+}
+
 .mesa {
 	background: #f3f3f3;
 	border: 2px solid lightgray;
