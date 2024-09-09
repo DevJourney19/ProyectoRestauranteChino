@@ -12,22 +12,15 @@
 	<div class="d-flex flex-row">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
-			<nav class="navbar navbar-expand d-flex align-items-center">
-				<button class="toggler-btn" type="button">
-					<i class="lni lni-text-align-left"></i>
-				</button>
-				<div class="navbar-logo collapsed" id="logo">
-					<a href="#"><span class="logo_titulo">Noche en Pekín 北京之夜</span></a>
-				</div>
-			</nav>
-			<main class="p-3 mx-5">
+			<%@ include file="../fragmentos/nav.jsp"%>
+			<main class="p-3 mx-md-5">
 				<div class="container-fluid">
 					<div class="mb-3">
 						<div
-							class=" text-center d-flex align-items-center justify-content-between">
+							class="text-center d-md-flex align-items-center justify-content-between">
 							<h1>Gestión del Menú</h1>
 						</div>
-						<div class="d-flex align-items-center justify-content-end gap-4">
+						<div class="d-flex align-items-center justify-content-center justify-content-md-end flex-wrap gap-md-4 gap-3">
 							<button class="btn-pdf" type="button" data-bs-toggle="modal"
 								data-bs-target="#modalAddEdit">
 								<i class="lni lni-download"></i> Descargar PDF

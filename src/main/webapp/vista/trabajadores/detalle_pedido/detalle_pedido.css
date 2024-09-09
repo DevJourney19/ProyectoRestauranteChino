@@ -1,0 +1,133 @@
+@charset "UTF-8";
+
+body {
+	background-color: #f9f9f9;
+}
+
+.detalle_pedido_div {
+	font-weight: 600;
+	color: var(--amarillo);
+	text-align: left;
+	padding: 4px;
+	font-size: 2em;
+	margin-top: 20px;
+}
+
+.circulito {
+	position: relative;
+}
+
+.number {
+	position: absolute;
+	right: 9px;
+	top: 2px;
+}
+
+.toggle_tabla_detalle_pedidos_nada {
+	display: none !important;
+}
+
+.toggle_tabla_detalle_pedidos {
+	display: flex !important;
+}
+
+.fondo_verde_productos {
+	background: transparent;
+	/* 	border: 10px solid #FFD700; */
+	padding: 20px;
+	/* 	margin-left: 30px; */
+}
+
+.estilo_btn_1 {
+	background: var(--amarillo);
+	color: var(--verde);
+	text-decoration: none;
+	transition: all 0.5s ease 0s;
+	border-radius: 20px;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.estilo_btn_1:hover {
+	background: var(--verde);
+	color: var(--blanco);
+	transform: translateY(-8px);
+}
+
+.card_plato {
+	padding: 10px;
+/* 	overflow: hidden; */
+}
+
+.card_body_plato {
+	width: 100%;
+}
+
+.resumen_pago {
+	display: flex;
+}
+
+.titulo_detalle_pedido {
+	background: black;
+	color: white;
+	text-align: center;
+	font-size: 2rem;
+	padding: 10px;
+}
+
+.icono_eliminar:hover {
+	cursor: pointer;
+}
+
+.contador_suma_resta {
+	position: absolute;
+	top: 0px;
+	right: -8px;
+	font-size: 30px;
+	font-weight: 600;
+	color: red;
+}
+
+.contador_suma_resta_mover {
+	transition: all 0.5s;
+	transform: translate(-38px, 20%) rotate(1turn);
+}
+/*@media queries*/
+@media ( min-width : 1px) {
+	.contenedor_cards {
+		width: 300px;
+	}
+	.boton_deta_pedi {
+		width: 200px;
+		background: #0059ff;
+		color: white;
+		border: none;
+	}
+}
+
+@media ( min-width : 576px) {
+	.boton_deta_pedi {
+		width: 300px;
+	}
+	.tabla_detalle_pedidos {
+		width: 50%;
+	}
+}
+
+@media ( min-width : 768px) {
+	.contenedor_cards {
+		width: 100%;
+	}
+}
+
+@media ( min-width : 1200px) {
+	.boton_deta_pedi {
+		width: 300px;
+	}
+	.combinado_tabla_y_productos {
+		flex-direction: row !important;
+	}
+	.tabla_detalle_pedidos {
+		width: 30%;
+	}
+}

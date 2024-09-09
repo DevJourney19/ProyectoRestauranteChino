@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+.icon-action{
+	background-color:transparent;
+	border:none;
+	outline:none;
+	cursor:pointer;
+}
+
+.btn-filtrar, .btn-agregar{
+	display:flex;
+	gap:10px;
+	align-items:center;
+	outline:none;
+	border-radius:10px;
+	font-weight:600;
+	padding:5px 20px;
+}
+
+.btn-filtrar{
+	border:var(--rojo) 2px solid;
+	color:var(--rojo);
+	background-color:transparent;
+}
+
+.btn-agregar{
+	border:var(--blanco);
+	background-color:var(--rojo);
+	border:none;
+	color:var(--blanco);
+}
+
+.estado-libre{
+	color:var(--verde);
+	background-color: rgb(1,167,79,12%);
+}
+.estado-libre::before{
+	background-color:var(--verde);
+}
+
+.estado-ocupado{
+	color:var(--rojo);
+	background-color: rgb(213,24,24,12%);
+}
+.estado-ocupado::before{
+	background-color:var(--rojo);
+}
+
+.estado-libre, .estado-ocupado{
+	font-size:14px;
+	font-weight:500;
+	width:110px;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	gap:20px;
+	padding:2px 5px;
+	border-radius:20px;
+}
+
+.estado-libre::before, .estado-ocupado::before{
+	content:"";
+	height:10px;
+	width:10px;
+	display:flex;
+	border-radius:99%;
+}
