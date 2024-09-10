@@ -60,7 +60,7 @@
 											<label for="totalPagar">Total</label> <input type="number"
 												step="0.01" class="form-control" id="totalPagar"
 												aria-describedby="emailHelp" placeholder="Enter Total"
-												name="totalPagar" required min="0" >
+												name="totalPagar" required min="0">
 										</div>
 
 										<div class="modal-footer">

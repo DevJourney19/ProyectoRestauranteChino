@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+	
 <div class="d-flex">
+
 	<aside id="sidebar" class="sidebar-toggle">
 		<div class="sidebar-logo">
 			<a href="#">Noche en Pekín 北京之夜</a>
