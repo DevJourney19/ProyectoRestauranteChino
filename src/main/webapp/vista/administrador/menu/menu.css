@@ -51,6 +51,20 @@
 	padding:10px 20px;
 }
 
+.btn-agregar{
+	border:var(--blanco);
+	background-color: #EFB810;
+	border:none;
+	color: #333;
+	display:flex;
+	gap:10px;
+	align-items:center;
+	outline:none;
+	border-radius:5px;
+	font-weight:500;
+	padding:10px 20px;
+}
+
 .en-venta{
 	color:var(--verde);
 	background-color: rgb(1,167,79,12%);
