@@ -1,30 +1,42 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/*ADMINISTRADOR*/
+@import
+	url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+	;
 
 body {
-    font-family: 'Poppins', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 
 h1 {
-    font-weight: 800;
+	font-weight: 800;
 }
 
 li {
-    list-style: none;
+	list-style: none;
 }
 
 a {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .main {
-    min-height: 100vh;
-    width: 100%;
-    overflow: hidden;
-    background-color: #f9f9f9;
+	min-height: 100vh;
+	width: 100%;
+	overflow: hidden;
+	background-color: #f9f9f9;
 }
 
 #sidebar {
+<<<<<<< HEAD
+	padding-bottom: 30px;
+	max-width: 264px;
+	min-width: 264px;
+	transition: all 0.35s ease-in-out;
+	background-color: #000;
+	display: flex;
+	flex-direction: column;
+=======
 	padding-bottom:0px;
     max-width: 264px;
     min-width: 264px;
@@ -32,68 +44,78 @@ a {
     background-color: #000;
     display: flex;
     flex-direction: column;
+>>>>>>> 5dc9d592a1c67c2d7e6a59ae1b60c9a3de45f0b4
 }
 
 #sidebar.collapsed {
-    margin-left: -264px;
+	margin-left: -264px;
 }
 
-#logo.collapsed{
+#logo.collapsed {
 	margin-top: -200px;
 }
 
-#logo{
-    transition: all 0.35s ease-in-out;
+#logo {
+	transition: all 0.35s ease-in-out;
 }
 
 .toggler-btn {
-    background-color: transparent;
-    cursor: pointer;
-    border: 0;
-    padding: 1.15rem 0 1.15rem 20px;
+	background-color: transparent;
+	cursor: pointer;
+	border: 0;
+	padding: 1.15rem 0 1.15rem 20px;
 }
 
 .toggler-btn i {
-    font-size: 1.75rem;
-    color: #000;
-    font-weight: 1000;
+	font-size: 1.75rem;
+	color: #000;
+	font-weight: 1000;
 }
 
 .navbar {
-    padding: 1.5rem;
-    border-bottom: 2px dashed #b3a8a8;
+	padding: 1.5rem;
+	border-bottom: 2px dashed #b3a8a8;
 }
 
 .sidebar-nav {
-    flex: 1 1 auto;
+	flex: 1 1 auto;
 }
 
 .sidebar-logo, .navbar-logo {
-    padding: 1.15rem 1.5rem;
-    text-align: center;
+	padding: 1.15rem 1.5rem;
+	text-align: center;
 }
 
 .navbar-logo a {
-	color:black;
-    font-weight: 800;
-    font-size: 1.5rem;
-    text-decoration:none;
+	color: black;
+	font-weight: 800;
+	font-size: 1.5rem;
+	text-decoration: none;
 }
 
 .sidebar-logo a {
-	color:white;
-    font-weight: 800;
-    font-size: 1.5rem;
-    text-decoration:none;
+	color: white;
+	font-weight: 800;
+	font-size: 1.5rem;
+	text-decoration: none;
 }
 
 .sidebar-header {
-    color: #FFF;
-    font-size: .75rem;
-    padding: 1.5rem 1.5rem .375rem;
+	color: #FFF;
+	font-size: .75rem;
+	padding: 1.5rem 1.5rem .375rem;
 }
 
 a.sidebar-link {
+<<<<<<< HEAD
+	text-decoration: none;
+	padding: .625rem 1.625rem;
+	color: #fff;
+	position: relative;
+	transition: all 0.35s;
+	display: block;
+	font-size: 1.25rem;
+=======
 	text-decoration:none;
     padding: 1rem 1.625rem;
     margin: 10px 0;
@@ -105,30 +127,44 @@ a.sidebar-link {
     font-size: 1rem;
     justify-content: center;
     align-items: center;
+>>>>>>> 5dc9d592a1c67c2d7e6a59ae1b60c9a3de45f0b4
 }
 
 a.sidebar-link:hover {
-    background-color: #f9f6f630;
+	background-color: #f9f6f630;
 }
 
 .sidebar-link[data-bs-toggle="collapse"]::after {
-    border: solid;
-    border-width: 0 .075rem .075rem 0;
-    content: "";
-    display: inline-block;
-    padding: 2px;
-    position: absolute;
-    right: 1.5rem;
-    top: 1.4rem;
-    transform: rotate(-135deg);
-    transition: all .2s ease-out;
+	border: solid;
+	border-width: 0 .075rem .075rem 0;
+	content: "";
+	display: inline-block;
+	padding: 2px;
+	position: absolute;
+	right: 1.5rem;
+	top: 1.4rem;
+	transform: rotate(-135deg);
+	transition: all .2s ease-out;
 }
 
 .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
-    transform: rotate(45deg);
-    transition: all .2s ease-out;
+	transform: rotate(45deg);
+	transition: all .2s ease-out;
 }
 
+<<<<<<< HEAD
+@media ( max-width :768px) {
+	.sidebar-toggle {
+		margin-left: -264px;
+	}
+	#sidebar.collapsed {
+		margin-left: 0;
+	}
+	#logo, #logo.collapsed {
+		display: none;
+	}
+}
+=======
 @media (max-width:768px) {
 
     .sidebar-toggle {
@@ -143,3 +179,4 @@ a.sidebar-link:hover {
     	display:none;
     }
 }
+>>>>>>> 5dc9d592a1c67c2d7e6a59ae1b60c9a3de45f0b4

@@ -3,16 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Pedidos - Cocinero</title>
+<title>PEDIDOS - COCINERO</title>
 <%@include file="../fragmentos/head.jsp"%>
-<link href="pedidos_cocinero_css.css" rel="stylesheet" />
+<link href="pedidos_cocinero.css" rel="stylesheet" />
 </head>
 <body>
 	<div class="d-flex ">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
+			<%@ include file="../fragmentos/nav.jsp"%>
 			<div class="titulo_pedidos bg-success text-white p-3">
-				<h1 class="text-center">Pedidos Entrantes</h1>
+				<h1 class="text-center">PEDIDOS ENTRANTES - 收到的订单</h1>
 				<div class="table-responsive">
 					<table class="table table-bordered text-center">
 						<thead>

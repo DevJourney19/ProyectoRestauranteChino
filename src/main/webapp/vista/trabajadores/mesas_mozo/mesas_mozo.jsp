@@ -3,19 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Mesas - Mozo</title>
+<title>MESAS - MOZO</title>
 <%@include file="../fragmentos/head.jsp"%>
-<link href="mesas_mozo_css.css" rel="stylesheet" />
+<link href="mesas_mozo.css" rel="stylesheet" />
 </head>
 <body>
 	<div class="d-flex ">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
+			<%@ include file="../fragmentos/nav.jsp"%>
 			<div class="titulo_mesas bg-success text-white p-3">
-				<h1 class="text-center">Gestionar Mesas</h1>
+				<h1 class="text-center">GESTIONAR MESAS - 管理表</h1>
 
 				<!-- Filtro de búsqueda -->
-				<div class="row mb-4">
+				<div class="row mb-4 g-2">
 					<div class="col-md-6">
 						<input type="text" class="form-control"
 							placeholder="Buscar mesa (Nro o descripción)">
@@ -50,7 +51,7 @@
 								<td>Cerca de la ventana</td>
 								<td><span class="badge bg-success">Disponible</span></td>
 								<td>
-									<button class="btn btn-primary">Asignar Mesa</button>
+									<a href="../detalle_pedido/detalle_pedido.jsp" class="btn btn-primary">Asignar Mesa</a>
 								</td>
 							</tr>
 							<tr>
@@ -67,7 +68,7 @@
 								<td>Zona exterior</td>
 								<td><span class="badge bg-warning">Limpieza</span></td>
 								<td>
-									<button class="btn btn-primary">Asignar Mesa</button>
+									<a href="../detalle_pedido/detalle_pedido.jsp" class="btn btn-primary">Asignar Mesa</a>
 								</td>
 							</tr>
 						</tbody>

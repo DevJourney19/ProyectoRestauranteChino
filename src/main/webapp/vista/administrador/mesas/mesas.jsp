@@ -9,7 +9,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="mesas.css">
 <%@ include file="../fragmentos/head.jsp"%>
-<title>Admin | Mesas</title>
+<title>ADMIN | MESAS</title>
 </head>
 <body>
 	<div class="d-flex flex-row">
@@ -21,7 +21,7 @@
 					<div class="mb-3">
 						<div
 							class=" text-center d-md-flex align-items-center justify-content-between">
-							<h1>Gestión de Mesas</h1>
+							<h1>GESTIÓN DE MESAS - 餐桌管理</h1>
 							<span class="fs-3 numero-mesas">200 mesas</span>
 						</div>
 						<div

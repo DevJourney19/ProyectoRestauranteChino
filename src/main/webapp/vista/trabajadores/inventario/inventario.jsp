@@ -11,15 +11,16 @@
 	<div class="d-flex ">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
-			<div class="titulo_inventario">Noche en Pekín 北京之夜</div>
+			<%@ include file="../fragmentos/nav.jsp"%>
+			
 			<div class="container">
-				<h2 class="my-2">Inventario</h2>
+				<h2 class="my-2" style="font-weight:600">Inventario</h2>
 				<div class="mb-3">
 					<form action="crear_item.jsp" method="post">
-						<button class="btn btn-success">
+						<a href="#" class="btn btn-success">
 							<i class="fa-solid fa-add" style="color: #ffffff;"></i> Nuevo
 							Item
-						</button>
+						</a>
 					</form>
 				</div>
 

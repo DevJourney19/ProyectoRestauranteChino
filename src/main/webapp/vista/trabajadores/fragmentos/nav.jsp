@@ -9,6 +9,6 @@
 	</div>
 	<div>
 		<i class="fa-solid fa-circle-user fa-2xl" style="color: #000000;"></i>
-		<span class="fw-bold">ADMINISTRADOR</span>
+		<span class="fw-bold">USUARIO</span>
 	</div>
 </nav>

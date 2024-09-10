@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="pedidos.css">
 <%@ include file="../fragmentos/head.jsp"%>
-<title>Admin | Pedidos</title>
+<title>ADMIN | PEDIDOS</title>
 </head>
 <body>
 	<div class="d-flex flex-row">
@@ -19,7 +19,7 @@
 					<div class="mb-3">
 						<div
 							class="text-center d-md-flex align-items-center justify-content-between flex-wrap">
-							<h1>Gestión de Pedidos</h1>
+							<h1>GESTIÓN DE PEDIDOS - 订单管理</h1>
 							<span class="fs-3 numero-mesas text-center">200 pedidos</span>
 						</div>
 						<div
