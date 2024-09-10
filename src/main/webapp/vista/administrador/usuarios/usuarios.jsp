@@ -76,12 +76,23 @@
 													name="password" required>
 											</div>
 										</div>
-										<div class="modal-footer">
-
-											<button type="button" class="btn btn-danger"
-												data-bs-dismiss="modal">Cerrar</button>
-											<button type="submit" class="btn btn-warning">Crear</button>
+									
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<label for="rol">Rol</label> <select class="form-select"
+												aria-label="large select example">
+												<option selected>- Selecciona -</option>
+												<option value="1">Adminitrador</option>
+												<option value="2">Cocinero</option>
+												<option value="3">Mozo</option>
+											</select>
 										</div>
+										<div class="modal-footer">
+											
+										
+												<button type="button" class="btn btn-danger"
+													data-bs-dismiss="modal">Cerrar</button>
+												<button type="submit" class="btn btn-warning">Crear</button>
+											</div>
 									</form>
 								</div>
 							</div>
@@ -134,6 +145,17 @@
 													name="password" required>
 											</div>
 										</div>
+
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<label for="rol">Rol</label> <select class="form-select"
+												aria-label="large select example">
+												<option selected>- Selecciona -</option>
+												<option value="1">Adminitrador</option>
+												<option value="2">Cocinero</option>
+												<option value="3">Mozo</option>
+											</select>
+										</div>
+
 										<div class="modal-footer">
 
 											<button type="button" class="btn btn-danger"
@@ -184,6 +206,7 @@
 									<th>Correo</th>
 									<th>Usuario</th>
 									<th>Password</th>
+									<th>Rol</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -195,6 +218,8 @@
 									<td>ede24@gmail.com</td>
 									<td>le123</td>
 									<td>********</td>
+									<td><span class="estado-cancelado">Administrador</span></td>
+
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
@@ -215,7 +240,9 @@
 									<td>73794657</td>
 									<td>ede24@gmail.com</td>
 									<td>le123</td>
-									<td>********</td>
+									<td>********</td> 
+									<td><span class="estado-cancelado">Cocinero</span></td> 
+									
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
@@ -235,7 +262,8 @@
 									<td>73993482</td>
 									<td>f4r3ver@gmail.com</td>
 									<td>DevJourney19</td>
-									<td>********</td>
+									<td>********</td> 
+									<td><span class="estado-cancelado">Mozo</span></td> 
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
