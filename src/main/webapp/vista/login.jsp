@@ -42,7 +42,7 @@
         </div>
 
         <div class="image-box">
-            <img src="../img/login.jpg" alt="Food">
+            <img src="img/login.jpg" alt="Food">
         </div>
     </div>
 </body>

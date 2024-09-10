@@ -9,6 +9,6 @@
 	</div>
 	<div>
 		<img class="m-2 rounded-5" width="50" height="50"
-			src="../../img/tallarin_saltado.png" alt="alt" /> <span class="fw-bold">Usuario</span>
+			src="../../img/tallarin_saltado.png" alt="alt" /> <span class="fw-bold">Administrador</span>
 	</div>
 </nav>
