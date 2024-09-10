@@ -5,11 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="mesas.css">
+<link rel="stylesheet" href="usuarios.css">
 <%@ include file="../fragmentos/head.jsp"%>
-<title>Admin | Mesas</title>
+<title>Admin | Usuarios</title>
 </head>
 <body>
 	<div class="d-flex flex-row">
@@ -20,52 +18,64 @@
 				<div class="container-fluid">
 					<div class="mb-3">
 						<div
-							class=" text-center d-md-flex align-items-center justify-content-between">
-							<h1>Gestión de Mesas</h1>
-							<span class="fs-3 numero-mesas">200 mesas</span>
+							class="text-center d-md-flex align-items-center justify-content-between flex-wrap">
+							<h1>Gestión de Usuarios</h1>
 						</div>
 						<div
-							class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between gap-md-4 gap-3">
-							<div class="d-flex align-items-center gap-2">
-								<!-- Apareceran mas botones con categorias -->
-								<button class="btn-filtrar">
-									Filtrar <i class="lni lni-funnel"></i>
-								</button>
-							</div>
+							class="d-flex align-items-center justify-content-center mt-2 mt-md-0 justify-content-md-end gap-4">
 							<button class="btn-agregar" type="button" data-bs-toggle="modal"
 								data-bs-target="#modalAdd">
-								Nueva Mesa <i class="lni lni-plus"></i>
+								Nuevo Usuario <i class="lni lni-plus"></i>
 							</button>
 						</div>
 					</div>
 
-					<!-- Modal Agregar-->
+					<!-- Modal Agregar -->
 					<div class="modal fade" id="modalAdd" tabindex="-1"
 						aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog-centered modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
 									<h1 class="modal-title fs-3 fw-semibold" id="exampleModalLabel">
-										Agrega Otra Mesa</h1>
+										Agrega Usuario</h1>
 									<button type="button" class="btn-close" data-bs-dismiss="modal"
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
 									<form action="" class="needs-validation" novalidate>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<label for="nombre">Nombre Completo</label> <input
+												type="text" class="form-control" id="nombre"
+												aria-describedby="emailHelp" placeholder="Enter Name"
+												name="nombre" required>
+										</div>
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<div class="col-12 col-md">
-												<label for="salon">N&ordm; Salon</label> <input
-													type="number" class="form-control" id="salon"
-													aria-describedby="emailHelp" placeholder="Enter Number"
-													name="numSalon" required min="0" max="500">
+												<label for="dni">DNI</label> <input type="text"
+													class="form-control" id="dni" aria-describedby="emailHelp"
+													placeholder="Enter DNI" name="dni" required>
 											</div>
 											<div class="col-12 col-md">
-												<label for="mesa">N&ordm; Mesa</label> <input type="number"
-													class="form-control" id="mesa" placeholder="Enter Number"
-													name="numMesa" required min="0" max="500">
+												<label for="correo">Correo</label> <input type="text"
+													class="form-control" id="correo"
+													aria-describedby="emailHelp" placeholder="Enter Correo"
+													name="corro" required min="0">
 											</div>
 										</div>
-
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<div class="col-12 col-md">
+												<label for="usuario">Usuario</label> <input type="text"
+													class="form-control" id="usuario"
+													aria-describedby="emailHelp" placeholder="Enter Usuario"
+													name="usuario" required>
+											</div>
+											<div class="col-12 col-md">
+												<label for="password">Password</label> <input
+													type="text" class="form-control"
+													id="password" aria-describedby="emailHelp"
+													placeholder="Enter Password" name="password" required>
+											</div>
+										</div>
 										<div class="modal-footer">
 
 											<button type="button" class="btn btn-danger"
@@ -78,38 +88,57 @@
 						</div>
 					</div>
 
-					<!-- Modal Editar-->
+					<!-- Modal Editar -->
 					<div class="modal fade" id="modalEdit" tabindex="-1"
 						aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog-centered modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
 									<h1 class="modal-title fs-3 fw-semibold" id="exampleModalLabel">
-										Editar Mesa</h1>
+										Editar Usuario</h1>
 									<button type="button" class="btn-close" data-bs-dismiss="modal"
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
 									<form action="" class="needs-validation" novalidate>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<label for="nombre">Nombre Completo</label> <input
+												type="text" class="form-control" id="nombre"
+												aria-describedby="emailHelp" placeholder="Enter Name"
+												name="nombre" required>
+										</div>
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<div class="col-12 col-md">
-												<label for="salon">N&ordm; Salon</label> <input
-													type="number" class="form-control" id="salon"
-													aria-describedby="emailHelp" placeholder="Enter Number"
-													name="numSalon" required>
+												<label for="dni">DNI</label> <input type="text"
+													class="form-control" id="dni" aria-describedby="emailHelp"
+													placeholder="Enter DNI" name="dni" required>
 											</div>
 											<div class="col-12 col-md">
-												<label for="mesa">N&ordm; Mesa</label> <input type="number"
-													class="form-control" id="mesa" placeholder="Enter Number"
-													name="numMesa" required>
+												<label for="correo">Correo</label> <input type="text"
+													class="form-control" id="correo"
+													aria-describedby="emailHelp" placeholder="Enter Correo"
+													name="corro" required min="0">
 											</div>
 										</div>
-
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<div class="col-12 col-md">
+												<label for="usuario">Usuario</label> <input type="text"
+													class="form-control" id="usuario"
+													aria-describedby="emailHelp" placeholder="Enter Usuario"
+													name="usuario" required>
+											</div>
+											<div class="col-12 col-md">
+												<label for="password">Password</label> <input
+													type="text" class="form-control"
+													id="password" aria-describedby="emailHelp"
+													placeholder="Enter Password" name="password" required>
+											</div>
+										</div>
 										<div class="modal-footer">
 
 											<button type="button" class="btn btn-danger"
 												data-bs-dismiss="modal">Cerrar</button>
-											<button type="submit" class="btn btn-warning">Guardar</button>
+											<button type="submit" class="btn btn-warning">Editar</button>
 										</div>
 									</form>
 								</div>
@@ -117,8 +146,7 @@
 						</div>
 					</div>
 
-
-					<!-- Modal de Eliminar -> recibir un data value-->
+					<!-- Modal de Eliminar -> recibir un data value -->
 					<div class="modal fade" id="staticBackdrop"
 						data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
 						aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -129,7 +157,7 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body fw-medium fs-4">
-									<p>Estas seguro de eliminar la mesa?</p>
+									<p>Estas seguro de eliminar este Usuario?</p>
 									<p>#1</p>
 								</div>
 								<div class="modal-footer">
@@ -151,20 +179,22 @@
 							<thead>
 								<tr>
 									<th>Id</th>
-									<th>N&ordm; Salon</th>
-									<th>N&ordm; Mesa</th>
-									<th>Estado</th>
-									<th>Fecha Creacion</th>
+									<th>Nombre Completo</th>
+									<th>DNI</th>
+									<th>Correo</th>
+									<th>Usuario</th>
+									<th>Password</th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td>1</td>
-									<td>1</td>
-									<td>1</td>
-									<td><span class="estado-libre">Libre</span></td>
-									<td><%=new Date()%></td>
+									<td>Elena</td>
+									<td>73794657</td>
+									<td>ede24@gmail.com</td>
+									<td>le123</td>
+									<td>****</td>
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
@@ -172,7 +202,6 @@
 												data-bs-target="#staticBackdrop">
 												<i class="lni lni-trash-can fs-4"></i>
 											</button>
-											<!-- Abrir Modal Editar -->
 											<button class="icon-action" data-bs-toggle="modal"
 												data-bs-target="#modalEdit">
 												<i class="lni lni-pencil fs-4"></i>
@@ -182,10 +211,11 @@
 								</tr>
 								<tr>
 									<td>2</td>
-									<td>1</td>
-									<td>2</td>
-									<td><span class="estado-ocupado">Ocupado</span></td>
-									<td><%=new Date()%></td>
+									<td>Mariana</td>
+									<td>73794657</td>
+									<td>ede24@gmail.com</td>
+									<td>le123</td>
+									<td>****</td>
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
@@ -193,7 +223,6 @@
 												data-bs-target="#staticBackdrop">
 												<i class="lni lni-trash-can fs-4"></i>
 											</button>
-											<!-- Abrir Modal Editar -->
 											<button class="icon-action">
 												<i class="lni lni-pencil fs-4"></i>
 											</button>

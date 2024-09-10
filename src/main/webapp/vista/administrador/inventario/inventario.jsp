@@ -229,7 +229,7 @@
 							<thead>
 								<tr>
 									<th>Id</th>
-									<th>Familia</th>
+									<th>Categoria</th>
 									<th>Producto</th>
 									<th>Unidad</th>
 									<th>Costo Unitario</th>

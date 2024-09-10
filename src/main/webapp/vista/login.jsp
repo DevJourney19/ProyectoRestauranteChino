@@ -42,9 +42,21 @@
 			</form>
 		</div>
 
+<<<<<<< HEAD
 		<div class="image-box">
 			<img src="img/login.jpg" alt="Food">
 		</div>
 	</div>
+=======
+                <button type="submit" class="login-btn">INICIAR SESIÓN</button>
+                <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+            </form>
+        </div>
+
+        <div class="image-box">
+            <img src="img/login.jpg" alt="Food">
+        </div>
+    </div>
+>>>>>>> 5dc9d592a1c67c2d7e6a59ae1b60c9a3de45f0b4
 </body>
 </html>
