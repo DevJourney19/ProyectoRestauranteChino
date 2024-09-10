@@ -1,0 +1,29 @@
+@charset "UTF-8";
+.login-container{
+	color:white;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	min-height:100vh;
+}
+
+.login-container div{
+	text-align:center;
+}
+
+.input-inicio{
+	border-radius:10px;
+	border:none;
+	outline:none;
+	padding:5px 10px;
+}
+
+.btn-inicio{
+	background-color:var(--amarillo);
+	font-weight:600;
+	border-radius:10px;
+	border:none;
+	outline:none;
+	padding:5px 10px;
+	cursor:pointer;
+}

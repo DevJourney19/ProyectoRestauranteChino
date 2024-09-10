@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap')
+	;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Outfit", sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background-image: url('../../img/fondo_login.jpg');
+	background-size: cover; /* Para que la imagen cubra toda la pantalla */
+	background-position: center; /* Para centrar la imagen */
+	background-repeat: no-repeat; /* Evitar que la imagen se repita */
+}
+
+.container {
+	display: flex;
+	flex-wrap:wrap;
+	width: 80%;
+	max-width: 1200px;
+	background-color: #fff0;
+	padding: 0px !important;
+}
+
+.login-box {
+	display:flex;
+	justify-content:center;
+	flex-direction:column;
+	padding: 50px;
+	flex: 1;
+	margin-left: 40px;
+}
+
+h1 {
+	font-size: 38px;
+	margin-bottom: 10px;
+}
+
+.titulo {
+	color: #D51818;
+	font-weight: bold;
+}
+
+p {
+	color: #9E9E9E;
+	margin-bottom: 30px;
+	padding-bottom: 10px;
+	font-weight: normal;
+	width: 400px;
+}
+
+label {
+	display: block;
+	font-size: 16px;
+	color: #333;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+input[type="text"], input[type="password"] {
+	width: 70%;
+	padding: 10px;
+	margin-bottom: 20px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font-size: 16px;
+}
+
+input::placeholder {
+	color: #B8B8B8;
+	opacity: 1;
+	font-size: 14px;
+}
+
+.password-box {
+	position: relative;
+}
+
+.forgot-password {
+	display: block;
+	text-align: left;
+	text-decoration: none;
+	color: #D51818;
+	margin-bottom: 20px;
+	font-size: 14px;
+}
+
+.login-btn {
+	width: 70%;
+	padding: 15px;
+	background-color: #D51818;
+	color: white;
+	font-weight: 600;
+	border: none;
+	border-radius: 5px;
+	font-size: 18px;
+	cursor: pointer;
+	margin-bottom: 20px;
+}
+
+.image-box {
+	width:100%;
+	flex: 1;
+	background-color: #D5181800;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	min-width:375px;
+}
+
+.image-box img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 15px;
+}
+
+@media (min-width:800px) {
+	body{
+	background-size:100% auto;
+	background-position: 20% 0%;
+    background-repeat: repeat;
+	}
+	.container{
+	padding:50px 0 !important;
+	}
+}
