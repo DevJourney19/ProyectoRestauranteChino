@@ -12,9 +12,8 @@
 /* body { */
 /* 	background-color: #f8f8f8; */
 /* } */
-
 .aniadir_pedido {
-	padding: 20px;
+	padding: 10px;
 	border-radius: 20px;
 	background: var(--amarillo);
 	border: none;
@@ -22,7 +21,7 @@
 	/* 	top: 19%; */
 	/* 	left: 14%; */
 	/* 	width: 70px; */
-	font-size: 2em;
+	font-size: 1.8em;
 	color: black;
 	outline: none;
 	text-decoration: none;
@@ -51,12 +50,20 @@
 	border-radius: 6px;
 	font-size: 0.9rem;
 	padding: 2px;
-	padding-left:6px;
+	padding-left: 6px;
 }
-.overflow_tabla{
+
+.overflow_tabla {
 	height: 100px;
 	overflow: scroll;
 }
-body{
+
+body {
 	transition: all 0.35s ease-in-out;
+}
+
+@media ( min-width : 1px) {
+	.aniadir_pedido {
+		margin-bottom: 10px;
+	}
 }

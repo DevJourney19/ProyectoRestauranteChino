@@ -1,7 +1,7 @@
-const buttonToggle = document.querySelector("#toggle");
+const toggler = document.querySelector(".toggler-btn");
 
-if (buttonToggle) {
-	buttonToggle.addEventListener("click", function() {
+if (toggler) {
+	toggler.addEventListener("click", function() {
 		document.querySelector("#sidebar").classList.toggle("collapsed");
 		document.querySelector("#logo").classList.toggle("collapsed");
 	});
