@@ -9,7 +9,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="inventario.css">
 <%@ include file="../fragmentos/head.jsp"%>
-<title>Admin | Inventario</title>
+<title>ADMIN | INVENTARIO</title>
 </head>
 <body>
 	<div class="d-flex flex-row">
@@ -21,7 +21,7 @@
 					<div class="mb-3">
 						<div
 							class="text-center d-md-flex align-items-center justify-content-between flex-wrap mb-2">
-							<h1>Gestión de Inventario</h1>
+							<h1>GESTIÓN DE INVENTARIO - 库存管理</h1>
 							<span class="fs-3 numero-productos">200 items</span>
 						</div>
 						<div
@@ -73,7 +73,8 @@
 											<div class="col-12 col-md">
 												<label for="costo_unitario">Costo Unitario</label> <input
 													type="number" class="form-control" id="costo_unitario"
-													name="costo_unitario" step="0.01" required min="0" max="500">
+													name="costo_unitario" step="0.01" required min="0"
+													max="500">
 											</div>
 										</div>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">

@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="usuarios.css">
 <%@ include file="../fragmentos/head.jsp"%>
-<title>Admin | Usuarios</title>
+<title>ADMIN | USUARIOS</title>
 </head>
 <body>
 	<div class="d-flex flex-row">
@@ -19,7 +19,7 @@
 					<div class="mb-3">
 						<div
 							class="text-center d-md-flex align-items-center justify-content-between flex-wrap">
-							<h1>Gestión de Usuarios</h1>
+							<h1>GESTIÓN DE USUARIOS - 用户管理</h1>
 						</div>
 						<div
 							class="d-flex align-items-center justify-content-center mt-2 mt-md-0 justify-content-md-end gap-4">
@@ -70,10 +70,10 @@
 													name="usuario" required>
 											</div>
 											<div class="col-12 col-md">
-												<label for="password">Password</label> <input
-													type="text" class="form-control"
-													id="password" aria-describedby="emailHelp"
-													placeholder="Enter Password" name="password" required>
+												<label for="password">Password</label> <input type="text"
+													class="form-control" id="password"
+													aria-describedby="emailHelp" placeholder="Enter Password"
+													name="password" required>
 											</div>
 										</div>
 										<div class="modal-footer">
@@ -128,10 +128,10 @@
 													name="usuario" required>
 											</div>
 											<div class="col-12 col-md">
-												<label for="password">Password</label> <input
-													type="text" class="form-control"
-													id="password" aria-describedby="emailHelp"
-													placeholder="Enter Password" name="password" required>
+												<label for="password">Password</label> <input type="text"
+													class="form-control" id="password"
+													aria-describedby="emailHelp" placeholder="Enter Password"
+													name="password" required>
 											</div>
 										</div>
 										<div class="modal-footer">
@@ -194,7 +194,7 @@
 									<td>73794657</td>
 									<td>ede24@gmail.com</td>
 									<td>le123</td>
-									<td>****</td>
+									<td>********</td>
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
@@ -215,7 +215,7 @@
 									<td>73794657</td>
 									<td>ede24@gmail.com</td>
 									<td>le123</td>
-									<td>****</td>
+									<td>********</td>
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
@@ -229,6 +229,28 @@
 										</div>
 									</td>
 								</tr>
+								<tr>
+									<td>3</td>
+									<td>Yoshua</td>
+									<td>73993482</td>
+									<td>f4r3ver@gmail.com</td>
+									<td>DevJourney19</td>
+									<td>********</td>
+									<td>
+										<div
+											class="d-flex align-item-center justify-content-center gap-3">
+											<button class="icon-action" data-bs-toggle="modal"
+												data-bs-target="#staticBackdrop">
+												<i class="lni lni-trash-can fs-4"></i>
+											</button>
+											<button class="icon-action" data-bs-toggle="modal"
+												data-bs-target="#modalEdit">
+												<i class="lni lni-pencil fs-4"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+
 							</tbody>
 						</table>
 					</div>
@@ -236,5 +258,6 @@
 			</main>
 		</div>
 	</div>
+
 </body>
 </html>

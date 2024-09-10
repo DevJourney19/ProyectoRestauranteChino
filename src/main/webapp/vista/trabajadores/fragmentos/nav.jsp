@@ -8,7 +8,7 @@
 		<a href="#">NOCHE EN PEKÍN - 北京之夜</a>
 	</div>
 	<div>
-		<i class="fa-solid fa-circle-user fa-2xl" style="color: #000000;"></i> <span
-			class="fw-bold">Usuario</span>
+		<i class="fa-solid fa-circle-user fa-2xl" style="color: #000000;"></i>
+		<span class="fw-bold">USUARIO</span>
 	</div>
 </nav>

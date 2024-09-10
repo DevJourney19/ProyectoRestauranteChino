@@ -6,7 +6,7 @@
 
 	<aside id="sidebar" class="sidebar-toggle">
 		<div class="sidebar-logo">
-			<a href="#">Noche en Pekín 北京之夜</a>
+			<a href="#">NOCHE EN PEKÍN - 北京之夜</a>
 		</div>
 		<ul class="sidebar-nav p-0">
 			<li class="sidebar-item"><a href="../usuarios/usuarios.jsp"
@@ -36,7 +36,7 @@
 		<div class="sidebar-footer">
 			<a href="../../login.jsp"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
-				class="lni lni-exit"></i> <span>Logout</span>
+				class="lni lni-exit"></i> <span>Salir</span>
 			</a>
 		</div>
 	</aside>

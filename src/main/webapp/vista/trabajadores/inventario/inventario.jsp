@@ -17,10 +17,10 @@
 				<h2 class="my-2" style="font-weight:600">Inventario</h2>
 				<div class="mb-3">
 					<form action="crear_item.jsp" method="post">
-						<button class="btn btn-success">
+						<a href="#" class="btn btn-success">
 							<i class="fa-solid fa-add" style="color: #ffffff;"></i> Nuevo
 							Item
-						</button>
+						</a>
 					</form>
 				</div>
 

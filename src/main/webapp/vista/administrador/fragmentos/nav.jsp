@@ -5,10 +5,10 @@
 		<i class="lni lni-text-align-left"></i>
 	</button>
 	<div class="navbar-logo collapsed" id="logo">
-		<a href="#">Noche en Pekín 北京之夜</a>
+		<a href="#">NOCHE EN PEKÍN - 北京之夜</a>
 	</div>
 	<div>
 		<i class="fa-solid fa-circle-user fa-2xl" style="color: #000000;"></i>
-		<span class="fw-bold">Administrador</span>
+		<span class="fw-bold">ADMINISTRADOR</span>
 	</div>
 </nav>
