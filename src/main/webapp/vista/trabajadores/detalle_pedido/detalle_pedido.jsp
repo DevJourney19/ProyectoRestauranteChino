@@ -8,6 +8,9 @@
 <title>Detalle Pedido</title>
 </head>
 <body>
+    
+    		<%@ include file="../fragmentos/sidebar.jsp"%>
+
 	<div class="titulo_detalle_pedido">Noche en Pekín 北京之夜</div>
 	<div class="container detalle_pedido_div">Menu</div>
 	<!-- 	my-lg-5 -->

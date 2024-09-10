@@ -9,6 +9,8 @@
 <link href="mesa.css" rel="stylesheet" />
 </head>
 <body>
+    		<%@ include file="../fragmentos/sidebar.jsp"%>
+
 	<main>
 		<div class="main-content">
 			<div class="p-3 text-white seleccionar_mesa_titulo text-center">

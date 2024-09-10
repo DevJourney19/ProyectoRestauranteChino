@@ -8,6 +8,7 @@
     <link href="mesas_mozo_css.css" rel="stylesheet" />
 </head>
 <body>
+		<%@ include file="../fragmentos/sidebar.jsp"%>
 
    <div class="titulo_mesas bg-success text-white p-3">
     <h1 class="text-center">Gestionar Mesas</h1>

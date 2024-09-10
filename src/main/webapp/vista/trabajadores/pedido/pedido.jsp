@@ -10,6 +10,7 @@
 
 </head>
 <body class="body">
+		<%@ include file="../fragmentos/sidebar.jsp"%>
 
 	<div class="restaurante_nombre">Noche en Pekín 北京之夜</div>
 	<div class="pedidos_div">PEDIDOS</div>

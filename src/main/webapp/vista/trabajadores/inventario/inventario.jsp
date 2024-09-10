@@ -8,6 +8,7 @@
         <link href="inventario_css.css" rel="stylesheet" />
     </head>
     <body class="body">
+		<%@ include file="../fragmentos/sidebar.jsp"%>
 
         <div class="titulo_inventario">Noche en Pekín 北京之夜</div>
         <div class="container">

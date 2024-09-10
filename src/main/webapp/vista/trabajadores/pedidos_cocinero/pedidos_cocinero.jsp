@@ -8,6 +8,7 @@
     <link href="pedidos_cocinero_css.css" rel="stylesheet" />
 </head>
 <body>
+		<%@ include file="../fragmentos/sidebar.jsp"%>
 
     <div class="titulo_pedidos bg-success text-white p-3">
     <h1 class="text-center">Pedidos Entrantes</h1>
