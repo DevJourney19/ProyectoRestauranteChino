@@ -25,7 +25,7 @@ a {
 }
 
 #sidebar {
-	padding-bottom:30px;
+	padding-bottom:0px;
     max-width: 264px;
     min-width: 264px;
     transition: all 0.35s ease-in-out;
@@ -95,12 +95,16 @@ a {
 
 a.sidebar-link {
 	text-decoration:none;
-    padding: .625rem 1.625rem;
+    padding: 1rem 1.625rem;
+    margin: 10px 0;
     color: #fff;
     position: relative;
     transition: all 0.35s;
-    display: block;
-    font-size: 1.25rem;
+    
+    display: flex;
+    font-size: 1rem;
+    justify-content: center;
+    align-items: center;
 }
 
 a.sidebar-link:hover {
