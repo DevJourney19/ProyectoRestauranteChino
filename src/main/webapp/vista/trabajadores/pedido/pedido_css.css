@@ -9,9 +9,9 @@
 	margin-top: 20px;
 }
 
-body {
-	background-color: #f8f8f8;
-}
+/* body { */
+/* 	background-color: #f8f8f8; */
+/* } */
 
 .aniadir_pedido {
 	padding: 20px;
@@ -56,4 +56,7 @@ body {
 .overflow_tabla{
 	height: 100px;
 	overflow: scroll;
+}
+body{
+	transition: all 0.35s ease-in-out;
 }

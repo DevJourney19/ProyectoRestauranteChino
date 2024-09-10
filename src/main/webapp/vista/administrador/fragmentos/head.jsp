@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="icon" type="image/png" href="../../img/logo_icono.png">
 <link href="https://cdn.lineicons.com/4.0/lineicons.css"
 	rel="stylesheet" />
 <link
