@@ -8,12 +8,16 @@
 <link href="mesas_mozo.css" rel="stylesheet" />
 </head>
 <body>
+<<<<<<< HEAD
 	<div class="d-flex ">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
 			<%@ include file="../fragmentos/nav.jsp"%>
 			<div class="titulo_mesas bg-success text-white p-3">
 				<h1 class="text-center">GESTIONAR MESAS - 管理表</h1>
+=======
+		<%@ include file="../fragmentos/sidebar.jsp"%>
+>>>>>>> origin/inventario
 
 				<!-- Filtro de búsqueda -->
 				<div class="row mb-4 g-2">

@@ -8,6 +8,7 @@
 <title>Detalle Pedido</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<div class="d-flex ">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
@@ -19,6 +20,17 @@
 				<button onclick="myFunction()"
 					class=" d-flex justify-content-center mx-auto btn btn-warning my-3 boton_deta_pedi">Mostrar
 					resumen de pedido</button>
+=======
+    
+    		<%@ include file="../fragmentos/sidebar.jsp"%>
+
+	<div class="titulo_detalle_pedido">Noche en Pekín 北京之夜</div>
+	<div class="container detalle_pedido_div">Menu</div>
+	<!-- 	my-lg-5 -->
+	<button onclick="myFunction()"
+		class=" d-flex  justify-content-center mx-auto btn btn-warning my-3 boton_deta_pedi">Mostrar
+		resumen de pedido</button>
+>>>>>>> origin/inventario
 
 
 				<div
