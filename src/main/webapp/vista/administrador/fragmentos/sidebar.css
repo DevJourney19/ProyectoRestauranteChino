@@ -24,7 +24,37 @@ a {
 	min-height: 100vh;
 	width: 100%;
 	overflow: hidden;
-	background-color: #f9f9f9;
+	background-color: var(--fondo);
+	color: var(--texto);
+}
+
+.modal-content {
+	background-color: var(--fondo);
+	color: var(--texto);
+}
+
+.icon-action, .icon-see i {
+	color: var(--texto);
+}
+
+.form-control {
+	background-color: var(--fondo);
+	color: var(--texto);
+}
+
+.form-control:focus {
+	background-color: var(--fondo);
+	color: var(--texto);
+}
+
+.form-control::placeholder {
+	background-color: var(--fondo);
+	color: var(--placeholder);
+}
+
+.form-control {
+	background-color: var(--fondo);
+	color: var(--texto);
 }
 
 #sidebar {

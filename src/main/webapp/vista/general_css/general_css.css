@@ -7,8 +7,21 @@
 	--verde: #014301;
 	--blanco: #f9f9f9;
 	--gray:#E1E1E1;
+	--fondo: #f9f9f9;
+	--texto: #000000;
+	--placeholder: rgb(119, 118, 123);
 }
 
+:root .modo-nocturno{
+	--rojo: #D51818;
+	--amarillo: #FFC700;
+	--verde: #2ec27e;
+	--blanco: #f9f9f9;
+	--gray:#E1E1E1;
+	--fondo: #040405;
+	--texto: #FFFFFF;
+	--placeholder: rgb(154, 153, 150);
+}
 * {
 	margin: 0;
 	padding: 0;

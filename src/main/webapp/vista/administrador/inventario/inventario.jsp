@@ -208,7 +208,7 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body fw-medium fs-4">
-									<p>Estas seguro de eliminar el producto?</
+									<p>Estas seguro de eliminar el producto?</p>
 									<p>#1</p>
 								</div>
 								<div class="modal-footer">
