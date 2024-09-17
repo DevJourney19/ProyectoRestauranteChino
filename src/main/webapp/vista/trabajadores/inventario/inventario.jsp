@@ -2,7 +2,7 @@
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
+
 <head>
 <title>Inventario - Noche en Pekín</title>
 <%@include file="../fragmentos/head.jsp"%>

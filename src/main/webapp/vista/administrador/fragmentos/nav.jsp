@@ -1,24 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <nav class="navbar d-flex align-items-center">
-<<<<<<< HEAD
-	<button class="toggler-btn" type="button">
-		<i class="lni lni-text-align-left" style="color: var(--texto);"></i>
-	</button>
-	<div class="navbar-logo collapsed" id="logo">
-		<a href="#">NOCHE EN PEKÍN - 北京之夜</a>
-	</div>
-	<div>
-		<i class="fa-solid fa-circle-user fa-2xl" style="color: var(--texto);"></i>
-		<span class="fw-bold">ADMINISTRADOR</span>
-	</div>
-</nav>
-=======
+
     <button class="toggler-btn" type="button">
         <i class="lni lni-text-align-left"></i>
     </button>
     <div class="navbar-logo collapsed" id="logo">
-        <a href="#">Noche en Pekín 北京之夜</a>
+        <a href="#">NOCHE EN PEKÍN - 北京之夜</a>
     </div>
     <div>
         <button type="button" data-bs-toggle="modal" data-bs-target="#modalMessages" class="btn btn-white rounded-5 position-relative mt-2">
@@ -65,4 +53,4 @@
         </div>
     </div>
 </div>
->>>>>>> origin/inventario
+
