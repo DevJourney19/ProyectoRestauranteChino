@@ -1,225 +1,197 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+	;
 /*TRABAJADORES*/
 body {
-    font-family: 'Poppins', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 
 h1 {
-    font-weight: 800;
+	font-weight: 800;
 }
 
 li {
-    list-style: none;
+	list-style: none;
 }
 
 a {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .main {
-    min-height: 100vh;
-    width: 100%;
-    overflow: hidden;
-    background-color: #f9f9f9;
+	min-height: 100vh;
+	width: 100%;
+	overflow: hidden;
+	background-color: #f9f9f9;
 }
 
 #sidebar {
-<<<<<<< HEAD
-	padding-bottom:30px;
-    max-width: 264px;
-    min-width: 264px;
-    transition: all 0.35s ease-in-out;
-    background-color: #ac0000;
-=======
-    margin:10px;
-    padding-bottom: 20px;
-    width: 180px;
-    height: 98%;
-    border-radius:20px;
-    transition: all 0.35s ease-in-out;
-    background-color: var(--verde);
->>>>>>> origin/inventario
-    display: flex;
-    z-index: 99;
-    flex-direction: column;
-<<<<<<< HEAD
-=======
-    position: fixed;
-    left:0;
->>>>>>> origin/inventario
+	margin: 10px;
+	padding-bottom: 20px;
+	width: 180px;
+	height: 98%;
+	border-radius: 20px;
+	transition: all 0.35s ease-in-out;
+	background-color: var(--verde);
+	display: flex;
+	z-index: 99;
+	flex-direction: column;
+	position: fixed;
+	left: 0;
 }
 
 #sidebar.collapsed {
-    margin-left: -264px;
+	margin-left: -264px;
 }
 
-#logo.collapsed{
+#logo.collapsed {
 	margin-top: -200px;
 }
 
-#logo{
-    transition: all 0.35s ease-in-out;
+#logo {
+	transition: all 0.35s ease-in-out;
 }
 
 .toggler-btn {
-    background-color: transparent;
-    cursor: pointer;
-    border: 0;
-    padding: 1.15rem 0 1.15rem 20px;
+	background-color: transparent;
+	cursor: pointer;
+	border: 0;
+	padding: 1.15rem 0 1.15rem 20px;
 }
 
 .toggler-btn i {
-    font-size: 1.75rem;
-    color: #000;
-    font-weight: 1000;
+	font-size: 1.75rem;
+	color: #000;
+	font-weight: 1000;
 }
 
 .navbar {
-    padding: 1.4rem;
-    border-bottom: 2px dashed #b3a8a8;
+	padding: 1.4rem;
+	border-bottom: 2px dashed #b3a8a8;
 }
 
 .sidebar-nav {
-    flex: 1 1 auto;
+	flex: 1 1 auto;
 }
 
 .sidebar-logo, .navbar-logo {
-    padding: 1.15rem 1.6rem;
-    text-align: center;
-<<<<<<< HEAD
+	padding: 1.15rem 1.6rem;
+	text-align: center;
+	width: 150px;
+	margin-left: 15px;
+	margin-right: 15px;
 }
 
-=======
-    width:150px;
-    margin-left: 15px;
-    margin-right: 15px;
+.sidebar-logo img {
+	width: 100%;
+	height: 100%;
 }
 
-.sidebar-logo img{
-	width:100%;
-    height:100%;
-}
-
-#toggle{
-    width: 50px;
-    height: 50px;
-	font-size:2rem;
+#toggle {
+	width: 50px;
+	height: 50px;
+	font-size: 2rem;
 	background-color: white;
-        border-radius: 50px;
-	outline:none;
-	position:absolute;
-	right:-50px;
-	display:flex;
-	justify-content:center;
-	top:40%;
-        padding: 7px;
+	border-radius: 50px;
+	outline: none;
+	position: absolute;
+	right: -50px;
+	display: flex;
+	justify-content: center;
+	top: 40%;
+	padding: 7px;
 }
 
-
->>>>>>> origin/inventario
 .navbar-logo a {
-	color:black;
-    font-weight: 800;
-    font-size: 1.5rem;
-    text-decoration:none;
+	color: black;
+	font-weight: 800;
+	font-size: 1.5rem;
+	text-decoration: none;
 }
 
 .sidebar-logo a {
-	color:white;
-    font-weight: 800;
-    font-size: 1.5rem;
-    text-decoration:none;
+	color: white;
+	font-weight: 800;
+	font-size: 1.5rem;
+	text-decoration: none;
 }
 
 .sidebar-header {
-    color: #FFF;
-    font-size: .75rem;
-    padding: 1.5rem 1.5rem .375rem;
+	color: #FFF;
+	font-size: .75rem;
+	padding: 1.5rem 1.5rem .375rem;
 }
 
 a.sidebar-link {
-	text-decoration:none;
-    padding: .625rem 1.625rem;
-    color: #fff;
-    position: relative;
-    transition: all 0.35s;
-    font-size: 18px;
-    font-weight: 800;
-    display: block;
-<<<<<<< HEAD
-    font-size: 1.25rem;
+	text-decoration: none;
+	padding: .625rem 1.625rem;
+	color: #fff;
+	position: relative;
+	transition: all 0.35s;
+	font-size: 18px;
+	font-weight: 800;
+	display: block;
+}
+
+.hidden {
+	display: none;
 }
 
 a.sidebar-link:hover {
-    background-color: #f9f6f630;
-=======
-}
-
-.hidden{
-	display:none;
-}
-
-a.sidebar-link:hover {
-    background-color: var(--blanco);
-    border-radius: 30px 0 0 30px;
-    color:black;
-    font-size:16px;
-    justify-content: start !important;
-    span{
-    	display:flex;
-    }
-    
->>>>>>> origin/inventario
+	background-color: var(--blanco);
+	border-radius: 30px 0 0 30px;
+	color: black;
+	font-size: 16px;
+	justify-content: start !important;
+	
 }
 
 .sidebar-link[data-bs-toggle="collapse"]::after {
-    border: solid;
-    border-width: 0 .075rem .075rem 0;
-    content: "";
-    display: inline-block;
-    padding: 2px;
-    position: absolute;
-    right: 1.5rem;
-    top: 1.4rem;
-    transform: rotate(-135deg);
-    transition: all .2s ease-out;
+	border: solid;
+	border-width: 0 .075rem .075rem 0;
+	content: "";
+	display: inline-block;
+	padding: 2px;
+	position: absolute;
+	right: 1.5rem;
+	top: 1.4rem;
+	transform: rotate(-135deg);
+	transition: all .2s ease-out;
 }
 
 .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
-    transform: rotate(45deg);
-    transition: all .2s ease-out;
+	transform: rotate(45deg);
+	transition: all .2s ease-out;
 }
 
-@media (min-width: 0px) and (max-width: 767px) { 
-    .telefono-ocultar {
-        display: none;
-    }
+@media ( min-width : 0px) and (max-width: 767px) {
+	.telefono-ocultar {
+		display: none;
+	}
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
-    .tablet-ocultar {
-        display: none;
-    }
+@media ( min-width : 768px) and (max-width: 1023px) {
+	.tablet-ocultar {
+		display: none;
+	}
 }
 
-@media (min-width: 1024px) and (max-width: 1920px) {
-    .monitor-ocultar {
-        display: none;
-    }
+@media ( min-width : 1024px) and (max-width: 1920px) {
+	.monitor-ocultar {
+		display: none;
+	}
 }
 
-@media (max-width:768px) {
-
-    .sidebar-toggle {
-        margin-left: -264px;
-    }
-
-    #sidebar.collapsed {
-        margin-left: 0;
-    }
-    
-    #logo, #logo.collapsed{
-    	display:none;
-    }
+@media ( max-width :768px) {
+	.sidebar-toggle {
+		margin-left: -264px;
+	}
+	#sidebar.collapsed {
+		margin-left: 0;
+	}
+	#logo, #logo.collapsed {
+		display: none;
+	}
 }
