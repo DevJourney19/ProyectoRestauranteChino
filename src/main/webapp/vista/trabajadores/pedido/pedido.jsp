@@ -10,6 +10,7 @@
 
 </head>
 <body class="body">
+
 	<div class="d-flex ">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
@@ -22,6 +23,7 @@
 						<img src="../../img/boton-mas.png"
 						style="widh: 40px; height: 40px"> Añadir Pedido
 					</a>
+
 				</div>
 
 				<div class="container">

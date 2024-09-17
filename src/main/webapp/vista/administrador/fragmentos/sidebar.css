@@ -24,19 +24,42 @@ a {
 	min-height: 100vh;
 	width: 100%;
 	overflow: hidden;
-	background-color: #f9f9f9;
+	background-color: var(--fondo);
+	color: var(--texto);
+}
+
+.modal-content {
+	background-color: var(--fondo);
+	color: var(--texto);
+	background: #fff;
+}
+
+.icon-action, .icon-see i {
+	color: var(--texto);
+}
+
+.form-control {
+	background-color: var(--fondo);
+	color: var(--texto);
+}
+
+.form-control:focus {
+	background-color: var(--fondo);
+	color: var(--texto);
+}
+
+.form-control::placeholder {
+	background-color: var(--fondo);
+	color: var(--placeholder);
+}
+
+.form-control {
+	background-color: var(--fondo);
+	color: var(--texto);
 }
 
 #sidebar {
-<<<<<<< HEAD
-	padding-bottom: 30px;
-	max-width: 264px;
-	min-width: 264px;
-	transition: all 0.35s ease-in-out;
-	background-color: #000;
-	display: flex;
-	flex-direction: column;
-=======
+
 	padding-bottom:0px;
     max-width: 264px;
     min-width: 264px;
@@ -44,7 +67,6 @@ a {
     background-color: #000;
     display: flex;
     flex-direction: column;
->>>>>>> 5dc9d592a1c67c2d7e6a59ae1b60c9a3de45f0b4
 }
 
 #sidebar.collapsed {
@@ -107,15 +129,7 @@ a {
 }
 
 a.sidebar-link {
-<<<<<<< HEAD
-	text-decoration: none;
-	padding: .625rem 1.625rem;
-	color: #fff;
-	position: relative;
-	transition: all 0.35s;
-	display: block;
-	font-size: 1.25rem;
-=======
+
 	text-decoration:none;
     padding: 1rem 1.625rem;
     margin: 10px 0;
@@ -127,7 +141,6 @@ a.sidebar-link {
     font-size: 1rem;
     justify-content: center;
     align-items: center;
->>>>>>> 5dc9d592a1c67c2d7e6a59ae1b60c9a3de45f0b4
 }
 
 a.sidebar-link:hover {
@@ -152,7 +165,7 @@ a.sidebar-link:hover {
 	transition: all .2s ease-out;
 }
 
-<<<<<<< HEAD
+
 @media ( max-width :768px) {
 	.sidebar-toggle {
 		margin-left: -264px;
@@ -164,19 +177,5 @@ a.sidebar-link:hover {
 		display: none;
 	}
 }
-=======
-@media (max-width:768px) {
 
-    .sidebar-toggle {
-        margin-left: -264px;
-    }
 
-    #sidebar.collapsed {
-        margin-left: 0;
-    }
-    
-    #logo, #logo.collapsed{
-    	display:none;
-    }
-}
->>>>>>> 5dc9d592a1c67c2d7e6a59ae1b60c9a3de45f0b4

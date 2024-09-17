@@ -8,6 +8,7 @@
 <title>Detalle Pedido</title>
 </head>
 <body>
+
 	<div class="d-flex ">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
