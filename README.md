@@ -1,7 +1,7 @@
--- Creamos y nos ubicamos en la base de datos del restaurante
+## Creamos y nos ubicamos en la base de datos del restaurante
 create database restaurante;
 use restaurante;
--- Creamos las tablas respectivas
+## Creamos las tablas respectivas
 create table roles(
 id int auto_increment primary key, nombre varchar(20) 
 );
