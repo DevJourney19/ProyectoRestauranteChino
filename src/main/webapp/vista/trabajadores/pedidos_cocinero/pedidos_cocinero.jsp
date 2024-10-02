@@ -12,7 +12,7 @@
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
 			<%@ include file="../fragmentos/nav.jsp"%>
-			<div class="titulo_pedidos bg-success text-white p-3">
+			<div class="titulo_pedidos text-white p-3">
 				<h1 class="text-center">PEDIDOS ENTRANTES - 收到的订单</h1>
 				<div class="table-responsive">
 					<table class="table table-bordered text-center">

@@ -64,6 +64,10 @@
 											</div>
 										</div>
 
+										<div class="my-3">
+											<label for="formFile" class="form-label">Elegir una
+												imagen</label> <input class="form-control" type="file" id="formFile">
+										</div>
 
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<div class="col-12 col-md">
@@ -142,6 +146,10 @@
 											</div>
 										</div>
 
+										<div class="my-3">
+											<label for="formFile" class="form-label">Elegir una
+												imagen</label> <input class="form-control" type="file" id="formFile">
+										</div>
 
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<div class="col-12 col-md">

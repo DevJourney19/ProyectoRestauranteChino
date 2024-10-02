@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+main {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+
+.group {
+	display: flex;
+	gap: 20px;
+}
+
+section {
+	border-radius: 20px;
+	padding: 20px;
+	box-shadow: 20px 16px 54px #bebebe, 20px 19px 54px #ffffff;
+}
+
+section:nth-child(odd) {
+	background: var(--amarillo);
+}
+
+section:nth-child(even) {
+	background: var(--rojo);
+	color: white;
+}
+
+.entradas {
+	grid-area: entradas;
+}
+
+.principal {
+	grid-area: principal;
+}
+
+.arroz {
+	grid-area: arroz;
+}
+
+.sopas {
+	grid-area: sopas;
+}
+
+.postres {
+	grid-area: postres;
+}
+
+.bebidas {
+	grid-area: bebidas;
+}
+
+@media screen and (min-width:992px) {
+	main {
+		display: grid;
+		grid-template-areas: "entradas principal" "arroz ." ". sopas"
+			"postres bebidas";
+		overflow: auto;
+		height: 75vh;
+		grid-template-rows: repeat(1, 1fr);
+		grid-template-areas: "entradas principal" "arroz ." ". sopas"
+			"postres bebidas";
+	}
+}

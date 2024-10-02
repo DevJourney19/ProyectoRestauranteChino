@@ -1,6 +1,4 @@
-/**
- * Hello World! :)
- */
+
 let elemento = document.getElementById("tabla_detalle_pedidos");
 elemento.classList.add("toggle_tabla_detalle_pedidos_nada");
 function myFunction() {
@@ -54,4 +52,9 @@ icono_eliminar.forEach(t => {
 		});
 	})
 })
+
+
+const realizarPago = ()=>{
+	
+}
 

@@ -32,11 +32,11 @@
 			<!-- <li class="sidebar-item"><a href="#" class="sidebar-link d-flex align-items-center gap-2">
 						<i class="lni lni-stats-up"></i> <span>Reportes</span>
 				</a></li> -->
-			<li class="m-5">
+			<!--<li class="m-5">
 				<div class="form-check form-switch">
 		  			<input class="check-modo-nocturno form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
 		  			<label class="form-check-label text-light" for="flexSwitchCheckChecked">Modo nocturno</label>
-				</div>
+				</div>-->
 			</li>
 		</ul>
 

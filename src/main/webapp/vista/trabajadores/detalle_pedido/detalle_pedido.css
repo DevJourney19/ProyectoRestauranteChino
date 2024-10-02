@@ -33,9 +33,7 @@ body {
 
 .fondo_verde_productos {
 	background: transparent;
-	/* 	border: 10px solid #FFD700; */
 	padding: 20px;
-	/* 	margin-left: 30px; */
 }
 
 .estilo_btn_1 {
@@ -54,11 +52,6 @@ body {
 	transform: translateY(-8px);
 }
 
-.card_plato {
-	padding: 10px;
-/* 	overflow: hidden; */
-}
-
 .card_body_plato {
 	width: 100%;
 }
@@ -73,7 +66,7 @@ body {
 	text-align: center;
 	font-size: 2rem;
 	padding: 14px;
-	font-weight:800;
+	font-weight: 800;
 }
 
 .icono_eliminar:hover {
@@ -103,6 +96,9 @@ body {
 }
 
 @media ( min-width : 768px) {
+	.row {
+		height: 55vh;
+	}
 	.contenedor_cards {
 		width: 100%;
 	}
@@ -114,8 +110,5 @@ body {
 	}
 	.combinado_tabla_y_productos {
 		flex-direction: row !important;
-	}
-	.tabla_detalle_pedidos {
-		width: 30%;
 	}
 }

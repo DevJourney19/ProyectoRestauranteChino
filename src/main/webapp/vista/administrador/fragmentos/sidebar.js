@@ -6,11 +6,11 @@ toggler.addEventListener("click", function () {
 
 // Obtener path y colocar una clase active al side que corresponda
 
-const check = document.querySelector(".check-modo-nocturno");
-const modo_nocturno = document.querySelector("div .main");
-const table = document.querySelector(".table");
+//const check = document.querySelector(".check-modo-nocturno");
+//const modo_nocturno = document.querySelector("div .main");
+//const table = document.querySelector(".table");
 
-check.addEventListener("click", () => {
+/**check.addEventListener("click", () => {
 	if(check.checked) {
 		modo_nocturno.classList.add("modo-nocturno");
 		table.classList.add("table-dark");
@@ -19,3 +19,4 @@ check.addEventListener("click", () => {
 		table.classList.remove("table-dark");
 	}
 })
+**/

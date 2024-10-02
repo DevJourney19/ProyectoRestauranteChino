@@ -1,11 +1,12 @@
 @charset "UTF-8";
-
+/*TRABAJADOR*/
 @import
 	url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
 	;
-/*TRABAJADORES*/
+
 body {
 	font-family: 'Poppins', sans-serif;
+	background-color:var(--fondo);
 }
 
 h1 {
@@ -24,26 +25,28 @@ a {
 	min-height: 100vh;
 	width: 100%;
 	overflow: hidden;
-	background-color: #f9f9f9;
+	background-color: var(--fondo);
+	color: var(--texto);
+}
+
+.icon-action, .icon-see i {
+	color: var(--texto);
 }
 
 #sidebar {
-	margin: 10px;
-	padding-bottom: 20px;
-	width: 180px;
-	height: 98%;
-	border-radius: 20px;
-	transition: all 0.35s ease-in-out;
-	background-color: var(--verde);
-	display: flex;
-	z-index: 99;
-	flex-direction: column;
-	position: fixed;
-	left: 0;
+	border-radius:30px;
+	margin:20px 10px;
+	padding-bottom:0px;
+    max-width: 264px;
+    min-width: 264px;
+    transition: all 0.35s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    background-color:var(--rojo);
 }
 
 #sidebar.collapsed {
-	margin-left: -264px;
+	margin-left: -274px;
 }
 
 #logo.collapsed {
@@ -68,7 +71,7 @@ a {
 }
 
 .navbar {
-	padding: 1.4rem;
+	padding: 1.5rem 1.5rem 1rem;
 	border-bottom: 2px dashed #b3a8a8;
 }
 
@@ -77,31 +80,8 @@ a {
 }
 
 .sidebar-logo, .navbar-logo {
-	padding: 1.15rem 1.6rem;
+	padding: 1.15rem 1.5rem;
 	text-align: center;
-	width: 150px;
-	margin-left: 15px;
-	margin-right: 15px;
-}
-
-.sidebar-logo img {
-	width: 100%;
-	height: 100%;
-}
-
-#toggle {
-	width: 50px;
-	height: 50px;
-	font-size: 2rem;
-	background-color: white;
-	border-radius: 50px;
-	outline: none;
-	position: absolute;
-	right: -50px;
-	display: flex;
-	justify-content: center;
-	top: 40%;
-	padding: 7px;
 }
 
 .navbar-logo a {
@@ -125,27 +105,19 @@ a {
 }
 
 a.sidebar-link {
-	text-decoration: none;
-	padding: .625rem 1.625rem;
-	color: #fff;
-	position: relative;
-	transition: all 0.35s;
-	font-size: 18px;
-	font-weight: 800;
-	display: block;
-}
-
-.hidden {
-	display: none;
+	text-decoration:none;
+    padding: 1rem 1.625rem;
+    margin: 10px 0;
+    color: #fff;
+    position: relative;
+    transition: all 0.35s;
+    display: flex;
+    font-size:1.2rem;
+    align-items: center;
 }
 
 a.sidebar-link:hover {
-	background-color: var(--blanco);
-	border-radius: 30px 0 0 30px;
-	color: black;
-	font-size: 16px;
-	justify-content: start !important;
-	
+	background-color: #f9f6f630;
 }
 
 .sidebar-link[data-bs-toggle="collapse"]::after {
@@ -166,32 +138,14 @@ a.sidebar-link:hover {
 	transition: all .2s ease-out;
 }
 
-@media ( min-width : 0px) and (max-width: 767px) {
-	.telefono-ocultar {
-		display: none;
-	}
-}
-
-@media ( min-width : 768px) and (max-width: 1023px) {
-	.tablet-ocultar {
-		display: none;
-	}
-}
-
-@media ( min-width : 1024px) and (max-width: 1920px) {
-	.monitor-ocultar {
-		display: none;
-	}
-}
 
 @media ( max-width :768px) {
 	.sidebar-toggle {
 		margin-left: -264px;
 	}
-	#sidebar.collapsed {
-		margin-left: 0;
-	}
 	#logo, #logo.collapsed {
 		display: none;
 	}
 }
+
+

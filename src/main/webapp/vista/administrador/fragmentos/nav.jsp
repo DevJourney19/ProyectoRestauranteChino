@@ -8,16 +8,16 @@
     <div class="navbar-logo collapsed" id="logo">
         <a href="#">NOCHE EN PEKÍN - 北京之夜</a>
     </div>
-    <div>
-        <button type="button" data-bs-toggle="modal" data-bs-target="#modalMessages" class="btn btn-white rounded-5 position-relative mt-2">
+    <div class="d-flex align-items-center gap-4">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#modalMessages" class="btn btn-white rounded-5 position-relative mt-2 d-flex align-items-center">
             <i class="lni lni-popup fs-2"></i>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 1
                 <span class="visually-hidden">unread messages</span>
             </span>
         </button>
-        <img class="m-2 rounded-5" width="50" height="50"
-             src="../../img/tallarin_saltado.png" alt="alt" /> <span class="fw-bold">Usuario</span>
+        <div class="d-flex align-items-center gap-2"><img class="m-2 rounded-5" width="50" height="50"
+             src="../../img/tallarin_saltado.png" alt="alt" /> <span class="fw-bold">Usuario</span></div>
     </div>
 </nav>
 

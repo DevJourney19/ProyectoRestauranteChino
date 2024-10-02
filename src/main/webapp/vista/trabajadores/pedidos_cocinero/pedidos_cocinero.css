@@ -40,7 +40,7 @@ h1 {
 }
 
 .titulo_pedidos {
-    background-color: #004400; /* Fondo verde oscuro */
+    background-color: var(--rojo);
     padding: 20px;
     text-align: left;
 }

@@ -40,7 +40,7 @@ h1 {
 }
 
 .titulo_mesas {
-    background-color: #004400; /* Color verde oscuro */
+    background-color: var(--rojo);
     padding: 20px;
     text-align: left;
 }

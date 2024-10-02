@@ -5,14 +5,14 @@ body {
 }
 
 main {
-	display:flex;
-	flex-direction:row;
-	width:100%;
-	min-height:100vh;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 100vh;
 }
 
-.main-content{
-	width:100%;
+.main-content {
+	width: 100%;
 }
 
 .titulo_inventario {
@@ -31,14 +31,23 @@ main {
 	border-radius: 6px;
 	font-size: 0.9rem;
 	padding: 2px;
-	padding-left:6px;
+	padding-left: 6px;
 }
 
-.overflow_tabla{
+.overflow_tabla {
 	height: 100px;
 	overflow: scroll;
 }
 
 .inventario_imagen {
-    width: 100%;
+	width: 100%;
+}
+
+.inventario_row {
+	height: 70vh;
+	width: 100%;
+}
+
+.card {
+	box-shadow:10px 17px 20px -19px rgba(0, 0, 0, 0.75);
 }

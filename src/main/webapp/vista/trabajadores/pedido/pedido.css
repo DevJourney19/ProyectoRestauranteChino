@@ -9,22 +9,8 @@
 	margin-top: 20px;
 }
 
-/* body { */
-/* 	background-color: #f8f8f8; */
-/* } */
 .aniadir_pedido {
-	padding: 10px;
 	border-radius: 20px;
-	background: var(--amarillo);
-	border: none;
-	position: relative;
-	/* 	top: 19%; */
-	/* 	left: 14%; */
-	/* 	width: 70px; */
-	font-size: 1.8em;
-	color: black;
-	outline: none;
-	text-decoration: none;
 }
 
 .mesa_numero {
@@ -59,11 +45,50 @@
 }
 
 body {
+	min-height:100vh;
 	transition: all 0.35s ease-in-out;
+}
+
+.box_mesa{
+	width:200px;
+	position:relative;
+}
+
+.img_mesa span{
+	top: 20%;
+    position: absolute;
+    right: 50%;
+    transform: translate(50%, 50%);
+    background-color:white;
+    border-radius:30px;
+    font-weight:600;
+    padding:5px 10px;
+    border:1px solid black;
+    cursor:pointer;
+}
+
+.img_mesa{
+	width:100%;
+}
+
+.box_mesa input{
+	appearance:none;
+}
+
+.img_mesa>img{
+	object-fit:cover;
+	width:200px;
+	filter: drop-shadow(0 0 0.75rem #000);
 }
 
 @media ( min-width : 1px) {
 	.aniadir_pedido {
 		margin-bottom: 10px;
+	}
+}
+
+@media ( min-width : 768px) {
+	.row {
+		height: 60vh;
 	}
 }

@@ -13,7 +13,7 @@
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
 			<%@ include file="../fragmentos/nav.jsp"%>
-			<div class="titulo_mesas bg-success text-white p-3">
+			<div class="titulo_mesas text-white p-3">
 				<h1 class="text-center">GESTIONAR MESAS - 管理表</h1>
 
 
@@ -53,8 +53,7 @@
 								<td>Cerca de la ventana</td>
 								<td><span class="badge bg-success">Disponible</span></td>
 
-								<td><button class="btn btn-primary" data-bs-toggle="modal"
-										data-bs-target="#modalAsignar">Asignar Mesa</button></td>
+								<td><button class="btn btn-primary">Asignar Mesa</button></td>
 							</tr>
 							<tr>
 								<td>Mesa 02</td>
@@ -69,52 +68,11 @@
 								<td>Mesa 03</td>
 								<td>Zona exterior</td>
 								<td><span class="badge bg-warning">Limpieza</span></td>
-								<td><button class="btn btn-primary" data-bs-toggle="modal"
-										data-bs-target="#modalAsignar">Asignar Mesa</button></td>
+								<td><button class="btn btn-primary">Asignar Mesa</button></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
-				<!-- Modal Asignar-->
-				<div class="modal fade" id="modalAsignar" tabindex="-1"
-					aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog-centered modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h1 class="modal-title fs-3 fw-semibold text-dark"
-									id="exampleModalLabel">Asignar una Mesa</h1>
-								<button type="button" class="btn-close" data-bs-dismiss="modal"
-									aria-label="Close"></button>
-							</div>
-							<div class="modal-body">
-								<form action="" class="needs-validation" novalidate>
-									<div class="form-group mb-4 d-flex flex-wrap gap-2">
-										<div class="col-12 col-md text-dark">
-											<label for="salon">N&ordm; Salon</label> <input type="number"
-												class="form-control" id="salon" aria-describedby="emailHelp"
-												placeholder="Enter Number" name="numSalon" min="0" max="500"
-												required>
-										</div>
-										<div class="col-12 col-md text-dark">
-											<label for="mesa">N&ordm; Mesa</label> <input type="number"
-												class="form-control" id="mesa" placeholder="Enter Number"
-												name="numMesa" min="0" max="500" required>
-										</div>
-									</div>
-
-									<div class="modal-footer">
-
-										<button type="button" class="btn btn-danger"
-											data-bs-dismiss="modal">Cerrar</button>
-										<button type="submit" class="btn btn-warning">Crear</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
 			</div>
 		</div>
 	</div>
