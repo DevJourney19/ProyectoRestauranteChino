@@ -3,6 +3,8 @@ create database restaurante;
 use restaurante;
 
 ## Creamos las tablas respectivas
+
+````sql
 create table roles(
 id int auto_increment primary key, nombre varchar(20) 
 );
@@ -45,3 +47,4 @@ CONSTRAINT fk_trabajador_dp foreign key (id) REFERENCES trabajadores(id) ON DELE
 CONSTRAINT fk_pedido_dp foreign key (id) REFERENCES pedidos(id) ON DELETE CASCADE ON UPDATE CASCADE, 
 CONSTRAINT fk_menu_dp foreign key (id) REFERENCES menu(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+```
