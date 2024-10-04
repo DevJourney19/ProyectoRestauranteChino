@@ -8,9 +8,9 @@ id int auto_increment primary key, nombre varchar(20)
 );
 
 create table trabajadores(
-id int auto_increment primary key, nombre varchar(50),
+codigo varchar(4) primary key, nombre varchar(50),
 apellido varchar(50), usuario varchar(20), password blob, 
-telefono varchar(9), id_rol int, 
+celular varchar(9), id_rol int, 
 CONSTRAINT fk_rol foreign key (id) REFERENCES 
 roles(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -24,7 +24,7 @@ ON DELETE CASCADE ON UPDATE CASCADE
 
 create table clientes(
 id int auto_increment primary key, dni_ruc varchar(11),
-telefono varchar(9), correo varchar(50)
+celular varchar(9), correo varchar(50)
 );
 
 create table pedidos(
