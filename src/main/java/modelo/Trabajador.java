@@ -1,23 +1,32 @@
 package modelo;
 
-public class Usuario {
-	private int id;
+public class Trabajador {
+	private String codigo;
 	private String nombre;
 	private String apellido;
-	private String rol;
+	private int id_rol;
+	private String celular;
 	private String nombreUsuario;
 	private String contrasenia;
-	
-	public Usuario() {
+
+	public Trabajador() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public int getId() {
-		return id;
+
+	public String getCodigo() {
+		return codigo;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public int getId_rol() {
+		return id_rol;
+	}
+
+	public void setId_rol(int id_rol) {
+		this.id_rol = id_rol;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getNombre() {
@@ -36,14 +45,6 @@ public class Usuario {
 		this.apellido = apellido;
 	}
 
-	public String getRol() {
-		return rol;
-	}
-
-	public void setRol(String rol) {
-		this.rol = rol;
-	}
-
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}
@@ -58,6 +59,14 @@ public class Usuario {
 
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 
 }
