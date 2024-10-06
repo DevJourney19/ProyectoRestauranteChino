@@ -1,7 +1,9 @@
-package datos.impls;
+package datos.impl;
 
 import java.sql.*;
+import util.Conexion;
 import java.util.Iterator;
+import java.util.List;
 
 import datos.Trabajador_dao;
 import modelo.Rol;
@@ -9,28 +11,10 @@ import modelo.Trabajador;
 
 //La interface Mozo_dao trae tanto sus metodos específicos, como los que extiende.
 public class Trabajador_dao_impl implements Trabajador_dao {
+	Conexion con = new Conexion();
 
-	String url = "jdbc:mysql://localhost:3306/restaurante";
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String usuario = "root";
-	String clave = "";
-
-	Connection con;
 	PreparedStatement ps;
-
-	@Override
-	public Connection conectarBD() {
-		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, usuario, clave);
-
-		} catch (Exception e) {
-			System.out.println("Error en la conexión: " + e.getMessage());
-			desconectar();
-		}
-		return con;
-	}
-
+	
 	@Override
 	public ResultSet consultar(String rol) {
 		ResultSet rs = null;
@@ -39,28 +23,28 @@ public class Trabajador_dao_impl implements Trabajador_dao {
 		try {
 			String sql = "Select * from trabajadores where rol ='?'";
 			ps.setString(1, nombre);
-			ps = conectarBD().prepareStatement(sql);
+			ps = con.getConexion().prepareStatement(sql);
 			rs = ps.executeQuery();
 
 		} catch (Exception e) {
 			System.out.println("Error en el consultar: " + e.getMessage());
-			desconectar();
+			con.closeConexion();
 		}
 		return rs;
 	}
 
 	// Absolutamente todos los trabajadores
 	@Override
-	public ResultSet consultar() {
+	public List<Trabajador> consultar() {
 		ResultSet rs = null;
 		String sql = "Select * from trabajadores";
 		try {
-			ps = conectarBD().prepareStatement(sql);
+			ps = con.getConexion().prepareStatement(sql);
 			rs = ps.executeQuery();
 
 		} catch (Exception e) {
 			System.out.println("Error en el consultar a todos los trabajadores: " + e.getMessage());
-			desconectar();
+			con.closeConexion();
 		}
 		return rs;
 	}
@@ -79,12 +63,12 @@ public class Trabajador_dao_impl implements Trabajador_dao {
 			ps.setString(6, valorsito[5]);
 			ps.setInt(6, id_rol);
 
-			ps = conectarBD().prepareStatement(sql);
+			ps = con.getConexion().prepareStatement(sql);
 			int rs = ps.executeUpdate();
 			return true;
 		} catch (Exception e) {
 			System.out.println("Error en el agregar trabajadores: " + e.getMessage());
-			desconectar();
+			con.closeConexion();
 		}
 		return false;
 	}
@@ -104,12 +88,12 @@ public class Trabajador_dao_impl implements Trabajador_dao {
 			ps.setString(5, valorsitos[4]);
 			ps.setString(6, valorsitos[5]);
 			ps.setInt(7, id_rol);
-			ps = conectarBD().prepareStatement(sql);
+			ps = con.getConexion().prepareStatement(sql);
 			int rs = ps.executeUpdate();
 			return true;
 		} catch (Exception e) {
 			System.out.println("Error en el actualizar trabajadores: " + e.getMessage());
-			desconectar();
+			con.closeConexion();
 		}
 		return false;
 	}
@@ -128,12 +112,12 @@ public class Trabajador_dao_impl implements Trabajador_dao {
 
 		try {
 			ps.setInt(1, codigo);
-			ps = conectarBD().prepareStatement(sql);
+			ps = con.getConexion().prepareStatement(sql);
 			ps.executeUpdate();
 			return true;
 		} catch (Exception e) {
 			System.out.println("Error en el eliminar trabajadores: " + e.getMessage());
-			desconectar();
+			con.closeConexion();
 		}
 		return false;
 	}
@@ -144,26 +128,14 @@ public class Trabajador_dao_impl implements Trabajador_dao {
 		String sql = "Select * from trabajadores where nombre = ?";
 		try {
 			ps.setString(1, nombre);
-			ps = conectarBD().prepareStatement(sql);
+			ps = con.getConexion().prepareStatement(sql);
 			ps.executeQuery();
 			return true;
 		} catch (Exception e) {
 			System.out.println("Error en el buscar trabajadores: " + e.getMessage());
-			desconectar();
+			con.closeConexion();
 		}
 		return false;
-	}
-
-	@Override
-	public void desconectar() {
-		if (con != null) {
-			try {
-				con.close();
-			} catch (SQLException e) {
-				System.out.println("Error al cerrar la conexión: " + e.getMessage());
-			}
-		}
-
 	}
 
 }

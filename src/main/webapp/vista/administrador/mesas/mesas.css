@@ -46,10 +46,18 @@
 	background-color:var(--rojo);
 }
 
-.estado-libre, .estado-ocupado{
+.estado-reservado{
+	color:var(--amarillo);
+	background-color: rgb(255,199,0,25%);
+}
+.estado-reservado::before{
+	background-color:var(--amarillo);
+}
+
+.estado-libre, .estado-ocupado,.estado-reservado{
 	font-size:14px;
 	font-weight:500;
-	width:110px;
+	width:140px;
 	display:flex;
 	align-items:center;
 	justify-content:center;
@@ -58,7 +66,7 @@
 	border-radius:20px;
 }
 
-.estado-libre::before, .estado-ocupado::before{
+.estado-libre::before, .estado-ocupado::before,.estado-reservado::before{
 	content:"";
 	height:10px;
 	width:10px;

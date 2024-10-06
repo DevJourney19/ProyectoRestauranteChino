@@ -19,4 +19,54 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ProcesoMesa</display-name>
+    <servlet-name>ProcesoMesa</servlet-name>
+    <servlet-class>controlador.ProcesoMesa</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProcesoMesa</servlet-name>
+    <url-pattern>/ProcesoMesa</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EliminarData</display-name>
+    <servlet-name>EliminarData</servlet-name>
+    <servlet-class>controlador.mesa.EliminarData</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EliminarData</servlet-name>
+    <url-pattern>/EliminarData</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AgregarMesa</display-name>
+    <servlet-name>AgregarMesa</servlet-name>
+    <servlet-class>controlador.mesa.AgregarMesa</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AgregarMesa</servlet-name>
+    <url-pattern>/AgregarMesa</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditarMesa</display-name>
+    <servlet-name>EditarMesa</servlet-name>
+    <servlet-class>controlador.mesa.EditarMesa</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditarMesa</servlet-name>
+    <url-pattern>/EditarMesa</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CargarPedido</display-name>
+    <servlet-name>CargarPedido</servlet-name>
+    <servlet-class>controlador.pedido.CargarPedido</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CargarPedido</servlet-name>
+    <url-pattern>/CargarPedido</url-pattern>
+  </servlet-mapping>
 </web-app>

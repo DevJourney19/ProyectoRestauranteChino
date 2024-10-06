@@ -1,4 +1,4 @@
-package datos.impls;
+package datos.impl;
 
 public class Menu_dao {
 

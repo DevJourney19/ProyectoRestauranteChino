@@ -25,7 +25,7 @@
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-cart"></i> <span>Pedidos</span>
 			</a></li>
-			<li class="sidebar-item"><a href="../mesas/mesas.jsp"
+			<li class="sidebar-item"><a href="../CargarMesa"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-airtable"></i> <span>Mesas</span>
 			</a></li>

@@ -139,7 +139,7 @@ a.sidebar-link {
     align-items: center;
 }
 
-a.sidebar-link:hover {
+a.sidebar-link:hover, a.sidebar-link.active {
 	background-color: #f9f6f630;
 }
 
