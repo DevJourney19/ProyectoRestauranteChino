@@ -9,7 +9,11 @@ import util.Conexion;
 
 public class DaoMesaImpl implements DaoMesa {
 	
-	Conexion con  = new Conexion();
+	Conexion con;
+	
+	public DaoMesaImpl() {
+        con = new Conexion();
+    }
 
 	@Override
 	public List<Mesa> consultar() {
@@ -90,9 +94,34 @@ public class DaoMesaImpl implements DaoMesa {
 	}
 
 	@Override
-	public boolean buscar(String nombre) {
-		// TODO Auto-generated method stub
-		return false;
+	public Mesa obtener(int codigo) {
+		Mesa mesa = null;
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT ")
+                .append("id,")
+                .append("n_salon,")
+                .append("n_mesa,")
+                .append("estado")
+                .append(" FROM mesa")
+                .append(" WHERE id = ?");
+        try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString());) {
+            ps.setInt(1, codigo);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    mesa = new Mesa();
+                    mesa.setId(rs.getInt(1));
+                    mesa.setN_salon(rs.getInt(2));
+                    mesa.setN_mesa(rs.getInt(3));
+                    mesa.setEstado(Mesa.EstadoMesa.valueOf(rs.getString(4)));
+                }
+            } catch (Exception e) {
+            	System.out.println(e.getMessage());
+            }
+
+        } catch (Exception e) {
+        	System.out.println(e.getMessage());
+        }
+        return mesa;
 	}
 
 }

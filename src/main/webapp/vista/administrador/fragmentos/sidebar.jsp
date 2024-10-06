@@ -21,7 +21,7 @@
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-agenda"></i> <span>Inventario</span>
 			</a></li>
-			<li class="sidebar-item"><a href="../pedidos/pedidos.jsp"
+			<li class="sidebar-item"><a href="../CargarPedido"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-cart"></i> <span>Pedidos</span>
 			</a></li>

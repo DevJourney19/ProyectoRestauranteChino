@@ -5,12 +5,12 @@ import util.Conexion;
 import java.util.Iterator;
 import java.util.List;
 
-import datos.Trabajador_dao;
+import datos.DaoTrabajador;
 import modelo.Rol;
 import modelo.Trabajador;
 
 //La interface Mozo_dao trae tanto sus metodos específicos, como los que extiende.
-public class Trabajador_dao_impl implements Trabajador_dao {
+public class DaoTrabajadorImpl implements DaoTrabajador {
 	Conexion con = new Conexion();
 
 	PreparedStatement ps;

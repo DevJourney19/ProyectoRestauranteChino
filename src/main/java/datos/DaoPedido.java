@@ -1,5 +1,7 @@
 package datos;
 
-public interface DaoPedido {
+import modelo.Pedido;
+
+public interface DaoPedido extends Dao<Pedido>  {
 
 }

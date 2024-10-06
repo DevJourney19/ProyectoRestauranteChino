@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Date;
+
 public class Pedido {
 	public enum EstadoPedido {
 		Cancelado, Pendiente, Completado
@@ -18,56 +20,64 @@ public class Pedido {
 	private MetodoPago metodo_pago;
 	private double total;
 	private Trabajador trabajador;
-	private int getId() {
+	private Date created_at;
+	
+	public Date getCreated_at() {
+		return created_at;
+	}
+	public void setCreated_at(Date created_at) {
+		this.created_at = created_at;
+	}
+	public int getId() {
 		return id;
 	}
-	private void setId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-	private Cliente getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
-	private void setCliente(Cliente cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	private Mesa getMesa() {
+	public Mesa getMesa() {
 		return mesa;
 	}
-	private void setMesa(Mesa mesa) {
+	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;
 	}
-	private EstadoPedido getEstado() {
+	public EstadoPedido getEstado() {
 		return estado;
 	}
-	private void setEstado(EstadoPedido estado) {
+	public void setEstado(EstadoPedido estado) {
 		this.estado = estado;
 	}
-	private TipoRecibo getTipo_recibo() {
+	public TipoRecibo getTipo_recibo() {
 		return tipo_recibo;
 	}
-	private void setTipo_recibo(TipoRecibo tipo_recibo) {
+	public void setTipo_recibo(TipoRecibo tipo_recibo) {
 		this.tipo_recibo = tipo_recibo;
 	}
-	private MetodoPago getMetodo_pago() {
+	public MetodoPago getMetodo_pago() {
 		return metodo_pago;
 	}
-	private void setMetodo_pago(MetodoPago metodo_pago) {
+	public void setMetodo_pago(MetodoPago metodo_pago) {
 		this.metodo_pago = metodo_pago;
 	}
-	private double getTotal() {
+	public double getTotal() {
 		return total;
 	}
-	private void setTotal(double total) {
+	public void setTotal(double total) {
 		this.total = total;
 	}
-	private Trabajador getTrabajador() {
+	public Trabajador getTrabajador() {
 		return trabajador;
 	}
-	private void setTrabajador(Trabajador trabajador) {
+	public void setTrabajador(Trabajador trabajador) {
 		this.trabajador = trabajador;
 	}
 	public Pedido(int id, Cliente cliente, Mesa mesa, EstadoPedido estado, TipoRecibo tipo_recibo,
-			MetodoPago metodo_pago, double total, Trabajador trabajador) {
+			MetodoPago metodo_pago, double total, Trabajador trabajador, Date created_at) {
 		super();
 		this.id = id;
 		this.cliente = cliente;
@@ -77,6 +87,7 @@ public class Pedido {
 		this.metodo_pago = metodo_pago;
 		this.total = total;
 		this.trabajador = trabajador;
+		this.created_at = created_at;
 	}
 	public Pedido() {
 		super();

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="pedidos.css">
+<link rel="stylesheet" href="vista/administrador/pedidos/pedidos.css">
 <%@ include file="../fragmentos/head.jsp"%>
 <title>ADMIN | PEDIDOS</title>
 </head>

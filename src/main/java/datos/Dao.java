@@ -6,5 +6,5 @@ public interface Dao<T> {
 	public boolean agregar(T objeto);
 	public boolean editar(T objeto);
 	public boolean eliminar(int codigo);
-	public boolean buscar(String nombre);
+	public T obtener(int codigo);
 }

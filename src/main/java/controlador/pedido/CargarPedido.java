@@ -1,40 +1,36 @@
 package controlador.pedido;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import modelo.Mesa;
+
 import java.io.IOException;
+import java.util.List;
 
-/**
- * Servlet implementation class CargarPedido
- */
+import datos.impl.DaoPedidoImpl;
+
+@WebServlet(name = "CargarPedido", urlPatterns = {"/CargarPedido"})
 public class CargarPedido extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CargarPedido() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		processRequest(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		processRequest(request, response);
 	}
+	
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DaoPedidoImpl daoPedido= new DaoPedidoImpl();
+		List<Mesa> mesas = daoMesa.consultar();
+		request.setAttribute("mesas", mesas);
+		 RequestDispatcher rd = request.getRequestDispatcher("vista/administrador/mesas/mesas.jsp");
+		    rd.forward(request, response);
+	}
+	
 
 }

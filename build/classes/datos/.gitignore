@@ -9,3 +9,5 @@
 /impl/
 /DaoMesa.class
 /DaoPedido.class
+/DaoCliente.class
+/DaoTrabajador.class
