@@ -1,4 +1,4 @@
-package controlador.mesa;
+package controlador.pedido;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -9,12 +9,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import modelo.Mesa;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import datos.impl.DaoMesaImpl;
+import datos.impl.DaoPedidoImpl;
 
-@WebServlet(name = "AgregarMesa", urlPatterns = {"/AgregarMesa"})
-public class AgregarMesa extends HttpServlet {
+@WebServlet(name = "AdmiPedido", urlPatterns = {"/AdmiPedido"})
+public class AdmiPedido extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
@@ -25,17 +27,15 @@ public class AgregarMesa extends HttpServlet {
 	}
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DaoPedidoImpl daoPedido = new DaoPedidoImpl();
 		DaoMesaImpl daoMesa = new DaoMesaImpl();
-		Mesa mesa = new Mesa();
-	    String numSalon = request.getParameter("numSalon");
-	    String numMesa = request.getParameter("numMesa");
-		if(numSalon != null && numMesa != null) {
-			mesa.setN_salon(Integer.parseInt(numSalon));
-			mesa.setN_mesa(Integer.parseInt(numMesa));
-			if(daoMesa.agregar(mesa)) {
-			response.sendRedirect("AdmiMesa");
-			}
-		}
+		List<Object[]> pedidos = daoPedido.verData();
+		request.setAttribute("pedidos", pedidos);
+		List<Mesa> mesas = daoMesa.consultar();
+		request.setAttribute("mesas", mesas);
+		RequestDispatcher rd = request.getRequestDispatcher("vista/administrador/pedidos/pedidos.jsp");
+		rd.forward(request, response);
 	}
 	
+
 }

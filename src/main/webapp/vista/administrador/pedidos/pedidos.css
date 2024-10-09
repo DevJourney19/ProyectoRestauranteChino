@@ -53,7 +53,16 @@
 	background-color:var(--rojo);
 }
 
-.estado-cancelado, .estado-pendiente{
+.estado-completado{
+	color:var(--amarillo);
+	background-color: rgb(255,199,0,25%);
+}
+.estado-completado::before{
+	background-color:var(--amarillo);
+}
+
+
+.estado-cancelado, .estado-pendiente, .estado-completado{
 	font-size:14px;
 	font-weight:500;
 	width:150px;
@@ -65,7 +74,7 @@
 	border-radius:20px;
 }
 
-.estado-cancelado::before, .estado-pendiente::before{
+.estado-cancelado::before, .estado-pendiente::before, .estado-completado::before{
 	content:"";
 	height:10px;
 	width:10px;

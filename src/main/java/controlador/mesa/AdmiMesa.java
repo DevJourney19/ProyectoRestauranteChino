@@ -13,8 +13,8 @@ import java.util.List;
 
 import datos.impl.DaoMesaImpl;
 
-@WebServlet(name = "CargarMesa", urlPatterns = {"/CargarMesa"})
-public class CargarMesa extends HttpServlet {
+@WebServlet(name = "AdmiMesa", urlPatterns = {"/AdmiMesa"})
+public class AdmiMesa extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

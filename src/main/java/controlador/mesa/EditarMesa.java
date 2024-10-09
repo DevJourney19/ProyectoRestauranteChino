@@ -33,8 +33,7 @@ public class EditarMesa extends HttpServlet {
 		Mesa.EstadoMesa estado = Mesa.EstadoMesa.valueOf(request.getParameter("estado"));
 		Mesa mesaUpdated = new Mesa(id, salon, mesa, estado);
 		if (daoMesa.editar(mesaUpdated)) {
-			response.getWriter().println("El servlet está funcionando!");
-			//response.sendRedirect("CargarMesa");
+			response.sendRedirect("AdmiMesa");
 		}
 	}
 

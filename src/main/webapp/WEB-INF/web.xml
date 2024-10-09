@@ -63,10 +63,20 @@
     <description></description>
     <display-name>CargarPedido</display-name>
     <servlet-name>CargarPedido</servlet-name>
-    <servlet-class>controlador.pedido.CargarPedido</servlet-class>
+    <servlet-class>controlador.pedido.AdmiPedido</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CargarPedido</servlet-name>
     <url-pattern>/CargarPedido</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AgregarPedido</display-name>
+    <servlet-name>AgregarPedido</servlet-name>
+    <servlet-class>controlador.pedido.AgregarPedido</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AgregarPedido</servlet-name>
+    <url-pattern>/AgregarPedido</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -151,34 +151,35 @@
 											data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
 									<div class="modal-body">
-											<div class="form-group mb-4 d-flex flex-wrap gap-2">
-												<div class="col-12 col-md">
-													<label for="editSalon">N&ordm; Salon</label> <input
-														type="number" class="form-control" id="editSalon"
-														aria-describedby="emailHelp" placeholder="Enter Number"
-														name="numSalon" required>
-												</div>
-												<div class="col-12 col-md">
-													<label for="editMesa">N&ordm; Mesa</label> <input
-														type="number" class="form-control" id="editMesa"
-														placeholder="Enter Number" name="numMesa" required>
-												</div>
-												<div class="col-12">
-													<select id="editEstado" name="estado" class="form-select"
-														aria-label="Default select example">
-														<option selected>Selecciona estado de mesa</option>
-														<option value="Libre">Libre</option>
-														<option value="Reservado">Reservado</option>
-														<option value="Ocupado">Ocupado</option>
-													</select>
-												</div>
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<div class="col-12 col-md">
+												<label for="editSalon">N&ordm; Salon</label> <input
+													type="number" class="form-control" id="editSalon"
+													aria-describedby="emailHelp" placeholder="Enter Number"
+													name="numSalon" required>
 											</div>
+											<div class="col-12 col-md">
+												<label for="editMesa">N&ordm; Mesa</label> <input
+													type="number" class="form-control" id="editMesa"
+													placeholder="Enter Number" name="numMesa" required>
+											</div>
+											<div class="col-12">
+												<label for="editEstado">Estado</label> <select
+													id="editEstado" name="estado" class="form-select"
+													aria-label="Default select example">
+													<option selected>Selecciona estado de mesa</option>
+													<option value="Libre">Libre</option>
+													<option value="Reservado">Reservado</option>
+													<option value="Ocupado">Ocupado</option>
+												</select>
+											</div>
+										</div>
 
-											<div class="modal-footer">
-												<button type="button" class="btn btn-danger"
-													data-bs-dismiss="modal">Cerrar</button>
-												<button id="editarId" type="button" class="btn btn-warning">Guardar</button>
-											</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-danger"
+												data-bs-dismiss="modal">Cerrar</button>
+											<button id="editarId" type="button" class="btn btn-warning">Guardar</button>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -226,7 +227,9 @@
 						function(event) {
 							const button = event.relatedTarget;
 							const id = button.getAttribute('data-id');
-							document.getElementById('modalIdEliminar').innerHTML="#"+id;8
+							document.getElementById('modalIdEliminar').innerHTML = "#"
+									+ id;
+							8
 							document
 									.getElementById('eliminarId')
 									.addEventListener(
@@ -238,28 +241,39 @@
 						});
 
 		// Modal de edición
-		document.getElementById('modalEdit').addEventListener(
-				'show.bs.modal',
-				function(event) {
-					const button = event.relatedTarget;
-					const id = button.getAttribute('data-id');
-					let mesa = button.getAttribute('data-mesa');
-					let salon = button.getAttribute('data-salon');
-					let estado = button.getAttribute('data-estado');
-					document.getElementById('editMesa').value = mesa;
-					document.getElementById('editSalon').value = salon;
-					document.getElementById('editEstado').value = estado;
-					document.getElementById('editarId').addEventListener(
-							'click',
-							function(event) {
-								mesa = document.getElementById('editMesa').value
-								salon = document.getElementById('editSalon').value
-								estado = document.getElementById('editEstado').value
-								window.location.href = "/ProyectoRestauranteChino/EditarMesa?id=" + id
-										+ "&mesa=" + mesa + "&salon=" + salon
-										+ "&estado=" + estado;
-							})
-				});
+		document
+				.getElementById('modalEdit')
+				.addEventListener(
+						'show.bs.modal',
+						function(event) {
+							const button = event.relatedTarget;
+							const id = button.getAttribute('data-id');
+							let mesa = button.getAttribute('data-mesa');
+							let salon = button.getAttribute('data-salon');
+							let estado = button.getAttribute('data-estado');
+							document.getElementById('editMesa').value = mesa;
+							document.getElementById('editSalon').value = salon;
+							document.getElementById('editEstado').value = estado;
+							document
+									.getElementById('editarId')
+									.addEventListener(
+											'click',
+											function(event) {
+												mesa = document
+														.getElementById('editMesa').value
+												salon = document
+														.getElementById('editSalon').value
+												estado = document
+														.getElementById('editEstado').value
+												window.location.href = "/ProyectoRestauranteChino/EditarMesa?id="
+														+ id
+														+ "&mesa="
+														+ mesa
+														+ "&salon="
+														+ salon
+														+ "&estado=" + estado;
+											})
+						});
 	</script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 package modelo;
 
 public class Trabajador {
-	private String codigo;
+	private int id;
 	private String nombre;
 	private String apellido;
 	private int id_rol;
@@ -13,8 +13,8 @@ public class Trabajador {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getCodigo() {
-		return codigo;
+	public int getId() {
+		return id;
 	}
 
 	public int getId_rol() {
@@ -25,8 +25,8 @@ public class Trabajador {
 		this.id_rol = id_rol;
 	}
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNombre() {

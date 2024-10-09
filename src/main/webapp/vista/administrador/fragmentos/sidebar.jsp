@@ -21,11 +21,11 @@
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-agenda"></i> <span>Inventario</span>
 			</a></li>
-			<li class="sidebar-item"><a href="../CargarPedido"
+			<li class="sidebar-item"><a href="AdmiPedido"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-cart"></i> <span>Pedidos</span>
 			</a></li>
-			<li class="sidebar-item"><a href="../CargarMesa"
+			<li class="sidebar-item"><a href="AdmiMesa"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-airtable"></i> <span>Mesas</span>
 			</a></li>

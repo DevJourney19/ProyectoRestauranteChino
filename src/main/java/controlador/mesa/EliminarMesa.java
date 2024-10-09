@@ -29,7 +29,7 @@ public class EliminarMesa extends HttpServlet {
 		DaoMesaImpl daoMesa = new DaoMesaImpl();
 		int id = Integer.parseInt(request.getParameter("id"));
 		if (daoMesa.eliminar(id)) {
-			response.sendRedirect("CargarMesa");
+			response.sendRedirect("AdmiMesa");
 		}
 	}
 
