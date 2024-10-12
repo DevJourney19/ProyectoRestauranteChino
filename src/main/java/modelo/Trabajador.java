@@ -2,9 +2,11 @@ package modelo;
 
 public class Trabajador {
 	private String codigo;
-	private String nombre;
 	private String apellido;
-	private int id_rol;
+	private String nombre;
+	private String dni;
+	private String correo;
+	private Rol rol;
 	private String celular;
 	private String nombreUsuario;
 	private String contrasenia;
@@ -12,21 +14,37 @@ public class Trabajador {
 	public Trabajador() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public String getCodigo() {
 		return codigo;
 	}
 
-	public int getId_rol() {
-		return id_rol;
+	public Rol getRol() {
+		return rol;
 	}
 
-	public void setId_rol(int id_rol) {
-		this.id_rol = id_rol;
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
 
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
+	}
+	
+	public String getDni() {
+		return dni;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	public String getNombre() {

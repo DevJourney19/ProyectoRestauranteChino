@@ -4,6 +4,10 @@ public class Rol {
 	private int codigo;
 	private String nombre;
 
+	public Rol(int codigo) {
+		this.codigo = codigo;
+	}
+
 	public Rol(String nombre) {
 		this.nombre = nombre;
 	}

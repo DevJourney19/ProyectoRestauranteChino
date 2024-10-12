@@ -1,12 +1,14 @@
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<jsp:useBean id="agregacion" class="modelo.Trabajador" scope="request"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="usuarios.css">
 <%@ include file="../fragmentos/head.jsp"%>
+
 <title>ADMIN | USUARIOS</title>
 </head>
 <body>
@@ -42,57 +44,82 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-									<form action="" class="needs-validation" novalidate>
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<label for="nombre">Nombre Completo</label> <input
-												type="text" class="form-control" id="nombre"
-												aria-describedby="emailHelp" placeholder="Enter Name"
-												name="nombre" required>
+								<!-- Solucionar problema de url -->
+									<form action="vista/administrador/usuarios/SvAgregarTrabajador" class="needs-validation"
+										novalidate method="POST">
+										<div class="form-group  d-flex flex-wrap gap-2">
+											<!-- NOMBRE -->
+											<div
+												class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
+												<label for="nombre">Apellidos</label> <input type="text"
+													class="form-control" id="nombre"
+													aria-describedby="emailHelp"
+													placeholder="Ingrese Apellidos" name="apellido" required>
+											</div>
+											<div
+												class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
+												<label for="nombre">Nombres</label> <input type="text"
+													class="form-control" id="nombre"
+													aria-describedby="emailHelp" placeholder="Ingrese Nombres"
+													name="nombre" required>
+											</div>
 										</div>
+										<!-- DNI -->
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<div class="col-12 col-md">
 												<label for="dni">DNI</label> <input type="text"
 													class="form-control" id="dni" aria-describedby="emailHelp"
-													placeholder="Enter DNI" name="dni" required>
+													placeholder="Ingrese DNI" name="dni" required>
 											</div>
+											<!-- CORREO -->
 											<div class="col-12 col-md">
 												<label for="correo">Correo</label> <input type="text"
 													class="form-control" id="correo"
-													aria-describedby="emailHelp" placeholder="Enter Correo"
-													name="corro" required min="0">
+													aria-describedby="emailHelp" placeholder="Ingrese Correo"
+													name="correo" required min="0">
 											</div>
 										</div>
+										<!-- NOMBRE DE USUARIO -->
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<div class="col-12 col-md">
 												<label for="usuario">Usuario</label> <input type="text"
 													class="form-control" id="usuario"
-													aria-describedby="emailHelp" placeholder="Enter Usuario"
+													aria-describedby="emailHelp" placeholder="Ingrese Usuario"
 													name="usuario" required>
 											</div>
+											<!-- CONTRASENIA -->
 											<div class="col-12 col-md">
-												<label for="password">Password</label> <input type="text"
-													class="form-control" id="password"
-													aria-describedby="emailHelp" placeholder="Enter Password"
-													name="password" required>
+												<label for="password">Contraseña</label> <input
+													type="password" class="form-control" id="password"
+													aria-describedby="emailHelp"
+													placeholder="Ingrese Contraseña" name="password" required>
 											</div>
 										</div>
-									
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<label for="rol">Rol</label> <select class="form-select"
-												aria-label="large select example">
-												<option selected>- Selecciona -</option>
-												<option value="1">Adminitrador</option>
-												<option value="2">Cocinero</option>
-												<option value="3">Mozo</option>
-											</select>
+											<!-- CELULAR -->
+											<div class="col-6 col-md">
+												<label for="celular">Celular</label> <input type="text"
+													class="form-control" id="celular"
+													aria-describedby="emailHelp" placeholder="Ingrese Número"
+													name="celular" required>
+											</div>
+											<!-- ROL-->
+											<div class="form-group mb-4 d-flex flex-wrap col-6 col-md">
+												<label for="rol">Rol</label> <select class="form-select"
+													aria-label="large select example" name="rol">
+													<option selected>- Selecciona -</option>
+													<option value="1">Adminitrador</option>
+													<option value="2">Cocinero</option>
+													<option value="3">Mozo</option>
+												</select>
+											</div>
 										</div>
 										<div class="modal-footer">
-											
-										
-												<button type="button" class="btn btn-danger"
-													data-bs-dismiss="modal">Cerrar</button>
-												<button type="submit" class="btn btn-warning">Crear</button>
-											</div>
+											<button type="button" class="btn btn-danger"
+												data-bs-dismiss="modal">Cerrar</button>
+											<button type="submit" class="btn btn-warning">Crear</button>
+
+										</div>
 									</form>
 								</div>
 							</div>
@@ -111,13 +138,16 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-									<form action="" class="needs-validation" novalidate>
+									<form action="SvAgregarTrabajador" class="needs-validation"
+										novalidate>
+										<!-- NOMBRE -->
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<label for="nombre">Nombre Completo</label> <input
 												type="text" class="form-control" id="nombre"
 												aria-describedby="emailHelp" placeholder="Enter Name"
 												name="nombre" required>
 										</div>
+										<!-- NOMBRE -->
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<div class="col-12 col-md">
 												<label for="dni">DNI</label> <input type="text"
@@ -130,6 +160,7 @@
 													aria-describedby="emailHelp" placeholder="Enter Correo"
 													name="corro" required min="0">
 											</div>
+											<!-- NOMBRE DE USUARIO-->
 										</div>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<div class="col-12 col-md">
@@ -138,9 +169,10 @@
 													aria-describedby="emailHelp" placeholder="Enter Usuario"
 													name="usuario" required>
 											</div>
+											<!-- CONTRASENIA -->
 											<div class="col-12 col-md">
-												<label for="password">Password</label> <input type="text"
-													class="form-control" id="password"
+												<label for="password">Password</label> <input
+													type="password" class="form-control" id="password"
 													aria-describedby="emailHelp" placeholder="Enter Password"
 													name="password" required>
 											</div>
@@ -200,8 +232,9 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th>Id</th>
-									<th>Nombre Completo</th>
+									<th>Código</th>
+									<th>Apellidos</th>
+									<th>Nombres</th>
 									<th>DNI</th>
 									<th>Correo</th>
 									<th>Usuario</th>
@@ -240,9 +273,9 @@
 									<td>73794657</td>
 									<td>ede24@gmail.com</td>
 									<td>le123</td>
-									<td>********</td> 
-									<td><span class="estado-cancelado">Cocinero</span></td> 
-									
+									<td>********</td>
+									<td><span class="estado-cancelado">Cocinero</span></td>
+
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
@@ -262,8 +295,8 @@
 									<td>73993482</td>
 									<td>f4r3ver@gmail.com</td>
 									<td>DevJourney19</td>
-									<td>********</td> 
-									<td><span class="estado-cancelado">Mozo</span></td> 
+									<td>********</td>
+									<td><span class="estado-cancelado">Mozo</span></td>
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">

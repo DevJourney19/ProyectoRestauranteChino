@@ -69,4 +69,44 @@
     <servlet-name>CargarPedido</servlet-name>
     <url-pattern>/CargarPedido</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>agregarTrabajador</display-name>
+    <servlet-name>agregarTrabajador</servlet-name>
+    <servlet-class>controlador.trabajador.agregarTrabajador</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>agregarTrabajador</servlet-name>
+    <url-pattern>/agregarTrabajador</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>eliminarTrabajador</display-name>
+    <servlet-name>eliminarTrabajador</servlet-name>
+    <servlet-class>controlador.trabajador.eliminarTrabajador</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>eliminarTrabajador</servlet-name>
+    <url-pattern>/eliminarTrabajador</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>editarTrabajador</display-name>
+    <servlet-name>editarTrabajador</servlet-name>
+    <servlet-class>controlador.trabajador.editarTrabajador</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>editarTrabajador</servlet-name>
+    <url-pattern>/editarTrabajador</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>mostrarTrabajador</display-name>
+    <servlet-name>mostrarTrabajador</servlet-name>
+    <servlet-class>controlador.trabajador.mostrarTrabajador</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>mostrarTrabajador</servlet-name>
+    <url-pattern>/mostrarTrabajador</url-pattern>
+  </servlet-mapping>
 </web-app>

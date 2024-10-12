@@ -17,7 +17,7 @@
             </span>
         </button>
         <div class="d-flex align-items-center gap-2"><img class="m-2 rounded-5" width="50" height="50"
-             src="vista/img/tallarin_saltado.png" alt="alt" /> <span class="fw-bold">Usuario</span></div>
+             src="../../img/tallarin_saltado.png" alt="alt" /> <span class="fw-bold">Usuario</span></div>
     </div>
 </nav>
 

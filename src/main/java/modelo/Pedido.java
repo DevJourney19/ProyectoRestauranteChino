@@ -28,10 +28,10 @@ public class Pedido {
 	public void setCreated_at(Date created_at) {
 		this.created_at = created_at;
 	}
-	public int getId() {
+	public int getIdPedido() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setIdPedido(int id) {
 		this.id = id;
 	}
 	public Cliente getCliente() {
@@ -92,6 +92,7 @@ public class Pedido {
 	public Pedido() {
 		super();
 	}
+	
 	
 	
 
