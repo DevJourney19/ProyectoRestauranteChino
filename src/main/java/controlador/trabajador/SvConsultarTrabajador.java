@@ -13,7 +13,7 @@ import modelo.Trabajador;
 import util.Conexion;
 
 import java.io.IOException;
-
+@WebServlet(name="SvConsultarTrabajador", urlPatterns = {"/SvConsultarTrabajador"})
 public class SvConsultarTrabajador extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);

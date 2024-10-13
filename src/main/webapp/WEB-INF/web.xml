@@ -71,13 +71,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>agregarTrabajador</display-name>
-    <servlet-name>agregarTrabajador</servlet-name>
-    <servlet-class>controlador.trabajador.agregarTrabajador</servlet-class>
+    <display-name>SvAgregarTrabajador</display-name>
+    <servlet-name>SvAgregarTrabajador</servlet-name>
+    <servlet-class>controlador.trabajador.SvAgregarTrabajador</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>agregarTrabajador</servlet-name>
-    <url-pattern>/agregarTrabajador</url-pattern>
+    <servlet-name>SvAgregarTrabajador</servlet-name>
+    <url-pattern>/SvAgregarTrabajador</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

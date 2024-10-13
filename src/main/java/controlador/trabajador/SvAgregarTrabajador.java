@@ -13,7 +13,13 @@ import modelo.Trabajador;
 
 import java.io.IOException;
 
+@WebServlet(name = "SvAgregarTrabajador", urlPatterns = {"/SvAgregarTrabajador"})
 public class SvAgregarTrabajador extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -28,6 +34,7 @@ public class SvAgregarTrabajador extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// Creamos la instancia del dao
+		System.out.println("Estamos en el servlet ");
 		DaoTrabajador trabajadorDao = new DaoTrabajadorImpl();
 		int id_rol = 0;
 		String apellido = request.getParameter("apellido");
@@ -66,7 +73,8 @@ public class SvAgregarTrabajador extends HttpServlet {
 		boolean x = trabajadorDao.agregar(tra);
 		String archivo = null;
 		if (x) {
-			archivo = "vista/administrador/usuarios.jsp";
+			System.out.println("Se agrego el trabajador");
+			//archivo = "vista/administrador/usuarios.jsp";
 			request.setAttribute("agregacion", tra);
 		}
 		//archivo = "vista/administrador/usuarios.jsp";

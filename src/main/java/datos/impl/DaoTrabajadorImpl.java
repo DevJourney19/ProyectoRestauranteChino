@@ -60,9 +60,11 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 			ps = con.getConexion().prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
+				
+				//Corregir
 				Trabajador tra = new Trabajador();
-				traer_bd(tra);
-				lista.add(tra);
+				System.out.println(traer_bd(tra).getApellido());
+				
 			}
 			return lista;
 		} catch (Exception e) {
@@ -77,8 +79,8 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 		// creo un array
 		String[] valorsitos = obtener_info(trabajador);
 		// almaceno la informacion del trabajador a agregar a la base de datos
-		int id_rol = Integer.parseInt(valorsitos[6]);
-		String sql = "INSERT INTO trabajador values (?,?,?,?,?,?,?);";
+		int id_rol = Integer.parseInt(valorsitos[5]);
+		String sql = "INSERT INTO trabajadores (nombre, apellido, usuario, password, telefono, id_rol) values(?,?,?,?,?,?);";
 		try {
 			// Preparar la consulta
 			ps = con.getConexion().prepareStatement(sql);
@@ -86,7 +88,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 			for (int i = 0; i < valorsitos.length; i++) {
 				ps.setString((i + 1), valorsitos[i]);
 			}
-			ps.setInt(7, id_rol);
+			ps.setInt(6, id_rol);
 			// Ejecutamos la consulta correspondiente
 			ps.executeUpdate();
 			return true;
@@ -134,7 +136,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 			con.closeConexion();
 			return false;
 		}
-		
+
 	}
 
 	@Override
@@ -153,31 +155,31 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 			con.closeConexion();
 			return null;
 		}
-		
+
 	}
 
 	// Metodos para acortar lineas de codigo
 	private Trabajador traer_bd(Trabajador tra) throws SQLException {
-		
-		tra.setCodigo(rs.getString("codigo"));
+
+		tra.setCodigo(rs.getInt("id"));
 		tra.setNombre(rs.getString("nombre"));
 		tra.setApellido(rs.getString("apellido"));
 		// Para el objeto Rol, necesito primero traer el id de la bd que viene a ser la
 		// llave foránea, para que posteriormente pueda crear el respectivo objeto.
-		int rol_id = rs.getInt("rol");
+		int rol_id = rs.getInt("id_rol");
 		role = new Rol(rol_id);
-		//Asignamos el rol como llave foránea al trabajador
+		// Asignamos el rol como llave foránea al trabajador
 		tra.setRol(role);
-		tra.setCelular(rs.getString("celular"));
+		tra.setCelular(rs.getString("telefono"));
 		tra.setNombreUsuario(rs.getString("usuario"));
-		tra.setContrasenia(rs.getString("contrasenia"));
+		tra.setContrasenia(rs.getString("password"));
 		return tra;
 	}
 
 	// Traer el valor de cada columna de de la primera fila
 	public String[] obtener_info(Trabajador tra) {
-		String[] valores = { tra.getCodigo(), tra.getNombre(), tra.getApellido(), tra.getNombreUsuario(),
-				tra.getContrasenia(), tra.getCelular(), String.valueOf(tra.getRol().getCodigo()) };
+		String[] valores = { tra.getNombre(), tra.getApellido(), tra.getNombreUsuario(), tra.getContrasenia(),
+				tra.getCelular(), String.valueOf(tra.getRol().getCodigo()) };
 		return valores;
 	}
 

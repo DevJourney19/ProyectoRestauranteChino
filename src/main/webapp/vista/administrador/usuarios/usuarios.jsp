@@ -44,10 +44,10 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-								<!-- Solucionar problema de url -->
-									<form action="vista/administrador/usuarios/SvAgregarTrabajador" class="needs-validation"
+									<!-- Solucionar problema de url -->
+									<form action="../../../SvAgregarTrabajador" class="needs-validation"
 										novalidate method="POST">
-										<div class="form-group  d-flex flex-wrap gap-2">
+										<div class="form-group d-flex flex-wrap gap-2">
 											<!-- NOMBRE -->
 											<div
 												class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
@@ -118,7 +118,6 @@
 											<button type="button" class="btn btn-danger"
 												data-bs-dismiss="modal">Cerrar</button>
 											<button type="submit" class="btn btn-warning">Crear</button>
-
 										</div>
 									</form>
 								</div>
