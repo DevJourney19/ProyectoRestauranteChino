@@ -17,7 +17,7 @@
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-service"></i> <span>Menu</span>
 			</a></li>
-			<li class="sidebar-item"><a href="../inventario/inventario.jsp"
+			<li class="sidebar-item"><a href="AdmiInventario"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-agenda"></i> <span>Inventario</span>
 			</a></li>
@@ -29,15 +29,9 @@
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-airtable"></i> <span>Mesas</span>
 			</a></li>
-			<!-- <li class="sidebar-item"><a href="#" class="sidebar-link d-flex align-items-center gap-2">
-						<i class="lni lni-stats-up"></i> <span>Reportes</span>
-				</a></li> -->
-			<!--<li class="m-5">
-				<div class="form-check form-switch">
-		  			<input class="check-modo-nocturno form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
-		  			<label class="form-check-label text-light" for="flexSwitchCheckChecked">Modo nocturno</label>
-				</div>-->
-			</li>
+			<li class="sidebar-item"><a href="AdmiCategoria"
+				class="sidebar-link d-flex align-items-center gap-2"> <i class="lni lni-layers"></i> <span>Categorias</span>
+			</a></li>
 		</ul>
 
 		<div class="sidebar-footer">

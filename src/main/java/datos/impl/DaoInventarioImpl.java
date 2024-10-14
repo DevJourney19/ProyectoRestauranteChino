@@ -1,18 +1,26 @@
 package datos.impl;
 
 import java.sql.*;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 import java.util.*;
 
+import datos.DaoCategoria;
 import datos.DaoInventario;
+import datos.DaoTrabajador;
 import modelo.Inventario;
 import util.Conexion;
 
 public class DaoInventarioImpl implements DaoInventario {
     
     Conexion con;
+    private DaoCategoria cat;
+    private DaoTrabajador tra;
     
     public DaoInventarioImpl() {
         con = new Conexion();
+        cat = new DaoCategoriaImpl();
+        tra = new DaoTrabajadorImpl();
     }
 
     @Override
@@ -23,16 +31,17 @@ public class DaoInventarioImpl implements DaoInventario {
         try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 Inventario inventario = new Inventario();
+                DateTimeFormatter  formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 inventario.setId(rs.getInt(1));
-                inventario.setIdCategoria(rs.getInt(2));
+                inventario.setCategoria(cat.obtener(rs.getInt(2)));
                 inventario.setNombre(rs.getString(3));
-                inventario.setUnidad(rs.getString(4));
+                inventario.setUnidad(Inventario.Unidad.valueOf(rs.getString(4)));
                 inventario.setPrecioUnitario(rs.getDouble(5));
                 inventario.setInventarioInicial(rs.getInt(6));
                 inventario.setStock(rs.getInt(7));
                 inventario.setStockMin(rs.getInt(8));
-                inventario.setCaducidad(rs.getString(9));
-                inventario.setIdTrabajador(rs.getInt(10));
+                inventario.setCaducidad(LocalDate.parse(rs.getString(9), formato));
+//                inventario.setTrabajador(tra.obtener(rs.getInt(10)));
                 lista.add(inventario);
             }
         } catch (SQLException e) {

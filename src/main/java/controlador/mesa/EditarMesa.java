@@ -30,10 +30,15 @@ public class EditarMesa extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		int mesa = Integer.parseInt(request.getParameter("mesa"));
 		int salon = Integer.parseInt(request.getParameter("salon"));
-		Mesa.EstadoMesa estado = Mesa.EstadoMesa.valueOf(request.getParameter("estado"));
-		Mesa mesaUpdated = new Mesa(id, salon, mesa, estado);
+		String estado = request.getParameter("estado");
+		if("Selecciona estado de mesa".equals(estado)) {
+	    	response.sendRedirect("AdmiMesa?mensaje=Operacion Fallida");
+	    }
+		Mesa mesaUpdated = new Mesa(id, salon, mesa, Mesa.EstadoMesa.valueOf(estado));
 		if (daoMesa.editar(mesaUpdated)) {
 			response.sendRedirect("AdmiMesa");
+		}else {
+			response.sendRedirect("AdmiMesa?mensaje=Operacion Fallida");
 		}
 	}
 

@@ -49,15 +49,7 @@ public class AgregarInventario extends HttpServlet {
 
             if (daoInventario.agregar(inventario)) {
                 response.sendRedirect("AdmiInventario"); // Redirige a la página de administración de inventario
-            } else {
-                request.setAttribute("error", "Error al agregar el inventario.");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("formularioInventario.jsp");
-                dispatcher.forward(request, response);
             }
-        } else {
-            request.setAttribute("error", "Por favor, complete todos los campos.");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("formularioInventario.jsp");
-            dispatcher.forward(request, response);
         }
     }
 }
