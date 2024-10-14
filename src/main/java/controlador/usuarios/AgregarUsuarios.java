@@ -1,4 +1,4 @@
-package Controlador.usuarios;
+package controlador.usuarios;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,8 +8,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-import Datos.impl.DaoUsuariosImpl;
-import Modelo.Trabajador;
+import datos.impl.DaoUsuariosImpl;
+import modelo.Trabajador;
 
 @WebServlet(name = "AgregarUsuarios", urlPatterns = {"/AgregarUsuarios"})
 public class AgregarUsuarios extends HttpServlet {
