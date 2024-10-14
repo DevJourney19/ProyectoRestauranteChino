@@ -1,4 +1,4 @@
-package Controlador.usuarios;
+package controlador.usuarios;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -10,7 +10,7 @@ import Modelo.Trabajador;
 
 import java.io.IOException;
 
-import Datos.impl.DaoUsuariosImpl;
+import datos.impl.DaoUsuariosImpl;
 
 @WebServlet(name = "EditarUsuarios", urlPatterns = {"/EditarUsuarios"})
 public class EditarUsuarios extends HttpServlet {
