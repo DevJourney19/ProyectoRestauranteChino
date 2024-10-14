@@ -2,7 +2,7 @@
 <%@page import="modelo.Inventario"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:useBean id="mesas" class="java.util.ArrayList" scope="request" />	
+<jsp:useBean id="inventario" class="java.util.ArrayList" scope="request" />	
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +31,7 @@
 							class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between gap-md-4 gap-3">
 							<div class="d-flex align-items-center gap-2">
 								<!-- Apareceran mas botones con categorias -->
-								<button class="btn btn-warning d-flex align-items-center gap-2">
+								<button class="btn btn-warning d-flex align-items-center gap-2 fw-bolder">
 									Filtrar <i class="lni lni-funnel"></i>
 								</button>
 							</div>
