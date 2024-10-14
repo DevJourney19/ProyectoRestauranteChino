@@ -1,4 +1,4 @@
-package Controlador.usuarios;
+package controlador.usuarios;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-import Datos.impl.DaoUsuariosImpl;
+import datos.impl.DaoUsuariosImpl;
 
 @WebServlet(name = "EliminarUsuarios", urlPatterns = {"/EliminarUsuarios"})
 public class EliminarUsuarios extends HttpServlet {
