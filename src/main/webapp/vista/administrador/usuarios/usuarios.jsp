@@ -245,7 +245,7 @@
             document
                 .getElementById('eliminarIdUsuario')
                 .addEventListener('click', function(event) {
-                    window.location.href = "/NochePekin/EliminarUsuarios?id=" + id;
+                    window.location.href = "/ProyectoRestauranteChino/EliminarUsuarios?id=" + id;
                 });
         });
 	 
@@ -276,7 +276,7 @@
                 	telefonoUsuario = document.getElementById('editTelefono').value;
                 	rolUsuario = document.getElementById('editRol').value;
 
-                    window.location.href = "/NochePekin/EditarUsuarios?id=" + id +
+                    window.location.href = "/ProyectoRestauranteChino/EditarUsuarios?id=" + id +
                         "&nombre=" + nombreUsuario +
                         "&apellido=" + apellidoUsuario +
                         "&usuario=" + usuario +
