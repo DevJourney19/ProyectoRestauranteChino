@@ -14,26 +14,26 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script defer
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<title>Admin | Login</title>
+	<%@page import="Modelo.Trabajador"%>
+<title>Noche en Pekin | Login</title>
 </head>
 <body>
 	<div class="container">
 		<div class="login-box">
-			<h1 class="titulo">Bienvenido!</h1>
+			<h1 class="titulo">¡Bienvenido!</h1>
 			<p>Completa tus credenciales para ingresar al panel
 				administrativo de tu restaurante.</p>
 
-			<form>
-				<label for="usuario">Usuario</label><br> <input type="text"
-					id="usuario" placeholder="MO001"><br> <label
-					for="password">Contraseña</label>
-				<div class="password-box">
-					<input type="password" id="password" placeholder="A12345">
-				</div>
+			<form action="${pageContext.request.contextPath}/loginControlador" method="post">
+                <label for="usuario">Usuario</label><br>
+                <input type="text" name="usuario" id="usuario" placeholder="MO001"><br>
 
-				<button type="submit" class="login-btn">INICIAR SESIÓN</button>
-				<a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
-			</form>
+                <label for="password">Contraseña</label><br>
+                <input type="password" name="password" id="password" placeholder="A12345">             
+
+                <button type="submit" class="login-btn">INICIAR SESIÓN</button>
+                <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+            </form>
 		</div>
 		<div class="image-box">
 			<img src="img/login.jpg" alt="Food">
