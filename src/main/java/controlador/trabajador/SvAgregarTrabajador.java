@@ -16,11 +16,6 @@ import java.io.IOException;
 @WebServlet(name = "SvAgregarTrabajador", urlPatterns = {"/SvAgregarTrabajador"})
 public class SvAgregarTrabajador extends HttpServlet {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		processRequest(request, response);
@@ -53,7 +48,7 @@ public class SvAgregarTrabajador extends HttpServlet {
 		} else {
 			System.out.println("No se seleccionó un rol válido.");
 		}
-
+		
 		// Creamos un trabajador
 		Trabajador tra = new Trabajador();
 		// Se asignará un objeto rol para cada trabajador.
@@ -79,6 +74,7 @@ public class SvAgregarTrabajador extends HttpServlet {
 		}
 		//archivo = "vista/administrador/usuarios.jsp";
 		archivo = "SvConsultarTrabajador";
+		//response.sendRedirect(archivo);
 		RequestDispatcher rs = request.getRequestDispatcher(archivo);
 		rs.forward(request, response);
 

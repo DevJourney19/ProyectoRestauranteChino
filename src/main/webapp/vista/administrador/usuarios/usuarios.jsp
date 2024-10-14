@@ -1,17 +1,22 @@
+<%@page import="modelo.Trabajador"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:useBean id="agregacion" class="modelo.Trabajador" scope="request"></jsp:useBean>
+<%@page import="java.util.List"%>
+<%@page import="modelo.Trabajador"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="usuarios.css">
+
 <%@ include file="../fragmentos/head.jsp"%>
 
 <title>ADMIN | USUARIOS</title>
 </head>
 <body>
+	<%
+	List<Trabajador> trabajadores = (List<Trabajador>) request.getAttribute("trabajadores");
+	%>
 	<div class="d-flex flex-row">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
@@ -22,6 +27,7 @@
 						<div
 							class="text-center d-md-flex align-items-center justify-content-between flex-wrap">
 							<h1>GESTIÓN DE USUARIOS - 用户管理</h1>
+
 						</div>
 						<div
 							class="d-flex align-items-center justify-content-center mt-2 mt-md-0 justify-content-md-end gap-4">
@@ -45,8 +51,9 @@
 								</div>
 								<div class="modal-body">
 									<!-- Solucionar problema de url -->
-									<form action="../../../SvAgregarTrabajador" class="needs-validation"
-										novalidate method="POST">
+									<form
+										action="${pageContext.request.contextPath}/SvAgregarTrabajador"
+										class="needs-validation" novalidate method="POST">
 										<div class="form-group d-flex flex-wrap gap-2">
 											<!-- NOMBRE -->
 											<div
@@ -137,8 +144,10 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-									<form action="SvAgregarTrabajador" class="needs-validation"
-										novalidate>
+									<form
+										action="${pageContext.request.contextPath}/SvEditarTrabajador"
+										method="POST" class="needs-validation" novalidate>
+										<input type="hidden" name="id" id="trabajadorIdForm_e">
 										<!-- NOMBRE -->
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<label for="nombre">Nombre Completo</label> <input
@@ -157,7 +166,7 @@
 												<label for="correo">Correo</label> <input type="text"
 													class="form-control" id="correo"
 													aria-describedby="emailHelp" placeholder="Enter Correo"
-													name="corro" required min="0">
+													name="correo" required min="0">
 											</div>
 											<!-- NOMBRE DE USUARIO-->
 										</div>
@@ -179,7 +188,7 @@
 
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<label for="rol">Rol</label> <select class="form-select"
-												aria-label="large select example">
+												aria-label="large select example" name="rol">
 												<option selected>- Selecciona -</option>
 												<option value="1">Adminitrador</option>
 												<option value="2">Cocinero</option>
@@ -188,7 +197,6 @@
 										</div>
 
 										<div class="modal-footer">
-
 											<button type="button" class="btn btn-danger"
 												data-bs-dismiss="modal">Cerrar</button>
 											<button type="submit" class="btn btn-warning">Editar</button>
@@ -198,7 +206,6 @@
 							</div>
 						</div>
 					</div>
-
 					<!-- Modal de Eliminar -> recibir un data value -->
 					<div class="modal fade" id="staticBackdrop"
 						data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -216,8 +223,14 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-warning"
 										data-bs-dismiss="modal">Cancelar</button>
-									<form action="">
-										<button type="button"
+
+									<form
+										action="${pageContext.request.contextPath}/SvEliminarTrabajador"
+										method="POST">
+										<input type="hidden" name="id" id="trabajadorIdForm">
+										<!-- Campo oculto para enviar el id con JS -->
+
+										<button type="submit"
 											class="btn btn-danger d-flex align-items-center gap-2">
 											<i class="lni lni-trash-can"></i>Eliminar
 										</button>
@@ -226,6 +239,7 @@
 							</div>
 						</div>
 					</div>
+
 
 					<div class="table-responsive overflow-auto">
 						<table class="table">
@@ -242,75 +256,43 @@
 									<th></th>
 								</tr>
 							</thead>
+
 							<tbody>
-								<tr>
-									<td>1</td>
-									<td>Elena</td>
-									<td>73794657</td>
-									<td>ede24@gmail.com</td>
-									<td>le123</td>
-									<td>********</td>
-									<td><span class="estado-cancelado">Administrador</span></td>
+								<%
+								if (trabajadores != null) {
+									for (Trabajador trabajador : trabajadores) {
+								%>
 
+								<tr>
+									<td><%=trabajador.getApellido()%></td>
+									<td><%=trabajador.getNombre()%></td>
+									<td><%=trabajador.getNombreUsuario()%></td>
+									<td><%=trabajador.getCelular()%></td>
+									<td><%=trabajador.getNombre()%></td>
+									<td><%=trabajador.getContrasenia()%></td>
+									<td><span class="estado-cancelado"><%=trabajador.getCodigo()%></span></td>
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
-											<button class="icon-action" data-bs-toggle="modal"
-												data-bs-target="#staticBackdrop">
+											<button class="icon-action btn_eliminar"
+												data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+												data-id="<%=trabajador.getCodigo()%>">
 												<i class="lni lni-trash-can fs-4"></i>
 											</button>
-											<button class="icon-action" data-bs-toggle="modal"
-												data-bs-target="#modalEdit">
+											<button class="icon-action btn_editar" data-bs-toggle="modal"
+												data-bs-target="#modalEdit"
+												data-id="<%=trabajador.getCodigo()%>">
 												<i class="lni lni-pencil fs-4"></i>
 											</button>
 										</div>
 									</td>
 								</tr>
-								<tr>
-									<td>2</td>
-									<td>Mariana</td>
-									<td>73794657</td>
-									<td>ede24@gmail.com</td>
-									<td>le123</td>
-									<td>********</td>
-									<td><span class="estado-cancelado">Cocinero</span></td>
-
-									<td>
-										<div
-											class="d-flex align-item-center justify-content-center gap-3">
-											<button class="icon-action" data-bs-toggle="modal"
-												data-bs-target="#staticBackdrop">
-												<i class="lni lni-trash-can fs-4"></i>
-											</button>
-											<button class="icon-action">
-												<i class="lni lni-pencil fs-4"></i>
-											</button>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>Yoshua</td>
-									<td>73993482</td>
-									<td>f4r3ver@gmail.com</td>
-									<td>DevJourney19</td>
-									<td>********</td>
-									<td><span class="estado-cancelado">Mozo</span></td>
-									<td>
-										<div
-											class="d-flex align-item-center justify-content-center gap-3">
-											<button class="icon-action" data-bs-toggle="modal"
-												data-bs-target="#staticBackdrop">
-												<i class="lni lni-trash-can fs-4"></i>
-											</button>
-											<button class="icon-action" data-bs-toggle="modal"
-												data-bs-target="#modalEdit">
-												<i class="lni lni-pencil fs-4"></i>
-											</button>
-										</div>
-									</td>
-								</tr>
-
+								<%
+								}
+								} else {
+								out.write("No se registraron usuarios...");
+								}
+								%>
 							</tbody>
 						</table>
 					</div>
@@ -318,6 +300,7 @@
 			</main>
 		</div>
 	</div>
-
+	<script
+		src="${pageContext.request.contextPath}/vista/administrador/usuarios/usuarios.js"></script>
 </body>
 </html>

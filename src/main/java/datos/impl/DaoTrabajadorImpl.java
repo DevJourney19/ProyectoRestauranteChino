@@ -37,8 +37,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Trabajador tra = new Trabajador();
-				traer_bd(tra);
+				Trabajador tra = traer_bd(rs);
 				lista.add(tra);
 			}
 			return lista;
@@ -50,21 +49,18 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 	}
 
 	// Absolutamente todos los trabajadores
-	@SuppressWarnings("null")
 	@Override
 	public List<Trabajador> consultar() {
 
-		List<Trabajador> lista = null;
+		List<Trabajador> lista = new ArrayList<>();
 		String sql = "Select * from trabajadores";
 		try {
 			ps = con.getConexion().prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				
-				//Corregir
-				Trabajador tra = new Trabajador();
-				System.out.println(traer_bd(tra).getApellido());
-				
+				// Pongo rs como parametro porque es el resultado obtenido de la consulta
+				Trabajador trabajador = traer_bd(rs);
+				lista.add(trabajador);
 			}
 			return lista;
 		} catch (Exception e) {
@@ -79,14 +75,14 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 		// creo un array
 		String[] valorsitos = obtener_info(trabajador);
 		// almaceno la informacion del trabajador a agregar a la base de datos
-		int id_rol = Integer.parseInt(valorsitos[5]);
+		int id_rol = Integer.parseInt(valorsitos[6]);
 		String sql = "INSERT INTO trabajadores (nombre, apellido, usuario, password, telefono, id_rol) values(?,?,?,?,?,?);";
 		try {
 			// Preparar la consulta
 			ps = con.getConexion().prepareStatement(sql);
 			// Asignar a los parametros
-			for (int i = 0; i < valorsitos.length; i++) {
-				ps.setString((i + 1), valorsitos[i]);
+			for (int i = 1; i < valorsitos.length; i++) {
+				ps.setString((i), valorsitos[i]);
 			}
 			ps.setInt(6, id_rol);
 			// Ejecutamos la consulta correspondiente
@@ -102,17 +98,19 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 	@Override
 	public boolean editar(Trabajador trabajador) {
 		String valorsitos[] = obtener_info(trabajador);
-		int id_rol = Integer.parseInt(valorsitos[6]);
-		String sql = "UPDATE trabajadores SET codigo=?, nombre=?, "
-				+ "apellido=?, usuario=?, contrasenia=?, celular=?, id_rol='?' where codigo=?";
+		
+		String sql = "UPDATE trabajadores SET nombre=?, "
+				+ "apellido=?, usuario=?, password=?, telefono=?, id_rol=? where id=?";
 		try {
 			ps = con.getConexion().prepareStatement(sql);
-			for (int i = 0; i < valorsitos.length; i++) {
-				ps.setString((i + 1), valorsitos[i]);
+			for (int i = 1; i < valorsitos.length; i++) {
+				ps.setString((i), valorsitos[i]);
 			}
-			ps.setInt(7, id_rol);
+			int id = Integer.parseInt(valorsitos[0]);
+			int id_rol = Integer.parseInt(valorsitos[6]);
+			ps.setInt(6, id_rol);
 			// El id del where
-			ps.setString(8, valorsitos[0]);
+			ps.setInt(7, id);
 			ps.executeUpdate();
 			return true;
 		} catch (Exception e) {
@@ -124,7 +122,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 
 	@Override
 	public boolean eliminar(int codigo) {
-		String sql = "delete from trabajadores where codigo='?'";
+		String sql = "delete from trabajadores where id=?";
 
 		try {
 			ps = con.getConexion().prepareStatement(sql);
@@ -141,15 +139,21 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 
 	@Override
 	public Trabajador obtener(int codigo) {
-		Trabajador tra = null;
-		String sql = "Select * from trabajadores where codigo = ?";
+
+		String sql = "Select * from trabajadores where id = ?";
 		try {
 			ps = con.getConexion().prepareStatement(sql);
 			ps.setInt(1, codigo);
 			rs = ps.executeQuery();
-			tra = new Trabajador();
+			// tra = new Trabajador();
 
-			return traer_bd(tra);
+			// Mueve el cursor a la primera fila
+		    if (rs.next()) {
+		        return traer_bd(rs); // Solo llama a traer_bd si hay una fila
+		    } else {
+		        System.out.println("No se encontraron trabajadores con el ID proporcionado.");
+		        return null; // No hay resultados
+		    }
 		} catch (Exception e) {
 			System.out.println("Error en el buscar trabajadores: " + e.getMessage());
 			con.closeConexion();
@@ -159,8 +163,8 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 	}
 
 	// Metodos para acortar lineas de codigo
-	private Trabajador traer_bd(Trabajador tra) throws SQLException {
-
+	private Trabajador traer_bd(ResultSet rs) throws SQLException {
+		Trabajador tra = new Trabajador();
 		tra.setCodigo(rs.getInt("id"));
 		tra.setNombre(rs.getString("nombre"));
 		tra.setApellido(rs.getString("apellido"));
@@ -178,8 +182,10 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 
 	// Traer el valor de cada columna de de la primera fila
 	public String[] obtener_info(Trabajador tra) {
-		String[] valores = { tra.getNombre(), tra.getApellido(), tra.getNombreUsuario(), tra.getContrasenia(),
+		String[] valores = { String.valueOf(tra.getCodigo()), tra.getNombre(), 
+				tra.getApellido(), tra.getNombreUsuario(), tra.getContrasenia(),
 				tra.getCelular(), String.valueOf(tra.getRol().getCodigo()) };
+		System.out.println("Codigo rol"+tra.getRol().getCodigo());
 		return valores;
 	}
 

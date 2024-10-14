@@ -81,23 +81,23 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>eliminarTrabajador</display-name>
-    <servlet-name>eliminarTrabajador</servlet-name>
-    <servlet-class>controlador.trabajador.eliminarTrabajador</servlet-class>
+    <display-name>SvEliminarTrabajador</display-name>
+    <servlet-name>SvEliminarTrabajador</servlet-name>
+    <servlet-class>controlador.trabajador.SvEliminarTrabajador</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>eliminarTrabajador</servlet-name>
-    <url-pattern>/eliminarTrabajador</url-pattern>
+    <servlet-name>SvEliminarTrabajador</servlet-name>
+    <url-pattern>/SvEliminarTrabajador</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>editarTrabajador</display-name>
-    <servlet-name>editarTrabajador</servlet-name>
-    <servlet-class>controlador.trabajador.editarTrabajador</servlet-class>
+    <display-name>SvEditarTrabajador</display-name>
+    <servlet-name>SvEditarTrabajador</servlet-name>
+    <servlet-class>controlador.trabajador.SvEditarTrabajador</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>editarTrabajador</servlet-name>
-    <url-pattern>/editarTrabajador</url-pattern>
+    <servlet-name>SvEditarTrabajador</servlet-name>
+    <url-pattern>/SvEditarTrabajador</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

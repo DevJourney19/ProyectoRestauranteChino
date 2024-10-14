@@ -9,7 +9,7 @@
 			<a href="#">NOCHE EN PEKÍN - 北京之夜</a>
 		</div>
 		<ul class="sidebar-nav p-0">
-			<li class="sidebar-item"><a href="../usuarios/usuarios.jsp"
+			<li class="sidebar-item"><a href="${pageContext.request.contextPath}/SvConsultarTrabajador"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-users"></i> <span>Usuarios</span>
 			</a></li>
@@ -17,7 +17,8 @@
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-service"></i> <span>Menu</span>
 			</a></li>
-			<li class="sidebar-item"><a href="../inventario/inventario.jsp"
+			<!-- Hay que convertir a rutas absolutas, en este caso ya está absoluto pero hay que cambiarlo por la url del servlet-->
+			<li class="sidebar-item"><a href="${pageContext.request.contextPath}/vista/administrador/inventario/inventario.jsp"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-agenda"></i> <span>Inventario</span>
 			</a></li>
@@ -36,12 +37,12 @@
 				<div class="form-check form-switch">
 		  			<input class="check-modo-nocturno form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
 		  			<label class="form-check-label text-light" for="flexSwitchCheckChecked">Modo nocturno</label>
-				</div>-->
-			</li>
+				</div>
+			</li>-->
 		</ul>
 
 		<div class="sidebar-footer">
-			<a href="../../login.jsp"
+			<a href="${pageContext.request.contextPath}/vista/login.jsp"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 				class="lni lni-exit"></i> <span>Salir</span>
 			</a>
