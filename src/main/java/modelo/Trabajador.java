@@ -1,7 +1,7 @@
-package modelo;
+package Modelo;
 
 public class Trabajador {
-	private int id;
+	private int codigo;
 	private String nombre;
 	private String apellido;
 	private int id_rol;
@@ -12,9 +12,19 @@ public class Trabajador {
 	public Trabajador() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Trabajador(int codigo, String nombre, String apellido, int id_rol, String celular, String nombreUsuario, String contrasenia) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.id_rol = id_rol;
+        this.celular = celular;
+        this.nombreUsuario = nombreUsuario;
+        this.contrasenia = contrasenia;
+    }
 
-	public int getId() {
-		return id;
+	public int getCodigo() {
+		return codigo;
 	}
 
 	public int getId_rol() {
@@ -25,8 +35,8 @@ public class Trabajador {
 		this.id_rol = id_rol;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getNombre() {
@@ -68,5 +78,17 @@ public class Trabajador {
 	public void setCelular(String celular) {
 		this.celular = celular;
 	}
-
+	
+	public String getRolNombre() {
+	    switch (this.id_rol) {
+	        case 1:
+	            return "Administrador";
+	        case 2:
+	            return "Mesero";
+	        case 3:
+	            return "Cajero";
+	        default:
+	            return "Desconocido";
+	    }
+	}   
 }
