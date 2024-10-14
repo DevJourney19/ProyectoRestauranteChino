@@ -1,13 +1,13 @@
-package Datos.impl;
+package datos.impl;
 
 import java.sql.*;
 import java.util.*;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import Datos.DaoUsuarios;
-import Modelo.Trabajador;
-import Util.Conexion;
+import datos.DaoUsuarios;
+import modelo.Trabajador;
+import util.Conexion;
 
 public class DaoUsuariosImpl implements DaoUsuarios {
 	
