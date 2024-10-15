@@ -1,113 +1,110 @@
 package modelo;
 
+import java.time.LocalDate;
+
 public class Inventario {
-    private int id;
-    private int idCategoria;
-    private String nombre;
-    private String unidad;
-    private double precioUnitario;
-    private int inventarioInicial;
-    private int stock;
-    private int stockMin;
-    private String caducidad;
-    private int idTrabajador;
+	public enum Unidad {
+		KG, L, UN
+	}
 
-    public int getId() {
-        return id;
-    }
+	private int id;
+	private Categoria categoria;
+	private String nombre;
+	private Unidad unidad;
+	private double precioUnitario;
+	private int inventarioInicial;
+	private int stock;
+	private int stockMin;
+	private LocalDate caducidad;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public int getIdCategoria() {
-        return idCategoria;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
-    }
+	public Categoria getCategoria() {
+		return categoria;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public String getUnidad() {
-        return unidad;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public void setUnidad(String unidad) {
-        this.unidad = unidad;
-    }
+	public Unidad getUnidad() {
+		return unidad;
+	}
 
-    public double getPrecioUnitario() {
-        return precioUnitario;
-    }
+	public void setUnidad(Unidad unidad) {
+		this.unidad = unidad;
+	}
 
-    public void setPrecioUnitario(double precioUnitario) {
-        this.precioUnitario = precioUnitario;
-    }
+	public double getPrecioUnitario() {
+		return precioUnitario;
+	}
 
-    public int getInventarioInicial() {
-        return inventarioInicial;
-    }
+	public void setPrecioUnitario(double precioUnitario) {
+		this.precioUnitario = precioUnitario;
+	}
 
-    public void setInventarioInicial(int inventarioInicial) {
-        this.inventarioInicial = inventarioInicial;
-    }
+	public int getInventarioInicial() {
+		return inventarioInicial;
+	}
 
-    public int getStock() {
-        return stock;
-    }
+	public void setInventarioInicial(int inventarioInicial) {
+		this.inventarioInicial = inventarioInicial;
+	}
 
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
+	public int getStock() {
+		return stock;
+	}
 
-    public int getStockMin() {
-        return stockMin;
-    }
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
 
-    public void setStockMin(int stockMin) {
-        this.stockMin = stockMin;
-    }
+	public int getStockMin() {
+		return stockMin;
+	}
 
-    public String getCaducidad() {
-        return caducidad;
-    }
+	public void setStockMin(int stockMin) {
+		this.stockMin = stockMin;
+	}
 
-    public void setCaducidad(String caducidad) {
-        this.caducidad = caducidad;
-    }
+	public LocalDate getCaducidad() {
+		return caducidad;
+	}
 
-    public int getIdTrabajador() {
-        return idTrabajador;
-    }
+	public void setCaducidad(LocalDate localDate) {
+		this.caducidad = localDate;
+	}
 
-    public void setIdTrabajador(int idTrabajador) {
-        this.idTrabajador = idTrabajador;
-    }
+	public Inventario() {
+	}
 
-    public Inventario() {
-        super();
-    }
-
-    public Inventario(int id, int idCategoria, String nombre, String unidad, double precioUnitario,
-                      int inventarioInicial, int stock, int stockMin, String caducidad, int idTrabajador) {
-        super();
-        this.id = id;
-        this.idCategoria = idCategoria;
-        this.nombre = nombre;
-        this.unidad = unidad;
-        this.precioUnitario = precioUnitario;
-        this.inventarioInicial = inventarioInicial;
-        this.stock = stock;
-        this.stockMin = stockMin;
-        this.caducidad = caducidad;
-        this.idTrabajador = idTrabajador;
-    }
-}
+	public Inventario(int id, Categoria categoria, String nombre, Unidad unidad, double precioUnitario,
+			int inventarioInicial, int stock, int stockMin, LocalDate caducidad) {
+		super();
+		this.id = id;
+		this.categoria = categoria;
+		this.nombre = nombre;
+		this.unidad = unidad;
+		this.precioUnitario = precioUnitario;
+		this.inventarioInicial = inventarioInicial;
+		this.stock = stock;
+		this.stockMin = stockMin;
+		this.caducidad = caducidad;
+	}
+	
+	
+	}

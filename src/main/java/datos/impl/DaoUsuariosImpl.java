@@ -48,7 +48,7 @@ public class DaoUsuariosImpl implements DaoUsuarios {
     }
 	// Lista de trabajadores
 	@Override
-	public List<Trabajador> listarTrabajador() {
+	public List<Trabajador> consultar() {
 		List<Trabajador> trabajadores = new ArrayList<>();
 		String sql = "SELECT * FROM trabajadores";
         try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString()); ResultSet rs = ps.executeQuery();) {
@@ -70,7 +70,7 @@ public class DaoUsuariosImpl implements DaoUsuarios {
 
 	// Crear (Insertar) un nuevo trabajador
 	@Override
-    public boolean agregarTrabajador(Trabajador trabajador, String passwordPlano) {
+    public boolean agregar(Trabajador trabajador) {
         String sql = "INSERT INTO trabajadores (nombre, apellido, usuario, password, telefono, id_rol) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = con.getConexion();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -78,7 +78,7 @@ public class DaoUsuariosImpl implements DaoUsuarios {
             pstmt.setString(1, trabajador.getNombre());
             pstmt.setString(2, trabajador.getApellido());
             pstmt.setString(3, trabajador.getNombreUsuario());
-            pstmt.setString(4, BCrypt.hashpw(passwordPlano, BCrypt.gensalt()));
+            pstmt.setString(4, BCrypt.hashpw(trabajador.getContrasenia(), BCrypt.gensalt()));
             pstmt.setString(5, trabajador.getCelular());
             pstmt.setInt(6, trabajador.getId_rol());
             
@@ -92,7 +92,7 @@ public class DaoUsuariosImpl implements DaoUsuarios {
 	
 	@Override
 	// Actualizar un trabajador existente
-    public boolean editarTrabajador(Trabajador trabajador) {
+    public boolean editar(Trabajador trabajador) {
 		String sql = "UPDATE trabajadores SET nombre = ?, apellido = ?, usuario = ?, telefono =?, id_rol = ? WHERE id = ?";
         try (Connection conn = con.getConexion();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -114,7 +114,7 @@ public class DaoUsuariosImpl implements DaoUsuarios {
 	
 	@Override
     // Eliminar un trabajador
-    public boolean eliminarTrabajador(int id) {
+    public boolean eliminar(int id) {
         String sql = "DELETE FROM trabajadores WHERE id = ?";
         try (Connection conn = con.getConexion();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -131,7 +131,7 @@ public class DaoUsuariosImpl implements DaoUsuarios {
 	
 	@Override
     // Obtener un trabajador por su ID
-    public Trabajador obtenerTrabajador(int id) {
+    public Trabajador obtener(int id) {
         String sql = "SELECT * FROM trabajadores WHERE id = ?";
         try (Connection conn = con.getConexion();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

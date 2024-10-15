@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 
 <%@page import="modelo.Trabajador"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+=======
+<%@page import="modelo.Trabajador"%>
+>>>>>>> fefcba15469fc63022a8707df068a0e6a4a80892
 <%@page import="java.util.List"%>
 <%@page import="modelo.Trabajador"%>
 
@@ -10,10 +14,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/vista/administrador/usuarios/usuarios.css">
 
+=======
+<link rel="stylesheet" href="vista/administrador/usuarios/usuarios.css">
+>>>>>>> fefcba15469fc63022a8707df068a0e6a4a80892
 <%@ include file="../fragmentos/head.jsp"%>
 
 <title>ADMIN | USUARIOS</title>

@@ -1,10 +1,13 @@
+<%@page import="java.util.List"%>
+<%@page import="modelo.Menu"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<jsp:useBean id="menu" class="java.util.ArrayList" scope="request" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="menu.css">
+<link rel="stylesheet" href="vista/administrador/menu/menu.css">
 <%@ include file="../fragmentos/head.jsp"%>
 <title>ADMIN | MENÚ</title>
 </head>
@@ -21,6 +24,11 @@
 							class=" text-center d-flex align-items-center justify-content-between">
 							<h1>GESTIÓN DEL MENÚ - 菜单管理</h1>
 						</div>
+						<div class="d-flex justify-content-between gap-4 flex-wrap">
+						<form class="d-flex gap-2 align-items-center" action="AdmiMenu" method="GET">
+						<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Busca por titulo..." name="tituloSearch">
+						<button type="submit" class="btn btn-dark d-flex gap-2 align-items-center fw-bolder fs-4"><i class="lni lni-search"></i></button>
+						</form>
 						<div class="d-flex align-items-center justify-content-end gap-4">
 							<button class="btn-pdf" type="button" data-bs-toggle="modal"
 								data-bs-target="#modalAddEdit">
@@ -36,7 +44,7 @@
 								data-bs-target="#modalAddEdit">
 								<i class="lni lni-plus"></i> Nuevo Producto
 							</button>
-						</div>
+						</div></div>
 					</div>
 
 					<!-- Modal Agregar o Editar (para verificar editar solo ver la url)-->
@@ -84,7 +92,7 @@
 												<label for="cliente">Estado:</label> <select
 													class="form-select" aria-label="Default select example">
 													<option selected>- Selecciona -</option>
-													<option value="1">En Venta</option>
+													<option value="1">Venta</option>
 													<option value="2">Desactivado</option>
 												</select>
 											</div>
@@ -149,123 +157,56 @@
 									<th>Nombre</th>
 									<th>Descripción</th>
 									<th>Categoria</th>
-									<th>Stock</th>
 									<th>Precio</th>
 									<th>Estado</th>
-									<th>Acciones</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
+							<%
+								List<Menu> listaMenu = (List<Menu>) menu;
+								for (Menu menus : listaMenu) {
+									String estado = "estado-desconocido";
+									switch (menus.getEstado()) {
+										case Venta :
+									estado = "en-venta";
+									break;
+										case Desactivado :
+									estado = "desactivado";
+									break;
+									}
+								%>
+
 								<tr>
-									<td><img src="img/1.png" class="img-menu img-fluid"></td>
-									<td>P001</td>
-									<td>Saltado de Pollo</td>
-									<td>Este plato contiene...</td>
-									<td>Comida China</td>
-									<td>14</td>
-									<td>12.00</td>
-									<td><span class="en-venta">En Venta</span></td>
+									<td><img src="<%=menus.getImagen() %>" class="img-menu img-fluid"></td>
+									<td><%=menus.getId()%></td>
+									<td><%=menus.getNombre()%></td>
+									<td><%=menus.getDescripcion()%></td>
+									<td><%=menus.getCategoria().getNombre()%></td>
+									<td><%=menus.getPrecio()%></td>
+									<td><span class="<%=estado%>"><%=menus.getEstado()%></span></td>
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
-											<button class="icon-action" data-bs-toggle="modal"
-												data-bs-target="#staticBackdrop">
-												<i class="lni lni-trash-can i_eliminar fs-4"></i>
+											<button data-id="<%=menus.getId()%>" class="icon-action"
+												data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+												<i class="lni lni-trash-can fs-4"></i>
 											</button>
-											<button class="icon-action">
+											<!-- Abrir Modal Editar -->
+											<button data-id="<%=menus.getId()%>"
+												data-nombre="<%=menus.getNombre()%>"
+												data-categoria="<%=menus.getCategoria().getId()%>" class="icon-action"
+												data-bs-toggle="modal" data-bs-target="#modalEdit">
 												<i class="lni lni-pencil fs-4"></i>
 											</button>
 										</div>
 									</td>
 								</tr>
-								<tr>
-									<td><img src="img/1.png" class="img-menu img-fluid"></td>
-									<td>P002</td>
-									<td>Chijaukay</td>
-									<td>Este plato contiene...</td>
-									<td>Comida China</td>
-									<td>0</td>
-									<td>12.00</td>
-									<td><span class="desactivado">Desactivado</span></td>
-									<td>
-										<div
-											class="d-flex align-item-center justify-content-center gap-3">
-											<button class="icon-action" data-bs-toggle="modal"
-												data-bs-target="#staticBackdrop">
-												<i class="lni lni-trash-can i_eliminar fs-4"></i>
-											</button>
-											<button class="icon-action">
-												<i class="lni lni-pencil fs-4"></i>
-											</button>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td><img src="img/1.png" class="img-menu img-fluid"></td>
-									<td>P003</td>
-									<td>Enrrollado de Pollo</td>
-									<td>Este plato contiene...</td>
-									<td>Comida China</td>
-									<td>11</td>
-									<td>14.00</td>
-									<td><span class="en-venta">En Venta</span></td>
-									<td>
-										<div
-											class="d-flex align-item-center justify-content-center gap-3">
-											<button class="icon-action" data-bs-toggle="modal"
-												data-bs-target="#staticBackdrop">
-												<i class="lni lni-trash-can i_eliminar fs-4"></i>
-											</button>
-											<button class="icon-action">
-												<i class="lni lni-pencil fs-4"></i>
-											</button>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td><img src="img/2.png" class="img-menu img-fluid"></td>
-									<td>P004</td>
-									<td>Torta de Chocolate</td>
-									<td>Este postre contiene...</td>
-									<td>Postres</td>
-									<td>20</td>
-									<td>8.00</td>
-									<td><span class="en-venta">En Venta</span></td>
-									<td>
-										<div
-											class="d-flex align-item-center justify-content-center gap-3">
-											<button class="icon-action" data-bs-toggle="modal"
-												data-bs-target="#staticBackdrop">
-												<i class="lni lni-trash-can i_eliminar fs-4"></i>
-											</button>
-											<button class="icon-action">
-												<i class="lni lni-pencil fs-4"></i>
-											</button>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td><img src="img/3.png" class="img-menu img-fluid"></td>
-									<td>P005</td>
-									<td>Inka Kola</td>
-									<td>Esta bebida contiene...</td>
-									<td>Bebidas</td>
-									<td>38</td>
-									<td>10.00</td>
-									<td><span class="en-venta">En Venta</span></td>
-									<td>
-										<div
-											class="d-flex align-item-center justify-content-center gap-3">
-											<button class="icon-action" data-bs-toggle="modal"
-												data-bs-target="#staticBackdrop">
-												<i class="lni lni-trash-can i_eliminar fs-4"></i>
-											</button>
-											<button class="icon-action">
-												<i class="lni lni-pencil fs-4"></i>
-											</button>
-										</div>
-									</td>
-								</tr>
+								<%
+								}
+								%>
+								
+								
 							</tbody>
 						</table>
 					</div>
@@ -287,5 +228,19 @@
 			</main>
 		</div>
 	</div>
+	<script>
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const mensaje = urlParams.get('mensaje');
+
+        if (mensaje) {
+            alert(mensaje);
+            // Eliminar el parámetro 'mensaje' de la URL
+            urlParams.delete('mensaje');
+        }
+        // Actualizar la URL sin recargar la página
+        window.history.replaceState({}, document.title, window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : ''));
+    };
+	</script>
 </body>
 </html>

@@ -8,12 +8,4 @@ public interface Dao<T> {
 	public boolean eliminar(int codigo);
 	public T obtener(int codigo);
 }
-/*
-public interface Dao<U> {
-	public List<U> listarTrabajador();
-	
-	public boolean editarTrabajador(U objeto);
-	public boolean eliminarTrabajador(int codigo);
-	public U obtenerTrabajador(int codigo);
-}
-*/
+

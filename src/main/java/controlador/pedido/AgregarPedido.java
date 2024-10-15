@@ -31,7 +31,7 @@ public class AgregarPedido extends HttpServlet {
 			mesa.setN_salon(Integer.parseInt(numSalon));
 			mesa.setN_mesa(Integer.parseInt(numMesa));
 			if(daoMesa.agregar(mesa)) {
-			response.sendRedirect("AdmiMesa");
+			response.sendRedirect("AdmiCategoria");
 			}
 		}
 	}

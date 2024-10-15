@@ -9,6 +9,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import modelo.Inventario; // Asegúrate de tener esta clase creada
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import datos.DaoCategoria;
+import datos.impl.DaoCategoriaImpl;
 import datos.impl.DaoInventarioImpl; // Asegúrate de tener esta clase creada
 
 @WebServlet(name = "AgregarInventario", urlPatterns = {"/AgregarInventario"})
@@ -24,40 +29,36 @@ public class AgregarInventario extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DaoInventarioImpl daoInventario = new DaoInventarioImpl();
+        DaoCategoria daoCategoria = new DaoCategoriaImpl();
         Inventario inventario = new Inventario();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         
-        String idCategoria = request.getParameter("idCategoria");
-        String nombre = request.getParameter("nombre");
+        int idCategoria = Integer.parseInt(request.getParameter("familia"));
+        String nombre = request.getParameter("producto");
         String unidad = request.getParameter("unidad");
-        String precioUnitario = request.getParameter("precioUnitario");
-        String inventarioInicial = request.getParameter("inventarioInicial");
-        String stock = request.getParameter("stock");
-        String stockMin = request.getParameter("stockMin");
-        String caducidad = request.getParameter("caducidad");
-        String idTrabajador = request.getParameter("idTrabajador");
+        double precioUnitario = Double.parseDouble(request.getParameter("costo_unitario"));
+        int inventarioInicial = Integer.parseInt(request.getParameter("inventario_inicial"));
+        int stock = Integer.parseInt(request.getParameter("stock_inicial"));
+        int stockMin = Integer.parseInt(request.getParameter("stock_minimo"));
+        String caducidad = request.getParameter("dias_caducidad");
 
-        if (idCategoria != null && nombre != null && unidad != null) {
-            inventario.setIdCategoria(Integer.parseInt(idCategoria));
+        if (idCategoria > 0 && nombre != null && unidad != null) {
+            inventario.setCategoria(daoCategoria.obtener(idCategoria));
             inventario.setNombre(nombre);
-            inventario.setUnidad(unidad);
-            inventario.setPrecioUnitario(Double.parseDouble(precioUnitario));
-            inventario.setInventarioInicial(Integer.parseInt(inventarioInicial));
-            inventario.setStock(Integer.parseInt(stock));
-            inventario.setStockMin(Integer.parseInt(stockMin));
-            inventario.setCaducidad(caducidad);
-            inventario.setIdTrabajador(Integer.parseInt(idTrabajador));
+            inventario.setUnidad(Inventario.Unidad.valueOf(unidad));
+            inventario.setPrecioUnitario(precioUnitario);
+            inventario.setInventarioInicial(inventarioInicial);
+            inventario.setStock(stock);
+            inventario.setStockMin(stockMin);
+            inventario.setCaducidad(LocalDate.parse(caducidad, formatter));
 
             if (daoInventario.agregar(inventario)) {
                 response.sendRedirect("AdmiInventario"); // Redirige a la página de administración de inventario
-            } else {
-                request.setAttribute("error", "Error al agregar el inventario.");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("formularioInventario.jsp");
-                dispatcher.forward(request, response);
-            }
-        } else {
-            request.setAttribute("error", "Por favor, complete todos los campos.");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("formularioInventario.jsp");
-            dispatcher.forward(request, response);
-        }
+            }else {
+    			response.sendRedirect("AdmiInventario?mensaje=Operacion Fallida");
+    		}
+        }else {
+			response.sendRedirect("AdmiInventario?mensaje=Operacion Fallida");
+		}
     }
 }

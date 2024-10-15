@@ -39,7 +39,7 @@ public class EditarUsuarios extends HttpServlet {
 
         // Crear un objeto Trabajador con los nuevos datos
         Trabajador trabajador = new Trabajador();
-        trabajador.setCodigo(id);
+        trabajador.setId(id);
         trabajador.setNombre(nombre);
         trabajador.setApellido(apellido);
         trabajador.setNombreUsuario(usuario);
@@ -47,13 +47,13 @@ public class EditarUsuarios extends HttpServlet {
         //trabajador.setId_rol(rol);
 
         // Intentar actualizar el trabajador en la base de datos
-        if (daoUsuario.editarTrabajador(trabajador)) {
+        /*if (daoUsuario.editarTrabajador(trabajador)) {
             // Si la actualización es exitosa, redirigir a la lista de usuarios
             response.sendRedirect("AdmiUsuarios?status=actualizado");
         } else {
             // Si ocurre un error, redirigir con un mensaje de error
             response.sendRedirect("AdmiUsuarios?status=error");
-        }
+        }*/
     }
 }
 

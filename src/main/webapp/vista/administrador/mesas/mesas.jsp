@@ -168,9 +168,9 @@
 													id="editEstado" name="estado" class="form-select"
 													aria-label="Default select example">
 													<option selected>Selecciona estado de mesa</option>
-													<option value="Libre">Libre</option>
-													<option value="Reservado">Reservado</option>
-													<option value="Ocupado">Ocupado</option>
+													<%for(Mesa.EstadoMesa estado: Mesa.EstadoMesa.values()) {%>
+													<option value="<%=estado%>"><%=estado%></option>
+													<%} %>
 												</select>
 											</div>
 										</div>
@@ -203,12 +203,10 @@
 									<div class="modal-footer">
 										<button type="button" class="btn btn-warning"
 											data-bs-dismiss="modal">Cancelar</button>
-										<form action="">
 											<button id="eliminarId" type="button"
 												class="btn btn-danger d-flex align-items-center gap-2">
 												<i class="lni lni-trash-can"></i>Eliminar
 											</button>
-										</form>
 									</div>
 								</div>
 							</div>
@@ -219,6 +217,20 @@
 		</div>
 	</div>
 	<script>
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const mensaje = urlParams.get('mensaje');
+
+        if (mensaje) {
+            alert(mensaje);
+
+            // Eliminar el parámetro 'mensaje' de la URL
+            urlParams.delete('mensaje');
+
+            // Actualizar la URL sin recargar la página
+            window.history.replaceState({}, document.title, window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : ''));
+        }
+    };
 		// Modal de eliminación
 		document
 				.getElementById('staticBackdrop')

@@ -1,5 +1,6 @@
 package controlador.usuarios;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -7,54 +8,37 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 import datos.impl.DaoUsuariosImpl;
 import modelo.Trabajador;
 
-@WebServlet(name = "AgregarUsuarios", urlPatterns = {"/AgregarUsuarios"})
+@WebServlet(name = "AgregarUsuarios", urlPatterns = { "/AgregarUsuarios" })
 public class AgregarUsuarios extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		processRequest(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		processRequest(request, response);
 	}
-	
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		DaoUsuariosImpl daoUsuario = new DaoUsuariosImpl();
 
-	    String nombre = request.getParameter("nombre");
-	    String apellido = request.getParameter("apellidos");
-	    String usuario = request.getParameter("usuario");
-	    String contrasenia = request.getParameter("password");
-	    String telefono = request.getParameter("telefono");
-	    String rol = request.getParameter("rol");
-	    
-		Trabajador trabajador = new Trabajador();
-		
-		if(nombre != null && !nombre.trim().isEmpty() &&
-			    apellido != null && !apellido.trim().isEmpty() &&
-			    usuario != null && !usuario.trim().isEmpty() &&
-			    contrasenia != null && !contrasenia.trim().isEmpty() &&
-			    telefono != null && !telefono.trim().isEmpty() &&
-			    rol != null && !rol.trim().isEmpty()) {
-			trabajador.setNombre(nombre);
-			trabajador.setApellido(apellido);
-			trabajador.setNombreUsuario(usuario);
-			trabajador.setCelular(telefono);
-			trabajador.setContrasenia(contrasenia);
-			trabajador.setId_rol(Integer.parseInt(rol));
-			if(daoUsuario.agregarTrabajador(trabajador, contrasenia)) {
-				response.sendRedirect("AdmiUsuarios?status=registrado");
-			} else {
-			    response.sendRedirect("AdmiUsuarios?status=error");
-			}
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		DaoUsuariosImpl daoUsuarios = new DaoUsuariosImpl();
+		try {
+			List<Trabajador> trabajadores = daoUsuarios.consultar();
+			request.setAttribute("trabajador", trabajadores);
+			RequestDispatcher rd = request.getRequestDispatcher("/vista/administrador/usuarios/usuarios.jsp");
+			rd.forward(request, response);
+		} catch (Exception e) {
+			request.setAttribute("error", "Error al obtener la lista de trabajadores: " + e.getMessage());
 		}
 	}
-	
 }

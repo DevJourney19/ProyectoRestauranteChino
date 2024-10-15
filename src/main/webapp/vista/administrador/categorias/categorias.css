@@ -23,68 +23,39 @@
 	border-radius:20px;
 }
 
-.btn-pdf{
-	border:var(--blanco);
-	background-color: #D51818;
-	border:none;
-	color:var(--blanco);
-	display:flex;
-	gap:10px;
-	align-items:center;
-	outline:none;
-	border-radius:5px;
-	font-weight:500;
-	padding:10px 20px;
-}
-
-.btn-excel{
-	border:var(--blanco);
-	background-color: #014301;
-	border:none;
-	color:var(--blanco);
-	display:flex;
-	gap:10px;
-	align-items:center;
-	outline:none;
-	border-radius:5px;
-	font-weight:500;
-	padding:10px 20px;
-}
-
 .btn-agregar{
 	border:var(--blanco);
-	background-color: #EFB810;
+	background-color:var(--rojo);
 	border:none;
-	color: #333;
+	color:var(--blanco);
 	display:flex;
 	gap:10px;
 	align-items:center;
 	outline:none;
-	border-radius:5px;
-	font-weight:500;
-	padding:10px 20px;
+	border-radius:10px;
+	font-weight:600;
+	padding:5px 20px;
 }
 
-.en-venta{
+.estado-menu{
 	color:var(--verde);
 	background-color: rgb(1,167,79,12%);
 }
-
-.en-venta::before{
+.estado-menu::before{
 	background-color:var(--verde);
 }
 
-.desactivado{
+.estado-inventario{
 	color:var(--rojo);
 	background-color: rgb(213,24,24,12%);
 }
-.desactivado::before{
+.estado-inventario::before{
 	background-color:var(--rojo);
 }
 
-.en-venta, .desactivado{
+.estado-menu, .estado-inventario{
 	font-size:14px;
-	font-weight:600;
+	font-weight:500;
 	width:150px;
 	display:flex;
 	align-items:center;
@@ -94,7 +65,7 @@
 	border-radius:20px;
 }
 
-.en-venta::before, .desactivado::before{
+.estado-menu::before, .estado-inventario::before{
 	content:"";
 	height:10px;
 	width:10px;
@@ -103,6 +74,7 @@
 }
 
 .regresar{
+	margin-top:10px;
 	display:flex;
 	align-items:center;
 	justify-content:center;
@@ -120,34 +92,4 @@
 
 .regresar a i, .regresar a{
 	font-weight:600;
-}
-
-.img-menu{
-	width: 50px;
-	height: auto;
-	border-radius: 5px;
-}
-
-table {
-	width: 100%;
-	border-collapse: collapse;
-	margin: 0 auto;
-}
-
-thead{
-	background-color: #E0E0E0!important;
-	height: 50px;
-}
-
-th,td{
-	vertical-align: middle;
-	text-align: center!important;
-}
-
-.page-link{
-	color: #333!important;
-}
-
-.i_eliminar {
-	color: var(--rojo);
 }
