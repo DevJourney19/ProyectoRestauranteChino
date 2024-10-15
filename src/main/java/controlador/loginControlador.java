@@ -26,7 +26,7 @@ public class loginControlador extends HttpServlet {
         String password = request.getParameter("password");
 
         try {
-            Trabajador trabajador = trabajadorDAO.validarUsuario(usuario, password);
+            Trabajador trabajador = ((DaoTrabajadorImpl) trabajadorDAO).validarUsuario(usuario, password);
 
             if (trabajador != null) {
             	
@@ -36,7 +36,7 @@ public class loginControlador extends HttpServlet {
                 session.setAttribute("nombreUsuario", trabajador.getNombreUsuario());
                 
                 // Obtener y guardar el rol en sesión
-                String rolNombre = trabajadorDAO.obtenerRol(trabajador.getId_rol());
+                String rolNombre = ((DaoTrabajadorImpl) trabajadorDAO).obtenerRol(trabajador.getId_rol());
                 session.setAttribute("rolNombre", rolNombre);
 
                 // Redirigir según el rol

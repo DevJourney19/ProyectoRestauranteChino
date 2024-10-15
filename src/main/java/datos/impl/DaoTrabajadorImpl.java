@@ -11,6 +11,20 @@ import java.util.List;
 import datos.DaoTrabajador;
 import modelo.Rol;
 import modelo.Trabajador;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.nio.charset.StandardCharsets;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.mindrot.jbcrypt.BCrypt;
+
+import modelo.Trabajador;
+import util.Conexion;
 
 //La interface Mozo_dao trae tanto sus metodos específicos, como los que extiende.
 public class DaoTrabajadorImpl implements DaoTrabajador {
@@ -24,30 +38,6 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 		con = new Conexion();
 	}
 
-	@SuppressWarnings("null")
-	@Override
-	public List<Trabajador> consultar(String rol) {
-		List<Trabajador> lista = null;
-		role = new Rol(rol);
-		String nombre = role.getNombre();
-
-		try {
-			String sql = "Select * from trabajadores where rol ='?'";
-			ps.setString(1, nombre);
-			ps = con.getConexion().prepareStatement(sql);
-			rs = ps.executeQuery();
-
-			while (rs.next()) {
-				Trabajador tra = traer_bd(rs);
-				lista.add(tra);
-			}
-			return lista;
-		} catch (Exception e) {
-			System.out.println("Error en el consultar: " + e.getMessage());
-			con.closeConexion();
-		}
-		return null;
-	}
 
 	// Absolutamente todos los trabajadores
 	@Override
@@ -77,7 +67,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 		// creo un array
 		String[] valorsitos = obtener_info(trabajador);
 		// almaceno la informacion del trabajador a agregar a la base de datos
-		
+
 		String sql = "INSERT INTO trabajadores (apellido, nombre, dni, correo, usuario, password, celular, id_rol) values(?,?,?,?,?,?,?,?);";
 		try {
 			// Preparar la consulta
@@ -224,15 +214,17 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 				byte[] storedHash = rs.getBytes("password");
 				if (storedHash != null) {
 					String storedHashStr = new String(storedHash, StandardCharsets.UTF_8);
-					
-					  if (BCrypt.checkpw(password, storedHashStr)) { trabajador = new Trabajador();
-					  trabajador.setCodigo(rs.getInt("id"));
-					  trabajador.setNombre(rs.getString("nombre"));
-					  trabajador.setApellido(rs.getString("apellido"));
-					  trabajador.setNombreUsuario(rs.getString("usuario"));
-					  //trabajador.setId_rol(rs.getInt("id_rol"));
-					  trabajador.setCelular(rs.getString("telefono")); }
-					 
+
+					if (BCrypt.checkpw(password, storedHashStr)) {
+						trabajador = new Trabajador();
+						trabajador.setId(rs.getInt("id"));
+						trabajador.setNombre(rs.getString("nombre"));
+						trabajador.setApellido(rs.getString("apellido"));
+						trabajador.setNombreUsuario(rs.getString("usuario"));
+						// trabajador.setId_rol(rs.getInt("id_rol"));
+						trabajador.setCelular(rs.getString("telefono"));
+					}
+
 				}
 			}
 		} catch (SQLException e) {
@@ -292,5 +284,12 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 			System.err.println("Error al cerrar recursos: " + e.getMessage());
 			e.printStackTrace();
 		}
+	}
+
+
+	@Override
+	public boolean agregarTrabajador(Trabajador objeto, String passwordPlano) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
