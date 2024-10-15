@@ -2,7 +2,7 @@
 <%@page import="modelo.Inventario"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:useBean id="mesas" class="java.util.ArrayList" scope="request" />	
+<jsp:useBean id="inventario" class="java.util.ArrayList" scope="request" />	
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +25,7 @@
 						<div
 							class="text-center d-md-flex align-items-center justify-content-between flex-wrap mb-2">
 							<h1>GESTIÓN DE INVENTARIO - 库存管理</h1>
-							<span class="fs-3 numero-productos">200 items</span>
+							<span class="fs-3 numero-Items">200 items</span>
 						</div>
 						<div
 							class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between gap-md-4 gap-3">
@@ -42,206 +42,12 @@
 						</div>
 					</div>
 
-
-					<!-- Modal Agregar-->
-					<div class="modal fade" id="modalAdd" tabindex="-1"
-						aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog-centered modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h1 class="modal-title fs-3 fw-semibold" id="exampleModalLabel">
-										Agregar Item</h1>
-									<button type="button" class="btn-close" data-bs-dismiss="modal"
-										aria-label="Close"></button>
-								</div>
-								<div class="modal-body">
-									<form action="" class="needs-validation" novalidate>
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div class="col-12 col-md">
-												<label for="familia">Categoria</label> <input type="text"
-													class="form-control" id="familia" name="familia" required>
-											</div>
-											<div class="col-12 col-md">
-												<label for="producto">Producto</label> <input type="text"
-													class="form-control" id="producto" name="producto" required>
-											</div>
-										</div>
-
-										<div class="my-3">
-											<label for="formFile" class="form-label">Elegir una
-												imagen</label> <input class="form-control" type="file" id="formFile">
-										</div>
-
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div class="col-12 col-md">
-												<label for="unidad">Unidad</label> <input type="text"
-													class="form-control" id="unidad" name="unidad" required>
-											</div>
-											<div class="col-12 col-md">
-												<label for="costo_unitario">Costo Unitario</label> <input
-													type="number" class="form-control" id="costo_unitario"
-													name="costo_unitario" step="0.01" required min="0"
-													max="500">
-											</div>
-										</div>
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div class="col-12 col-md">
-												<label for="inventario_inicial">Inventario Inicial</label> <input
-													type="number" class="form-control" id="inventario_inicial"
-													name="inventario_inicial" required min="0" max="1000">
-											</div>
-
-											<div class="col-12 col-md">
-												<label for="stock_inicial">Stock Actual</label> <input
-													type="number" class="form-control" id="stock_inicial"
-													name="stock_inicial" required min="0" max="1000">
-											</div>
-										</div>
-
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div class="col-12 col-md">
-												<label for="stock_minimo">Stock Mínimo</label> <input
-													type="number" class="form-control" id="stock_minimo"
-													name="stock_minimo" required min="0" max="1000">
-											</div>
-
-
-											<div class="col-12 col-md">
-												<label for="dias_caducidad">Días de Caducidad:</label> <input
-													type="number" class="form-control" id="dias_caducidad"
-													name="dias_caducidad" required min="0" max="500">
-											</div>
-										</div>
-
-										<div class="modal-footer">
-
-											<button type="button" class="btn btn-danger"
-												data-bs-dismiss="modal">Cerrar</button>
-											<button type="submit" class="btn btn-warning">Crear</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Modal Editar-->
-					<div class="modal fade" id="modalEdit" tabindex="-1"
-						aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog-centered modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h1 class="modal-title fs-3 fw-semibold" id="exampleModalLabel">
-										Editar Item</h1>
-									<button type="button" class="btn-close" data-bs-dismiss="modal"
-										aria-label="Close"></button>
-								</div>
-								<div class="modal-body">
-									<form action="" class="needs-validation" novalidate>
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div class="col-12 col-md">
-												<label for="familia">Categoria</label> <input type="text"
-													class="form-control" id="familia" name="familia" required>
-											</div>
-											<div class="col-12 col-md">
-												<label for="producto">Producto</label> <input type="text"
-													class="form-control" id="producto" name="producto" required>
-											</div>
-										</div>
-
-										<div class="my-3">
-											<label for="formFile" class="form-label">Elegir una
-												imagen</label> <input class="form-control" type="file" id="formFile">
-										</div>
-
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div class="col-12 col-md">
-												<label for="unidad">Unidad</label> <input type="text"
-													class="form-control" id="unidad" name="unidad" required>
-											</div>
-											<div class="col-12 col-md">
-												<label for="costo_unitario">Costo Unitario</label> <input
-													type="number" class="form-control" id="costo_unitario"
-													name="costo_unitario" step="0.01" required min="0"
-													max="500">
-											</div>
-										</div>
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div class="col-12 col-md">
-												<label for="inventario_inicial">Inventario Inicial</label> <input
-													type="number" class="form-control" id="inventario_inicial"
-													name="inventario_inicial" required min="0" max="1000">
-											</div>
-
-											<div class="col-12 col-md">
-												<label for="stock_inicial">Stock Actual</label> <input
-													type="number" class="form-control" id="stock_inicial"
-													name="stock_inicial" required min="0" max="1000">
-											</div>
-										</div>
-
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div class="col-12 col-md">
-												<label for="stock_minimo">Stock Mínimo</label> <input
-													type="number" class="form-control" id="stock_minimo"
-													name="stock_minimo" required min="0" max="1000">
-											</div>
-
-
-											<div class="col-12 col-md">
-												<label for="dias_caducidad">Días de Caducidad:</label> <input
-													type="number" class="form-control" id="dias_caducidad"
-													name="dias_caducidad" required min="0" max="500">
-											</div>
-										</div>
-
-										<div class="modal-footer">
-
-											<button type="button" class="btn btn-danger"
-												data-bs-dismiss="modal">Cerrar</button>
-											<button type="submit" class="btn btn-warning">Guardar</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-					<!-- Modal de Eliminar -> recibir un data value-->
-					<div class="modal fade" id="staticBackdrop"
-						data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-						aria-labelledby="staticBackdropLabel" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="btn-close" data-bs-dismiss="modal"
-										aria-label="Close"></button>
-								</div>
-								<div class="modal-body fw-medium fs-4">
-									<p>Estas seguro de eliminar el producto?</p>
-									<p>#1</p>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-warning"
-										data-bs-dismiss="modal">Cancelar</button>
-									<form action="">
-										<button type="button"
-											class="btn btn-danger d-flex align-items-center gap-2">
-											<i class="lni lni-trash-can"></i>Eliminar
-										</button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-
 				<div class="table-responsive overflow-auto" style="max-height: 60vh">
 				    <table class="table">
 				        <thead>
 				            <tr>
 				                <th>Id</th>
-				                <th>N&ordm; Nombre del Producto</th>
+				                <th>N&ordm; Nombre del Item</th>
 				                <th>N&ordm; Unidad</th>
 				                <th>N&ordm; Precio Unitario</th>
 				                <th>N&ordm; Inventario Inicial</th>
@@ -255,11 +61,11 @@
 				        <tbody>
 				            <%
 				            List<Inventario> listaInventario = (List<Inventario>) inventario;
-				            for (Inventario producto : listaInventario) {
+				            for (Inventario Item : listaInventario) {
 				                String estado = "estado-desconocido";
-				                if (producto.getStock() <= producto.getStockMin()) {
+				                if (Item.getStock() <= Item.getStockMin()) {
 				                    estado = "estado-agotado";
-				                } else if (producto.getStock() > 0) {
+				                } else if (Item.getStock() > 0) {
 				                    estado = "estado-disponible";
 				                } else {
 				                    estado = "estado-en-orden";
@@ -267,30 +73,30 @@
 				            %>
 				
 				            <tr>
-				                <td><%= producto.getId() %></td>
-				                <td><%= producto.getNombre() %></td>
-				                <td><%= producto.getUnidad() %></td>
-				                <td><%= producto.getPrecioUnitario() %></td>
-				                <td><%= producto.getInventarioInicial() %></td>
-				                <td><%= producto.getStock() %></td>
-				                <td><%= producto.getStockMin() %></td>
-				                <td><%= producto.getCaducidad() %></td>
+				                <td><%= Item.getId() %></td>
+				                <td><%= Item.getNombre() %></td>
+				                <td><%= Item.getUnidad() %></td>
+				                <td><%= Item.getPrecioUnitario() %></td>
+				                <td><%= Item.getInventarioInicial() %></td>
+				                <td><%= Item.getStock() %></td>
+				                <td><%= Item.getStockMin() %></td>
+				                <td><%= Item.getCaducidad() %></td>
 				                <td><span class="<%= estado %>"><%= estado %></span></td>
 				                <td>
 				                    <div class="d-flex align-item-center justify-content-center gap-3">
-				                        <button data-id="<%= producto.getId() %>" class="icon-action"
+				                        <button data-id="<%= Item.getId() %>" class="icon-action"
 				                            data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 				                            <i class="lni lni-trash-can fs-4"></i>
 				                        </button>
 				                        <!-- Abrir Modal Editar -->
-				                        <button data-id="<%= producto.getId() %>"
-				                            data-nombre="<%= producto.getNombre() %>"
-				                            data-unidad="<%= producto.getUnidad() %>"
-				                            data-precio="<%= producto.getPrecioUnitario() %>"
-				                            data-inventario-inicial="<%= producto.getInventarioInicial() %>"
-				                            data-stock="<%= producto.getStock() %>"
-				                            data-stock-min="<%= producto.getStockMin() %>"
-				                            data-caducidad="<%= producto.getCaducidad() %>"
+				                        <button data-id="<%= Item.getId() %>"
+				                            data-nombre="<%= Item.getNombre() %>"
+				                            data-unidad="<%= Item.getUnidad() %>"
+				                            data-precio="<%= Item.getPrecioUnitario() %>"
+				                            data-inventario-inicial="<%= Item.getInventarioInicial() %>"
+				                            data-stock="<%= Item.getStock() %>"
+				                            data-stock-min="<%= Item.getStockMin() %>"
+				                            data-caducidad="<%= Item.getCaducidad() %>"
 				                            class="icon-action"
 				                            data-bs-toggle="modal" data-bs-target="#modalEdit">
 				                            <i class="lni lni-pencil fs-4"></i>
@@ -304,79 +110,130 @@
 				        </tbody>
 				    </table>
 				    
-							    <!-- Modal de eliminación -->
-			<div class="modal fade" id="staticBackdropInventario" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-			    <div class="modal-dialog">
-			        <div class="modal-content">
-			            <div class="modal-header">
-			                <h5 class="modal-title" id="staticBackdropLabel">Eliminar Producto</h5>
-			                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			            </div>
-			            <div class="modal-body">
-			                ¿Estás seguro de que deseas eliminar el producto con ID <span id="modalIdEliminarInventario"></span>?
-			            </div>
-			            <div class="modal-footer">
-			                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-			                <button type="button" class="btn btn-danger" id="eliminarIdInventario">Eliminar</button>
-			            </div>
-			        </div>
-			    </div>
-			</div>
-
-			<!-- Modal de edición -->
-			<div class="modal fade" id="modalEditInventario" tabindex="-1" aria-labelledby="modalEditInventarioLabel" aria-hidden="true">
-			    <div class="modal-dialog">
-			        <div class="modal-content">
-			            <div class="modal-header">
-			                <h5 class="modal-title" id="modalEditInventarioLabel">Editar Producto</h5>
-			                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			            </div>
-			            <div class="modal-body">
-			                <form>
-			                    <div class="mb-3">
-			                        <label for="editNombreProducto" class="form-label">Nombre del Producto</label>
-			                        <input type="text" class="form-control" id="editNombreProducto">
-			                    </div>
-			                    <div class="mb-3">
-			                        <label for="editUnidad" class="form-label">Unidad</label>
-			                        <input type="text" class="form-control" id="editUnidad">
-			                    </div>
-			                    <div class="mb-3">
-			                        <label for="editPrecioUnitario" class="form-label">Precio Unitario</label>
-			                        <input type="number" class="form-control" id="editPrecioUnitario">
-			                    </div>
-			                    <div class="mb-3">
-			                        <label for="editInventarioInicial" class="form-label">Inventario Inicial</label>
-			                        <input type="number" class="form-control" id="editInventarioInicial">
-			                    </div>
-			                    <div class="mb-3">
-			                        <label for="editStock" class="form-label">Stock</label>
-			                        <input type="number" class="form-control" id="editStock">
-			                    </div>
-			                    <div class="mb-3">
-			                        <label for="editStockMinimo" class="form-label">Stock Mínimo</label>
-			                        <input type="number" class="form-control" id="editStockMinimo">
-			                    </div>
-			                    <div class="mb-3">
-			                        <label for="editCaducidad" class="form-label">Caducidad</label>
-			                        <input type="date" class="form-control" id="editCaducidad">
-			                    </div>
-			                    <div class="mb-3">
-			                        <label for="editEstado" class="form-label">Estado</label>
-			                        <input type="text" class="form-control" id="editEstado">
-			                    </div>
-			                </form>
-			            </div>
-			            <div class="modal-footer">
-			                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-			                <button type="button" class="btn btn-primary" id="editarIdInventario">Guardar Cambios</button>
-			            </div>
-			        </div>
-			    </div>
-			</div>
-				    
+				<!-- Modal Agregar Item -->
+				<div class="modal fade" id="modalAdd" tabindex="-1" aria-labelledby="modalAdditemLabel" aria-hidden="true">
+				    <div class="modal-dialog-centered modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header">
+				                <h1 class="modal-title fs-3 fw-semibold" id="modalAdditemLabel">Agregar Item al Inventario</h1>
+				                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				            </div>
+				            <div class="modal-body">
+				                <form action="AgregarInventario" class="needs-validation" novalidate>
+				                    <div class="form-group mb-4">
+				                        <label for="itemName">Nombre del Item</label>
+				                        <input type="text" class="form-control" id="itemName" placeholder="Ingrese el nombre del Item" name="nombreItem" required>
+				                    </div>
+				                    <div class="form-group mb-4">
+				                        <label for="unit">Unidad</label>
+				                        <input type="text" class="form-control" id="unit" placeholder="Ingrese la unidad" name="unidad" required>
+				                    </div>
+				                    <div class="form-group mb-4">
+				                        <label for="unitPrice">Precio Unitario</label>
+				                        <input type="number" class="form-control" id="unitPrice" placeholder="Ingrese el precio unitario" name="precioUnitario" required min="0">
+				                    </div>
+				                    <div class="form-group mb-4">
+				                        <label for="initialInventory">Inventario Inicial</label>
+				                        <input type="number" class="form-control" id="initialInventory" placeholder="Ingrese el inventario inicial" name="inventarioInicial" required min="0">
+				                    </div>
+				                    <div class="form-group mb-4">
+				                        <label for="stock">Stock</label>
+				                        <input type="number" class="form-control" id="stock" placeholder="Ingrese el stock" name="stock" required min="0">
+				                    </div>
+				                    <div class="form-group mb-4">
+				                        <label for="minStock">Stock Mínimo</label>
+				                        <input type="number" class="form-control" id="minStock" placeholder="Ingrese el stock mínimo" name="stockMinimo" required min="0">
+				                    </div>
+				                    <div class="form-group mb-4">
+				                        <label for="expirationDate">Caducidad</label>
+				                        <input type="date" class="form-control" id="expirationDate" name="caducidad" required>
+				                    </div>
+				                    <div class="form-group mb-4">
+				                        <label for="status">Estado</label>
+				                        <select class="form-control" id="status" name="estado" required>
+				                            <option value="" disabled selected>Seleccione el estado</option>
+				                            <option value="Disponible">Disponible</option>
+				                            <option value="No Disponible">No Disponible</option>
+				                        </select>
+				                    </div>
+				                    <div class="modal-footer">
+				                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+				                        <button type="submit" class="btn btn-warning">Crear</button>
+				                    </div>
+				                </form>
+				            </div>
+				        </div>
+				    </div>
 				</div>
-			</div>
+			
+				<!-- Modal Editar Item -->
+				<div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				    <div class="modal-dialog-centered modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header">
+				                <h1 class="modal-title fs-3 fw-semibold" id="exampleModalLabel">Editar Item del Inventario</h1>
+				                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				            </div>
+				            <div class="modal-body">
+				                <form action="EditarInventario" class="needs-validation" novalidate>
+				                    <div class="form-group mb-4 d-flex flex-wrap gap-2">
+				                        <div class="col-12 col-md">
+				                            <label for="editNombreItem">N&ordm; Nombre del Item</label>
+				                            <input type="text" class="form-control" id="editNombreItem" placeholder="Ingrese el nombre" name="nombreItem" required>
+				                        </div>
+				                        <div class="col-12 col-md">
+				                            <label for="editUnidad">N&ordm; Unidad</label>
+				                            <input type="text" class="form-control" id="editUnidad" placeholder="Ingrese unidad" name="unidad" required>
+				                        </div>
+				                        <div class="col-12 col-md">
+				                            <label for="editPrecioUnitario">N&ordm; Precio Unitario</label>
+				                            <input type="number" class="form-control" id="editPrecioUnitario" placeholder="Ingrese precio" name="precioUnitario" required min="0">
+				                        </div>
+				                        <div class="col-12 col-md">
+				                            <label for="editInventarioInicial">N&ordm; Inventario Inicial</label>
+				                            <input type="number" class="form-control" id="editInventarioInicial" placeholder="Ingrese cantidad" name="inventarioInicial" required min="0">
+				                        </div>
+				                        <div class="col-12 col-md">
+				                            <label for="editStockMinimo">N&ordm; Stock Mínimo</label>
+				                            <input type="number" class="form-control" id="editStockMinimo" placeholder="Ingrese cantidad" name="stockMinimo" required min="0">
+				                        </div>
+				                        <div class="col-12 col-md">
+				                            <label for="editCaducidad">N&ordm; Caducidad</label>
+				                            <input type="date" class="form-control" id="editCaducidad" name="caducidad" required>
+				                        </div>
+				                    </div>
+				                    <div class="modal-footer">
+				                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+				                        <button id="editarId" type="button" class="btn btn-warning">Guardar</button>
+				                    </div>
+				                </form>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Modal de Eliminar Item -->
+				<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEliminarItemLabel" aria-hidden="true">
+				    <div class="modal-dialog modal-dialog-centered">
+				        <div class="modal-content">
+				            <div class="modal-header">
+				                <h5 class="modal-title" id="modalEliminarItemLabel">Eliminar Item</h5>
+				                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				            </div>
+				            <div class="modal-body fw-medium fs-4">
+				                <p>¿Estás seguro de eliminar este Item del inventario?</p>
+				                <p id="modalIdEliminarItem">#1</p> <!-- Aquí se puede mostrar el ID del Item -->
+				            </div>
+				            <div class="modal-footer">
+				                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
+				                <form action="">
+				                    <button id="eliminarId" type="button" class="btn btn-danger d-flex align-items-center gap-2">
+				                        <i class="lni lni-trash-can"></i>Eliminar
+				                    </button>
+				                </form>
+				            </div>
+				        </div>
+				    </div>
 				</div>
 			</main>
 		</div>
@@ -405,7 +262,7 @@
 	        .addEventListener('show.bs.modal', function(event) {
 	            const button = event.relatedTarget;
 	            const id = button.getAttribute('data-id');
-	            let nombreProducto = button.getAttribute('data-nombre');
+	            let nombreItem = button.getAttribute('data-nombre');
 	            let unidad = button.getAttribute('data-unidad');
 	            let precioUnitario = button.getAttribute('data-precio');
 	            let inventarioInicial = button.getAttribute('data-inventario');
@@ -414,7 +271,7 @@
 	            let caducidad = button.getAttribute('data-caducidad');
 	            let estado = button.getAttribute('data-estado');
 	
-	            document.getElementById('editNombreProducto').value = nombreProducto;
+	            document.getElementById('editNombreItem').value = nombreItem;
 	            document.getElementById('editUnidad').value = unidad;
 	            document.getElementById('editPrecioUnitario').value = precioUnitario;
 	            document.getElementById('editInventarioInicial').value = inventarioInicial;
@@ -426,7 +283,7 @@
 	            document
 	                .getElementById('editarIdInventario')
 	                .addEventListener('click', function(event) {
-	                    nombreProducto = document.getElementById('editNombreProducto').value;
+	                    nombreItem = document.getElementById('editNombreItem').value;
 	                    unidad = document.getElementById('editUnidad').value;
 	                    precioUnitario = document.getElementById('editPrecioUnitario').value;
 	                    inventarioInicial = document.getElementById('editInventarioInicial').value;
@@ -436,7 +293,7 @@
 	                    estado = document.getElementById('editEstado').value;
 	
 	                    window.location.href = "/ProyectoRestauranteChino/EditarInventario?id=" + id +
-	                        "&nombre=" + nombreProducto +
+	                        "&nombre=" + nombreItem +
 	                        "&unidad=" + unidad +
 	                        "&precio=" + precioUnitario +
 	                        "&inventario=" + inventarioInicial +

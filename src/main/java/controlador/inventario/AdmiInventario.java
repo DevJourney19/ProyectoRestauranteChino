@@ -26,9 +26,9 @@ public class AdmiInventario extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DaoInventarioImpl daoInventario = new DaoInventarioImpl();
-        List<Inventario> inventarios = daoInventario.consultar();
-        request.setAttribute("inventarios", inventarios);
-        RequestDispatcher rd = request.getRequestDispatcher("vista/administrador/inventario/inventarios.jsp");
+        List<Inventario> inventario = daoInventario.consultar();
+        request.setAttribute("inventario", inventario);
+        RequestDispatcher rd = request.getRequestDispatcher("vista/administrador/inventario/inventario.jsp");
         rd.forward(request, response);
     }
 }
