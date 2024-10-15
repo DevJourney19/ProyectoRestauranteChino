@@ -17,6 +17,11 @@ import java.io.IOException;
 @WebServlet(name = "SvConsultarTrabajador", urlPatterns = { "/SvConsultarTrabajador" })
 public class SvConsultarTrabajador extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		processRequest(request, response);
@@ -31,22 +36,13 @@ public class SvConsultarTrabajador extends HttpServlet {
 			throws ServletException, IOException {
 		DaoTrabajador trabajadorDao = new DaoTrabajadorImpl();
 		List<Trabajador> lista = trabajadorDao.consultar();
-		//Llevamos la consulta realizada al jsp de usuarios
-		String archivo = "/vista/administrador/usuarios/usuarios.jsp";
 		
-		//Asignamos la lista de usuarios con el identificador "trabajadores"
+		// Llevamos la consulta realizada al jsp de usuarios
 		request.setAttribute("trabajadores", lista);
+		
+		String archivo = "vista/administrador/usuarios/usuarios.jsp";
 		RequestDispatcher rs = request.getRequestDispatcher(archivo);
 		rs.forward(request, response);
-		
-		// Esto va a mostrarse en el jsp
-		/*
-		 * for (int i = 0; i < lista.size(); i++) { //
-		 * System.out.println("El trabajador (" + i + ") es " + //
-		 * lista.get(i).getRol().getCodigo() // + " y bueno su nombre es: " +
-		 * lista.get(i).getNombre()); System.out.println(lista.get(i)); }
-		 */
-		//Este codigo no es muy util para trabajar con setAtributte -> response.sendRedirect(archivo);
 
 	}
 }

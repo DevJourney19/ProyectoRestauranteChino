@@ -2,7 +2,6 @@ package controlador.trabajador;
 
 import datos.DaoTrabajador;
 import datos.impl.DaoTrabajadorImpl;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,6 +14,11 @@ import java.io.IOException;
 
 @WebServlet(name = "SvAgregarTrabajador", urlPatterns = {"/SvAgregarTrabajador"})
 public class SvAgregarTrabajador extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -64,19 +68,17 @@ public class SvAgregarTrabajador extends HttpServlet {
 		tra.setContrasenia(password);
 		tra.setCelular(celular);
 
-		// Esto se realizará en caso de hacer una consulta
 		boolean x = trabajadorDao.agregar(tra);
-		String archivo = null;
+		
 		if (x) {
 			System.out.println("Se agrego el trabajador");
-			//archivo = "vista/administrador/usuarios.jsp";
-			request.setAttribute("agregacion", tra);
+			
+		}else {
+			System.out.println("El trabajador no fue agregado correctamente...");
 		}
-		//archivo = "vista/administrador/usuarios.jsp";
-		archivo = "SvConsultarTrabajador";
-		//response.sendRedirect(archivo);
-		RequestDispatcher rs = request.getRequestDispatcher(archivo);
-		rs.forward(request, response);
+
+		response.sendRedirect("SvConsultarTrabajador");
+
 
 	}
 }

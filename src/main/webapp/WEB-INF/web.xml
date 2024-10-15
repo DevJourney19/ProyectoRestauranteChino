@@ -63,7 +63,7 @@
     <description></description>
     <display-name>CargarPedido</display-name>
     <servlet-name>CargarPedido</servlet-name>
-    <servlet-class>controlador.pedido.CargarPedido</servlet-class>
+    <servlet-class>controlador.pedido.AdmiPedido</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CargarPedido</servlet-name>
@@ -101,12 +101,22 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>mostrarTrabajador</display-name>
-    <servlet-name>mostrarTrabajador</servlet-name>
-    <servlet-class>controlador.trabajador.mostrarTrabajador</servlet-class>
+    <display-name>SvConsultarTrabajador</display-name>
+    <servlet-name>SvConsultarTrabajador</servlet-name>
+    <servlet-class>controlador.trabajador.SvConsultarTrabajador</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>mostrarTrabajador</servlet-name>
-    <url-pattern>/mostrarTrabajador</url-pattern>
+    <servlet-name>SvConsultarTrabajador</servlet-name>
+    <url-pattern>/SvConsultarTrabajador</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SvValoresInput</display-name>
+    <servlet-name>SvValoresInput</servlet-name>
+    <servlet-class>controlador.trabajador.SvValoresInput</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SvValoresInput</servlet-name>
+    <url-pattern>/SvValoresInput</url-pattern>
   </servlet-mapping>
 </web-app>

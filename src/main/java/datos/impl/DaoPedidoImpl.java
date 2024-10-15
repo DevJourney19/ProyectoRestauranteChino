@@ -9,6 +9,7 @@ import java.util.List;
 import datos.DaoCliente;
 import datos.DaoPedido;
 import datos.DaoTrabajador;
+import modelo.Cliente;
 import modelo.Mesa;
 import modelo.Pedido;
 import util.Conexion;
@@ -28,42 +29,34 @@ public class DaoPedidoImpl implements DaoPedido{
 
 	@Override
 	public List<Pedido> consultar() {
-		List<Pedido> lista = null;
-        StringBuilder sql = new StringBuilder();
-        sql.append("SELECT ")
-                .append("idPedido,")
-                .append("descripcionPedido,")
-                .append("fechaPedido,")
-                .append("metodoPago,")
-                .append("precioTotal")
-                .append("idCliente,")
-                .append("idVendedor")
-                .append(" FROM Pedido");
-        try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString()); ResultSet rs = ps.executeQuery();) {
-            lista = new ArrayList<>();
-            while (rs.next()) {
-                Pedido pedido = new Pedido();
-                pedido.setIdPedido(rs.getInt(1));
-                pedido.setDescripcionPedido(rs.getString(2));
-                pedido.setFechaPedido(rs.getString(3));
-                pedido.setMetodoPago(rs.getString(4));
-                pedido.setPrecioTotal(rs.getDouble(5));
-                Integer idCli = rs.getInt(6);
-                Integer idVen = rs.getInt(7);
-                pedido.setCliente(cli.get(idCli));
-                pedido.setVendedor(ve.get(idVen));
-                lista.add(pedido);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return lista;
+		return null;
 	}
 
 	@Override
 	public boolean agregar(Pedido objeto) {
-		// TODO Auto-generated method stub
-		return false;
+		StringBuilder sql = new StringBuilder();
+        sql.append("INSERT INTO pedidos(")
+                .append("id_cliente,")
+                .append("id_mesa,")
+                .append("tipo_recibo,")
+                .append("metodo_pago,")
+                .append("total,")
+                .append("id_trabajador")
+                .append(") VALUES (?,?,?,?,?,?)");
+
+        try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString());) {
+            ps.setInt(1, objeto.getCliente().getId());
+            ps.setInt(2, objeto.getMesa().getId());
+            ps.setString(3, objeto.getTipo_recibo().toString());
+            ps.setString(4, objeto.getMetodo_pago().toString());
+            ps.setDouble(5, objeto.getTotal());
+            ps.setInt(6, objeto.getTrabajador().getId());
+            return (ps.executeUpdate() != 0);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
 	}
 
 	@Override
@@ -80,6 +73,47 @@ public class DaoPedidoImpl implements DaoPedido{
 
 	@Override
 	public Pedido obtener(int codigo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Object[]> verData() {
+		 List<Object[]> lista = null;
+	        StringBuilder sql = new StringBuilder();
+	        sql.append("SELECT ")
+	                .append("id,")
+	                .append("dni_ruc,")
+	                .append("n_mesa,")
+	                .append("estado,")
+	                .append("tipo_recibo,")
+	                .append("metodo_pago,")
+	                .append("total,")
+	                .append("created_at")
+	                .append(" FROM pedidosView");
+	        try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString()); ResultSet rs = ps.executeQuery();) {
+	            lista = new ArrayList<>();
+
+	            while (rs.next()) {
+	                Object[] obj = new Object[8];
+	                obj[0] = rs.getInt(1);
+	                obj[1] = rs.getString(2);
+	                obj[2] = rs.getInt(3);
+	                obj[3] = rs.getString(4);
+	                obj[4] = rs.getString(5);
+	                obj[5] = rs.getString(6);
+	                obj[6] = rs.getDouble(7);
+	                obj[7] = rs.getString(8);
+	                lista.add(obj);
+	            }
+	        } catch (Exception e) {
+	            System.out.println(e.getMessage());
+	        }
+	        return lista;
+	}
+
+	@Override
+	public Cliente dataCliente(Integer idPed) {
 		// TODO Auto-generated method stub
 		return null;
 	}

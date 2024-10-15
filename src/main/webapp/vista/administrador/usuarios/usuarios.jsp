@@ -1,13 +1,18 @@
+
 <%@page import="modelo.Trabajador"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="modelo.Trabajador"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/vista/administrador/usuarios/usuarios.css">
 
 <%@ include file="../fragmentos/head.jsp"%>
 
@@ -27,7 +32,6 @@
 						<div
 							class="text-center d-md-flex align-items-center justify-content-between flex-wrap">
 							<h1>GESTIÓN DE USUARIOS - 用户管理</h1>
-
 						</div>
 						<div
 							class="d-flex align-items-center justify-content-center mt-2 mt-md-0 justify-content-md-end gap-4">
@@ -50,22 +54,24 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
+
 									<!-- Solucionar problema de url -->
 									<form
 										action="${pageContext.request.contextPath}/SvAgregarTrabajador"
 										class="needs-validation" novalidate method="POST">
+
 										<div class="form-group d-flex flex-wrap gap-2">
 											<!-- NOMBRE -->
 											<div
 												class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
-												<label for="nombre">Apellidos</label> <input type="text"
+												<label for="nombre">Apellido</label> <input type="text"
 													class="form-control" id="nombre"
 													aria-describedby="emailHelp"
 													placeholder="Ingrese Apellidos" name="apellido" required>
 											</div>
 											<div
 												class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
-												<label for="nombre">Nombres</label> <input type="text"
+												<label for="nombre">Nombre</label> <input type="text"
 													class="form-control" id="nombre"
 													aria-describedby="emailHelp" placeholder="Ingrese Nombres"
 													name="nombre" required>
@@ -76,18 +82,22 @@
 											<div class="col-12 col-md">
 												<label for="dni">DNI</label> <input type="text"
 													class="form-control" id="dni" aria-describedby="emailHelp"
-													placeholder="Ingrese DNI" name="dni" required>
+													placeholder="Ingrese DNI" maxlength="8" name="dni" required>
+
 											</div>
 											<!-- CORREO -->
 											<div class="col-12 col-md">
+
 												<label for="correo">Correo</label> <input type="text"
 													class="form-control" id="correo"
 													aria-describedby="emailHelp" placeholder="Ingrese Correo"
 													name="correo" required min="0">
+
 											</div>
 										</div>
 										<!-- NOMBRE DE USUARIO -->
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+
 											<div class="col-12 col-md">
 												<label for="usuario">Usuario</label> <input type="text"
 													class="form-control" id="usuario"
@@ -108,13 +118,13 @@
 												<label for="celular">Celular</label> <input type="text"
 													class="form-control" id="celular"
 													aria-describedby="emailHelp" placeholder="Ingrese Número"
-													name="celular" required>
+													name="celular" maxlength="9" required>
 											</div>
 											<!-- ROL-->
 											<div class="form-group mb-4 d-flex flex-wrap col-6 col-md">
 												<label for="rol">Rol</label> <select class="form-select"
 													aria-label="large select example" name="rol">
-													<option selected>- Selecciona -</option>
+													<option disabled>- Selecciona -</option>
 													<option value="1">Adminitrador</option>
 													<option value="2">Cocinero</option>
 													<option value="3">Mozo</option>
@@ -125,6 +135,7 @@
 											<button type="button" class="btn btn-danger"
 												data-bs-dismiss="modal">Cerrar</button>
 											<button type="submit" class="btn btn-warning">Crear</button>
+
 										</div>
 									</form>
 								</div>
@@ -143,65 +154,92 @@
 									<button type="button" class="btn-close" data-bs-dismiss="modal"
 										aria-label="Close"></button>
 								</div>
+								<!-- MODAL PARA ESCRIBIR EL NUEVO VALOR -->
 								<div class="modal-body">
+
 									<form
 										action="${pageContext.request.contextPath}/SvEditarTrabajador"
 										method="POST" class="needs-validation" novalidate>
+
 										<input type="hidden" name="id" id="trabajadorIdForm_e">
-										<!-- NOMBRE -->
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<label for="nombre">Nombre Completo</label> <input
-												type="text" class="form-control" id="nombre"
-												aria-describedby="emailHelp" placeholder="Enter Name"
-												name="nombre" required>
-										</div>
-										<!-- NOMBRE -->
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div class="col-12 col-md">
-												<label for="dni">DNI</label> <input type="text"
-													class="form-control" id="dni" aria-describedby="emailHelp"
-													placeholder="Enter DNI" name="dni" required>
+										<div class="form-group d-flex flex-wrap gap-2">
+											<!-- APELLIDO -->
+											<div
+												class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
+												<label for="apellidoE">Apellido</label> <input type="text"
+													class="form-control" id="apellidoE"
+													aria-describedby="emailHelp"
+													placeholder="Ingrese Apellidos" name="apellido" required>
 											</div>
+											<div
+												class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
+												<label for="nombreE">Nombre</label> <input type="text"
+													class="form-control" id="nombreE"
+													aria-describedby="emailHelp" placeholder="Ingrese Nombres"
+													name="nombre" required>
+											</div>
+										</div>
+										<!-- DNI -->
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<div class="col-12 col-md">
-												<label for="correo">Correo</label> <input type="text"
-													class="form-control" id="correo"
-													aria-describedby="emailHelp" placeholder="Enter Correo"
+												<label for="dniE">DNI</label> <input type="text"
+													class="form-control" id="dniE" aria-describedby="emailHelp"
+													placeholder="Ingrese DNI" maxlength="8" name="dni" required>
+
+											</div>
+											<!-- CORREO -->
+											<div class="col-12 col-md">
+
+												<label for="correoE">Correo</label> <input type="text"
+													class="form-control" id="correoE"
+													aria-describedby="emailHelp" placeholder="Ingrese Correo"
 													name="correo" required min="0">
+
 											</div>
-											<!-- NOMBRE DE USUARIO-->
 										</div>
+										<!-- NOMBRE DE USUARIO -->
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+
 											<div class="col-12 col-md">
-												<label for="usuario">Usuario</label> <input type="text"
-													class="form-control" id="usuario"
-													aria-describedby="emailHelp" placeholder="Enter Usuario"
+												<label for="usuarioE">Usuario</label> <input type="text"
+													class="form-control" id="usuarioE"
+													aria-describedby="emailHelp" placeholder="Ingrese Usuario"
 													name="usuario" required>
 											</div>
 											<!-- CONTRASENIA -->
 											<div class="col-12 col-md">
-												<label for="password">Password</label> <input
-													type="password" class="form-control" id="password"
-													aria-describedby="emailHelp" placeholder="Enter Password"
-													name="password" required>
+												<label for="passwordE">Contraseña</label> <input
+													type="password" class="form-control" id="passwordE"
+													aria-describedby="emailHelp"
+													placeholder="Ingrese Contraseña" name="password" required>
 											</div>
 										</div>
-
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<label for="rol">Rol</label> <select class="form-select"
-												aria-label="large select example" name="rol">
-												<option selected>- Selecciona -</option>
-												<option value="1">Adminitrador</option>
-												<option value="2">Cocinero</option>
-												<option value="3">Mozo</option>
-											</select>
+											<!-- CELULAR -->
+											<div class="col-6 col-md">
+												<label for="celularE">Celular</label> <input type="text"
+													class="form-control" id="celularE"
+													aria-describedby="emailHelp" placeholder="Ingrese Número"
+													name="celular" maxlength="9" required>
+											</div>
+											<!-- ROL-->
+											<div class="form-group mb-4 d-flex flex-wrap col-6 col-md">
+												<label for="rolE">Rol</label> <select class="form-select"
+													aria-label="large select example" name="rol" id="rolE">
+													<option disabled>- Selecciona -</option>
+													<option value="1">Adminitrador</option>
+													<option value="2">Cocinero</option>
+													<option value="3">Mozo</option>
+												</select>
+											</div>
 										</div>
-
 										<div class="modal-footer">
 											<button type="button" class="btn btn-danger"
 												data-bs-dismiss="modal">Cerrar</button>
 											<button type="submit" class="btn btn-warning">Editar</button>
 										</div>
 									</form>
+
 								</div>
 							</div>
 						</div>
@@ -217,10 +255,11 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body fw-medium fs-4">
-									<p>Estas seguro de eliminar este Usuario?</p>
-									<p>#1</p>
+									¿Estás seguro de que deseas eliminar el usuario con ID <span
+										id="modalIdEliminarUsuario"></span>?
 								</div>
 								<div class="modal-footer">
+
 									<button type="button" class="btn btn-warning"
 										data-bs-dismiss="modal">Cancelar</button>
 
@@ -235,6 +274,7 @@
 											<i class="lni lni-trash-can"></i>Eliminar
 										</button>
 									</form>
+
 								</div>
 							</div>
 						</div>
@@ -252,6 +292,7 @@
 									<th>Correo</th>
 									<th>Usuario</th>
 									<th>Password</th>
+									<th>Celular</th>
 									<th>Rol</th>
 									<th></th>
 								</tr>
@@ -259,48 +300,143 @@
 
 							<tbody>
 								<%
-								if (trabajadores != null) {
+								if (trabajadores != null && !trabajadores.isEmpty()) {
 									for (Trabajador trabajador : trabajadores) {
 								%>
 
 								<tr>
+									<td><%=trabajador.getId()%></td>
 									<td><%=trabajador.getApellido()%></td>
 									<td><%=trabajador.getNombre()%></td>
+									<td><%=trabajador.getDni()%></td>
+									<td><%=trabajador.getCorreo()%></td>
 									<td><%=trabajador.getNombreUsuario()%></td>
-									<td><%=trabajador.getCelular()%></td>
-									<td><%=trabajador.getNombre()%></td>
 									<td><%=trabajador.getContrasenia()%></td>
-									<td><span class="estado-cancelado"><%=trabajador.getCodigo()%></span></td>
+									<td><%=trabajador.getCelular()%></td>
+
+									<td><span class="estado-cancelado"><%=trabajador.getRol().getNombre()%></span></td>
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
+											<!-- Boton lapiz eliminar -->
 											<button class="icon-action btn_eliminar"
 												data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-												data-id="<%=trabajador.getCodigo()%>">
+												data-id="<%=trabajador.getId()%>">
 												<i class="lni lni-trash-can fs-4"></i>
 											</button>
-											<button class="icon-action btn_editar" data-bs-toggle="modal"
-												data-bs-target="#modalEdit"
-												data-id="<%=trabajador.getCodigo()%>">
+
+											<button class="icon-action btn_editar_input"
+												data-bs-toggle="modal" data-bs-target="#modalEdit"
+												data-id="<%=trabajador.getId()%>"
+												data-apellido="<%=trabajador.getApellido()%>"
+												data-nombre="<%=trabajador.getNombre()%>"
+												data-dni="<%=trabajador.getDni()%>"
+												data-correo="<%=trabajador.getCorreo()%>"
+												data-usuario="<%=trabajador.getNombreUsuario()%>"
+												data-pass="<%=trabajador.getContrasenia()%>"
+												data-celular="<%=trabajador.getCelular()%>"
+												data-id-rol="<%=trabajador.getRol()%>">
 												<i class="lni lni-pencil fs-4"></i>
 											</button>
+
 										</div>
 									</td>
 								</tr>
 								<%
 								}
 								} else {
+
 								out.write("No se registraron usuarios...");
+								System.out.println("No hay registros");
 								}
 								%>
 							</tbody>
 						</table>
 					</div>
+
 				</div>
 			</main>
 		</div>
 	</div>
+
 	<script
 		src="${pageContext.request.contextPath}/vista/administrador/usuarios/usuarios.js"></script>
+	<!--  
+	<script>
+		// Modal de eliminación para usuarios
+		document
+				.getElementById('staticBackdropUsuario')
+				.addEventListener(
+						'show.bs.modal',
+						function(event) {
+							const button = event.relatedTarget;
+							const id = button.getAttribute('data-id');
+							document.getElementById('modalIdEliminarUsuario').innerHTML = "#"
+									+ id;
+
+							document
+									.getElementById('eliminarIdUsuario')
+									.addEventListener(
+											'click',
+											function(event) {
+												window.location.href = "/ProyectoRestauranteChino/EliminarUsuarios?id="
+														+ id;
+											});
+						});
+
+		// Modal de edición para usuarios
+		document
+				.getElementById('modalEdit')
+				.addEventListener(
+						'show.bs.modal',
+						function(event) {
+							const button = event.relatedTarget;
+							const id = button.getAttribute('data-id');
+							let nombreUsuario = button
+									.getAttribute('data-nombre');
+							let apellidoUsuario = button
+									.getAttribute('data-apellido');
+							let usuario = button.getAttribute('data-usuario');
+							let telefonoUsuario = button
+									.getAttribute('data-telefono');
+							let rolUsuario = button.getAttribute('data-rol');
+
+							document.getElementById('editNombre').value = nombreUsuario;
+							document.getElementById('editApellidos').value = apellidoUsuario;
+							document.getElementById('editUsuario').value = usuario;
+							document.getElementById('editTelefono').value = telefonoUsuario;
+							document.getElementById('editRol').value = rolUsuario;
+
+							document
+									.getElementById('editarIdUsuario')
+									.addEventListener(
+											'click',
+											function(event) {
+												nombreUsuario = document
+														.getElementById('editNombre').value;
+												apellidoUsuario = document
+														.getElementById('editApellidos').value;
+												usuario = document
+														.getElementById('editUsuario').value;
+												telefonoUsuario = document
+														.getElementById('editTelefono').value;
+												rolUsuario = document
+														.getElementById('editRol').value;
+
+												window.location.href = "/ProyectoRestauranteChino/EditarUsuarios?id="
+														+ id
+														+ "&nombre="
+														+ nombreUsuario
+														+ "&apellido="
+														+ apellidoUsuario
+														+ "&usuario="
+														+ usuario
+														+ "&telefono="
+														+ telefonoUsuario
+														+ "&rol=" + rolUsuario;
+											});
+						});
+	</script>
+-->
 </body>
 </html>

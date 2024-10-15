@@ -35,11 +35,13 @@ public class SvEditarTrabajador extends HttpServlet {
 		Trabajador tra = trabajadorDao.obtener(id);
 
 		int id_rol = 0;
+		String apellido = request.getParameter("apellido");
 		String nombre = request.getParameter("nombre");
 		String dni = request.getParameter("dni");
 		String correo = request.getParameter("correo");
 		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
+		String celular = request.getParameter("celular");
 		String rol_seleccionado = request.getParameter("rol");
 		// Comprueba si se seleccionó un rol
 		// Si se detecta que el valor escogido tiene un value, me dejará entrar
@@ -52,11 +54,12 @@ public class SvEditarTrabajador extends HttpServlet {
 
 		// Actualizar los datos del trabajador
 		tra.setNombre(nombre);
-		tra.setApellido(nombre);
+		tra.setApellido(apellido);
 		tra.setDni(dni);
 		tra.setCorreo(correo);
 		tra.setNombreUsuario(usuario);
 		tra.setContrasenia(password);
+		tra.setCelular(celular);
 		// Se agrega el int como id del rol, dont forge it
 		Rol role = new Rol(id_rol);
 		tra.setRol(role);
