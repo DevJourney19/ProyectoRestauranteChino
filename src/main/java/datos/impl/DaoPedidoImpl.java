@@ -13,7 +13,6 @@ import modelo.Cliente;
 import modelo.Mesa;
 import modelo.Pedido;
 import util.Conexion;
-
 public class DaoPedidoImpl implements DaoPedido{
 	
 	Conexion con;
@@ -25,6 +24,7 @@ public class DaoPedidoImpl implements DaoPedido{
         con = new Conexion();
         cli = new DaoClienteImpl();
         tra = new DaoTrabajadorImpl();
+        
     }
 
 	@Override

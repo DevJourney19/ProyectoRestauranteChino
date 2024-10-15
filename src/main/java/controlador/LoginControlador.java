@@ -3,6 +3,7 @@ package controlador;
 import java.io.IOException;
 
 import datos.DaoTrabajador;
+import datos.impl.DaoTrabajadorImpl;
 import modelo.Trabajador;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -12,10 +13,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+
 @WebServlet(name = "LoginControlador", urlPatterns = {"/LoginControlador"})
 public class LoginControlador extends HttpServlet {
+
     
-    private final DaoTrabajador trabajadorDAO = new DaoTrabajador();
+    private final DaoTrabajador trabajadorDAO = new DaoTrabajadorImpl();
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
@@ -24,7 +27,7 @@ public class LoginControlador extends HttpServlet {
         String password = request.getParameter("password");
 
         try {
-            Trabajador trabajador = trabajadorDAO.validarUsuario(usuario, password);
+            Trabajador trabajador = ((DaoTrabajadorImpl) trabajadorDAO).validarUsuario(usuario, password);
 
             if (trabajador != null) {
             	
@@ -34,7 +37,7 @@ public class LoginControlador extends HttpServlet {
                 session.setAttribute("nombreUsuario", trabajador.getNombreUsuario());
                 
                 // Obtener y guardar el rol en sesión
-                String rolNombre = trabajadorDAO.obtenerRol(trabajador.getId_rol());
+                String rolNombre = ((DaoTrabajadorImpl) trabajadorDAO).obtenerRol(trabajador.getId_rol());
                 session.setAttribute("rolNombre", rolNombre);
 
                 // Redirigir según el rol

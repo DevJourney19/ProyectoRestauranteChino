@@ -26,7 +26,7 @@ public class EliminarUsuarios extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		DaoUsuariosImpl daoUsuario = new DaoUsuariosImpl();
-		try {
+		/*try {
 		    int id = Integer.parseInt(request.getParameter("id"));
 		    if (daoUsuario.eliminarTrabajador(id)) {
 		        response.sendRedirect("AdmiUsuarios?status=eliminado");
@@ -35,6 +35,6 @@ public class EliminarUsuarios extends HttpServlet {
 		    }
 		} catch (NumberFormatException e) {
 		    response.sendRedirect("AdmiUsuarios?status=id_incorrecto");
-		}
+		}*/
 	}
 }

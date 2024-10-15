@@ -1,15 +1,35 @@
+<<<<<<< HEAD
+
 <%@page import="modelo.Trabajador"%>
+<%@page import="java.util.Date"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+=======
+<%@page import="modelo.Trabajador"%>
+>>>>>>> fefcba15469fc63022a8707df068a0e6a4a80892
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="modelo.Trabajador"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/vista/administrador/usuarios/usuarios.css">
+
+=======
 <link rel="stylesheet" href="vista/administrador/usuarios/usuarios.css">
+>>>>>>> fefcba15469fc63022a8707df068a0e6a4a80892
 <%@ include file="../fragmentos/head.jsp"%>
+
 <title>ADMIN | USUARIOS</title>
 </head>
 <body>
+	<%
+	List<Trabajador> trabajadores = (List<Trabajador>) request.getAttribute("trabajadores");
+	%>
 	<div class="d-flex flex-row">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
@@ -29,76 +49,6 @@
 							</button>
 						</div>
 					</div>
-					<div class="table-responsive overflow-auto">
-					    <table class="table">
-					        <thead>
-					            <tr>
-					                <th>Id</th>
-					                <th>Nombre Completo</th>
-					                <th>Usuario</th>
-					                <th>Contraseña</th>
-					                <th>Teléfono</th>
-					                <th>Rol</th>
-					                <th>Acciones</th>
-					            </tr>
-					        </thead>
-					        <tbody>
-					            <%
-					            // Verifica si la lista de usuarios no es nula
-					            	List<Trabajador> listaTrabajadores = (List<Trabajador>) request.getAttribute("trabajador");
-									if (listaTrabajadores == null || listaTrabajadores.isEmpty()) {
-									    out.println("No hay trabajadores en la lista.");
-									} else {
-									    for (Trabajador trabajador : listaTrabajadores) {
-									        String rol = "";
-									        switch (trabajador.getId_rol()) {
-									            case 1 :
-									                rol = "Administrador";
-									                break;
-									            case 2 :
-									                rol = "Mesero";
-									                break;
-									            case 3 :
-									                rol = "Cajero";
-									                break;
-									        }
-					            %>
-					            <tr>
-					                <td><%= trabajador.getCodigo() %></td>
-					                <td><%= trabajador.getNombre() + " " + trabajador.getApellido() %></td>
-					                <td><%= trabajador.getNombreUsuario() %></td>
-					                <td>********</td>
-					                <td><%= trabajador.getCelular() %></td>
-					                <td><%= rol %></td>
-					                <td>
-					                    <div class="d-flex align-item-center justify-content-center gap-3">
-					                        <!-- Botón Eliminar -->
-					                        <button class="icon-action"
-					                            data-bs-toggle="modal" data-bs-target="#staticBackdropUsuario"
-					                            data-id="<%= trabajador.getCodigo()%>" >
-					                            <i class="lni lni-trash-can fs-4"></i>
-					                        </button>
-					                        <!-- Botón Editar -->
-					                        <button data-id="<%= trabajador.getCodigo()%>"
-										        data-nombre="<%=trabajador.getNombre()%>" 
-										        data-apellido="<%=trabajador.getApellido()%>" 
-										        data-usuario="<%=trabajador.getNombreUsuario()%>" 
-										        data-telefono="<%=trabajador.getCelular()%>"
-										        data-rol="<%=trabajador.getId_rol()%>" class="icon-action"
-					                            data-bs-toggle="modal" data-bs-target="#modalEdit">
-					                            <i class="lni lni-pencil fs-4"></i>
-					                        </button>
-					                    </div>
-					                </td>
-					            </tr>
-					            <%
-								    }
-								}
-								%>
-					        </tbody>
-					    </table>
-					</div>
-					
 
 					<!-- Modal Agregar -->
 					<div class="modal fade" id="modalAdd" tabindex="-1"
@@ -112,40 +62,88 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-									<form action="AgregarUsuarios" method="post" class="needs-validation" novalidate>
+
+									<!-- Solucionar problema de url -->
+									<form
+										action="${pageContext.request.contextPath}/SvAgregarTrabajador"
+										class="needs-validation" novalidate method="POST">
+
+										<div class="form-group d-flex flex-wrap gap-2">
+											<!-- NOMBRE -->
+											<div
+												class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
+												<label for="nombre">Apellido</label> <input type="text"
+													class="form-control" id="nombre"
+													aria-describedby="emailHelp"
+													placeholder="Ingrese Apellidos" name="apellido" required>
+											</div>
+											<div
+												class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
+												<label for="nombre">Nombre</label> <input type="text"
+													class="form-control" id="nombre"
+													aria-describedby="emailHelp" placeholder="Ingrese Nombres"
+													name="nombre" required>
+											</div>
+										</div>
+										<!-- DNI -->
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<div class="col-12 col-md">
-												<label for="nombre">Nombres</label> 
-												<input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre" name="nombre" required>
+												<label for="dni">DNI</label> <input type="text"
+													class="form-control" id="dni" aria-describedby="emailHelp"
+													placeholder="Ingrese DNI" maxlength="8" name="dni" required>
+
 											</div>
+											<!-- CORREO -->
 											<div class="col-12 col-md">
-												<label for="apellidos">Apellidos</label>
-												<input type="text" class="form-control" id="apellidos" placeholder="Ingresa tus apellidos" name="apellidos" required>
+
+												<label for="correo">Correo</label> <input type="text"
+													class="form-control" id="correo"
+													aria-describedby="emailHelp" placeholder="Ingrese Correo"
+													name="correo" required min="0">
+
+											</div>
+										</div>
+										<!-- NOMBRE DE USUARIO -->
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+
+											<div class="col-12 col-md">
+												<label for="usuario">Usuario</label> <input type="text"
+													class="form-control" id="usuario"
+													aria-describedby="emailHelp" placeholder="Ingrese Usuario"
+													name="usuario" required>
+											</div>
+											<!-- CONTRASENIA -->
+											<div class="col-12 col-md">
+												<label for="password">Contraseña</label> <input
+													type="password" class="form-control" id="password"
+													aria-describedby="emailHelp"
+													placeholder="Ingrese Contraseña" name="password" required>
 											</div>
 										</div>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<label for="usuario">Usuario</label> 
-											<input type="text" class="form-control" id="usuario" placeholder="Ingresa tu usuario" name="usuario" required>
-										</div>
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<label for="password">Contraseña</label> 
-											<input type="text" class="form-control" id="password" placeholder="Ingresa tu contraseña" name="password" required>
-										</div>
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<label for="telefono">Telefono</label> 
-											<input type="text" class="form-control" id="telefono" placeholder="Ingresa tu telefono" name="telefono" required>
-										</div>
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<label for="rol">Rol</label> 
-											<select class="form-select" name="rol" required>
-												<option value="1">Adminitrador</option>
-												<option value="2">Mesero</option>
-												<option value="3">Cajero</option>
-											</select>
+											<!-- CELULAR -->
+											<div class="col-6 col-md">
+												<label for="celular">Celular</label> <input type="text"
+													class="form-control" id="celular"
+													aria-describedby="emailHelp" placeholder="Ingrese Número"
+													name="celular" maxlength="9" required>
+											</div>
+											<!-- ROL-->
+											<div class="form-group mb-4 d-flex flex-wrap col-6 col-md">
+												<label for="rol">Rol</label> <select class="form-select"
+													aria-label="large select example" name="rol">
+													<option disabled>- Selecciona -</option>
+													<option value="1">Adminitrador</option>
+													<option value="2">Cocinero</option>
+													<option value="3">Mozo</option>
+												</select>
+											</div>
 										</div>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-											<button type="submit" class="btn btn-warning">Registrar</button>
+											<button type="button" class="btn btn-danger"
+												data-bs-dismiss="modal">Cerrar</button>
+											<button type="submit" class="btn btn-warning">Crear</button>
+
 										</div>
 									</form>
 								</div>
@@ -164,53 +162,98 @@
 									<button type="button" class="btn-close" data-bs-dismiss="modal"
 										aria-label="Close"></button>
 								</div>
+								<!-- MODAL PARA ESCRIBIR EL NUEVO VALOR -->
 								<div class="modal-body">
-									<form action="EditarUsuarios" method="post" class="needs-validation" novalidate>
-    									<input type="hidden" id="editId" name="id">
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div class="col-12 col-md">
-												<label for="nombre">Nombres</label> 
-												<input type="text" class="form-control" id="editNombre" placeholder="Ingresa tu nombre" name="nombre" required>
-											</div>
-											<div class="col-12 col-md">
-												<label for="apellidos">Apellidos</label>
-												<input type="text" class="form-control" id="editApellidos" placeholder="Ingresa tus apellidos" name="apellidos" required>
-											</div>
-										</div>
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<label for="usuario">Usuario</label> 
-											<input type="text" class="form-control" id="editUsuario" placeholder="Ingresa tu usuario" name="usuario" required>
-										</div>
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<label for="password">Contraseña</label> 
-											<input type="text" class="form-control" id="editPassword" placeholder="Ingresa tu contraseña" name="password" required>
-										</div>
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<label for="telefono">Telefono</label> 
-											<input type="text" class="form-control" id="editTelefono" placeholder="Ingresa tu telefono" name="telefono" required>
-										</div>
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<label for="rol">Rol</label> 
-											<select class="form-select" name="rol" id="editRol" required>
-												<option value="1">Adminitrador</option>
-												<option value="2">Mesero</option>
-												<option value="3">Cajero</option>
-											</select>
-										</div>
 
+									<form
+										action="${pageContext.request.contextPath}/SvEditarTrabajador"
+										method="POST" class="needs-validation" novalidate>
+
+										<input type="hidden" name="id" id="trabajadorIdForm_e">
+										<div class="form-group d-flex flex-wrap gap-2">
+											<!-- APELLIDO -->
+											<div
+												class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
+												<label for="apellidoE">Apellido</label> <input type="text"
+													class="form-control" id="apellidoE"
+													aria-describedby="emailHelp"
+													placeholder="Ingrese Apellidos" name="apellido" required>
+											</div>
+											<div
+												class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
+												<label for="nombreE">Nombre</label> <input type="text"
+													class="form-control" id="nombreE"
+													aria-describedby="emailHelp" placeholder="Ingrese Nombres"
+													name="nombre" required>
+											</div>
+										</div>
+										<!-- DNI -->
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<div class="col-12 col-md">
+												<label for="dniE">DNI</label> <input type="text"
+													class="form-control" id="dniE" aria-describedby="emailHelp"
+													placeholder="Ingrese DNI" maxlength="8" name="dni" required>
+
+											</div>
+											<!-- CORREO -->
+											<div class="col-12 col-md">
+
+												<label for="correoE">Correo</label> <input type="text"
+													class="form-control" id="correoE"
+													aria-describedby="emailHelp" placeholder="Ingrese Correo"
+													name="correo" required min="0">
+
+											</div>
+										</div>
+										<!-- NOMBRE DE USUARIO -->
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+
+											<div class="col-12 col-md">
+												<label for="usuarioE">Usuario</label> <input type="text"
+													class="form-control" id="usuarioE"
+													aria-describedby="emailHelp" placeholder="Ingrese Usuario"
+													name="usuario" required>
+											</div>
+											<!-- CONTRASENIA -->
+											<div class="col-12 col-md">
+												<label for="passwordE">Contraseña</label> <input
+													type="password" class="form-control" id="passwordE"
+													aria-describedby="emailHelp"
+													placeholder="Ingrese Contraseña" name="password" required>
+											</div>
+										</div>
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<!-- CELULAR -->
+											<div class="col-6 col-md">
+												<label for="celularE">Celular</label> <input type="text"
+													class="form-control" id="celularE"
+													aria-describedby="emailHelp" placeholder="Ingrese Número"
+													name="celular" maxlength="9" required>
+											</div>
+											<!-- ROL-->
+											<div class="form-group mb-4 d-flex flex-wrap col-6 col-md">
+												<label for="rolE">Rol</label> <select class="form-select"
+													aria-label="large select example" name="rol" id="rolE">
+													<option disabled>- Selecciona -</option>
+													<option value="1">Adminitrador</option>
+													<option value="2">Cocinero</option>
+													<option value="3">Mozo</option>
+												</select>
+											</div>
+										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-danger"
 												data-bs-dismiss="modal">Cerrar</button>
-											<button type="button" class="btn btn-warning" id="editarIdUsuario">Editar</button>
+											<button type="submit" class="btn btn-warning">Editar</button>
 										</div>
 									</form>
+
 								</div>
 							</div>
 						</div>
 					</div>
-
 					<!-- Modal de Eliminar -> recibir un data value -->
-					<div class="modal fade" id="staticBackdropUsuario"
+					<div class="modal fade" id="staticBackdrop"
 						data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
 						aria-labelledby="staticBackdropLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered">
@@ -220,71 +263,188 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body fw-medium fs-4">
-									 ¿Estás seguro de que deseas eliminar el usuario con ID <span id="modalIdEliminarUsuario"></span>?
+									¿Estás seguro de que deseas eliminar el usuario con ID <span
+										id="modalIdEliminarUsuario"></span>?
 								</div>
 								<div class="modal-footer">
-					                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-					                <button type="button" class="btn btn-danger" id="eliminarIdUsuario">Eliminar</button>
+
+									<button type="button" class="btn btn-warning"
+										data-bs-dismiss="modal">Cancelar</button>
+
+									<form
+										action="${pageContext.request.contextPath}/SvEliminarTrabajador"
+										method="POST">
+										<input type="hidden" name="id" id="trabajadorIdForm">
+										<!-- Campo oculto para enviar el id con JS -->
+
+										<button type="submit"
+											class="btn btn-danger d-flex align-items-center gap-2">
+											<i class="lni lni-trash-can"></i>Eliminar
+										</button>
+									</form>
+
 								</div>
 							</div>
 						</div>
 					</div>
+
+
+					<div class="table-responsive overflow-auto">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Código</th>
+									<th>Apellidos</th>
+									<th>Nombres</th>
+									<th>DNI</th>
+									<th>Correo</th>
+									<th>Usuario</th>
+									<th>Password</th>
+									<th>Celular</th>
+									<th>Rol</th>
+									<th></th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<%
+								if (trabajadores != null && !trabajadores.isEmpty()) {
+									for (Trabajador trabajador : trabajadores) {
+								%>
+
+								<tr>
+									<td><%=trabajador.getId()%></td>
+									<td><%=trabajador.getApellido()%></td>
+									<td><%=trabajador.getNombre()%></td>
+									<td><%=trabajador.getDni()%></td>
+									<td><%=trabajador.getCorreo()%></td>
+									<td><%=trabajador.getNombreUsuario()%></td>
+									<td><%=trabajador.getContrasenia()%></td>
+									<td><%=trabajador.getCelular()%></td>
+
+									<td><span class="estado-cancelado"><%=trabajador.getRol().getNombre()%></span></td>
+									<td>
+										<div
+											class="d-flex align-item-center justify-content-center gap-3">
+											<!-- Boton lapiz eliminar -->
+											<button class="icon-action btn_eliminar"
+												data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+												data-id="<%=trabajador.getId()%>">
+												<i class="lni lni-trash-can fs-4"></i>
+											</button>
+
+											<button class="icon-action btn_editar_input"
+												data-bs-toggle="modal" data-bs-target="#modalEdit"
+												data-id="<%=trabajador.getId()%>"
+												data-apellido="<%=trabajador.getApellido()%>"
+												data-nombre="<%=trabajador.getNombre()%>"
+												data-dni="<%=trabajador.getDni()%>"
+												data-correo="<%=trabajador.getCorreo()%>"
+												data-usuario="<%=trabajador.getNombreUsuario()%>"
+												data-pass="<%=trabajador.getContrasenia()%>"
+												data-celular="<%=trabajador.getCelular()%>"
+												data-id-rol="<%=trabajador.getRol()%>">
+												<i class="lni lni-pencil fs-4"></i>
+											</button>
+
+										</div>
+									</td>
+								</tr>
+								<%
+								}
+								} else {
+
+								out.write("No se registraron usuarios...");
+								System.out.println("No hay registros");
+								}
+								%>
+							</tbody>
+						</table>
+					</div>
+
 				</div>
 			</main>
 		</div>
 	</div>
+
+	<script
+		src="${pageContext.request.contextPath}/vista/administrador/usuarios/usuarios.js"></script>
+	<!--  
 	<script>
-	 // Modal de eliminación para usuarios
-    document
-        .getElementById('staticBackdropUsuario')
-        .addEventListener('show.bs.modal', function(event) {
-            const button = event.relatedTarget;
-            const id = button.getAttribute('data-id');
-            document.getElementById('modalIdEliminarUsuario').innerHTML = "#" + id;
+		// Modal de eliminación para usuarios
+		document
+				.getElementById('staticBackdropUsuario')
+				.addEventListener(
+						'show.bs.modal',
+						function(event) {
+							const button = event.relatedTarget;
+							const id = button.getAttribute('data-id');
+							document.getElementById('modalIdEliminarUsuario').innerHTML = "#"
+									+ id;
 
-            document
-                .getElementById('eliminarIdUsuario')
-                .addEventListener('click', function(event) {
-                    window.location.href = "/ProyectoRestauranteChino/EliminarUsuarios?id=" + id;
-                });
-        });
-	 
- // Modal de edición para usuarios
-    document
-        .getElementById('modalEdit')
-        .addEventListener('show.bs.modal', function(event) {
-            const button = event.relatedTarget;
-            const id = button.getAttribute('data-id');
-            let nombreUsuario = button.getAttribute('data-nombre');
-            let apellidoUsuario = button.getAttribute('data-apellido');
-            let usuario = button.getAttribute('data-usuario');
-            let telefonoUsuario = button.getAttribute('data-telefono');
-            let rolUsuario = button.getAttribute('data-rol');
+							document
+									.getElementById('eliminarIdUsuario')
+									.addEventListener(
+											'click',
+											function(event) {
+												window.location.href = "/ProyectoRestauranteChino/EliminarUsuarios?id="
+														+ id;
+											});
+						});
 
-            document.getElementById('editNombre').value = nombreUsuario;
-            document.getElementById('editApellidos').value = apellidoUsuario;
-            document.getElementById('editUsuario').value = usuario;
-            document.getElementById('editTelefono').value = telefonoUsuario;
-            document.getElementById('editRol').value = rolUsuario;
+		// Modal de edición para usuarios
+		document
+				.getElementById('modalEdit')
+				.addEventListener(
+						'show.bs.modal',
+						function(event) {
+							const button = event.relatedTarget;
+							const id = button.getAttribute('data-id');
+							let nombreUsuario = button
+									.getAttribute('data-nombre');
+							let apellidoUsuario = button
+									.getAttribute('data-apellido');
+							let usuario = button.getAttribute('data-usuario');
+							let telefonoUsuario = button
+									.getAttribute('data-telefono');
+							let rolUsuario = button.getAttribute('data-rol');
 
-            document
-                .getElementById('editarIdUsuario')
-                .addEventListener('click', function(event) {
-                	nombreUsuario = document.getElementById('editNombre').value;
-                	apellidoUsuario = document.getElementById('editApellidos').value;
-                	usuario = document.getElementById('editUsuario').value;
-                	telefonoUsuario = document.getElementById('editTelefono').value;
-                	rolUsuario = document.getElementById('editRol').value;
+							document.getElementById('editNombre').value = nombreUsuario;
+							document.getElementById('editApellidos').value = apellidoUsuario;
+							document.getElementById('editUsuario').value = usuario;
+							document.getElementById('editTelefono').value = telefonoUsuario;
+							document.getElementById('editRol').value = rolUsuario;
 
-                    window.location.href = "/ProyectoRestauranteChino/EditarUsuarios?id=" + id +
-                        "&nombre=" + nombreUsuario +
-                        "&apellido=" + apellidoUsuario +
-                        "&usuario=" + usuario +
-                        "&telefono=" + telefonoUsuario +
-                        "&rol=" + rolUsuario;
-                });
-        });
+							document
+									.getElementById('editarIdUsuario')
+									.addEventListener(
+											'click',
+											function(event) {
+												nombreUsuario = document
+														.getElementById('editNombre').value;
+												apellidoUsuario = document
+														.getElementById('editApellidos').value;
+												usuario = document
+														.getElementById('editUsuario').value;
+												telefonoUsuario = document
+														.getElementById('editTelefono').value;
+												rolUsuario = document
+														.getElementById('editRol').value;
+
+												window.location.href = "/ProyectoRestauranteChino/EditarUsuarios?id="
+														+ id
+														+ "&nombre="
+														+ nombreUsuario
+														+ "&apellido="
+														+ apellidoUsuario
+														+ "&usuario="
+														+ usuario
+														+ "&telefono="
+														+ telefonoUsuario
+														+ "&rol=" + rolUsuario;
+											});
+						});
 	</script>
-
+-->
 </body>
 </html>

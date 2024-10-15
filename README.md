@@ -1,6 +1,6 @@
 ## Creamos y nos ubicamos en la base de datos del restaurante
-create database restaurante;
-use restaurante;
+create database restaurante_chino;
+use restaurante_chino;
 
 ## Creamos las tablas respectivas
 
@@ -11,9 +11,11 @@ CREATE TABLE roles (
 );
 
 CREATE TABLE trabajadores (
-    codigo VARCHAR(4) PRIMARY KEY,
-    nombre VARCHAR(50),
+    id int AUTO_INCREMENT PRIMARY KEY,
     apellido VARCHAR(50),
+    nombre VARCHAR(50),
+    dni varchar(8),
+    correo VARCHAR(60),
     usuario VARCHAR(20),
     password BLOB,
     celular VARCHAR(9),
@@ -27,8 +29,8 @@ CREATE TABLE inventario (
     nombre VARCHAR(30),
     stock INT,
     stock_min INT,
-    id_trabajador VARCHAR(4), -- Cambiado a VARCHAR(4) para coincidir con el tipo de `codigo` en trabajadores
-    CONSTRAINT fk_trabajador FOREIGN KEY (id_trabajador) REFERENCES trabajadores(codigo) 
+    id_trabajador int, -- Cambiado a VARCHAR(4) para coincidir con el tipo de `codigo` en trabajadores
+    CONSTRAINT fk_trabajador FOREIGN KEY (id_trabajador) REFERENCES trabajadores(id) 
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -64,13 +66,15 @@ CREATE TABLE detalle_pedidos (
     cantidad INT,
     subtotal DECIMAL(10,2),
     id_pedido INT,
-    id_trabajador VARCHAR(4), -- Cambiado a VARCHAR(4) para coincidir con el tipo de `codigo` en trabajadores
-    CONSTRAINT fk_trabajador_dp FOREIGN KEY (id_trabajador) REFERENCES trabajadores(codigo) 
+    id_trabajador int, -- Cambiado a VARCHAR(4) para coincidir con el tipo de `codigo` en trabajadores
+    CONSTRAINT fk_trabajador_dp FOREIGN KEY (id_trabajador) REFERENCES trabajadores(id) 
         ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_pedido_dp FOREIGN KEY (id_pedido) REFERENCES pedidos(id) 
         ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_menu_dp FOREIGN KEY (id_menu) REFERENCES menu(id) 
         ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
 
 ```

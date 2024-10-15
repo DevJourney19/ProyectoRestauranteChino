@@ -10,7 +10,37 @@ import modelo.Trabajador;
 import util.Conexion;
 
 public class DaoUsuariosImpl implements DaoUsuarios {
-	
+
+	@Override
+	public List<Trabajador> consultar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean agregar(Trabajador objeto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean editar(Trabajador objeto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean eliminar(int codigo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Trabajador obtener(int codigo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	/*
 	Conexion con;
 	
 	public DaoUsuariosImpl() {
@@ -24,7 +54,7 @@ public class DaoUsuariosImpl implements DaoUsuarios {
         try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString()); ResultSet rs = ps.executeQuery();) {
             while (rs.next()) {
             	Trabajador trabajador = new Trabajador();
-            	trabajador.setCodigo(rs.getInt("id"));
+            	trabajador.setId(rs.getInt("id"));
                 trabajador.setNombre(rs.getString("nombre"));
                 trabajador.setApellido(rs.getString("apellido"));
                 trabajador.setNombreUsuario(rs.getString("usuario"));
@@ -110,7 +140,7 @@ public class DaoUsuariosImpl implements DaoUsuarios {
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     Trabajador trabajador = new Trabajador();
-                    trabajador.setCodigo(rs.getInt("id"));
+                    trabajador.setd(rs.getInt("id"));
                     trabajador.setNombre(rs.getString("nombre"));
                     trabajador.setApellido(rs.getString("apellido"));
                     trabajador.setNombreUsuario(rs.getString("usuario"));
@@ -124,4 +154,5 @@ public class DaoUsuariosImpl implements DaoUsuarios {
         }
         return null;
     }
+    */
 }

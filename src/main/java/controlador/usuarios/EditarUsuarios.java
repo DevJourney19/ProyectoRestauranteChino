@@ -6,10 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import Modelo.Trabajador;
-
+import modelo.Trabajador;
 import java.io.IOException;
-
 import datos.impl.DaoUsuariosImpl;
 
 @WebServlet(name = "EditarUsuarios", urlPatterns = {"/EditarUsuarios"})
@@ -41,21 +39,21 @@ public class EditarUsuarios extends HttpServlet {
 
         // Crear un objeto Trabajador con los nuevos datos
         Trabajador trabajador = new Trabajador();
-        trabajador.setCodigo(id);
+        trabajador.setId(id);
         trabajador.setNombre(nombre);
         trabajador.setApellido(apellido);
         trabajador.setNombreUsuario(usuario);
         trabajador.setCelular(telefono);
-        trabajador.setId_rol(rol);
+        //trabajador.setId_rol(rol);
 
         // Intentar actualizar el trabajador en la base de datos
-        if (daoUsuario.editarTrabajador(trabajador)) {
+        /*if (daoUsuario.editarTrabajador(trabajador)) {
             // Si la actualización es exitosa, redirigir a la lista de usuarios
             response.sendRedirect("AdmiUsuarios?status=actualizado");
         } else {
             // Si ocurre un error, redirigir con un mensaje de error
             response.sendRedirect("AdmiUsuarios?status=error");
-        }
+        }*/
     }
 }
 
