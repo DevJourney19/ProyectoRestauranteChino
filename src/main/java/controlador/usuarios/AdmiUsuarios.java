@@ -30,7 +30,7 @@ public class AdmiUsuarios extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DaoUsuariosImpl daoUsuarios = new DaoUsuariosImpl();
 		try {
-		    List<Trabajador> trabajadores = daoUsuarios.listarTrabajador();
+		    List<Trabajador> trabajadores = daoUsuarios.consultar();
 		    request.setAttribute("trabajador", trabajadores);
 		    RequestDispatcher rd = request.getRequestDispatcher("/vista/administrador/usuarios/usuarios.jsp");
 		    rd.forward(request, response);

@@ -9,11 +9,11 @@
 			<a href="#">NOCHE EN PEKÍN - 北京之夜</a>
 		</div>
 		<ul class="sidebar-nav p-0">
-			<li class="sidebar-item"><a href="../usuarios/usuarios.jsp"
+			<li class="sidebar-item"><a href="AdmiUsuarios"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-users"></i> <span>Usuarios</span>
 			</a></li>
-			<li class="sidebar-item"><a href="../menu/menu.jsp"
+			<li class="sidebar-item"><a href="AdmiMenu"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-service"></i> <span>Menu</span>
 			</a></li>
@@ -35,7 +35,7 @@
 		</ul>
 
 		<div class="sidebar-footer">
-			<a href="../../login.jsp"
+			<a href="./vista/login.jsp"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 				class="lni lni-exit"></i> <span>Salir</span>
 			</a>

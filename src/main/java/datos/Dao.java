@@ -9,10 +9,3 @@ public interface Dao<T> {
 	public T obtener(int codigo);
 }
 
-public interface Dao<U> {
-	public List<U> listarTrabajador();
-	public boolean agregarTrabajador(U objeto, String passwordPlano);
-	public boolean editarTrabajador(U objeto);
-	public boolean eliminarTrabajador(int codigo);
-	public U obtenerTrabajador(int codigo);
-}

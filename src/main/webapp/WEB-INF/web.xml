@@ -79,4 +79,24 @@
     <servlet-name>AgregarPedido</servlet-name>
     <url-pattern>/AgregarPedido</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdmiMenu</display-name>
+    <servlet-name>AdmiMenu</servlet-name>
+    <servlet-class>controlador.menu.AdmiMenu</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdmiMenu</servlet-name>
+    <url-pattern>/AdmiMenu</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BuscarMenu</display-name>
+    <servlet-name>BuscarMenu</servlet-name>
+    <servlet-class>controlador.menu.BuscarMenu</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BuscarMenu</servlet-name>
+    <url-pattern>/BuscarMenu</url-pattern>
+  </servlet-mapping>
 </web-app>

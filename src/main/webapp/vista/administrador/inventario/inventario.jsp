@@ -11,7 +11,8 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="inventario.css">
+<link rel="stylesheet"
+	href="vista/administrador/inventario/inventario.css">
 
 <%@ include file="../fragmentos/head.jsp"%>
 <title>ADMIN | INVENTARIO</title>
@@ -58,32 +59,35 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-									<form action="" class="needs-validation" novalidate>
+									<form action="AgregarInventario" class="needs-validation"
+										novalidate>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div class="col-12 col-md">
-												<label for="familia">Categoria</label>
-												<select id="familia"
-													name="familia" class="form-select"
-													aria-label="Default select example">
-												<option selected>Selecciona categoria</option>
-												<%
-												List<Categoria> listaCategorias = (List<Categoria>) categorias;
-												for(Categoria categoria: listaCategorias) {%>
-
-												<option value="<%=categoria.getId()%>"><%=categoria.getNombre()%></option>
-												<%} %>
-												</select>	
-											</div>
 											<div class="col-12 col-md">
 												<label for="producto">Producto</label> <input type="text"
 													class="form-control" id="producto" name="producto" required>
 											</div>
+											<div class="col-12 col-md">
+												<label for="familia">Categoria</label> <select id="familia"
+													name="familia" class="form-select"
+													aria-label="Default select example">
+													<option selected>Selecciona categoria</option>
+													<%
+													List<Categoria> listaCategorias = (List<Categoria>) categorias;
+													for (Categoria categoria : listaCategorias) {
+													%>
+
+													<option value="<%=categoria.getId()%>"><%=categoria.getNombre()%></option>
+													<%
+													}
+													%>
+												</select>
+											</div>
 										</div>
 
-										<div class="my-3">
+										<!-- <div class="my-3">
 											<label for="formFile" class="form-label">Elegir una
 												imagen</label> <input class="form-control" type="file" id="formFile">
-										</div>
+										</div>-->
 
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<div class="col-12 col-md">
@@ -91,9 +95,13 @@
 													name="unidad" class="form-select"
 													aria-label="Default select example">
 													<option selected>Selecciona unidad</option>
-													<%for(Inventario.Unidad unidad: Inventario.Unidad.values()) {%>
+													<%
+													for (Inventario.Unidad unidad : Inventario.Unidad.values()) {
+													%>
 													<option value="<%=unidad%>"><%=unidad%></option>
-													<%} %>
+													<%
+													}
+													%>
 												</select>
 											</div>
 											<div class="col-12 col-md">
@@ -126,9 +134,9 @@
 
 
 											<div class="col-12 col-md">
-												<label for="dias_caducidad">Días de Caducidad:</label> <input
-													type="text" class="form-control" id="dias_caducidad"
-													name="dias_caducidad" required>
+												<label for="dias_caducidad">Días de Caducidad</label> <input
+													type="date" class="form-control" id="dias_caducidad"
+													name="dias_caducidad" placeholder="yyyy-MM-dd" required>
 											</div>
 										</div>
 
@@ -157,7 +165,6 @@
 									<th>Stock</th>
 									<th>Stock Mínimo</th>
 									<th>Caducidad</th>
-									<th>Trabajador</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -185,17 +192,18 @@
 									<td><%=producto.getStock()%></td>
 									<td class="<%=estado%>"><%=producto.getStockMin()%></td>
 									<td><%=producto.getCaducidad()%></td>
-									<td></td>
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
 											<button data-id="<%=producto.getId()%>" class="icon-action"
-												data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+												data-bs-toggle="modal"
+												data-bs-target="#staticBackdropInventario">
 												<i class="lni lni-trash-can fs-4"></i>
 											</button>
 											<!-- Abrir Modal Editar -->
 											<button data-id="<%=producto.getId()%>"
 												data-nombre="<%=producto.getNombre()%>"
+												data-categoria="<%=producto.getCategoria().getId()%>"
 												data-unidad="<%=producto.getUnidad()%>"
 												data-precio="<%=producto.getPrecioUnitario()%>"
 												data-inventario-inicial="<%=producto.getInventarioInicial()%>"
@@ -203,7 +211,7 @@
 												data-stock-min="<%=producto.getStockMin()%>"
 												data-caducidad="<%=producto.getCaducidad()%>"
 												class="icon-action" data-bs-toggle="modal"
-												data-bs-target="#modalEdit">
+												data-bs-target="#modalEditInventario">
 												<i class="lni lni-pencil fs-4"></i>
 											</button>
 										</div>
@@ -219,7 +227,7 @@
 						<div class="modal fade" id="staticBackdropInventario"
 							tabindex="-1" aria-labelledby="staticBackdropLabel"
 							aria-hidden="true">
-							<div class="modal-dialog">
+							<div class="modal-dialog-centered modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
 										<h5 class="modal-title" id="staticBackdropLabel">Eliminar
@@ -227,14 +235,14 @@
 										<button type="button" class="btn-close"
 											data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
-									<div class="modal-body">
+									<div class="modal-body fw-medium fs-4">
 										¿Estás seguro de que deseas eliminar el producto con ID <span
 											id="modalIdEliminarInventario"></span>?
 									</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary"
-											data-bs-dismiss="modal">Cerrar</button>
 										<button type="button" class="btn btn-danger"
+											data-bs-dismiss="modal">Cerrar</button>
+										<button type="button" class="btn btn-warning"
 											id="eliminarIdInventario">Eliminar</button>
 									</div>
 								</div>
@@ -253,49 +261,71 @@
 											data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
 									<div class="modal-body">
-										<form>
 											<div class="mb-3">
-												<label for="editNombreProducto" class="form-label">Nombre
-													del Producto</label> <input type="text" class="form-control"
+												<label for="editNombreProducto" class="form-label">Nombre</label>
+												<input type="text" class="form-control"
 													id="editNombreProducto">
 											</div>
 											<div class="mb-3">
-												<label for="editUnidad" class="form-label">Unidad</label> <input
-													type="text" class="form-control" id="editUnidad">
+												<label for="editCategoria">Categoria</label> <select id="editCategoria"
+													name="editCategoria" class="form-select"
+													aria-label="Default select example">
+													<option selected>Selecciona categoria</option>
+													<%
+													for (Categoria categoria : listaCategorias) {
+													%>
+													<option value="<%=categoria.getId()%>"><%=categoria.getNombre()%></option>
+													<%
+													}
+													%>
+												</select>
 											</div>
 											<div class="mb-3">
-												<label for="editPrecioUnitario" class="form-label">Precio
-													Unitario</label> <input type="number" class="form-control"
-													id="editPrecioUnitario">
+												<label for="editUnidad">Unidad</label> <select id="editUnidad"
+													name="editUnidad" class="form-select"
+													aria-label="Default select example">
+													<option selected>Selecciona unidad</option>
+													<%
+													for (Inventario.Unidad unidad : Inventario.Unidad.values()) {
+													%>
+													<option value="<%=unidad%>"><%=unidad%></option>
+													<%
+													}
+													%>
+												</select>
 											</div>
-											<div class="mb-3">
-												<label for="editInventarioInicial" class="form-label">Inventario
-													Inicial</label> <input type="number" class="form-control"
-													id="editInventarioInicial">
+											<div class="form-group mb-4 d-flex flex-wrap gap-2">
+												<div class="col-12 col-md">
+													<label for="editPrecioUnitario" class="form-label">Precio
+														Unitario</label> <input type="number" class="form-control"
+														id="editPrecioUnitario">
+												</div>
+												<div class="col-12 col-md">
+													<label for="editInventarioInicial" class="form-label">Inventario
+														Inicial</label> <input type="number" class="form-control"
+														id="editInventarioInicial">
+												</div>
 											</div>
-											<div class="mb-3">
-												<label for="editStock" class="form-label">Stock</label> <input
-													type="number" class="form-control" id="editStock">
-											</div>
-											<div class="mb-3">
-												<label for="editStockMinimo" class="form-label">Stock
-													Mínimo</label> <input type="number" class="form-control"
-													id="editStockMinimo">
+											<div class="form-group mb-4 d-flex flex-wrap gap-2">
+												<div class="col-12 col-md">
+													<label for="editStock" class="form-label">Stock</label> <input
+														type="number" class="form-control" id="editStock">
+												</div>
+												<div class="col-12 col-md">
+													<label for="editStockMinimo" class="form-label">Stock
+														Mínimo</label> <input type="number" class="form-control"
+														id="editStockMinimo">
+												</div>
 											</div>
 											<div class="mb-3">
 												<label for="editCaducidad" class="form-label">Caducidad</label>
 												<input type="date" class="form-control" id="editCaducidad">
 											</div>
-											<div class="mb-3">
-												<label for="editEstado" class="form-label">Estado</label> <input
-													type="text" class="form-control" id="editEstado">
-											</div>
-										</form>
 									</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary"
+										<button type="button" class="btn btn-danger"
 											data-bs-dismiss="modal">Cerrar</button>
-										<button type="button" class="btn btn-primary"
+										<button type="button" class="btn btn-warning"
 											id="editarIdInventario">Guardar Cambios</button>
 									</div>
 								</div>
@@ -314,10 +344,8 @@
 
         if (mensaje) {
             alert(mensaje);
-
             // Eliminar el parámetro 'mensaje' de la URL
             urlParams.delete('mensaje');
-
             // Actualizar la URL sin recargar la página
             window.history.replaceState({}, document.title, window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : ''));
         }
@@ -358,13 +386,13 @@
 							let precioUnitario = button
 									.getAttribute('data-precio');
 							let inventarioInicial = button
-									.getAttribute('data-inventario');
+									.getAttribute('data-inventario-inicial');
 							let stock = button.getAttribute('data-stock');
 							let stockMinimo = button
-									.getAttribute('data-stock-minimo');
+									.getAttribute('data-stock-min');
 							let caducidad = button
 									.getAttribute('data-caducidad');
-							let estado = button.getAttribute('data-estado');
+							let categoria = button.getAttribute('data-categoria');
 
 							document.getElementById('editNombreProducto').value = nombreProducto;
 							document.getElementById('editUnidad').value = unidad;
@@ -373,7 +401,7 @@
 							document.getElementById('editStock').value = stock;
 							document.getElementById('editStockMinimo').value = stockMinimo;
 							document.getElementById('editCaducidad').value = caducidad;
-							document.getElementById('editEstado').value = estado;
+							document.getElementById('editCategoria').value = categoria;
 
 							document
 									.getElementById('editarIdInventario')
@@ -395,7 +423,7 @@
 												caducidad = document
 														.getElementById('editCaducidad').value;
 												estado = document
-														.getElementById('editEstado').value;
+														.getElementById('editCategoria').value;
 
 												window.location.href = "/ProyectoRestauranteChino/EditarInventario?id="
 														+ id
@@ -413,7 +441,7 @@
 														+ stockMinimo
 														+ "&caducidad="
 														+ caducidad
-														+ "&estado=" + estado;
+														+ "&categoria=" + categoria;
 											});
 						});
 	</script>

@@ -14,7 +14,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script defer
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-	<%@page import="Modelo.Trabajador"%>
+	<%@page import="modelo.Trabajador"%>
 <title>Noche en Pekin | Login</title>
 </head>
 <body>
@@ -24,7 +24,7 @@
 			<p>Completa tus credenciales para ingresar al panel
 				administrativo de tu restaurante.</p>
 
-			<form action="${pageContext.request.contextPath}/loginControlador" method="post">
+			<form action="../LoginControlador" method="post">
                 <label for="usuario">Usuario</label><br>
                 <input type="text" name="usuario" id="usuario" placeholder="MO001"><br>
 

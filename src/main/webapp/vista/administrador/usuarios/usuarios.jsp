@@ -1,11 +1,11 @@
-<%@page import="Modelo.Trabajador"%>
+<%@page import="modelo.Trabajador"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/Vista/administrador/usuarios/usuarios.css">
+<link rel="stylesheet" href="vista/administrador/usuarios/usuarios.css">
 <%@ include file="../fragmentos/head.jsp"%>
 <title>ADMIN | USUARIOS</title>
 </head>

@@ -1,4 +1,4 @@
-package Modelo;
+package modelo;
 
 public class Trabajador {
 	private int codigo;

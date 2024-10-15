@@ -16,7 +16,6 @@ public class Inventario {
 	private int stock;
 	private int stockMin;
 	private LocalDate caducidad;
-	private Trabajador trabajador;
 
 	public int getId() {
 		return id;
@@ -90,15 +89,22 @@ public class Inventario {
 		this.caducidad = localDate;
 	}
 
-	public Trabajador getTrabajador() {
-		return trabajador;
-	}
-
-	public void setTrabajador(Trabajador trabajador) {
-		this.trabajador = trabajador;
-	}
-
 	public Inventario() {
 	}
 
-}
+	public Inventario(int id, Categoria categoria, String nombre, Unidad unidad, double precioUnitario,
+			int inventarioInicial, int stock, int stockMin, LocalDate caducidad) {
+		super();
+		this.id = id;
+		this.categoria = categoria;
+		this.nombre = nombre;
+		this.unidad = unidad;
+		this.precioUnitario = precioUnitario;
+		this.inventarioInicial = inventarioInicial;
+		this.stock = stock;
+		this.stockMin = stockMin;
+		this.caducidad = caducidad;
+	}
+	
+	
+	}

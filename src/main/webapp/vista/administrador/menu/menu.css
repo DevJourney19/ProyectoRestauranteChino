@@ -70,6 +70,10 @@
 	background-color: rgb(1,167,79,12%);
 }
 
+.en-venta::before{
+	background-color:var(--verde);
+}
+
 .desactivado{
 	color:var(--rojo);
 	background-color: rgb(213,24,24,12%);
@@ -88,6 +92,14 @@
 	gap:20px;
 	padding:2px 5px;
 	border-radius:20px;
+}
+
+.en-venta::before, .desactivado::before{
+	content:"";
+	height:10px;
+	width:10px;
+	display:flex;
+	border-radius:99%;
 }
 
 .regresar{
