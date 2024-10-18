@@ -1,12 +1,10 @@
-<<<<<<< HEAD
+
 
 <%@page import="modelo.Trabajador"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-=======
-<%@page import="modelo.Trabajador"%>
->>>>>>> fefcba15469fc63022a8707df068a0e6a4a80892
+
 <%@page import="java.util.List"%>
 <%@page import="modelo.Trabajador"%>
 
@@ -14,14 +12,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
+
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/vista/administrador/usuarios/usuarios.css">
 
-=======
-<link rel="stylesheet" href="vista/administrador/usuarios/usuarios.css">
->>>>>>> fefcba15469fc63022a8707df068a0e6a4a80892
+
 <%@ include file="../fragmentos/head.jsp"%>
 
 <title>ADMIN | USUARIOS</title>
@@ -369,82 +365,6 @@
 
 	<script
 		src="${pageContext.request.contextPath}/vista/administrador/usuarios/usuarios.js"></script>
-	<!--  
-	<script>
-		// Modal de eliminación para usuarios
-		document
-				.getElementById('staticBackdropUsuario')
-				.addEventListener(
-						'show.bs.modal',
-						function(event) {
-							const button = event.relatedTarget;
-							const id = button.getAttribute('data-id');
-							document.getElementById('modalIdEliminarUsuario').innerHTML = "#"
-									+ id;
 
-							document
-									.getElementById('eliminarIdUsuario')
-									.addEventListener(
-											'click',
-											function(event) {
-												window.location.href = "/ProyectoRestauranteChino/EliminarUsuarios?id="
-														+ id;
-											});
-						});
-
-		// Modal de edición para usuarios
-		document
-				.getElementById('modalEdit')
-				.addEventListener(
-						'show.bs.modal',
-						function(event) {
-							const button = event.relatedTarget;
-							const id = button.getAttribute('data-id');
-							let nombreUsuario = button
-									.getAttribute('data-nombre');
-							let apellidoUsuario = button
-									.getAttribute('data-apellido');
-							let usuario = button.getAttribute('data-usuario');
-							let telefonoUsuario = button
-									.getAttribute('data-telefono');
-							let rolUsuario = button.getAttribute('data-rol');
-
-							document.getElementById('editNombre').value = nombreUsuario;
-							document.getElementById('editApellidos').value = apellidoUsuario;
-							document.getElementById('editUsuario').value = usuario;
-							document.getElementById('editTelefono').value = telefonoUsuario;
-							document.getElementById('editRol').value = rolUsuario;
-
-							document
-									.getElementById('editarIdUsuario')
-									.addEventListener(
-											'click',
-											function(event) {
-												nombreUsuario = document
-														.getElementById('editNombre').value;
-												apellidoUsuario = document
-														.getElementById('editApellidos').value;
-												usuario = document
-														.getElementById('editUsuario').value;
-												telefonoUsuario = document
-														.getElementById('editTelefono').value;
-												rolUsuario = document
-														.getElementById('editRol').value;
-
-												window.location.href = "/ProyectoRestauranteChino/EditarUsuarios?id="
-														+ id
-														+ "&nombre="
-														+ nombreUsuario
-														+ "&apellido="
-														+ apellidoUsuario
-														+ "&usuario="
-														+ usuario
-														+ "&telefono="
-														+ telefonoUsuario
-														+ "&rol=" + rolUsuario;
-											});
-						});
-	</script>
--->
 </body>
 </html>

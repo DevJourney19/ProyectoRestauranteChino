@@ -29,7 +29,7 @@ public class AgregarMesa extends HttpServlet {
 		Mesa mesa = new Mesa();
 	    String numSalon = request.getParameter("numSalon");
 	    String numMesa = request.getParameter("numMesa");
-		if(numSalon != null && numMesa != null) {
+		if(!numSalon.isEmpty() && !numMesa.isEmpty()  ) {
 			mesa.setN_salon(Integer.parseInt(numSalon));
 			mesa.setN_mesa(Integer.parseInt(numMesa));
 			if(daoMesa.agregar(mesa)) {

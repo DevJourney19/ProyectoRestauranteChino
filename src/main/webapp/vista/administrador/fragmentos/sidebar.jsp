@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-	
+
+
 <div class="d-flex">
 
 	<aside id="sidebar" class="sidebar-toggle">
@@ -9,11 +9,9 @@
 			<a href="#">NOCHE EN PEKÍN - 北京之夜</a>
 		</div>
 		<ul class="sidebar-nav p-0">
-<<<<<<< HEAD
-			<li class="sidebar-item"><a href="${pageContext.request.contextPath}/SvConsultarTrabajador"
-=======
-			<li class="sidebar-item"><a href="AdmiUsuarios"
->>>>>>> fefcba15469fc63022a8707df068a0e6a4a80892
+
+			<li class="sidebar-item"><a
+				href="${pageContext.request.contextPath}/SvConsultarTrabajador"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-users"></i> <span>Usuarios</span>
 			</a></li>
@@ -21,12 +19,8 @@
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-service"></i> <span>Menu</span>
 			</a></li>
-<<<<<<< HEAD
-			<!-- Hay que convertir a rutas absolutas, en este caso ya está absoluto pero hay que cambiarlo por la url del servlet-->
-			<li class="sidebar-item"><a href="${pageContext.request.contextPath}/vista/administrador/inventario/inventario.jsp"
-=======
+
 			<li class="sidebar-item"><a href="AdmiInventario"
->>>>>>> fefcba15469fc63022a8707df068a0e6a4a80892
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-agenda"></i> <span>Inventario</span>
 			</a></li>
@@ -38,29 +32,15 @@
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-airtable"></i> <span>Mesas</span>
 			</a></li>
-<<<<<<< HEAD
-			<!-- <li class="sidebar-item"><a href="#" class="sidebar-link d-flex align-items-center gap-2">
-						<i class="lni lni-stats-up"></i> <span>Reportes</span>
-				</a></li> -->
-			<!--<li class="m-5">
-				<div class="form-check form-switch">
-		  			<input class="check-modo-nocturno form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
-		  			<label class="form-check-label text-light" for="flexSwitchCheckChecked">Modo nocturno</label>
-				</div>
-			</li>-->
-		</ul>
 
-		<div class="sidebar-footer">
-			<a href="${pageContext.request.contextPath}/vista/login.jsp"
-=======
 			<li class="sidebar-item"><a href="AdmiCategoria"
-				class="sidebar-link d-flex align-items-center gap-2"> <i class="lni lni-layers"></i> <span>Categorias</span>
+				class="sidebar-link d-flex align-items-center gap-2"> <i
+					class="lni lni-layers"></i> <span>Categorias</span>
 			</a></li>
 		</ul>
 
 		<div class="sidebar-footer">
 			<a href="./vista/login.jsp"
->>>>>>> fefcba15469fc63022a8707df068a0e6a4a80892
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 				class="lni lni-exit"></i> <span>Salir</span>
 			</a>

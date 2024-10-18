@@ -51,9 +51,22 @@ public class DaoMenuImpl implements DaoMenu{
 	}
 
 	@Override
-	public boolean agregar(Menu objeto) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean agregar(Menu menu) {
+		String sql = "INSERT INTO menu (nombre, descripcion, precio, id_categoria) VALUES (null, ?, ?, ?, ?)";
+        try (Connection conn = con.getConexion();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setString(1, menu.getNombre());
+            pstmt.setString(2, menu.getDescripcion());
+            pstmt.setDouble(3, menu.getPrecio());
+            //pstmt.setInt(4, menu.getIdCategoria());
+            
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
 	}
 
 	@Override

@@ -29,7 +29,7 @@ public class AgregarCategoria extends HttpServlet {
 		Categoria categoria = new Categoria();
 	    String nombre = request.getParameter("nombre");
 	    String tipo = request.getParameter("tipo");
-		if(nombre != "" && tipo != null && "Selecciona el tipo".equals(tipo)) {
+		if(nombre != "" && tipo != null && !("Selecciona el tipo".equals(tipo))) {
 			categoria.setNombre(nombre);
 			categoria.setTipo(Categoria.TipoCategoria.valueOf(tipo));
 			if(daoCategoria.agregar(categoria)) {
