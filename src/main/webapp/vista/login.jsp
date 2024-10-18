@@ -24,7 +24,7 @@
 			<p>Completa tus credenciales para ingresar al panel
 				administrativo de tu restaurante.</p>
 
-			<form action="../LoginControlador" method="post">
+			<form action="${pageContext.request.contextPath}/LoginControlador">
                 <label for="usuario">Usuario</label><br>
                 <input type="text" name="usuario" id="usuario" placeholder="MO001"><br>
 
@@ -39,7 +39,6 @@
 			<img src="img/login.jpg" alt="Food">
 		</div>
 	</div>
-
 
 </body>
 </html>

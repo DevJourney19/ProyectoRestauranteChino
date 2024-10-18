@@ -58,12 +58,11 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-
-									<!-- Solucionar problema de url -->
+				
 									<form
 										action="${pageContext.request.contextPath}/SvAgregarTrabajador"
 										class="needs-validation" novalidate method="POST">
-
+	
 										<div class="form-group d-flex flex-wrap gap-2">
 											<!-- NOMBRE -->
 											<div

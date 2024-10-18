@@ -28,7 +28,7 @@ import util.Conexion;
 
 //La interface Mozo_dao trae tanto sus metodos específicos, como los que extiende.
 public class DaoTrabajadorImpl implements DaoTrabajador {
-
+	
 	Conexion con;
 	PreparedStatement ps;
 	ResultSet rs;
@@ -37,7 +37,6 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 	public DaoTrabajadorImpl() {
 		con = new Conexion();
 	}
-
 
 	// Absolutamente todos los trabajadores
 	@Override
@@ -77,6 +76,8 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 			for (int i = 1; i < valorsitos.length; i++) {
 				ps.setString((i), valorsitos[i]);
 			}
+			String passHash = BCrypt.hashpw(valorsitos[5], BCrypt.gensalt()); // Generar el Hash
+			ps.setString(6, passHash);
 			ps.setInt(8, id_rol);
 			// Ejecutamos la consulta correspondiente
 			ps.executeUpdate();
@@ -195,34 +196,32 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 	/* LOGIN TRABAJADOR */
 	public Trabajador validarUsuario(String usuario, String password) {
 		Trabajador trabajador = null;
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-
+		
+		ps = null;
+		rs = null;
+		
+		String sql = "SELECT * FROM trabajadores WHERE usuario = ?";
 		try {
-			conn = con.getConexion();
-			if (conn == null) {
-				throw new SQLException("No se pudo establecer la conexión a la base de datos");
-			}
-
-			String sql = "SELECT * FROM trabajadores WHERE usuario = ?";
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, usuario);
-			rs = stmt.executeQuery();
+			ps = con.getConexion().prepareStatement(sql);
+			ps.setString(1, usuario);
+			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				byte[] storedHash = rs.getBytes("password");
-				if (storedHash != null) {
-					String storedHashStr = new String(storedHash, StandardCharsets.UTF_8);
-
-					if (BCrypt.checkpw(password, storedHashStr)) {
+				//Pass obtenida de la bd
+				String pass_bd = rs.getString("password");
+				if (pass_bd != null && BCrypt.checkpw(password, pass_bd)) {
+					
+					if (BCrypt.checkpw(password, pass_bd)) {
 						trabajador = new Trabajador();
 						trabajador.setId(rs.getInt("id"));
 						trabajador.setNombre(rs.getString("nombre"));
 						trabajador.setApellido(rs.getString("apellido"));
 						trabajador.setNombreUsuario(rs.getString("usuario"));
 						// trabajador.setId_rol(rs.getInt("id_rol"));
-						trabajador.setCelular(rs.getString("telefono"));
+						trabajador.setCelular(rs.getString("celular"));
+					}else {
+						//La contraseña es incorrecta
+						System.out.println("La contraseña es incorrecta");
 					}
 
 				}
@@ -234,7 +233,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 			System.err.println("Error general en validarUsuario: " + e.getMessage());
 			e.printStackTrace();
 		} finally {
-			cerrarRecursos(conn, stmt, rs);
+			cerrarRecursos(ps, rs);
 		}
 
 		return trabajador;
@@ -266,26 +265,24 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 			System.err.println("Error SQL en obtenerRol: " + e.getMessage());
 			e.printStackTrace();
 		} finally {
-			cerrarRecursos(conn, ps, rs);
+			cerrarRecursos( ps, rs);
 		}
 
 		return rol;
 	}
 
-	private void cerrarRecursos(Connection conn, PreparedStatement ps, ResultSet rs) {
+	private void cerrarRecursos(PreparedStatement ps, ResultSet rs) {
 		try {
 			if (rs != null)
 				rs.close();
 			if (ps != null)
 				ps.close();
-			if (conn != null)
-				conn.close();
+			
 		} catch (SQLException e) {
 			System.err.println("Error al cerrar recursos: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
-
 
 	@Override
 	public boolean agregarTrabajador(Trabajador objeto, String passwordPlano) {
