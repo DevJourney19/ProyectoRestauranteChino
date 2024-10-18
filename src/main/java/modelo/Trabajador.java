@@ -12,21 +12,6 @@ public class Trabajador {
 	private Rol rol;
 	private int id_rol;
 
-	public Trabajador() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public Trabajador(int id, String nombre, String apellido, int id_rol, String celular, String nombreUsuario,
-			String contrasenia) {
-		this.id = id;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.id_rol = id_rol;
-		this.celular = celular;
-		this.nombreUsuario = nombreUsuario;
-		this.contrasenia = contrasenia;
-	}
-
 	public int getId() {
 		return id;
 	}
