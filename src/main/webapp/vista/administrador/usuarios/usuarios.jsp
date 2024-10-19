@@ -294,7 +294,7 @@
 									<th>DNI</th>
 									<th>Correo</th>
 									<th>Usuario</th>
-									<th>Password</th>
+									
 									<th>Celular</th>
 									<th>Rol</th>
 									<th></th>
@@ -314,7 +314,7 @@
 									<td><%=trabajador.getDni()%></td>
 									<td><%=trabajador.getCorreo()%></td>
 									<td><%=trabajador.getNombreUsuario()%></td>
-									<td><%=trabajador.getContrasenia()%></td>
+									
 									<td><%=trabajador.getCelular()%></td>
 
 									<td><span class="estado-cancelado"><%=trabajador.getRol().getNombre()%></span></td>
@@ -336,7 +336,7 @@
 												data-dni="<%=trabajador.getDni()%>"
 												data-correo="<%=trabajador.getCorreo()%>"
 												data-usuario="<%=trabajador.getNombreUsuario()%>"
-												data-pass="<%=trabajador.getContrasenia()%>"
+												
 												data-celular="<%=trabajador.getCelular()%>"
 												data-id-rol="<%=trabajador.getRol()%>">
 												<i class="lni lni-pencil fs-4"></i>

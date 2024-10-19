@@ -28,7 +28,7 @@ import util.Conexion;
 
 //La interface Mozo_dao trae tanto sus metodos específicos, como los que extiende.
 public class DaoTrabajadorImpl implements DaoTrabajador {
-	
+
 	Conexion con;
 	PreparedStatement ps;
 	ResultSet rs;
@@ -76,7 +76,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 			for (int i = 1; i < valorsitos.length; i++) {
 				ps.setString((i), valorsitos[i]);
 			}
-			String passHash = BCrypt.hashpw(valorsitos[5], BCrypt.gensalt()); // Generar el Hash
+			String passHash = BCrypt.hashpw(valorsitos[6], BCrypt.gensalt()); // Generar el Hash
 			ps.setString(6, passHash);
 			ps.setInt(8, id_rol);
 			// Ejecutamos la consulta correspondiente
@@ -196,10 +196,10 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 	/* LOGIN TRABAJADOR */
 	public Trabajador validarUsuario(String usuario, String password) {
 		Trabajador trabajador = null;
-		
+
 		ps = null;
 		rs = null;
-		
+
 		String sql = "SELECT * FROM trabajadores WHERE usuario = ?";
 		try {
 			ps = con.getConexion().prepareStatement(sql);
@@ -207,26 +207,32 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				//Pass obtenida de la bd
+				
+				// Pass obtenida de la bd
 				String pass_bd = rs.getString("password");
+				System.out.println("Contraseña ingresada: " + password);
+				System.out.println("Contraseña cifrada (BD): " + pass_bd);
+				System.out.println("¿Las contraseñas coinciden? " + BCrypt.checkpw(password, pass_bd));
+				/*Se utilizará la salt de pass_bd para poder convertir password a hash y poder verificar si son iguales*/
 				if (pass_bd != null && BCrypt.checkpw(password, pass_bd)) {
-					
-					if (BCrypt.checkpw(password, pass_bd)) {
-						trabajador = new Trabajador();
-						trabajador.setId(rs.getInt("id"));
-						trabajador.setNombre(rs.getString("nombre"));
-						trabajador.setApellido(rs.getString("apellido"));
-						trabajador.setNombreUsuario(rs.getString("usuario"));
-						// trabajador.setId_rol(rs.getInt("id_rol"));
-						trabajador.setCelular(rs.getString("celular"));
-					}else {
-						//La contraseña es incorrecta
-						System.out.println("La contraseña es incorrecta");
-					}
-
+					trabajador = new Trabajador();
+					trabajador.setId(rs.getInt("id"));
+					trabajador.setNombre(rs.getString("nombre"));
+					trabajador.setApellido(rs.getString("apellido"));
+					trabajador.setNombreUsuario(rs.getString("usuario"));
+					trabajador.setId_rol(rs.getInt("id_rol"));
+					trabajador.setCelular(rs.getString("celular"));
+				} else {
+					System.out.println("La contraseña es incorrecta");
+					return null;
 				}
+			} else {
+				System.out.println("Usuario no encontrado");
+				return null;
 			}
-		} catch (SQLException e) {
+			return trabajador;
+		} catch (
+		SQLException e) {
 			System.err.println("Error SQL en validarUsuario: " + e.getMessage());
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -265,7 +271,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 			System.err.println("Error SQL en obtenerRol: " + e.getMessage());
 			e.printStackTrace();
 		} finally {
-			cerrarRecursos( ps, rs);
+			cerrarRecursos(ps, rs);
 		}
 
 		return rol;
@@ -277,7 +283,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 				rs.close();
 			if (ps != null)
 				ps.close();
-			
+
 		} catch (SQLException e) {
 			System.err.println("Error al cerrar recursos: " + e.getMessage());
 			e.printStackTrace();

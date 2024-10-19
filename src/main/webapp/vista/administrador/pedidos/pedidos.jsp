@@ -11,7 +11,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="vista/administrador/pedidos/pedidos.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/vista/administrador/pedidos/pedidos.css">
 <%@ include file="../fragmentos/head.jsp"%>
 <title>ADMIN | PEDIDOS</title>
 </head>
@@ -49,7 +50,8 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-									<form action="AgregarPedido" class="needs-validation" novalidate>
+									<form action="AgregarPedido" class="needs-validation"
+										novalidate>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<label for="cliente">DNI Cliente</label> <input type="text"
 												class="form-control" id="client"
@@ -68,7 +70,10 @@
 													if (Mesa.EstadoMesa.valueOf(mesa.getEstado().toString()) == Mesa.EstadoMesa.Ocupado) {
 												%>
 												<option value="<%=mesa.getN_mesa()%>"><%=mesa.getN_mesa()%></option>
-												<%}}%>
+												<%
+												}
+												}
+												%>
 											</select>
 										</div>
 										<div class="form-group mb-4 d-flex gap-2">
