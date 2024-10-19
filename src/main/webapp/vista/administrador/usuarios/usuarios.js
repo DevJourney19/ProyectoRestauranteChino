@@ -24,7 +24,7 @@ if (btn_e_input) {
 		const dni = this.getAttribute('data-dni');
 		const correo = this.getAttribute('data-correo');
 		const usuario = this.getAttribute('data-usuario');
-		const password = this.getAttribute('data-pass');
+		//const password = this.getAttribute('data-pass');
 		const celular = this.getAttribute('data-celular');
 		const id_rol = this.getAttribute('data-id-rol');
 		document.querySelector("#trabajadorIdForm_e").value = id;
@@ -33,7 +33,7 @@ if (btn_e_input) {
 		document.querySelector("#dniE").value = dni;
 		document.querySelector("#correoE").value = correo;
 		document.querySelector("#usuarioE").value = usuario;
-		document.querySelector("#passwordE").value = password;
+		//document.querySelector("#passwordE").value = password;
 		document.querySelector("#celularE").value = celular;
 
 		const rolSelect = document.querySelector("#rolE");
