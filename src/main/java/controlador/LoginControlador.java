@@ -51,7 +51,7 @@ public class LoginControlador extends HttpServlet {
 			String destino;
 			switch (trabajador.getId_rol()) {
 			case 1: // Administrador
-				destino = "/AdmiUsuarios";
+				destino = "/SvConsultarTrabajador";
 				break;
 			case 2: // Cajero
 				destino = "/vista/trabajadores/pedido/pedido.jsp";
