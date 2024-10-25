@@ -34,7 +34,8 @@
 				</a></li> -->
 		</ul>
 		<div class="sidebar-footer">
-			<a href="../../login.jsp"
+		<!-- Se debe de prohibir el acceso a otras ventanas por medio del url (Antes que nada debe de estar logueado) -->
+			<a href="${pageContext.request.contextPath}/vista/login.jsp"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 				class="lni lni-exit"></i> <span>Salir</span>
 			</a>
