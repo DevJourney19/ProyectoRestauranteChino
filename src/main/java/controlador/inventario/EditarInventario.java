@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import modelo.Categoria;
 import modelo.Inventario;
-import util.subirImagen;
+import util.gestionarImagen;
 
 import java.io.File;
 import java.io.IOException;
@@ -62,8 +62,9 @@ public class EditarInventario extends HttpServlet {
 
         Inventario inventarioUpdated = new Inventario(id, idCategoria, nombre, unidad, precioUnitario, inventarioInicial, stock, stockMin, LocalDate.parse(caducidad, formatter), imagen, archivoImagen);
         if (daoInventario.editar(inventarioUpdated)) {
-        	subirImagen subir = new subirImagen();
-        	subir.guardarImagen(inventarioUpdated);
+        	gestionarImagen gestionarImagen = new gestionarImagen();
+          	gestionarImagen.borrarImagen(inventarioUpdated);      
+        	gestionarImagen.guardarImagen(inventarioUpdated);
         	if(trabajador == true) {
 	            response.sendRedirect("TrabajadorInventario");
 	        } else {

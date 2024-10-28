@@ -14,7 +14,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Part;
 import modelo.Inventario;
 
-public class subirImagen {
+public class gestionarImagen {
     
     public void guardarImagen(Inventario inventario) throws ServletException {
         Part archivoImagen = inventario.getArchivoImagen();
@@ -50,6 +50,26 @@ public class subirImagen {
         } else {
             System.out.println("No se ha proporcionado ninguna imagen, se ignorará la carga de imagen.");
         }
+    }
+    
+    public boolean borrarImagen(Inventario inventario) throws ServletException {
+        String rutaBase = System.getProperty("user.dir") + File.separator + "Escritorio/Desarrollo web integrado/ProyectoRestauranteChino/src/main/webapp/vista/img/img_inventario" + File.separator;
+        
+        String nombreArchivo = inventario.getId() + "_" + inventario.getImagen();
+        Path archivoPath = Paths.get(rutaBase, nombreArchivo);
+
+        File archivo = archivoPath.toFile();
+
+        if (archivo.exists()) {
+            if (archivo.delete()) {
+                System.out.println("Imagen eliminada: " + nombreArchivo);
+            } else {
+                throw new ServletException("No se pudo eliminar la imagen: " + nombreArchivo);
+            }
+        } else {
+            System.out.println("La imagen no existe: " + nombreArchivo);
+        }
+		return false;
     }
 
 }

@@ -30,7 +30,7 @@ Conexion con;
                 menu.setDescripcion(rs.getString("descripcion"));
                 menu.setPrecio(rs.getDouble("precio"));
                 menu.setEstado(Menu.EstadoMenu.valueOf(rs.getString("estado")));
-                menu.setId_categoria(rs.getInt("id_categoria"));
+                menu.setCategoria(rs.getInt("id_categoria"));
                 trabajadores.add(menu);
             }
         } catch (Exception e) {
@@ -49,7 +49,7 @@ Conexion con;
             pstmt.setString(1, menu.getNombre());
             pstmt.setString(2, menu.getDescripcion());
             pstmt.setDouble(3, menu.getPrecio());
-            pstmt.setInt(4, menu.getId_categoria());
+            pstmt.setInt(4, menu.getCategoria());
             
             int affectedRows = pstmt.executeUpdate();
             return affectedRows > 0;
@@ -70,7 +70,7 @@ Conexion con;
             pstmt.setString(2, menu.getDescripcion());
             pstmt.setDouble(3, menu.getPrecio());
             pstmt.setString(4, menu.getEstado().toString());
-            pstmt.setInt(5, menu.getId_categoria());
+            pstmt.setInt(5, menu.getCategoria());
             pstmt.setInt(6, menu.getId());
             
             int affectedRows = pstmt.executeUpdate();
@@ -114,7 +114,7 @@ Conexion con;
                     menu.setDescripcion(rs.getString("descripcion"));
                     menu.setPrecio(rs.getDouble("precio"));
                     menu.setEstado(Menu.EstadoMenu.valueOf(rs.getString("estado")));
-                    menu.setId_categoria(rs.getInt("id_categoria"));
+                    menu.setCategoria(rs.getInt("id_categoria"));
                     return menu;
                 }
             }
@@ -123,4 +123,9 @@ Conexion con;
         }
         return null;
     }
+	@Override
+	public List<Menu> filtrar(String titulo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

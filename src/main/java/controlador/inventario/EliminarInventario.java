@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import modelo.Inventario;
+import util.gestionarImagen;
 
 import java.io.IOException;
 
@@ -27,7 +29,10 @@ public class EliminarInventario extends HttpServlet {
             throws ServletException, IOException {
         DaoInventarioImpl daoInventario = new DaoInventarioImpl();
         int id = Integer.parseInt(request.getParameter("id"));
-        if (daoInventario.eliminar(id)) {
+      	gestionarImagen gestionarImagen = new gestionarImagen();
+      	gestionarImagen.borrarImagen(daoInventario.obtener(id));      
+        
+    	if (daoInventario.eliminar(id)) {
             response.sendRedirect("AdmiInventario");
         }
     }

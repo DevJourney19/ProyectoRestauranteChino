@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import modelo.Inventario; // Asegúrate de tener esta clase creada
-import util.subirImagen;
+import util.gestionarImagen;
 
 import java.io.File;
 import java.io.IOException;
@@ -67,7 +67,7 @@ public class AgregarInventario extends HttpServlet {
             inventario.setArchivoImagen(archivoImagen);
             
             if (daoInventario.agregar(inventario)) {
-            	subirImagen subir = new subirImagen();
+            	gestionarImagen subir = new gestionarImagen();
             	subir.guardarImagen(inventario);
                 response.sendRedirect("AdmiInventario"); // Redirige a la página de administración de inventario
             }else {

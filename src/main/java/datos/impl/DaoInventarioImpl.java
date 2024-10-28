@@ -133,7 +133,7 @@ public class DaoInventarioImpl implements DaoInventario {
 	@Override
 	public Inventario obtener(int codigo) {
 		Inventario inventario = null;
-		String sql = "SELECT id, id_categoria, nombre, unidad, precio_unitario, inventario_inicial, stock, stock_min, caducidad, id_trabajador FROM inventario WHERE id = ?";
+		String sql = "SELECT id, id_categoria, nombre, unidad, precio_unitario, inventario_inicial, stock, stock_min, caducidad, imagen FROM inventario WHERE id = ?";
 
 		try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql)) {
 			ps.setInt(1, codigo);
@@ -150,6 +150,7 @@ public class DaoInventarioImpl implements DaoInventario {
 					inventario.setStock(rs.getInt(7));
 					inventario.setStockMin(rs.getInt(8));
 					inventario.setCaducidad(LocalDate.parse(rs.getString(9), formato));
+					inventario.setImagen(rs.getString(10));
 				}
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
