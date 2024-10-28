@@ -13,7 +13,7 @@
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-service"></i> <span>Menu</span>
 			</a></li>
-			<li class="sidebar-item"><a href="../inventario/inventario.jsp"
+			<li class="sidebar-item"><a href="TrabajadorInventario"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-agenda"></i> <span>Inventario</span>
 			</a></li>
