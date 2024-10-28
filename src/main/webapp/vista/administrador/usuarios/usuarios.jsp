@@ -1,10 +1,11 @@
 
 <%@page import="java.util.List"%>
-<%@page import="modelo.Trabajador"%>
+<%@page import="modelo.*"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:useBean id="trabajadores" class="java.util.ArrayList" scope="request" />
+<jsp:useBean id="rol" class="java.util.ArrayList" scope="request" />
 
 <!DOCTYPE html>
 <html>
@@ -23,6 +24,7 @@
 <body>
 	<%
 	List<Trabajador> listaTrabajadores = (List<Trabajador>) trabajadores;
+	List<Rol> listaRol = (List<Rol>) rol;
 	%>
 	<div class="d-flex flex-row">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
@@ -58,7 +60,7 @@
 								<div class="modal-body">
 				
 									<form
-										action="${pageContext.request.contextPath}/SvAgregarTrabajador"
+										action="AgregarTrabajador"
 										class="needs-validation" novalidate method="POST">
 	
 										<div class="form-group d-flex flex-wrap gap-2">
@@ -108,9 +110,9 @@
 												<label for="rol">Rol</label> <select class="form-select"
 													aria-label="large select example" name="rol" id="rol">
 													<option disabled>- Selecciona -</option>
-													<option value="1">Adminitrador</option>
-													<option value="2">Cocinero</option>
-													<option value="3">Mozo</option>
+													<%for(Rol item: listaRol) {%>
+													<option value="<%=item.getId()%>"><%=item.getNombre()%></option>
+													<%} %>
 												</select>
 											</div>
 										</div>
@@ -139,10 +141,6 @@
 								</div>
 								<!-- MODAL PARA ESCRIBIR EL NUEVO VALOR -->
 								<div class="modal-body">
-
-									<form
-										action="${pageContext.request.contextPath}/SvEditarTrabajador"
-										method="POST" class="needs-validation" novalidate>
 
 										<input type="hidden" name="id" id="trabajadorIdForm_e">
 										<div class="form-group d-flex flex-wrap gap-2">
@@ -192,19 +190,17 @@
 												<label for="rolE">Rol</label> <select class="form-select"
 													aria-label="large select example" name="rol" id="rolE">
 													<option disabled>- Selecciona -</option>
-													<option value="1">Adminitrador</option>
-													<option value="2">Cocinero</option>
-													<option value="3">Mozo</option>
+													<%for(Rol item: listaRol) {%>
+													<option value="<%=item.getId()%>"><%=item.getNombre()%></option>
+													<%} %>
 												</select>
 											</div>
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-danger"
 												data-bs-dismiss="modal">Cerrar</button>
-											<button type="submit" class="btn btn-warning">Editar</button>
+											<button id="editarId" type="button" class="btn btn-warning">Editar</button>
 										</div>
-									</form>
-
 								</div>
 							</div>
 						</div>
@@ -231,7 +227,7 @@
 										<input type="hidden" name="id" id="trabajadorIdForm">
 										<!-- Campo oculto para enviar el id con JS -->
 
-										<button id="eliminar" type="button"
+										<button id="eliminarId" type="button"
 											class="btn btn-danger d-flex align-items-center gap-2">
 											<i class="lni lni-trash-can"></i>Eliminar
 										</button>
@@ -261,7 +257,6 @@
 								if (trabajadores != null && !trabajadores.isEmpty()) {
 									for (Trabajador trabajador : listaTrabajadores) {
 								%>
-
 								<tr>
 									<td><%=trabajador.getId()%></td>
 									<td><%=trabajador.getApellido()%></td>
@@ -286,18 +281,17 @@
 												data-apellido="<%=trabajador.getApellido()%>"
 												data-nombre="<%=trabajador.getNombre()%>"
 												data-usuario="<%=trabajador.getNombreUsuario()%>"
+												data-pass="<%=trabajador.getContrasenia()%>"
 												data-celular="<%=trabajador.getCelular()%>"
 												data-id-rol="<%=trabajador.getRol().getId()%>">
 												<i class="lni lni-pencil fs-4"></i>
 											</button>
-
 										</div>
 									</td>
 								</tr>
 								<%
 								}
 								} else {
-
 								out.write("No se registraron usuarios...");
 								System.out.println("No hay registros");
 								}

@@ -159,4 +159,34 @@
     <servlet-name>TrabajadorPedido</servlet-name>
     <url-pattern>/TrabajadorPedido</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TrabajadorMenu</display-name>
+    <servlet-name>TrabajadorMenu</servlet-name>
+    <servlet-class>controlador.menu.TrabajadorMenu</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TrabajadorMenu</servlet-name>
+    <url-pattern>/TrabajadorMenu</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogoutControlador</display-name>
+    <servlet-name>LogoutControlador</servlet-name>
+    <servlet-class>controlador.LogoutControlador</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutControlador</servlet-name>
+    <url-pattern>/LogoutControlador</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AccesoIncorrecto</display-name>
+    <servlet-name>AccesoIncorrecto</servlet-name>
+    <servlet-class>controlador.AccesoIncorrecto</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AccesoIncorrecto</servlet-name>
+    <url-pattern>/AccesoIncorrecto</url-pattern>
+  </servlet-mapping>
 </web-app>

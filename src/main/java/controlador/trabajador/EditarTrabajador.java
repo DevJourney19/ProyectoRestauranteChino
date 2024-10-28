@@ -8,63 +8,57 @@ import jakarta.servlet.http.HttpServletResponse;
 import modelo.Rol;
 import modelo.Trabajador;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
+import com.google.gson.Gson; // Ensure you have Gson dependency in your project
+import datos.DaoRol;
 import datos.DaoTrabajador;
+import datos.impl.DaoRolImpl;
 import datos.impl.DaoTrabajadorImpl;
 
 @WebServlet(name = "EditarTrabajador", urlPatterns = { "/EditarTrabajador" })
 public class EditarTrabajador extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		processRequest(request, response);
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		processRequest(request, response);
-	}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
 
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// este trabajador es el que se traerá por su id
-		// No se tiene que crear se tiene que traer
-		// Trabajador trabajador = new Trabajador();
-		DaoTrabajador trabajadorDao = new DaoTrabajadorImpl();
-		int id = Integer.parseInt(request.getParameter("id"));
-		Trabajador tra = trabajadorDao.obtener(id);
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        DaoTrabajador trabajadorDao = new DaoTrabajadorImpl();
+        DaoRol rolDao = new DaoRolImpl();
+        Gson gson = new Gson();
 
-		int id_rol = 0;
-		String apellido = request.getParameter("apellido");
-		String nombre = request.getParameter("nombre");
-		String dni = request.getParameter("dni");
-		String correo = request.getParameter("correo");
-		String usuario = request.getParameter("usuario");
-		String password = request.getParameter("password");
-		String celular = request.getParameter("celular");
-		String rol_seleccionado = request.getParameter("rol");
-		// Comprueba si se seleccionó un rol
-		// Si se detecta que el valor escogido tiene un value, me dejará entrar
-		if (rol_seleccionado != null && !rol_seleccionado.isEmpty()) {
-			id_rol = Integer.parseInt(rol_seleccionado); // Convierte a int
-			System.out.println("ID del rol seleccionado: " + id_rol);
-		} else {
-			System.out.println("No se seleccionó un rol válido.");
-		}
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
+            StringBuilder jsonBuilder = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                jsonBuilder.append(line);
+            }
+            String jsonData = jsonBuilder.toString();
 
-		// Actualizar los datos del trabajador
-		tra.setNombre(nombre);
-		tra.setApellido(apellido);
-		tra.setDni(dni);
-		tra.setCorreo(correo);
-		tra.setNombreUsuario(usuario);
-		tra.setContrasenia(password);
-		tra.setCelular(celular);
-		// Se agrega el int como id del rol, dont forge it
-		Rol role = new Rol(id_rol);
-		tra.setRol(role);
+            // Parse JSON to object
+            Trabajador tra = gson.fromJson(jsonData, Trabajador.class);
+            int id = tra.getId(); 
+            
+            tra.setRol(rolDao.obtener(tra.getRol().getId())); 
 
-		trabajadorDao.editar(tra);
-		response.sendRedirect("AdmiTrabajador");
-	}
+            if(trabajadorDao.editar(tra)) {
+            	response.sendRedirect("AdmiTrabajador");
+            }
+            
+
+        } catch (Exception e) {
+            e.printStackTrace(); // Log the error for debugging
+            response.sendRedirect("AdmiTrabajador?mensaje=Operacion Fallida");
+        }
+    }
 }

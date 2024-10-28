@@ -26,9 +26,13 @@ public class EliminarTrabajador extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		DaoTrabajador trabajadorDao = new DaoTrabajadorImpl();
-		int id = Integer.parseInt(request.getParameter("id"));
-		trabajadorDao.eliminar(id);
-		response.sendRedirect("AdmiTrabajador");
+		try {
+			int id = Integer.parseInt(request.getParameter("id"));
+			trabajadorDao.eliminar(id);
+			response.sendRedirect("AdmiTrabajador");
+		}catch(Exception e) {
+			response.sendRedirect("AdmiTrabajador?mensaje=Operacion Fallida");
+		}
 	}
 
 }

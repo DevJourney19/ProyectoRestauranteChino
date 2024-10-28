@@ -52,7 +52,6 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 			while (rs.next()) {
 				Trabajador trabajador = traer_bd(rs);
 				lista.add(trabajador);
-				System.out.println("trabajador: " + trabajador);
 			}
 			return lista;
 		} catch (Exception e) {
@@ -64,23 +63,17 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 
 	@Override
 	public boolean agregar(Trabajador trabajador) {
-		// creo un array
-		String[] valorsitos = obtener_info(trabajador);
-		// almaceno la informacion del trabajador a agregar a la base de datos
 
 		String sql = "INSERT INTO trabajador (nombre, apellido, usuario, password, telefono, id_rol) values(?,?,?,?,?,?);";
 		try {
-			// Preparar la consulta
 			ps = con.getConexion().prepareStatement(sql);
-			int id_rol = Integer.parseInt(valorsitos[8]);
-			// Asignar a los parametros
-			for (int i = 1; i < valorsitos.length; i++) {
-				ps.setString((i), valorsitos[i]);
-			}
-			String passHash = BCrypt.hashpw(valorsitos[6], BCrypt.gensalt()); // Generar el Hash
-			ps.setString(6, passHash);
-			ps.setInt(8, id_rol);
-			// Ejecutamos la consulta correspondiente
+			ps.setString(1, trabajador.getNombre());
+			ps.setString(2, trabajador.getApellido());
+			ps.setString(3, trabajador.getNombreUsuario());
+			String passHash = BCrypt.hashpw(trabajador.getContrasenia(), BCrypt.gensalt()); // Generar el Hash
+			ps.setString(4, passHash);
+			ps.setString(5, trabajador.getCelular());
+			ps.setInt(6, trabajador.getRol().getId());
 			ps.executeUpdate();
 			return true;
 		} catch (Exception e) {
@@ -92,20 +85,19 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 
 	@Override
 	public boolean editar(Trabajador trabajador) {
-		String valorsitos[] = obtener_info(trabajador);
 
 		String sql = "UPDATE trabajador SET apellido=?, "
-				+ "nombre=?, correo=?, usuario=?, password=?, celular=?, id_rol=? where id=?";
+				+ "nombre=?, usuario=?, password=?, telefono=?, id_rol=? where id=?";
 		try {
 			ps = con.getConexion().prepareStatement(sql);
-			for (int i = 1; i < valorsitos.length; i++) {
-				ps.setString((i), valorsitos[i]);
-			}
-			int id = Integer.parseInt(valorsitos[0]);
-			int id_rol = Integer.parseInt(valorsitos[8]);
-			ps.setInt(8, id_rol);
-			// El id del where
-			ps.setInt(9, id);
+			ps.setString(1, trabajador.getApellido());
+			ps.setString(2, trabajador.getNombre());
+			ps.setString(3, trabajador.getNombreUsuario());
+			String passHash = BCrypt.hashpw(trabajador.getContrasenia(), BCrypt.gensalt()); // Generar el Hash
+			ps.setString(4, passHash);
+			ps.setString(5, trabajador.getCelular());
+			ps.setInt(6, trabajador.getRol().getId());
+			ps.setInt(7, trabajador.getId());
 			ps.executeUpdate();
 			return true;
 		} catch (Exception e) {
@@ -118,7 +110,6 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 	@Override
 	public boolean eliminar(int codigo) {
 		String sql = "delete from trabajador where id=?";
-
 		try {
 			ps = con.getConexion().prepareStatement(sql);
 			ps.setInt(1, codigo);
@@ -140,14 +131,11 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 			ps = con.getConexion().prepareStatement(sql);
 			ps.setInt(1, codigo);
 			rs = ps.executeQuery();
-			// tra = new Trabajador();
-
-			// Mueve el cursor a la primera fila
 			if (rs.next()) {
-				return traer_bd(rs); // Solo llama a traer_bd si hay una fila
+				return traer_bd(rs);
 			} else {
 				System.out.println("No se encontraron trabajadores con el ID proporcionado.");
-				return null; // No hay resultados
+				return null; 
 			}
 		} catch (Exception e) {
 			System.out.println("Error en el buscar trabajadores: " + e.getMessage());
@@ -178,15 +166,6 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 
 	}
 
-	// Traer el valor de cada columna de de la primera fila
-	public String[] obtener_info(Trabajador tra) {
-		String[] valores = { String.valueOf(tra.getId()), tra.getApellido(), tra.getNombre(),
-				tra.getCorreo(), tra.getNombreUsuario(), tra.getContrasenia(), tra.getCelular(),
-				String.valueOf(tra.getRol().getId()) };
-		System.out.println("Codigo rol" + tra.getRol().getId());
-		return valores;
-	}
-
 	/* LOGIN TRABAJADOR */
 	@Override
 	public Trabajador validarUsuario(String usuario, String password) {
@@ -201,10 +180,6 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 
 			if (rs.next()) {
 				String pass_bd = rs.getString("password");
-				System.out.println("Contraseña ingresada: " + password);
-				System.out.println("Contraseña cifrada (BD): " + pass_bd);
-				System.out.println("¿Las contraseñas coinciden? " + BCrypt.checkpw(password, pass_bd));
-				/*Se utilizará la salt de pass_bd para poder convertir password a hash y poder verificar si son iguales*/
 				if (BCrypt.checkpw(password, pass_bd)) {
 					trabajador = new Trabajador();
 					trabajador.setId(rs.getInt("id"));
@@ -220,8 +195,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 				return null;
 			}
 			return trabajador;
-		} catch (
-		SQLException e) {
+		} catch (SQLException e) {
 			System.err.println("Error SQL en validarUsuario: " + e.getMessage());
 			e.printStackTrace();
 		} catch (Exception e) {

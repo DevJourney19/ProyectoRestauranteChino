@@ -35,43 +35,38 @@ public class LoginControlador extends HttpServlet {
 			throws ServletException, IOException {
 		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
+		
+		if(usuario.isEmpty() && password.isEmpty()) {
+			response.sendRedirect("vista/login.jsp");
+			return;
+		}
 
-		 PrintWriter out = response.getWriter();
+		PrintWriter out = response.getWriter();
 		try {
 			Trabajador trabajador = tra.validarUsuario(usuario, password);
 				// Iniciar sesión
 				HttpSession session = request.getSession();
-
-				// Obtener y guardar el rol en sesión
-				session.setAttribute("rol", trabajador.getRol().getNombre());
-
+				session.setAttribute("usuario", trabajador);
 				// Redirigir según el rol
 				String destino;
 				switch (trabajador.getRol().getNombre()) {
-				case "administrador":
-					destino = "/AdmiTrabajador";
+				case "Administrador":
+					destino = "AdmiTrabajador";
 					break;
-				case "mozo" :
-					destino = "/vista/trabajadores/pedido/pedido.jsp";
+				case "Mozo" :
+					destino = "TrabajadorMenu";
 					break;
-				case "cocinero":
-					destino = "/vista/trabajadores/mesas_mozo/mesas_mozo.jsp";
+				case "Cocinero":
+					destino = "TrabajadorMenu";
 					break;
 				default:
-					destino = "/vista/error.jsp";
+					destino = "vista/error.jsp";
 					break;
 				}
-				
-				RequestDispatcher dispatcher = request.getRequestDispatcher(destino);
-				dispatcher.forward(request, response);
-			
-			
+				response.sendRedirect(destino);
 		} catch (Exception e) {
 			// Log del error
-			e.printStackTrace();
-
-			out.println(usuario);
-			//response.sendRedirect(request.getContextPath() + "/vista/error.jsp?mensaje=Error del sistema");
+			response.sendRedirect("vista/login.jsp");
 		}
 
 	}

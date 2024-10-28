@@ -24,7 +24,6 @@ public class DaoPedidoImpl implements DaoPedido{
         con = new Conexion();
         cli = new DaoClienteImpl();
         tra = new DaoTrabajadorImpl();
-  
     }
 
 	@Override
@@ -90,10 +89,9 @@ public class DaoPedidoImpl implements DaoPedido{
 	                .append("metodo_pago,")
 	                .append("total,")
 	                .append("created_at")
-	                .append(" FROM pedidosView");
+	                .append(" FROM pedidosview");
 	        try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString()); ResultSet rs = ps.executeQuery();) {
 	            lista = new ArrayList<>();
-
 	            while (rs.next()) {
 	                Object[] obj = new Object[8];
 	                obj[0] = rs.getInt(1);

@@ -40,7 +40,7 @@
 		</ul>
 
 		<div class="sidebar-footer">
-			<a href="./vista/login.jsp"
+			<a href="LogoutControlador"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 				class="lni lni-exit"></i> <span>Salir</span>
 			</a>
