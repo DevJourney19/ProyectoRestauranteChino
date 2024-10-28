@@ -1,12 +1,10 @@
 
-
+<%@page import="java.util.List"%>
 <%@page import="modelo.Trabajador"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<%@page import="java.util.List"%>
-<%@page import="modelo.Trabajador"%>
+<jsp:useBean id="trabajadores" class="java.util.ArrayList" scope="request" />
 
 <!DOCTYPE html>
 <html>
@@ -24,7 +22,7 @@
 </head>
 <body>
 	<%
-	List<Trabajador> trabajadores = (List<Trabajador>) request.getAttribute("trabajadores");
+	List<Trabajador> listaTrabajadores = (List<Trabajador>) trabajadores;
 	%>
 	<div class="d-flex flex-row">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
@@ -67,8 +65,8 @@
 											<!-- NOMBRE -->
 											<div
 												class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
-												<label for="nombre">Apellido</label> <input type="text"
-													class="form-control" id="nombre"
+												<label for="apellido">Apellido</label> <input type="text"
+													class="form-control" id="apellido"
 													aria-describedby="emailHelp"
 													placeholder="Ingrese Apellidos" name="apellido" required>
 											</div>
@@ -78,24 +76,6 @@
 													class="form-control" id="nombre"
 													aria-describedby="emailHelp" placeholder="Ingrese Nombres"
 													name="nombre" required>
-											</div>
-										</div>
-										<!-- DNI -->
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div class="col-12 col-md">
-												<label for="dni">DNI</label> <input type="text"
-													class="form-control" id="dni" aria-describedby="emailHelp"
-													placeholder="Ingrese DNI" maxlength="8" name="dni" required>
-
-											</div>
-											<!-- CORREO -->
-											<div class="col-12 col-md">
-
-												<label for="correo">Correo</label> <input type="text"
-													class="form-control" id="correo"
-													aria-describedby="emailHelp" placeholder="Ingrese Correo"
-													name="correo" required min="0">
-
 											</div>
 										</div>
 										<!-- NOMBRE DE USUARIO -->
@@ -126,7 +106,7 @@
 											<!-- ROL-->
 											<div class="form-group mb-4 d-flex flex-wrap col-6 col-md">
 												<label for="rol">Rol</label> <select class="form-select"
-													aria-label="large select example" name="rol">
+													aria-label="large select example" name="rol" id="rol">
 													<option disabled>- Selecciona -</option>
 													<option value="1">Adminitrador</option>
 													<option value="2">Cocinero</option>
@@ -180,24 +160,6 @@
 													class="form-control" id="nombreE"
 													aria-describedby="emailHelp" placeholder="Ingrese Nombres"
 													name="nombre" required>
-											</div>
-										</div>
-										<!-- DNI -->
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div class="col-12 col-md">
-												<label for="dniE">DNI</label> <input type="text"
-													class="form-control" id="dniE" aria-describedby="emailHelp"
-													placeholder="Ingrese DNI" maxlength="8" name="dni" required>
-
-											</div>
-											<!-- CORREO -->
-											<div class="col-12 col-md">
-
-												<label for="correoE">Correo</label> <input type="text"
-													class="form-control" id="correoE"
-													aria-describedby="emailHelp" placeholder="Ingrese Correo"
-													name="correo" required min="0">
-
 											</div>
 										</div>
 										<!-- NOMBRE DE USUARIO -->
@@ -266,17 +228,13 @@
 									<button type="button" class="btn btn-warning"
 										data-bs-dismiss="modal">Cancelar</button>
 
-									<form
-										action="${pageContext.request.contextPath}/SvEliminarTrabajador"
-										method="POST">
 										<input type="hidden" name="id" id="trabajadorIdForm">
 										<!-- Campo oculto para enviar el id con JS -->
 
-										<button type="submit"
+										<button id="eliminar" type="button"
 											class="btn btn-danger d-flex align-items-center gap-2">
 											<i class="lni lni-trash-can"></i>Eliminar
 										</button>
-									</form>
 
 								</div>
 							</div>
@@ -291,10 +249,7 @@
 									<th>Código</th>
 									<th>Apellidos</th>
 									<th>Nombres</th>
-									<th>DNI</th>
-									<th>Correo</th>
 									<th>Usuario</th>
-									
 									<th>Celular</th>
 									<th>Rol</th>
 									<th></th>
@@ -304,17 +259,14 @@
 							<tbody>
 								<%
 								if (trabajadores != null && !trabajadores.isEmpty()) {
-									for (Trabajador trabajador : trabajadores) {
+									for (Trabajador trabajador : listaTrabajadores) {
 								%>
 
 								<tr>
 									<td><%=trabajador.getId()%></td>
 									<td><%=trabajador.getApellido()%></td>
 									<td><%=trabajador.getNombre()%></td>
-									<td><%=trabajador.getDni()%></td>
-									<td><%=trabajador.getCorreo()%></td>
 									<td><%=trabajador.getNombreUsuario()%></td>
-									
 									<td><%=trabajador.getCelular()%></td>
 
 									<td><span class="estado-cancelado"><%=trabajador.getRol().getNombre()%></span></td>
@@ -333,12 +285,9 @@
 												data-id="<%=trabajador.getId()%>"
 												data-apellido="<%=trabajador.getApellido()%>"
 												data-nombre="<%=trabajador.getNombre()%>"
-												data-dni="<%=trabajador.getDni()%>"
-												data-correo="<%=trabajador.getCorreo()%>"
 												data-usuario="<%=trabajador.getNombreUsuario()%>"
-												
 												data-celular="<%=trabajador.getCelular()%>"
-												data-id-rol="<%=trabajador.getRol()%>">
+												data-id-rol="<%=trabajador.getRol().getId()%>">
 												<i class="lni lni-pencil fs-4"></i>
 											</button>
 

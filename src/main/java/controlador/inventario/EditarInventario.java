@@ -35,20 +35,23 @@ public class EditarInventario extends HttpServlet {
         DaoCategoria daoCategoria = new DaoCategoriaImpl();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         
-        int id = Integer.parseInt(request.getParameter("id"));
-        String nombre = request.getParameter("nombre");
-        Inventario.Unidad unidad = Inventario.Unidad.valueOf(request.getParameter("unidad"));
-        double precioUnitario = Double.parseDouble(request.getParameter("precio"));
-        int inventarioInicial = Integer.parseInt(request.getParameter("inventario"));
-        int stock = Integer.parseInt(request.getParameter("stock"));
-        int stockMin = Integer.parseInt(request.getParameter("stockMinimo"));
-        String caducidad = request.getParameter("caducidad");
-        Categoria idCategoria = daoCategoria.obtener(Integer.parseInt(request.getParameter("categoria")));
-
-        Inventario inventarioUpdated = new Inventario(id, idCategoria, nombre, unidad, precioUnitario, inventarioInicial, stock, stockMin, LocalDate.parse(caducidad, formatter));
-        
-        if (daoInventario.editar(inventarioUpdated)) {
-            response.sendRedirect("AdmiInventario");
+        try {
+            Inventario inventarioUpdated = new Inventario();
+            inventarioUpdated.setId(Integer.parseInt(request.getParameter("id")));
+            inventarioUpdated.setNombre(request.getParameter("nombre"));
+            inventarioUpdated.setUnidad(Inventario.Unidad.valueOf(request.getParameter("unidad")));
+            inventarioUpdated.setPrecioUnitario(Double.parseDouble(request.getParameter("precio")));
+            inventarioUpdated.setInventarioInicial(Integer.parseInt(request.getParameter("inventario")));
+            inventarioUpdated.setStock(Integer.parseInt(request.getParameter("stock")));
+            inventarioUpdated.setStockMin(Integer.parseInt(request.getParameter("stockMinimo")));
+            inventarioUpdated.setCaducidad(LocalDate.parse(request.getParameter("caducidad"), formatter));
+            inventarioUpdated.setCategoria(daoCategoria.obtener(Integer.parseInt(request.getParameter("categoria"))));
+            
+            if (daoInventario.editar(inventarioUpdated)) {
+                response.sendRedirect("AdmiInventario");
+            }
+        }catch(Exception e) {
+        	response.sendRedirect("AdmiInventario?mensaje=Operacion Fallida");
         }
     }
 }

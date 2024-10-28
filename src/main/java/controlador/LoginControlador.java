@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import datos.DaoTrabajador;
 import datos.impl.DaoTrabajadorImpl;
@@ -16,7 +17,7 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet(name = "LoginControlador", urlPatterns = { "/LoginControlador" })
 public class LoginControlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final DaoTrabajador trabajadorDAO = new DaoTrabajadorImpl();
+	private final DaoTrabajador tra = new DaoTrabajadorImpl();
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,41 +36,42 @@ public class LoginControlador extends HttpServlet {
 		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
 
+		 PrintWriter out = response.getWriter();
 		try {
-			Trabajador trabajador = ((DaoTrabajadorImpl) trabajadorDAO).validarUsuario(usuario, password);
+			Trabajador trabajador = tra.validarUsuario(usuario, password);
+				// Iniciar sesión
+				HttpSession session = request.getSession();
 
-			// Iniciar sesión
-			HttpSession session = request.getSession();
-			session.setAttribute("trabajador", trabajador);
-			session.setAttribute("nombreUsuario", trabajador.getNombreUsuario());
+				// Obtener y guardar el rol en sesión
+				session.setAttribute("rol", trabajador.getRol().getNombre());
 
-			// Obtener y guardar el rol en sesión
-			String rolNombre = ((DaoTrabajadorImpl) trabajadorDAO).obtenerRol(trabajador.getId_rol());
-			session.setAttribute("rolNombre", rolNombre);
-
-			// Redirigir según el rol
-			String destino;
-			switch (trabajador.getId_rol()) {
-			case 1: // Administrador
-				destino = "/SvConsultarTrabajador";
-				break;
-			case 2: // Cajero
-				destino = "/vista/trabajadores/pedido/pedido.jsp";
-				break;
-			case 3: // Cajero
-				destino = "/vista/trabajadores/mesas_mozo/mesas_mozo.jsp";
-				break;
-			default:
-				destino = "/vista/error.jsp";
-				break;
-			}
+				// Redirigir según el rol
+				String destino;
+				switch (trabajador.getRol().getNombre()) {
+				case "administrador":
+					destino = "/AdmiTrabajador";
+					break;
+				case "mozo" :
+					destino = "/vista/trabajadores/pedido/pedido.jsp";
+					break;
+				case "cocinero":
+					destino = "/vista/trabajadores/mesas_mozo/mesas_mozo.jsp";
+					break;
+				default:
+					destino = "/vista/error.jsp";
+					break;
+				}
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher(destino);
+				dispatcher.forward(request, response);
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher(destino);
-			dispatcher.forward(request, response);
+			
 		} catch (Exception e) {
 			// Log del error
 			e.printStackTrace();
-			response.sendRedirect(request.getContextPath() + "/vista/error.jsp?mensaje=Error del sistema");
+
+			out.println(usuario);
+			//response.sendRedirect(request.getContextPath() + "/vista/error.jsp?mensaje=Error del sistema");
 		}
 
 	}

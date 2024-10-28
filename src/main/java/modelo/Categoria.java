@@ -30,12 +30,6 @@ public class Categoria {
 		this.nombre = nombre;
 	}
 	
-	public Categoria(int id, String nombre, TipoCategoria tipo) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.tipo = tipo;
-	}
 	public Categoria() {
 		// TODO Auto-generated constructor stub
 	}

@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "SvEliminarTrabajador", urlPatterns = {"/SvEliminarTrabajador"})
-public class SvEliminarTrabajador extends HttpServlet {
+@WebServlet(name = "EliminarTrabajador", urlPatterns = {"/EliminarTrabajador"})
+public class EliminarTrabajador extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -28,7 +28,7 @@ public class SvEliminarTrabajador extends HttpServlet {
 		DaoTrabajador trabajadorDao = new DaoTrabajadorImpl();
 		int id = Integer.parseInt(request.getParameter("id"));
 		trabajadorDao.eliminar(id);
-		response.sendRedirect("SvConsultarTrabajador");
+		response.sendRedirect("AdmiTrabajador");
 	}
 
 }

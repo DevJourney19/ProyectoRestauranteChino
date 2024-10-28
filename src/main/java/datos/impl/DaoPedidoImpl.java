@@ -24,7 +24,7 @@ public class DaoPedidoImpl implements DaoPedido{
         con = new Conexion();
         cli = new DaoClienteImpl();
         tra = new DaoTrabajadorImpl();
-        
+  
     }
 
 	@Override
@@ -35,7 +35,7 @@ public class DaoPedidoImpl implements DaoPedido{
 	@Override
 	public boolean agregar(Pedido objeto) {
 		StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO pedidos(")
+        sql.append("INSERT INTO pedido(")
                 .append("id_cliente,")
                 .append("id_mesa,")
                 .append("tipo_recibo,")

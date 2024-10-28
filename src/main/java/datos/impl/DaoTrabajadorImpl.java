@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import datos.DaoRol;
 import datos.DaoTrabajador;
 import modelo.Rol;
 import modelo.Trabajador;
@@ -32,10 +33,11 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 	Conexion con;
 	PreparedStatement ps;
 	ResultSet rs;
-	Rol role;
+	DaoRol rol;
 
 	public DaoTrabajadorImpl() {
 		con = new Conexion();
+		rol = new DaoRolImpl();
 	}
 
 	// Absolutamente todos los trabajadores
@@ -43,12 +45,11 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 	public List<Trabajador> consultar() {
 
 		List<Trabajador> lista = new ArrayList<>();
-		String sql = "Select * from trabajadores";
+		String sql = "Select * from trabajador";
 		try {
 			ps = con.getConexion().prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				// Pongo rs como parametro porque es el resultado obtenido de la consulta
 				Trabajador trabajador = traer_bd(rs);
 				lista.add(trabajador);
 				System.out.println("trabajador: " + trabajador);
@@ -67,7 +68,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 		String[] valorsitos = obtener_info(trabajador);
 		// almaceno la informacion del trabajador a agregar a la base de datos
 
-		String sql = "INSERT INTO trabajadores (apellido, nombre, dni, correo, usuario, password, celular, id_rol) values(?,?,?,?,?,?,?,?);";
+		String sql = "INSERT INTO trabajador (nombre, apellido, usuario, password, telefono, id_rol) values(?,?,?,?,?,?);";
 		try {
 			// Preparar la consulta
 			ps = con.getConexion().prepareStatement(sql);
@@ -93,8 +94,8 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 	public boolean editar(Trabajador trabajador) {
 		String valorsitos[] = obtener_info(trabajador);
 
-		String sql = "UPDATE trabajadores SET apellido=?, "
-				+ "nombre=?, dni=?, correo=?, usuario=?, password=?, celular=?, id_rol=? where id=?";
+		String sql = "UPDATE trabajador SET apellido=?, "
+				+ "nombre=?, correo=?, usuario=?, password=?, celular=?, id_rol=? where id=?";
 		try {
 			ps = con.getConexion().prepareStatement(sql);
 			for (int i = 1; i < valorsitos.length; i++) {
@@ -116,7 +117,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 
 	@Override
 	public boolean eliminar(int codigo) {
-		String sql = "delete from trabajadores where id=?";
+		String sql = "delete from trabajador where id=?";
 
 		try {
 			ps = con.getConexion().prepareStatement(sql);
@@ -134,7 +135,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 	@Override
 	public Trabajador obtener(int codigo) {
 
-		String sql = "Select * from trabajadores where id = ?";
+		String sql = "Select * from trabajador where id = ?";
 		try {
 			ps = con.getConexion().prepareStatement(sql);
 			ps.setInt(1, codigo);
@@ -162,19 +163,12 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 		try {
 
 			tra.setId(rs.getInt("id"));
-			tra.setApellido(rs.getString("apellido"));
 			tra.setNombre(rs.getString("nombre"));
-			tra.setDni(rs.getString("dni"));
-			tra.setCorreo(rs.getString("correo"));
-			tra.setCelular(rs.getString("celular"));
+			tra.setApellido(rs.getString("apellido"));
 			tra.setNombreUsuario(rs.getString("usuario"));
 			tra.setContrasenia(rs.getString("password"));
-			// Para el objeto Rol, necesito primero traer el id de la bd que viene a ser la
-			// llave foránea, para que posteriormente pueda crear el respectivo objeto.
-			int rol_id = rs.getInt("id_rol");
-			role = new Rol(rol_id);
-			// Asignamos el rol como llave foránea al trabajador
-			tra.setRol(role);
+			tra.setCelular(rs.getString("telefono"));
+			tra.setRol(rol.obtener(rs.getInt("id_rol")));
 			return tra;
 
 		} catch (Exception e) {
@@ -186,7 +180,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 
 	// Traer el valor de cada columna de de la primera fila
 	public String[] obtener_info(Trabajador tra) {
-		String[] valores = { String.valueOf(tra.getId()), tra.getApellido(), tra.getNombre(), tra.getDni(),
+		String[] valores = { String.valueOf(tra.getId()), tra.getApellido(), tra.getNombre(),
 				tra.getCorreo(), tra.getNombreUsuario(), tra.getContrasenia(), tra.getCelular(),
 				String.valueOf(tra.getRol().getId()) };
 		System.out.println("Codigo rol" + tra.getRol().getId());
@@ -194,37 +188,32 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 	}
 
 	/* LOGIN TRABAJADOR */
+	@Override
 	public Trabajador validarUsuario(String usuario, String password) {
 		Trabajador trabajador = null;
-
 		ps = null;
 		rs = null;
-
-		String sql = "SELECT * FROM trabajadores WHERE usuario = ?";
+		String sql = "SELECT id, nombre, apellido, usuario, password, telefono, id_rol FROM trabajador WHERE usuario = ?";
 		try {
 			ps = con.getConexion().prepareStatement(sql);
 			ps.setString(1, usuario);
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				
-				// Pass obtenida de la bd
 				String pass_bd = rs.getString("password");
 				System.out.println("Contraseña ingresada: " + password);
 				System.out.println("Contraseña cifrada (BD): " + pass_bd);
 				System.out.println("¿Las contraseñas coinciden? " + BCrypt.checkpw(password, pass_bd));
 				/*Se utilizará la salt de pass_bd para poder convertir password a hash y poder verificar si son iguales*/
-				if (pass_bd != null && BCrypt.checkpw(password, pass_bd)) {
+				if (BCrypt.checkpw(password, pass_bd)) {
 					trabajador = new Trabajador();
 					trabajador.setId(rs.getInt("id"));
 					trabajador.setNombre(rs.getString("nombre"));
 					trabajador.setApellido(rs.getString("apellido"));
 					trabajador.setNombreUsuario(rs.getString("usuario"));
-					trabajador.setId_rol(rs.getInt("id_rol"));
-					trabajador.setCelular(rs.getString("celular"));
-				} else {
-					System.out.println("La contraseña es incorrecta");
-					return null;
+					trabajador.setContrasenia(rs.getString("password"));
+					trabajador.setCelular(rs.getString("telefono"));
+					trabajador.setRol(rol.obtener(rs.getInt("id_rol")));
 				}
 			} else {
 				System.out.println("Usuario no encontrado");
@@ -245,38 +234,6 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 		return trabajador;
 	}
 
-	public String obtenerRol(int id_rol) {
-		String rol = null;
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			conn = con.getConexion();
-			if (conn == null) {
-				throw new SQLException("No se pudo establecer la conexión a la base de datos");
-			}
-
-			String sql = "SELECT nombre FROM rol WHERE id = ?";
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, id_rol);
-			rs = ps.executeQuery();
-
-			if (rs.next()) {
-				rol = rs.getString("nombre");
-			} else {
-				System.out.println("No se encontró el rol con ID: " + id_rol);
-			}
-		} catch (SQLException e) {
-			System.err.println("Error SQL en obtenerRol: " + e.getMessage());
-			e.printStackTrace();
-		} finally {
-			cerrarRecursos(ps, rs);
-		}
-
-		return rol;
-	}
-
 	private void cerrarRecursos(PreparedStatement ps, ResultSet rs) {
 		try {
 			if (rs != null)
@@ -288,11 +245,5 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 			System.err.println("Error al cerrar recursos: " + e.getMessage());
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public boolean agregarTrabajador(Trabajador objeto, String passwordPlano) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }

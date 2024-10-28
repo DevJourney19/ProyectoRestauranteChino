@@ -76,19 +76,6 @@ public class Pedido {
 	public void setTrabajador(Trabajador trabajador) {
 		this.trabajador = trabajador;
 	}
-	public Pedido(int id, Cliente cliente, Mesa mesa, EstadoPedido estado, TipoRecibo tipo_recibo,
-			MetodoPago metodo_pago, double total, Trabajador trabajador, Date created_at) {
-		super();
-		this.id = id;
-		this.cliente = cliente;
-		this.mesa = mesa;
-		this.estado = estado;
-		this.tipo_recibo = tipo_recibo;
-		this.metodo_pago = metodo_pago;
-		this.total = total;
-		this.trabajador = trabajador;
-		this.created_at = created_at;
-	}
 	public Pedido() {
 		super();
 	}

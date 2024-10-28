@@ -26,9 +26,15 @@ public class EliminarInventario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         DaoInventarioImpl daoInventario = new DaoInventarioImpl();
-        int id = Integer.parseInt(request.getParameter("id"));
-        if (daoInventario.eliminar(id)) {
-            response.sendRedirect("AdmiInventario");
+        try {
+        	int id = Integer.parseInt(request.getParameter("id"));
+            if (daoInventario.eliminar(id)) {
+                response.sendRedirect("AdmiInventario");
+            }else {
+    			response.sendRedirect("AdmiInventario?mensaje=Operacion Fallida");
+    		}
+        }catch(Exception e) {
+        	response.sendRedirect("AdmiInventario?mensaje=Operacion Fallida");
         }
     }
 }

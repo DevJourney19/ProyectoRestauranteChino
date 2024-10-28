@@ -73,7 +73,7 @@
     <description></description>
     <display-name>SvAgregarTrabajador</display-name>
     <servlet-name>SvAgregarTrabajador</servlet-name>
-    <servlet-class>controlador.trabajador.SvAgregarTrabajador</servlet-class>
+    <servlet-class>controlador.trabajador.AgregarTrabajador</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SvAgregarTrabajador</servlet-name>
@@ -83,7 +83,7 @@
     <description></description>
     <display-name>SvEliminarTrabajador</display-name>
     <servlet-name>SvEliminarTrabajador</servlet-name>
-    <servlet-class>controlador.trabajador.SvEliminarTrabajador</servlet-class>
+    <servlet-class>controlador.trabajador.EliminarTrabajador</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SvEliminarTrabajador</servlet-name>
@@ -93,7 +93,7 @@
     <description></description>
     <display-name>SvEditarTrabajador</display-name>
     <servlet-name>SvEditarTrabajador</servlet-name>
-    <servlet-class>controlador.trabajador.SvEditarTrabajador</servlet-class>
+    <servlet-class>controlador.trabajador.EditarTrabajador</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SvEditarTrabajador</servlet-name>
@@ -103,7 +103,7 @@
     <description></description>
     <display-name>SvConsultarTrabajador</display-name>
     <servlet-name>SvConsultarTrabajador</servlet-name>
-    <servlet-class>controlador.trabajador.SvConsultarTrabajador</servlet-class>
+    <servlet-class>controlador.trabajador.AdmiTrabajador</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SvConsultarTrabajador</servlet-name>
@@ -149,5 +149,14 @@
     <servlet-name>LoginControlador</servlet-name>
     <url-pattern>/LoginControlador</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <description></description>
+    <display-name>TrabajadorPedido</display-name>
+    <servlet-name>TrabajadorPedido</servlet-name>
+    <servlet-class>controlador.pedido.TrabajadorPedido</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TrabajadorPedido</servlet-name>
+    <url-pattern>/TrabajadorPedido</url-pattern>
+  </servlet-mapping>
 </web-app>

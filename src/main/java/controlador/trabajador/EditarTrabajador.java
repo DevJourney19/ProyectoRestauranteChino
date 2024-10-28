@@ -1,7 +1,5 @@
 package controlador.trabajador;
 
-import datos.DaoTrabajador;
-import datos.impl.DaoTrabajadorImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,14 +10,11 @@ import modelo.Trabajador;
 
 import java.io.IOException;
 
-@WebServlet(name = "SvAgregarTrabajador", urlPatterns = {"/SvAgregarTrabajador"})
-public class SvAgregarTrabajador extends HttpServlet {
+import datos.DaoTrabajador;
+import datos.impl.DaoTrabajadorImpl;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
+@WebServlet(name = "EditarTrabajador", urlPatterns = { "/EditarTrabajador" })
+public class EditarTrabajador extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		processRequest(request, response);
@@ -32,9 +27,13 @@ public class SvAgregarTrabajador extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Creamos la instancia del dao
-		System.out.println("Estamos en el servlet ");
+		// este trabajador es el que se traerá por su id
+		// No se tiene que crear se tiene que traer
+		// Trabajador trabajador = new Trabajador();
 		DaoTrabajador trabajadorDao = new DaoTrabajadorImpl();
+		int id = Integer.parseInt(request.getParameter("id"));
+		Trabajador tra = trabajadorDao.obtener(id);
+
 		int id_rol = 0;
 		String apellido = request.getParameter("apellido");
 		String nombre = request.getParameter("nombre");
@@ -52,33 +51,20 @@ public class SvAgregarTrabajador extends HttpServlet {
 		} else {
 			System.out.println("No se seleccionó un rol válido.");
 		}
-		
-		// Creamos un trabajador
-		Trabajador tra = new Trabajador();
-		// Se asignará un objeto rol para cada trabajador.
-		// No se va a crear un nuevo rol en la base de datos, ya que si haría eso sería
-		// el código autoincremental
-		Rol rols = new Rol(id_rol);
-		tra.setApellido(apellido);
+
+		// Actualizar los datos del trabajador
 		tra.setNombre(nombre);
-		tra.setRol(rols);
+		tra.setApellido(apellido);
 		tra.setDni(dni);
 		tra.setCorreo(correo);
 		tra.setNombreUsuario(usuario);
 		tra.setContrasenia(password);
 		tra.setCelular(celular);
+		// Se agrega el int como id del rol, dont forge it
+		Rol role = new Rol(id_rol);
+		tra.setRol(role);
 
-		boolean x = trabajadorDao.agregar(tra);
-		
-		if (x) {
-			System.out.println("Se agrego el trabajador");
-			
-		}else {
-			System.out.println("El trabajador no fue agregado correctamente...");
-		}
-
-		response.sendRedirect("SvConsultarTrabajador");
-
-
+		trabajadorDao.editar(tra);
+		response.sendRedirect("AdmiTrabajador");
 	}
 }

@@ -14,8 +14,8 @@ import modelo.Trabajador;
 
 import java.io.IOException;
 
-@WebServlet(name = "SvConsultarTrabajador", urlPatterns = { "/SvConsultarTrabajador" })
-public class SvConsultarTrabajador extends HttpServlet {
+@WebServlet(name = "AdmiTrabajador", urlPatterns = { "/AdmiTrabajador" })
+public class AdmiTrabajador extends HttpServlet {
 
 	/**
 	 * 

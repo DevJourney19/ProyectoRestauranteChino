@@ -91,20 +91,6 @@ public class Inventario {
 
 	public Inventario() {
 	}
-
-	public Inventario(int id, Categoria categoria, String nombre, Unidad unidad, double precioUnitario,
-			int inventarioInicial, int stock, int stockMin, LocalDate caducidad) {
-		super();
-		this.id = id;
-		this.categoria = categoria;
-		this.nombre = nombre;
-		this.unidad = unidad;
-		this.precioUnitario = precioUnitario;
-		this.inventarioInicial = inventarioInicial;
-		this.stock = stock;
-		this.stockMin = stockMin;
-		this.caducidad = caducidad;
-	}
 	
 	
 	}
