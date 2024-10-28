@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import modelo.Inventario; // Asegúrate de tener esta clase creada
+import util.subirImagen;
 
 import java.io.File;
 import java.io.IOException;
@@ -66,7 +67,8 @@ public class AgregarInventario extends HttpServlet {
             inventario.setArchivoImagen(archivoImagen);
             
             if (daoInventario.agregar(inventario)) {
-            	agregarImagen(inventario);
+            	subirImagen subir = new subirImagen();
+            	subir.guardarImagen(inventario);
                 response.sendRedirect("AdmiInventario"); // Redirige a la página de administración de inventario
             }else {
     			response.sendRedirect("AdmiInventario?mensaje=Operacion Fallida");
@@ -75,41 +77,4 @@ public class AgregarInventario extends HttpServlet {
 			response.sendRedirect("AdmiInventario?mensaje=Operacion Fallida");
 		}
     }
-    
-    protected void agregarImagen(Inventario inventario) throws ServletException {
-        Part archivoImagen = inventario.getArchivoImagen();
-        
-        if (archivoImagen != null && archivoImagen.getSize() > 0) {
-	        String nombreArchivo = archivoImagen.getSubmittedFileName();
-	        
-	        List<String> extensionesPermitidas = new ArrayList<>();
-	        extensionesPermitidas.add("jpg");
-	        extensionesPermitidas.add("jpeg");
-	        extensionesPermitidas.add("png");
-	
-            String extensionArchivo = nombreArchivo.substring(nombreArchivo.lastIndexOf(".") + 1).toLowerCase();
-	
-	        if (extensionesPermitidas.contains(extensionArchivo)) {
-	            String rutaBase = System.getProperty("user.dir") + File.separator + "Escritorio/Desarrollo web integrado/ProyectoRestauranteChino/src/main/webapp/vista/img/img_inventario" + File.separator;
-	            
-	            File directorio = new File(rutaBase);
-	            if (!directorio.exists()) {
-	                directorio.mkdirs();
-	            }
-	
-	            Path archivoPath = Paths.get(directorio.getPath(), inventario.getId() + "_" + inventario.getNombre() + "." + extensionArchivo);
-	
-	            try (InputStream contenidoArchivo = archivoImagen.getInputStream()) {
-	                Files.copy(contenidoArchivo, archivoPath, StandardCopyOption.REPLACE_EXISTING);
-	            } catch (IOException e) {
-	                throw new ServletException("Error al guardar la imagen: " + e.getMessage());
-	            }
-	        } else {
-	            throw new ServletException("Extensión de archivo no permitida: " + extensionArchivo);
-	        }
-        } else {
-            System.out.println("No se ha proporcionado ninguna imagen, se ignorará la carga de imagen.");
-        }
-    }
-
 }
