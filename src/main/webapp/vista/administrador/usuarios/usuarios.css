@@ -37,47 +37,35 @@
 	padding:5px 20px;
 }
 
-.estado-admi{
+.estado-cancelado{
 	color:var(--verde);
 	background-color: rgb(1,167,79,12%);
 }
-
-.estado-admi::before{
+.estado-cancelado::before{
 	background-color:var(--verde);
 }
 
-.estado-cocinero{
+.estado-pendiente{
 	color:var(--rojo);
 	background-color: rgb(213,24,24,12%);
 }
-
-.estado-cocinero::before{
+.estado-pendiente::before{
 	background-color:var(--rojo);
 }
 
-.estado-mozo{
-	color:var(--amarillo);
-	background-color: #ecc85e4a;
-}
-
-.estado-mozo::before{
-	background-color:var(--amarillo);
-}
-
-
-.estado-admi, .estado-cocinero, .estado-mozo{
+.estado-cancelado, .estado-pendiente{
 	font-size:14px;
 	font-weight:500;
 	width:150px;
 	display:flex;
 	align-items:center;
-	justify-content:start;
+	justify-content:center;
 	gap:20px;
-	padding:2px 9px;
+	padding:2px 5px;
 	border-radius:20px;
 }
 
-.estado-admi::before, .estado-cocinero::before, .estado-mozo::before{
+.estado-cancelado::before, .estado-pendiente::before{
 	content:"";
 	height:10px;
 	width:10px;

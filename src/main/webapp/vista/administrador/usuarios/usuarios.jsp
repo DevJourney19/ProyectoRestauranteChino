@@ -1,12 +1,12 @@
 
-<%@page import="java.util.List"%>
-<%@page import="modelo.*"%>
+
+<%@page import="modelo.Trabajador"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:useBean id="trabajadores" class="java.util.ArrayList"
-	scope="request" />
-<jsp:useBean id="rol" class="java.util.ArrayList" scope="request" />
+
+<%@page import="java.util.List"%>
+<%@page import="modelo.Trabajador"%>
 
 <!DOCTYPE html>
 <html>
@@ -24,8 +24,7 @@
 </head>
 <body>
 	<%
-	List<Trabajador> listaTrabajadores = (List<Trabajador>) trabajadores;
-	List<Rol> listaRol = (List<Rol>) rol;
+	List<Trabajador> trabajadores = (List<Trabajador>) request.getAttribute("trabajadores");
 	%>
 	<div class="d-flex flex-row">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
@@ -59,16 +58,17 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-
-									<form action="AgregarTrabajador" class="needs-validation"
-										novalidate method="POST">
-
+				
+									<form
+										action="${pageContext.request.contextPath}/SvAgregarTrabajador"
+										class="needs-validation" novalidate method="POST">
+	
 										<div class="form-group d-flex flex-wrap gap-2">
 											<!-- NOMBRE -->
 											<div
 												class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
-												<label for="apellido">Apellido</label> <input type="text"
-													class="form-control" id="apellido"
+												<label for="nombre">Apellido</label> <input type="text"
+													class="form-control" id="nombre"
 													aria-describedby="emailHelp"
 													placeholder="Ingrese Apellidos" name="apellido" required>
 											</div>
@@ -78,6 +78,24 @@
 													class="form-control" id="nombre"
 													aria-describedby="emailHelp" placeholder="Ingrese Nombres"
 													name="nombre" required>
+											</div>
+										</div>
+										<!-- DNI -->
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<div class="col-12 col-md">
+												<label for="dni">DNI</label> <input type="text"
+													class="form-control" id="dni" aria-describedby="emailHelp"
+													placeholder="Ingrese DNI" maxlength="8" name="dni" required>
+
+											</div>
+											<!-- CORREO -->
+											<div class="col-12 col-md">
+
+												<label for="correo">Correo</label> <input type="text"
+													class="form-control" id="correo"
+													aria-describedby="emailHelp" placeholder="Ingrese Correo"
+													name="correo" required min="0">
+
 											</div>
 										</div>
 										<!-- NOMBRE DE USUARIO -->
@@ -108,11 +126,11 @@
 											<!-- ROL-->
 											<div class="form-group mb-4 d-flex flex-wrap col-6 col-md">
 												<label for="rol">Rol</label> <select class="form-select"
-													aria-label="large select example" name="rol" id="rol">
+													aria-label="large select example" name="rol">
 													<option disabled>- Selecciona -</option>
-													<%for(Rol item: listaRol) {%>
-													<option value="<%=item.getId()%>"><%=item.getNombre()%></option>
-													<%} %>
+													<option value="1">Adminitrador</option>
+													<option value="2">Cocinero</option>
+													<option value="3">Mozo</option>
 												</select>
 											</div>
 										</div>
@@ -142,65 +160,89 @@
 								<!-- MODAL PARA ESCRIBIR EL NUEVO VALOR -->
 								<div class="modal-body">
 
-									<input type="hidden" name="id" id="trabajadorIdForm_e">
-									<div class="form-group d-flex flex-wrap gap-2">
-										<!-- APELLIDO -->
-										<div
-											class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
-											<label for="apellidoE">Apellido</label> <input type="text"
-												class="form-control" id="apellidoE"
-												aria-describedby="emailHelp" placeholder="Ingrese Apellidos"
-												name="apellido" required>
-										</div>
-										<div
-											class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
-											<label for="nombreE">Nombre</label> <input type="text"
-												class="form-control" id="nombreE"
-												aria-describedby="emailHelp" placeholder="Ingrese Nombres"
-												name="nombre" required>
-										</div>
-									</div>
-									<!-- NOMBRE DE USUARIO -->
-									<div class="form-group mb-4 d-flex flex-wrap gap-2">
+									<form
+										action="${pageContext.request.contextPath}/SvEditarTrabajador"
+										method="POST" class="needs-validation" novalidate>
 
-										<div class="col-12 col-md">
-											<label for="usuarioE">Usuario</label> <input type="text"
-												class="form-control" id="usuarioE"
-												aria-describedby="emailHelp" placeholder="Ingrese Usuario"
-												name="usuario" required>
+										<input type="hidden" name="id" id="trabajadorIdForm_e">
+										<div class="form-group d-flex flex-wrap gap-2">
+											<!-- APELLIDO -->
+											<div
+												class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
+												<label for="apellidoE">Apellido</label> <input type="text"
+													class="form-control" id="apellidoE"
+													aria-describedby="emailHelp"
+													placeholder="Ingrese Apellidos" name="apellido" required>
+											</div>
+											<div
+												class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
+												<label for="nombreE">Nombre</label> <input type="text"
+													class="form-control" id="nombreE"
+													aria-describedby="emailHelp" placeholder="Ingrese Nombres"
+													name="nombre" required>
+											</div>
 										</div>
-										<!-- CONTRASENIA -->
-										<div class="col-12 col-md">
-											<label for="passwordE">Contraseña</label> <input
-												type="password" class="form-control" id="passwordE"
-												aria-describedby="emailHelp"
-												placeholder="Ingrese Contraseña" name="password" required>
+										<!-- DNI -->
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<div class="col-12 col-md">
+												<label for="dniE">DNI</label> <input type="text"
+													class="form-control" id="dniE" aria-describedby="emailHelp"
+													placeholder="Ingrese DNI" maxlength="8" name="dni" required>
+
+											</div>
+											<!-- CORREO -->
+											<div class="col-12 col-md">
+
+												<label for="correoE">Correo</label> <input type="text"
+													class="form-control" id="correoE"
+													aria-describedby="emailHelp" placeholder="Ingrese Correo"
+													name="correo" required min="0">
+
+											</div>
 										</div>
-									</div>
-									<div class="form-group mb-4 d-flex flex-wrap gap-2">
-										<!-- CELULAR -->
-										<div class="col-6 col-md">
-											<label for="celularE">Celular</label> <input type="text"
-												class="form-control" id="celularE"
-												aria-describedby="emailHelp" placeholder="Ingrese Número"
-												name="celular" maxlength="9" required>
+										<!-- NOMBRE DE USUARIO -->
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+
+											<div class="col-12 col-md">
+												<label for="usuarioE">Usuario</label> <input type="text"
+													class="form-control" id="usuarioE"
+													aria-describedby="emailHelp" placeholder="Ingrese Usuario"
+													name="usuario" required>
+											</div>
+											<!-- CONTRASENIA -->
+											<div class="col-12 col-md">
+												<label for="passwordE">Contraseña</label> <input
+													type="password" class="form-control" id="passwordE"
+													aria-describedby="emailHelp"
+													placeholder="Ingrese Contraseña" name="password" required>
+											</div>
 										</div>
-										<!-- ROL-->
-										<div class="form-group mb-4 d-flex flex-wrap col-6 col-md">
-											<label for="rolE">Rol</label> <select class="form-select"
-												aria-label="large select example" name="rol" id="rolE">
-												<option disabled>- Selecciona -</option>
-												<%for(Rol item: listaRol) {%>
-												<option value="<%=item.getId()%>"><%=item.getNombre()%></option>
-												<%} %>
-											</select>
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<!-- CELULAR -->
+											<div class="col-6 col-md">
+												<label for="celularE">Celular</label> <input type="text"
+													class="form-control" id="celularE"
+													aria-describedby="emailHelp" placeholder="Ingrese Número"
+													name="celular" maxlength="9" required>
+											</div>
+											<!-- ROL-->
+											<div class="form-group mb-4 d-flex flex-wrap col-6 col-md">
+												<label for="rolE">Rol</label> <select class="form-select"
+													aria-label="large select example" name="rol" id="rolE">
+													<option disabled>- Selecciona -</option>
+													<option value="1">Adminitrador</option>
+													<option value="2">Cocinero</option>
+													<option value="3">Mozo</option>
+												</select>
+											</div>
 										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-danger"
-											data-bs-dismiss="modal">Cerrar</button>
-										<button id="editarId" type="button" class="btn btn-warning">Editar</button>
-									</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-danger"
+												data-bs-dismiss="modal">Cerrar</button>
+											<button type="submit" class="btn btn-warning">Editar</button>
+										</div>
+									</form>
+
 								</div>
 							</div>
 						</div>
@@ -224,13 +266,17 @@
 									<button type="button" class="btn btn-warning"
 										data-bs-dismiss="modal">Cancelar</button>
 
-									<input type="hidden" name="id" id="trabajadorIdForm">
-									<!-- Campo oculto para enviar el id con JS -->
+									<form
+										action="${pageContext.request.contextPath}/SvEliminarTrabajador"
+										method="POST">
+										<input type="hidden" name="id" id="trabajadorIdForm">
+										<!-- Campo oculto para enviar el id con JS -->
 
-									<button id="eliminarId" type="button"
-										class="btn btn-danger d-flex align-items-center gap-2">
-										<i class="lni lni-trash-can"></i>Eliminar
-									</button>
+										<button type="submit"
+											class="btn btn-danger d-flex align-items-center gap-2">
+											<i class="lni lni-trash-can"></i>Eliminar
+										</button>
+									</form>
 
 								</div>
 							</div>
@@ -245,7 +291,10 @@
 									<th>Código</th>
 									<th>Apellidos</th>
 									<th>Nombres</th>
+									<th>DNI</th>
+									<th>Correo</th>
 									<th>Usuario</th>
+									
 									<th>Celular</th>
 									<th>Rol</th>
 									<th></th>
@@ -255,31 +304,20 @@
 							<tbody>
 								<%
 								if (trabajadores != null && !trabajadores.isEmpty()) {
-									for (Trabajador trabajador : listaTrabajadores) {
-										String estado = "estado-desconocido";
-										Rol rolItem = trabajador.getRol();
-								        if (rolItem != null) {
-								            switch (rolItem.getNombre()) {
-								                case "Administrador":
-								                    estado = "estado-admi";
-								                    break;
-								                case "Mozo":
-								                    estado = "estado-mozo";
-								                    break;
-								                case "Cocinero":
-								                    estado = "estado-cocinero";
-								                    break;
-								            }
-								        }
+									for (Trabajador trabajador : trabajadores) {
 								%>
+
 								<tr>
 									<td><%=trabajador.getId()%></td>
 									<td><%=trabajador.getApellido()%></td>
 									<td><%=trabajador.getNombre()%></td>
+									<td><%=trabajador.getDni()%></td>
+									<td><%=trabajador.getCorreo()%></td>
 									<td><%=trabajador.getNombreUsuario()%></td>
+									
 									<td><%=trabajador.getCelular()%></td>
 
-									<td><span class="<%=estado%>"><%=trabajador.getRol().getNombre()%></span></td>
+									<td><span class="estado-cancelado"><%=trabajador.getRol().getNombre()%></span></td>
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
@@ -295,18 +333,22 @@
 												data-id="<%=trabajador.getId()%>"
 												data-apellido="<%=trabajador.getApellido()%>"
 												data-nombre="<%=trabajador.getNombre()%>"
+												data-dni="<%=trabajador.getDni()%>"
+												data-correo="<%=trabajador.getCorreo()%>"
 												data-usuario="<%=trabajador.getNombreUsuario()%>"
-												data-pass="<%=trabajador.getContrasenia()%>"
+												
 												data-celular="<%=trabajador.getCelular()%>"
-												data-id-rol="<%=trabajador.getRol().getId()%>">
+												data-id-rol="<%=trabajador.getRol()%>">
 												<i class="lni lni-pencil fs-4"></i>
 											</button>
+
 										</div>
 									</td>
 								</tr>
 								<%
-								}}
-								 else {
+								}
+								} else {
+
 								out.write("No se registraron usuarios...");
 								System.out.println("No hay registros");
 								}
@@ -321,7 +363,7 @@
 	</div>
 
 	<script
-		src="vista/administrador/usuarios/usuarios.js"></script>
+		src="${pageContext.request.contextPath}/vista/administrador/usuarios/usuarios.js"></script>
 
 </body>
 </html>

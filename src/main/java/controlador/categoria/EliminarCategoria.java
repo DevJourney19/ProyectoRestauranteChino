@@ -27,14 +27,10 @@ public class EliminarCategoria extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		DaoCategoria daoCategoria= new DaoCategoriaImpl();
-		try {
 		int id = Integer.parseInt(request.getParameter("id"));
 		if (daoCategoria.eliminar(id)) {
 			response.sendRedirect("AdmiCategoria");
 		}else {
-			response.sendRedirect("AdmiCategoria?mensaje=Operacion Fallida");
-		}
-		}catch(Exception e) {
 			response.sendRedirect("AdmiCategoria?mensaje=Operacion Fallida");
 		}
 	}

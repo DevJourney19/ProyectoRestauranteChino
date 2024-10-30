@@ -24,6 +24,7 @@ public class DaoPedidoImpl implements DaoPedido{
         con = new Conexion();
         cli = new DaoClienteImpl();
         tra = new DaoTrabajadorImpl();
+        
     }
 
 	@Override
@@ -34,7 +35,7 @@ public class DaoPedidoImpl implements DaoPedido{
 	@Override
 	public boolean agregar(Pedido objeto) {
 		StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO pedido(")
+        sql.append("INSERT INTO pedidos(")
                 .append("id_cliente,")
                 .append("id_mesa,")
                 .append("tipo_recibo,")
@@ -60,33 +61,13 @@ public class DaoPedidoImpl implements DaoPedido{
 
 	@Override
 	public boolean editar(Pedido objeto) {
-		StringBuilder sql = new StringBuilder();
-		sql.append("UPDATE pedido SET ").append("id_cliente = ?, id_mesa = ?, estado = ?, tipo_recibo = ?, metodo_pago = ?, total = ?").append("id_trabajador = ?")
-				.append(" WHERE id = ?");
-		try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString());) {
-			ps.setInt(1, objeto.getCliente().getId());
-			ps.setInt(2, objeto.getMesa().getId());
-			ps.setString(3, objeto.getEstado().toString());
-			ps.setString(4, objeto.getTipo_recibo().toString());
-			ps.setString(5, objeto.getMetodo_pago().toString());
-			ps.setDouble(6, objeto.getTotal());
-			return (ps.executeUpdate() != 0);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean eliminar(int codigo) {
-		StringBuilder sql = new StringBuilder();
-		sql.append("DELETE FROM pedido ").append("WHERE id = ?");
-		try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString());) {
-			ps.setInt(1, codigo);
-			return (ps.executeUpdate() == 0);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -108,13 +89,13 @@ public class DaoPedidoImpl implements DaoPedido{
 	                .append("tipo_recibo,")
 	                .append("metodo_pago,")
 	                .append("total,")
-	                .append("nombre,")
 	                .append("created_at")
-	                .append(" FROM pedidosview");
+	                .append(" FROM pedidosView");
 	        try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString()); ResultSet rs = ps.executeQuery();) {
 	            lista = new ArrayList<>();
+
 	            while (rs.next()) {
-	            	Object[] obj = new Object[9];
+	                Object[] obj = new Object[8];
 	                obj[0] = rs.getInt(1);
 	                obj[1] = rs.getString(2);
 	                obj[2] = rs.getInt(3);
@@ -123,7 +104,6 @@ public class DaoPedidoImpl implements DaoPedido{
 	                obj[5] = rs.getString(6);
 	                obj[6] = rs.getDouble(7);
 	                obj[7] = rs.getString(8);
-	                obj[8] = rs.getString(9);
 	                lista.add(obj);
 	            }
 	        } catch (Exception e) {
@@ -137,4 +117,5 @@ public class DaoPedidoImpl implements DaoPedido{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

@@ -4,15 +4,13 @@ public class Trabajador {
 	private int id;
 	private String apellido;
 	private String nombre;
+	private String dni;
+	private String correo;
 	private String nombreUsuario;
 	private String contrasenia;
 	private String celular;
 	private Rol rol;
-	
-	public Trabajador() {
-		
-	}
-	
+	private int id_rol;
 
 	public int getId() {
 		return id;
@@ -30,6 +28,21 @@ public class Trabajador {
 		this.id = id;
 	}
 
+	public String getDni() {
+		return dni;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -71,5 +84,25 @@ public class Trabajador {
 		this.celular = celular;
 	}
 
+	public int getId_rol() {
+		return id_rol;
+	}
+
+	public void setId_rol(int id_rol) {
+		this.id_rol = id_rol;
+	}
+
+	public String getRolNombre() {
+		switch (this.id_rol) {
+		case 1:
+			return "Administrador";
+		case 2:
+			return "Cocinero";
+		case 3:
+			return "Mesero";
+		default:
+			return "Desconocido";
+		}
+	}
 
 }

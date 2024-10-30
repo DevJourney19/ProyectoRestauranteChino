@@ -27,23 +27,19 @@ public class AgregarMesa extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DaoMesaImpl daoMesa = new DaoMesaImpl();
 		Mesa mesa = new Mesa();
-	    try {
-	    	String numSalon = request.getParameter("numSalon");
-		    String numMesa = request.getParameter("numMesa");
-			if(!numSalon.isEmpty() && !numMesa.isEmpty()  ) {
-				mesa.setN_salon(Integer.parseInt(numSalon));
-				mesa.setN_mesa(Integer.parseInt(numMesa));
-				if(daoMesa.agregar(mesa)) {
-				response.sendRedirect("AdmiMesa");
-				}else {
-					response.sendRedirect("AdmiMesa?mensaje=Operacion Fallida");
-				}
+	    String numSalon = request.getParameter("numSalon");
+	    String numMesa = request.getParameter("numMesa");
+		if(!numSalon.isEmpty() && !numMesa.isEmpty()  ) {
+			mesa.setN_salon(Integer.parseInt(numSalon));
+			mesa.setN_mesa(Integer.parseInt(numMesa));
+			if(daoMesa.agregar(mesa)) {
+			response.sendRedirect("AdmiMesa");
 			}else {
 				response.sendRedirect("AdmiMesa?mensaje=Operacion Fallida");
 			}
-	    }catch(Exception e) {
-	    	response.sendRedirect("AdmiMesa?mensaje=Operacion Fallida");
-	    }
+		}else {
+			response.sendRedirect("AdmiMesa?mensaje=Operacion Fallida");
+		}
 	}
 	
 }
