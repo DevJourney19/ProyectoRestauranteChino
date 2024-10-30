@@ -11,7 +11,7 @@ import java.io.IOException;
 
 import datos.impl.DaoMesaImpl;
 
-@WebServlet(name = "EliminarMesa", urlPatterns = { "/EliminarMesa" })
+@WebServlet(name = "EliminarMesa", urlPatterns = {"/EliminarMesa"})
 public class EliminarMesa extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -27,14 +27,10 @@ public class EliminarMesa extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		DaoMesaImpl daoMesa = new DaoMesaImpl();
-		try {
-			int id = Integer.parseInt(request.getParameter("id"));
-			if (daoMesa.eliminar(id)) {
-				response.sendRedirect("AdmiMesa");
-			} else {
-				response.sendRedirect("AdmiMesa?mensaje=Operacion Fallida");
-			}
-		} catch (Exception e) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		if (daoMesa.eliminar(id)) {
+			response.sendRedirect("AdmiMesa");
+		}else {
 			response.sendRedirect("AdmiMesa?mensaje=Operacion Fallida");
 		}
 	}

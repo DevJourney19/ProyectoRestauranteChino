@@ -1,18 +1,20 @@
-package controlador.menu;
+package controlador.usuarios;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import modelo.Menu;
 
 import java.io.IOException;
+import java.util.List;
 
-import datos.impl.DaoMenuImpl;
+import datos.impl.DaoUsuariosImpl;
+import modelo.Trabajador;
 
-@WebServlet(name = "EliminarMenu", urlPatterns = {"/EliminarMenu"})
-public class EliminarMenu extends HttpServlet {
+@WebServlet(name = "AgregarUsuarios", urlPatterns = { "/AgregarUsuarios" })
+public class AgregarUsuarios extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -28,11 +30,15 @@ public class EliminarMenu extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		DaoMenuImpl daoMenu = new DaoMenuImpl();
-		int id = Integer.parseInt(request.getParameter("id"));
-		if (daoMenu.eliminar(id)) {
-			response.sendRedirect("AdmiMenu");
+
+		DaoUsuariosImpl daoUsuarios = new DaoUsuariosImpl();
+		try {
+			List<Trabajador> trabajadores = daoUsuarios.consultar();
+			request.setAttribute("trabajador", trabajadores);
+			RequestDispatcher rd = request.getRequestDispatcher("/vista/administrador/usuarios/usuarios.jsp");
+			rd.forward(request, response);
+		} catch (Exception e) {
+			request.setAttribute("error", "Error al obtener la lista de trabajadores: " + e.getMessage());
 		}
 	}
-
 }

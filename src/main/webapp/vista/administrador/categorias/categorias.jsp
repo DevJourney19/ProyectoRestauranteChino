@@ -103,7 +103,7 @@
 												<label for="editTipo">Tipo</label> <select id="editTipo"
 													name="tipo" class="form-select"
 													aria-label="Default select example" required>
-													<option selected disabled>Selecciona el tipo</option>
+													<option selected>Selecciona el tipo</option>
 													<%
 													for (Categoria.TipoCategoria tipo : Categoria.TipoCategoria.values()) {
 													%>

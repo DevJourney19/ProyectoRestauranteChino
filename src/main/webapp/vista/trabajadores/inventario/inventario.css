@@ -51,3 +51,44 @@ main {
 .card {
 	box-shadow:10px 17px 20px -19px rgba(0, 0, 0, 0.75);
 }
+
+.stock-alto {
+    color: var(--verde);
+    background-color: rgb(1, 167, 79, 12%);
+}
+
+.stock-alto::before {
+    background-color: var(--verde);
+}
+
+.stock-bajo {
+    color: var(--rojo);
+    background-color: rgb(213, 24, 24, 12%);
+}
+
+.stock-bajo::before {
+    background-color: var(--rojo);
+}
+
+.stock-alto, .stock-bajo {
+    font-weight: 500;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 2px 5px;
+    border-radius: 20px;
+}
+
+.stock-alto::before, .stock-bajo::before {
+    content: "";
+    height: 10px;
+    width: 10px;
+    display: flex;
+    border-radius: 99%;
+}
+
+.img-inventario {
+	height: 200px;
+}

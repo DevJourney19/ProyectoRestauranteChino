@@ -44,6 +44,14 @@ public class Mesa {
 	public Mesa() {
 		super();
 	}
+
+	public Mesa(int id, int n_salon, int n_mesa, EstadoMesa estado) {
+		super();
+		this.id = id;
+		this.n_salon = n_salon;
+		this.n_mesa = n_mesa;
+		this.estado = estado;
+	}
 	
 	
 

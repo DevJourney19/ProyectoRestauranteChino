@@ -11,7 +11,7 @@
 		<ul class="sidebar-nav p-0">
 
 			<li class="sidebar-item"><a
-				href="AdmiTrabajador"
+				href="${pageContext.request.contextPath}/SvConsultarTrabajador"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-users"></i> <span>Usuarios</span>
 			</a></li>
@@ -40,7 +40,7 @@
 		</ul>
 
 		<div class="sidebar-footer">
-			<a href="LogoutControlador"
+			<a href="${pageContext.request.contextPath}/vista/login.jsp"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 				class="lni lni-exit"></i> <span>Salir</span>
 			</a>
