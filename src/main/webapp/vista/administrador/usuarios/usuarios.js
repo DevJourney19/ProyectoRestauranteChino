@@ -111,7 +111,10 @@ document
 			            })
 			            .then(response => {
 			                if (response.ok) {
-			                    return response.json();
+							window.location.reload();
+			                    return response.json().then(data => {
+							            window.location.reload();
+							        });
 			                }
 			                throw new Error('Error en la red');
 			            })
@@ -121,8 +124,7 @@ document
 			            .catch((error) => {
 			                console.error('Error:', error);
 			            });
-						
-						window.location.reload();
+					
 			        }
 			    );
 

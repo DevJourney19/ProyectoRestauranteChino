@@ -32,14 +32,14 @@ public class Entradas implements Filter {
 
 	private static boolean validarAdmin(String ruta) {
 		return switch (ruta) {
-		case "AdmiCategoria", "AdmiTrabajador", "AdmiPedido", "AdmiInventario", "AdmiMenu", "AdmiMesa", "AgregarCategoria", "EditarCategoria", "EliminarCategoria", "AgregarTrabajador", "EditarTrabajador", "EliminarTrabajador", "AgregarPedido", "EditarPedido", "EliminarPedido", "AgregarInventario", "EditarInventario", "EliminarInventario","AgregarMesa",  "EditarMesa", "EliminarMesa", "AgregarMenu",  "EditarMenu", "EliminarMenu" -> true;
+		case "AdmiCategoria", "AdmiTrabajador", "AdmiPedido", "AdmiInventario", "AdmiMenu", "AdmiMesa", "AgregarCategoria", "EditarCategoria", "EliminarCategoria", "AgregarTrabajador", "EditarTrabajador", "EliminarTrabajador", "AgregarPedido", "EditarPedido", "EliminarPedido", "AgregarDetallePedido", "EditarDetallePedido", "EliminarDetallePedido", "AgregarInventario", "EditarInventario", "EliminarInventario","AgregarMesa",  "EditarMesa", "EliminarMesa", "AgregarMenu",  "EditarMenu", "EliminarMenu" -> true;
 		default -> false;
 		};
 	}
 
 	private static boolean validarMozo(String ruta) {
 		return switch (ruta) {
-		case "TrabajadorMenu", "TrabajadorPedido", "TrabajadorMesa", "AgregarPedido", "EditarPedido", "EliminarPedido", "EditarMesa" -> true;
+		case "TrabajadorMenu", "TrabajadorPedido", "TrabajadorMesa", "AgregarPedido", "EditarPedido", "EliminarPedido", "AgregarDetallePedido", "EditarDetallePedido", "EliminarDetallePedido", "EditarMesa" -> true;
 		default -> false;
 		};
 	}

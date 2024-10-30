@@ -40,7 +40,7 @@ public class AgregarTrabajador extends HttpServlet {
 			String celular = request.getParameter("celular");
 			String rol_seleccionado = request.getParameter("rol");
 			if (rol_seleccionado != null && !rol_seleccionado.isEmpty()) {
-				id_rol = Integer.parseInt(rol_seleccionado); // Convierte a int
+				id_rol = Integer.parseInt(rol_seleccionado); // 
 			} else {
 				System.out.println("No se seleccionó un rol válido.");
 			}

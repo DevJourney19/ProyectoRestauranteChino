@@ -4,7 +4,8 @@
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:useBean id="trabajadores" class="java.util.ArrayList" scope="request" />
+<jsp:useBean id="trabajadores" class="java.util.ArrayList"
+	scope="request" />
 <jsp:useBean id="rol" class="java.util.ArrayList" scope="request" />
 
 <!DOCTYPE html>
@@ -58,11 +59,10 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-				
-									<form
-										action="AgregarTrabajador"
-										class="needs-validation" novalidate method="POST">
-	
+
+									<form action="AgregarTrabajador" class="needs-validation"
+										novalidate method="POST">
+
 										<div class="form-group d-flex flex-wrap gap-2">
 											<!-- NOMBRE -->
 											<div
@@ -142,65 +142,65 @@
 								<!-- MODAL PARA ESCRIBIR EL NUEVO VALOR -->
 								<div class="modal-body">
 
-										<input type="hidden" name="id" id="trabajadorIdForm_e">
-										<div class="form-group d-flex flex-wrap gap-2">
-											<!-- APELLIDO -->
-											<div
-												class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
-												<label for="apellidoE">Apellido</label> <input type="text"
-													class="form-control" id="apellidoE"
-													aria-describedby="emailHelp"
-													placeholder="Ingrese Apellidos" name="apellido" required>
-											</div>
-											<div
-												class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
-												<label for="nombreE">Nombre</label> <input type="text"
-													class="form-control" id="nombreE"
-													aria-describedby="emailHelp" placeholder="Ingrese Nombres"
-													name="nombre" required>
-											</div>
+									<input type="hidden" name="id" id="trabajadorIdForm_e">
+									<div class="form-group d-flex flex-wrap gap-2">
+										<!-- APELLIDO -->
+										<div
+											class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
+											<label for="apellidoE">Apellido</label> <input type="text"
+												class="form-control" id="apellidoE"
+												aria-describedby="emailHelp" placeholder="Ingrese Apellidos"
+												name="apellido" required>
 										</div>
-										<!-- NOMBRE DE USUARIO -->
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+										<div
+											class="form-group mb-4 d-flex flex-wrap gap-2 col-6 col-md">
+											<label for="nombreE">Nombre</label> <input type="text"
+												class="form-control" id="nombreE"
+												aria-describedby="emailHelp" placeholder="Ingrese Nombres"
+												name="nombre" required>
+										</div>
+									</div>
+									<!-- NOMBRE DE USUARIO -->
+									<div class="form-group mb-4 d-flex flex-wrap gap-2">
 
-											<div class="col-12 col-md">
-												<label for="usuarioE">Usuario</label> <input type="text"
-													class="form-control" id="usuarioE"
-													aria-describedby="emailHelp" placeholder="Ingrese Usuario"
-													name="usuario" required>
-											</div>
-											<!-- CONTRASENIA -->
-											<div class="col-12 col-md">
-												<label for="passwordE">Contraseña</label> <input
-													type="password" class="form-control" id="passwordE"
-													aria-describedby="emailHelp"
-													placeholder="Ingrese Contraseña" name="password" required>
-											</div>
+										<div class="col-12 col-md">
+											<label for="usuarioE">Usuario</label> <input type="text"
+												class="form-control" id="usuarioE"
+												aria-describedby="emailHelp" placeholder="Ingrese Usuario"
+												name="usuario" required>
 										</div>
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<!-- CELULAR -->
-											<div class="col-6 col-md">
-												<label for="celularE">Celular</label> <input type="text"
-													class="form-control" id="celularE"
-													aria-describedby="emailHelp" placeholder="Ingrese Número"
-													name="celular" maxlength="9" required>
-											</div>
-											<!-- ROL-->
-											<div class="form-group mb-4 d-flex flex-wrap col-6 col-md">
-												<label for="rolE">Rol</label> <select class="form-select"
-													aria-label="large select example" name="rol" id="rolE">
-													<option disabled>- Selecciona -</option>
-													<%for(Rol item: listaRol) {%>
-													<option value="<%=item.getId()%>"><%=item.getNombre()%></option>
-													<%} %>
-												</select>
-											</div>
+										<!-- CONTRASENIA -->
+										<div class="col-12 col-md">
+											<label for="passwordE">Contraseña</label> <input
+												type="password" class="form-control" id="passwordE"
+												aria-describedby="emailHelp"
+												placeholder="Ingrese Contraseña" name="password" required>
 										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-danger"
-												data-bs-dismiss="modal">Cerrar</button>
-											<button id="editarId" type="button" class="btn btn-warning">Editar</button>
+									</div>
+									<div class="form-group mb-4 d-flex flex-wrap gap-2">
+										<!-- CELULAR -->
+										<div class="col-6 col-md">
+											<label for="celularE">Celular</label> <input type="text"
+												class="form-control" id="celularE"
+												aria-describedby="emailHelp" placeholder="Ingrese Número"
+												name="celular" maxlength="9" required>
 										</div>
+										<!-- ROL-->
+										<div class="form-group mb-4 d-flex flex-wrap col-6 col-md">
+											<label for="rolE">Rol</label> <select class="form-select"
+												aria-label="large select example" name="rol" id="rolE">
+												<option disabled>- Selecciona -</option>
+												<%for(Rol item: listaRol) {%>
+												<option value="<%=item.getId()%>"><%=item.getNombre()%></option>
+												<%} %>
+											</select>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-danger"
+											data-bs-dismiss="modal">Cerrar</button>
+										<button id="editarId" type="button" class="btn btn-warning">Editar</button>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -224,13 +224,13 @@
 									<button type="button" class="btn btn-warning"
 										data-bs-dismiss="modal">Cancelar</button>
 
-										<input type="hidden" name="id" id="trabajadorIdForm">
-										<!-- Campo oculto para enviar el id con JS -->
+									<input type="hidden" name="id" id="trabajadorIdForm">
+									<!-- Campo oculto para enviar el id con JS -->
 
-										<button id="eliminarId" type="button"
-											class="btn btn-danger d-flex align-items-center gap-2">
-											<i class="lni lni-trash-can"></i>Eliminar
-										</button>
+									<button id="eliminarId" type="button"
+										class="btn btn-danger d-flex align-items-center gap-2">
+										<i class="lni lni-trash-can"></i>Eliminar
+									</button>
 
 								</div>
 							</div>
@@ -256,6 +256,21 @@
 								<%
 								if (trabajadores != null && !trabajadores.isEmpty()) {
 									for (Trabajador trabajador : listaTrabajadores) {
+										String estado = "estado-desconocido";
+										Rol rolItem = trabajador.getRol();
+								        if (rolItem != null) {
+								            switch (rolItem.getNombre()) {
+								                case "Administrador":
+								                    estado = "estado-admi";
+								                    break;
+								                case "Mozo":
+								                    estado = "estado-mozo";
+								                    break;
+								                case "Cocinero":
+								                    estado = "estado-cocinero";
+								                    break;
+								            }
+								        }
 								%>
 								<tr>
 									<td><%=trabajador.getId()%></td>
@@ -264,7 +279,7 @@
 									<td><%=trabajador.getNombreUsuario()%></td>
 									<td><%=trabajador.getCelular()%></td>
 
-									<td><span class="estado-cancelado"><%=trabajador.getRol().getNombre()%></span></td>
+									<td><span class="<%=estado%>"><%=trabajador.getRol().getNombre()%></span></td>
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
@@ -290,8 +305,8 @@
 									</td>
 								</tr>
 								<%
-								}
-								} else {
+								}}
+								 else {
 								out.write("No se registraron usuarios...");
 								System.out.println("No hay registros");
 								}
@@ -306,7 +321,7 @@
 	</div>
 
 	<script
-		src="${pageContext.request.contextPath}/vista/administrador/usuarios/usuarios.js"></script>
+		src="vista/administrador/usuarios/usuarios.js"></script>
 
 </body>
 </html>

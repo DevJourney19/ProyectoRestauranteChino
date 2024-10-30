@@ -11,12 +11,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/vista/administrador/pedidos/pedidos.css">
+<link rel="stylesheet" href="vista/administrador/pedidos/pedidos.css">
 <%@ include file="../fragmentos/head.jsp"%>
 <title>ADMIN | PEDIDOS</title>
 </head>
 <body>
+	<%
+	List<Object[]> listaPedidos = new ArrayList<>(pedidos);
+	List<Mesa> listaMesas = (List<Mesa>) mesas;
+	%>
 	<div class="d-flex flex-row">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
@@ -27,7 +30,9 @@
 						<div
 							class="text-center d-md-flex align-items-center justify-content-between flex-wrap">
 							<h1>GESTIÓN DE PEDIDOS - 订单管理</h1>
-							<span class="fs-3 numero-mesas text-center">200 pedidos</span>
+							<span class="fs-3 numero-mesas text-center"> <%=listaPedidos != null ? listaPedidos.size() : 0%>
+								pedidos
+							</span>
 						</div>
 						<div
 							class="d-flex align-items-center justify-content-center mt-2 mt-md-0 justify-content-md-end gap-4">
@@ -62,14 +67,12 @@
 											<label for="n_mesa">N&ordm; Mesa</label> <select id="n_mesa"
 												name="n_mesa" class="form-select"
 												aria-label="Default select example">
-
 												<option selected>Seleccione una mesa</option>
 												<%
-												List<Mesa> listaMesas = (List<Mesa>) mesas;
 												for (Mesa mesa : listaMesas) {
 													if (Mesa.EstadoMesa.valueOf(mesa.getEstado().toString()) == Mesa.EstadoMesa.Ocupado) {
 												%>
-												<option value="<%=mesa.getN_mesa()%>"><%=mesa.getN_mesa()%></option>
+												<option value="<%=mesa.getId()%>"><%=mesa.getN_mesa()%></option>
 												<%
 												}
 												}
@@ -81,7 +84,6 @@
 												<label for="recibo">Tipo Recibo</label> <select id="recibo"
 													name="recibo" class="form-select"
 													aria-label="Default select example">
-
 													<option selected>Seleccione un tipo</option>
 													<%
 													for (Pedido.TipoRecibo tipo : Pedido.TipoRecibo.values()) {
@@ -139,6 +141,7 @@
 									<th>Tipo de Recibo</th>
 									<th>Metodo de Pago</th>
 									<th>Total Pago</th>
+									<th>Trabajador</th>
 									<th>Fecha Creacion</th>
 									<th>Ver Detalle Pedido</th>
 									<th></th>
@@ -146,22 +149,21 @@
 							</thead>
 							<tbody>
 								<%
-								List<Object[]> listaPedidos = new ArrayList<>(pedidos);
 								if (pedidos.isEmpty()) {
 									out.println("No hay pedidos disponibles.");
 								}
 								for (Object[] item : listaPedidos) {
 									String estado = "estado-desconocido";
 									switch (item[3].toString()) {
-									case "Pendiente":
-										estado = "estado-pendiente";
-										break;
-									case "Completado":
-										estado = "estado-completado";
-										break;
-									case "Cancelado":
-										estado = "estado-cancelado";
-										break;
+										case "Pendiente" :
+									estado = "estado-pendiente";
+									break;
+										case "Completado" :
+									estado = "estado-completado";
+									break;
+										case "Cancelado" :
+									estado = "estado-cancelado";
+									break;
 									}
 								%>
 								<tr>
@@ -171,31 +173,43 @@
 									<td><span class="<%=estado%>"><%=item[3]%></span></td>
 									<td><%=item[4]%></td>
 									<td><%=item[5]%></td>
-									<td><%=item[6]%></td>
+									<td>S/<%=item[6]%></td>
+									<td><%=item[7]%></td>
 									<td>
 										<%
 										Date date = null;
 										try {
-											date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse((String) item[7]);
+											date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse((String) item[8]);
 										} catch (ParseException e) {
 											e.printStackTrace();
 										}
-										out.print(date);
+
+										SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+										String formattedDate = date != null ? dateFormat.format(date) : "Fecha no disponible";
+
+										out.print(formattedDate);
 										%>
 									</td>
 									<!-- pasar un id del pedido para filtrar	 -->
-									<td><a href="detalle_pedido.jsp"
+									<td><a href="AdmiDetallePedido?id=<%=item[0]%>"
 										class="fs-4 icon-see d-flex justify-content-center"><i
 											class="fw-semibold lni lni-eye"></i></a></td>
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
-											<button class="icon-action" data-bs-toggle="modal"
-												data-bs-target="#staticBackdrop">
+											<button data-id="<%=item[0]%>" class="icon-action"
+												data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 												<i class="lni lni-trash-can fs-4"></i>
 											</button>
-											<button class="icon-action" data-bs-toggle="modal"
-												data-bs-target="#modalEdit">
+											<button data-id="<%=item[0]%>"
+												data-usuario="<%=item[1]%>"
+												data-mesa="<%=item[2]%>"
+												data-estado="<%=item[3]%>"
+												data-recibo="<%=item[4]%>"
+												data-metodo="<%=item[5]%>"
+												data-pago="<%=item[6]%>"
+												class="icon-action"
+												data-bs-toggle="modal" data-bs-target="#modalEdit">
 												<i class="lni lni-pencil fs-4"></i>
 											</button>
 										</div>
@@ -219,34 +233,84 @@
 											data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
 									<div class="modal-body">
-										<form action="" class="needs-validation" novalidate>
-											<div class="form-group mb-4 d-flex flex-wrap gap-2">
-												<label for="cliente">DNI Cliente</label> <input type="text"
-													class="form-control" id="client"
-													aria-describedby="emailHelp" placeholder="Enter Number"
-													name="cliente" required>
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<label for="edCliente">DNI Cliente</label> <input type="text"
+												class="form-control" id="edCliente"
+												aria-describedby="emailHelp" placeholder="Enter Number"
+												name="edCliente" required>
+										</div>
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<div class="col-6 col-md">
+												<label for="edEstado">Estado</label> <select id="edEstado"
+													name="edEstado" class="form-select"
+													aria-label="Default select example">
+													<option selected>Seleccione un estado</option>
+													<%
+													for (Pedido.EstadoPedido estado : Pedido.EstadoPedido.values()) {
+													%>
+													<option value="<%=estado%>"><%=estado%></option>
+													<%
+													}
+													%>
+												</select>
 											</div>
-											<div class="form-group mb-4 d-flex flex-wrap gap-2">
-												<label for="cliente">N&ordm; Mesa</label> <input
-													type="number" step="1" class="form-control" id="client"
-													aria-describedby="emailHelp" placeholder="Enter Mesa"
-													name="numMesa" required>
+											<div class="col-6 col-md">
+												<label for="edMesa">N&ordm; Mesa</label> <select id="edMesa"
+													name="edMesa" class="form-select"
+													aria-label="Default select example">
+													<option selected>Seleccione una mesa</option>
+													<%
+													for (Mesa mesa : listaMesas) {
+													%>
+													<option value="<%=mesa.getId()%>"><%=mesa.getN_mesa()%></option>
+													<%
+													}
+													%>
+												</select>
 											</div>
-											<div class="form-group mb-4 d-flex flex-wrap gap-2">
-												<label for="totalPagar">Total</label> <input type="number"
-													step="0.01" class="form-control" id="totalPagar"
-													aria-describedby="emailHelp" placeholder="Enter Total"
-													name="totalPagar" required>
+										</div>
+										<div class="form-group mb-4 d-flex gap-2">
+											<div class="col-6 col-md">
+												<label for="edRecibo">Tipo Recibo</label> <select
+													id="edRecibo" name="edRecibo" class="form-select"
+													aria-label="Default select example">
+													<option selected>Seleccione un tipo</option>
+													<%
+													for (Pedido.TipoRecibo tipo : Pedido.TipoRecibo.values()) {
+													%>
+													<option value="<%=tipo%>"><%=tipo%></option>
+													<%
+													}
+													%>
+												</select>
 											</div>
-
-											<div class="modal-footer">
-
-												<button type="button" class="btn btn-danger"
-													data-bs-dismiss="modal">Cerrar</button>
-												<button type="submit" class="btn btn-warning">
-													Editar Pedido</button>
+											<div class="col-6 col-md">
+												<label for="edMetodo">Metodo de Pago</label> <select
+													id="edMetodo" name="edMetodo" class="form-select"
+													aria-label="Default select example">
+													<option selected>Seleccione un metodo</option>
+													<%
+													for (Pedido.MetodoPago metodo : Pedido.MetodoPago.values()) {
+													%>
+													<option value="<%=metodo%>"><%=metodo%></option>
+													<%
+													}
+													%>
+												</select>
 											</div>
-										</form>
+										</div>
+										<div class="form-group mb-4 d-flex flex-wrap gap-2">
+											<label for="edTotal">Total</label> <input type="number"
+												step="0.01" class="form-control" id="edTotal"
+												aria-describedby="emailHelp" placeholder="Enter Total"
+												name="edTotal" required>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-danger"
+												data-bs-dismiss="modal">Cerrar</button>
+											<button id="editarId" type="button" class="btn btn-warning">
+												Editar Pedido</button>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -264,17 +328,15 @@
 									</div>
 									<div class="modal-body fw-medium fs-4">
 										<p>Estas seguro de eliminar este Pedido?</p>
-										<p>#1</p>
+										<p id="modalIdEliminar">#1</p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-warning"
 											data-bs-dismiss="modal">Cancelar</button>
-										<form action="">
-											<button type="button"
+											<button id="eliminarId" type="button"
 												class="btn btn-danger d-flex align-items-center gap-2">
 												<i class="lni lni-trash-can"></i>Eliminar
 											</button>
-										</form>
 									</div>
 								</div>
 							</div>
@@ -284,5 +346,81 @@
 			</main>
 		</div>
 	</div>
+	<script>
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const mensaje = urlParams.get('mensaje');
+
+        if (mensaje) {
+            alert(mensaje);
+
+            // Eliminar el parámetro 'mensaje' de la URL
+            urlParams.delete('mensaje');
+
+            // Actualizar la URL sin recargar la página
+            window.history.replaceState({}, document.title, window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : ''));
+        }
+    };
+
+		// Modal de eliminación
+		document
+				.getElementById('staticBackdrop')
+				.addEventListener(
+						'show.bs.modal',
+						function(event) {
+							const button = event.relatedTarget;
+							const id = button.getAttribute('data-id');
+							document.getElementById('modalIdEliminar').innerHTML = "#"
+									+ id;
+							document
+									.getElementById('eliminarId')
+									.addEventListener(
+											'click',
+											function(event) {
+												window.location.href = "/ProyectoRestauranteChino/EliminarPedido?id="
+														+ id;
+											})
+						});
+		
+		// Modal de edición
+		document
+				.getElementById('modalEdit')
+				.addEventListener(
+						'show.bs.modal',
+						function(event) {
+							const button = event.relatedTarget;
+							const id = button.getAttribute('data-id');
+							let usuario = button.getAttribute('data-usuario');
+							let mesa = button.getAttribute('data-mesa');
+							let estado = button.getAttribute('data-estado');
+							let recibo = button.getAttribute('data-recibo');
+							let metodo = button.getAttribute('data-metodo');
+							let pago = button.getAttribute('data-pago');
+
+							document.getElementById('edCliente').value = usuario;
+							document.getElementById('edMesa').value = mesa;
+							document.getElementById('edEstado').value = estado;
+							document.getElementById('edRecibo').value = recibo;
+							document.getElementById('edMetodo').value = metodo;
+							document.getElementById('edTotal').value = pago;
+
+							document.getElementById('editarId').addEventListener('click', function(event) {
+							    usuario = document.getElementById('edCliente').value;
+							    mesa = document.getElementById('edMesa').value;
+							    estado = document.getElementById('edEstado').value;
+							    recibo = document.getElementById('edRecibo').value;
+							    metodo = document.getElementById('edMetodo').value;
+							    pago = document.getElementById('edTotal').value;
+
+							    window.location.href = "/ProyectoRestauranteChino/EditarPedido?id=" 
+							        + id + "&usuario=" + encodeURIComponent(usuario) 
+							        + "&mesa=" + encodeURIComponent(mesa) 
+							        + "&estado=" + encodeURIComponent(estado) 
+							        + "&recibo=" + encodeURIComponent(recibo) 
+							        + "&metodo=" + encodeURIComponent(metodo) 
+							        + "&pago=" + encodeURIComponent(pago);
+							});
+						});
+	</script>
 </body>
 </html>
