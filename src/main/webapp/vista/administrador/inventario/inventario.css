@@ -54,12 +54,6 @@
     display: flex;
     border-radius: 99%;
 }
-
-.img-inventario {
-	width: 29px;
-	height: 29px;
-}
-
 #modelAdd{
 	background: white;
 }

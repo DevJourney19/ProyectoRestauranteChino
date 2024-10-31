@@ -1,4 +1,4 @@
-package controlador.usuarios;
+package controlador.pedido;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -6,18 +6,19 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import modelo.Trabajador;
+import modelo.Categoria;
+import modelo.DetallePedido;
 
 import java.io.IOException;
 import java.util.List;
 
-import datos.impl.DaoUsuariosImpl;
+import datos.DaoCategoria;
+import datos.DaoDetalle;
+import datos.impl.DaoCategoriaImpl;
+import datos.impl.DaoDetalleImpl;
 
-@WebServlet(name = "AdmiUsuarios", urlPatterns = {"/AdmiUsuarios"})
-public class AdmiUsuarios extends HttpServlet {
-
-
-	private static final long serialVersionUID = 1L;
+@WebServlet(name = "AdmiDetallePedido", urlPatterns = {"/AdmiDetallePedido"})
+public class AdmiDetallePedido extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
@@ -28,14 +29,13 @@ public class AdmiUsuarios extends HttpServlet {
 	}
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DaoUsuariosImpl daoUsuarios = new DaoUsuariosImpl();
-		try {
-		    List<Trabajador> trabajadores = daoUsuarios.consultar();
-		    request.setAttribute("trabajador", trabajadores);
-		    RequestDispatcher rd = request.getRequestDispatcher("/vista/administrador/usuarios/usuarios.jsp");
-		    rd.forward(request, response);
-		} catch (Exception e) {
-		    request.setAttribute("error", "Error al obtener la lista de trabajadores: " + e.getMessage());
-		}
+		DaoDetalle daoDetalle = new DaoDetalleImpl();
+		int id = Integer.valueOf(request.getParameter("id"));
+		List<DetallePedido> detalle = daoDetalle.obtener(id);
+		request.setAttribute("detallesPedido", detalle);
+		 RequestDispatcher rd = request.getRequestDispatcher("vista/administrador/pedidos/detalle_pedido.jsp");
+		 rd.forward(request, response);
 	}
+	
+
 }

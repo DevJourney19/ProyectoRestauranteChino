@@ -42,7 +42,7 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-									<form action="" class="needs-validation" novalidate>
+									<form action="AgregarDetallePedido" class="needs-validation" novalidate>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<label for="cliente">Platos</label>
 											<!-- realizar busqueda -->
