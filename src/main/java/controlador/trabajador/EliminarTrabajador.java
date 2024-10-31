@@ -1,5 +1,7 @@
-package controlador.categoria;
+package controlador.trabajador;
 
+import datos.DaoTrabajador;
+import datos.impl.DaoTrabajadorImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,11 +10,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-import datos.DaoCategoria;
-import datos.impl.DaoCategoriaImpl;
-
-@WebServlet(name = "EliminarCategoria", urlPatterns = {"/EliminarCategoria"})
-public class EliminarCategoria extends HttpServlet {
+@WebServlet(name = "EliminarTrabajador", urlPatterns = {"/EliminarTrabajador"})
+public class EliminarTrabajador extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -26,16 +25,13 @@ public class EliminarCategoria extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		DaoCategoria daoCategoria= new DaoCategoriaImpl();
+		DaoTrabajador trabajadorDao = new DaoTrabajadorImpl();
 		try {
-		int id = Integer.parseInt(request.getParameter("id"));
-		if (daoCategoria.eliminar(id)) {
-			response.sendRedirect("AdmiCategoria");
-		}else {
-			response.sendRedirect("AdmiCategoria?mensaje=Operacion Fallida");
-		}
+			int id = Integer.parseInt(request.getParameter("id"));
+			trabajadorDao.eliminar(id);
+			response.sendRedirect("AdmiTrabajador");
 		}catch(Exception e) {
-			response.sendRedirect("AdmiCategoria?mensaje=Operacion Fallida");
+			response.sendRedirect("AdmiTrabajador?mensaje=Operacion Fallida");
 		}
 	}
 

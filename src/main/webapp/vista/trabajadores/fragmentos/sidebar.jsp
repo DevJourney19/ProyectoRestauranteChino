@@ -9,7 +9,7 @@
 		</div>
 		<ul class="sidebar-nav p-0">
 			<li class="sidebar-item"><a
-				href="../menu/menu.jsp"
+				href="TrabajadorMenu"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-service"></i> <span>Menu</span>
 			</a></li>
@@ -17,15 +17,15 @@
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-agenda"></i> <span>Inventario</span>
 			</a></li>
-			<li class="sidebar-item"><a href="../pedido/pedido.jsp"
+			<li class="sidebar-item"><a href="TrabajadorPedido"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-cart"></i> <span>Pedidos - Mozo</span>
 			</a></li>
-			<li class="sidebar-item"><a href="../pedidos_cocinero/pedidos_cocinero.jsp"
+			<li class="sidebar-item"><a href="TrabajadorPedidoCocinero"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-cart"></i> <span>Pedidos - Cocinero</span>
 			</a></li>
-			<li class="sidebar-item"><a href="../mesas_mozo/mesas_mozo.jsp"
+			<li class="sidebar-item"><a href="TrabajadorMesa"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-airtable"></i> <span>Mesas</span>
 			</a></li>
@@ -35,7 +35,7 @@
 		</ul>
 		<div class="sidebar-footer">
 		<!-- Se debe de prohibir el acceso a otras ventanas por medio del url (Antes que nada debe de estar logueado) -->
-			<a href="${pageContext.request.contextPath}/vista/login.jsp"
+			<a href="LogoutControlador"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 				class="lni lni-exit"></i> <span>Salir</span>
 			</a>

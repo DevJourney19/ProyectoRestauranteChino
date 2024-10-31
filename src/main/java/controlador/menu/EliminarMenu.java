@@ -32,6 +32,8 @@ public class EliminarMenu extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		if (daoMenu.eliminar(id)) {
 			response.sendRedirect("AdmiMenu");
+		}else {
+			response.sendRedirect("AdmiMenu?mensaje=Operacion Fallida");
 		}
 	}
 

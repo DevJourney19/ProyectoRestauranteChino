@@ -54,17 +54,7 @@ public class Menu {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	public Menu(int id, String nombre, String descripcion, String imagen, double precio, Estado estado,
-			Categoria categoria) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.imagen = imagen;
-		this.precio = precio;
-		this.estado = estado;
-		this.categoria = categoria;
-	}
+
 	public Menu() {
 		super();
 	}

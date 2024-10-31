@@ -21,17 +21,10 @@ public class Pedido {
 	private double total;
 	private Trabajador trabajador;
 	private Date created_at;
-	
-	public Date getCreated_at() {
-		return created_at;
-	}
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
-	}
-	public int getIdPedido() {
+	public int getId() {
 		return id;
 	}
-	public void setIdPedido(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public Cliente getCliente() {
@@ -76,22 +69,13 @@ public class Pedido {
 	public void setTrabajador(Trabajador trabajador) {
 		this.trabajador = trabajador;
 	}
-	public Pedido(int id, Cliente cliente, Mesa mesa, EstadoPedido estado, TipoRecibo tipo_recibo,
-			MetodoPago metodo_pago, double total, Trabajador trabajador, Date created_at) {
-		super();
-		this.id = id;
-		this.cliente = cliente;
-		this.mesa = mesa;
-		this.estado = estado;
-		this.tipo_recibo = tipo_recibo;
-		this.metodo_pago = metodo_pago;
-		this.total = total;
-		this.trabajador = trabajador;
+	public Date getCreated_at() {
+		return created_at;
+	}
+	public void setCreated_at(Date created_at) {
 		this.created_at = created_at;
 	}
-	public Pedido() {
-		super();
-	}
+	
 	
 	
 	

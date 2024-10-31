@@ -1,5 +1,3 @@
-<%@page import="java.util.Date"%>
-<%@page import="java.time.LocalDate"%>
 <%@page import="java.util.List"%>
 <%@page import="modelo.Inventario"%>
 <%@page import="modelo.Categoria"%>
@@ -61,12 +59,9 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-									<form action="AgregarInventario" method="post" enctype="multipart/form-data">
+									<form action="AgregarInventario" class="needs-validation"
+										novalidate>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div class="col-12 col-md-12">
-					                            <label for="archivoImagen" class="form-label">Seleccionar Imagen</label>
-					                            <input type="file" class="form-control" id="archivoImagen" name="archivoImagen" accept="image/*" required>
-					                        </div>
 											<div class="col-12 col-md">
 												<label for="producto">Producto</label> <input type="text"
 													class="form-control" id="producto" name="producto" required>
@@ -163,7 +158,6 @@
 								<tr>
 									<th>Id</th>
 									<th>Nombre</th>
-									<th>Nombre</th>
 									<th>Categoria</th>
 									<th>Unidad</th>
 									<th>Precio Unitario</th>
@@ -178,33 +172,26 @@
 								<%
 								List<Inventario> listaInventario = (List<Inventario>) inventario;
 								for (Inventario producto : listaInventario) {
-									String stock = "stock-desconocido";
+									String estado = "estado-desconocido";
 									if (producto.getStock() <= producto.getStockMin()) {
-										stock = "stock-bajo";
+										estado = "estado-agotado";
 									} else if (producto.getStock() > 0) {
-										stock = "stock-alto";
-									}
-								    LocalDate fechaActual = LocalDate.now();
-									String estado = "badge rounded-pill text-bg-warning";
-
-									if (producto.getCaducidad().isBefore(fechaActual)) {
-										estado = "badge rounded-pill text-bg-danger";
-									} else if (producto.getStock() > 0) {
-										estado = "badge rounded-pill text-bg-success";
+										estado = "estado-disponible";
+									} else {
+										estado = "estado-en-orden";
 									}
 								%>
 
 								<tr>
 									<td><%=producto.getId()%></td>
-									<td><img class="img-inventario" src="vista/img/img_inventario/<%=producto.getId()%>_<%=producto.getImagen()%>"></td>
 									<td><%=producto.getNombre()%></td>
 									<td><%=producto.getCategoria().getNombre()%></td>
 									<td><%=producto.getUnidad()%></td>
 									<td><%=producto.getPrecioUnitario()%></td>
 									<td><%=producto.getInventarioInicial()%></td>
-									<td><span class="<%=stock%>"><%=producto.getStock()%></span></td>
-									<td><%=producto.getStockMin()%></td>
-									<td><span class="<%=estado%>"><%=producto.getCaducidad()%></span></td>
+									<td><%=producto.getStock()%></td>
+									<td class="<%=estado%>"><%=producto.getStockMin()%></td>
+									<td><%=producto.getCaducidad()%></td>
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
@@ -223,7 +210,6 @@
 												data-stock="<%=producto.getStock()%>"
 												data-stock-min="<%=producto.getStockMin()%>"
 												data-caducidad="<%=producto.getCaducidad()%>"
-												data-imagen="<%=producto.getImagen()%>"
 												class="icon-action" data-bs-toggle="modal"
 												data-bs-target="#modalEditInventario">
 												<i class="lni lni-pencil fs-4"></i>
@@ -275,11 +261,6 @@
 											data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
 									<div class="modal-body">
-											<div class="col-12 col-md-12">
-					                            <label for="editArchivoImagen" class="form-label">Seleccionar Imagen</label>
-					                            <input type="file" class="form-control" id="editArchivoImagen" name="editArchivoImagen" accept="image/*" required>
-					                        </div>
-									
 											<div class="mb-3">
 												<label for="editNombreProducto" class="form-label">Nombre</label>
 												<input type="text" class="form-control"
@@ -412,7 +393,6 @@
 							let caducidad = button
 									.getAttribute('data-caducidad');
 							let categoria = button.getAttribute('data-categoria');
-							let imagen = button.getAttribute('data-imagen');
 
 							document.getElementById('editNombreProducto').value = nombreProducto;
 							document.getElementById('editUnidad').value = unidad;
@@ -444,43 +424,24 @@
 														.getElementById('editCaducidad').value;
 												estado = document
 														.getElementById('editCategoria').value;
-												archivoImagen = document
-														.getElementById('editArchivoImagen').files;
 
-											    const formElement = document.createElement('form');
-											    formElement.setAttribute('enctype', 'multipart/form-data');
-											    formElement.setAttribute('method', 'POST');
-											    formElement.setAttribute('action', 'EditarInventario');
-
-											    const inputs = [
-											        { name: 'nombre', value: nombreProducto, type: 'text' },
-											        { name: 'unidad', value: unidad, type: 'text' },
-											        { name: 'precio', value: precioUnitario, type: 'number' },
-											        { name: 'inventario', value: inventarioInicial, type: 'number' },
-											        { name: 'stock', value: stock, type: 'number' },
-											        { name: 'stockMinimo', value: stockMinimo, type: 'number' },
-											        { name: 'caducidad', value: caducidad, type: 'date' },
-											        { name: 'categoria', value: categoria, type: 'hidden' },
-											        { name: 'imagen', value: imagen, type: 'hidden' },
-											        { name: 'id', value: id, type: 'hidden' } 
-											    ];
-
-											    inputs.forEach(input => {
-											        const el = document.createElement('input');
-											        el.setAttribute('type', input.type);
-											        el.setAttribute('name', input.name);
-											        el.setAttribute('value', input.value);
-											        formElement.appendChild(el);
-											    });
-
-											    const fileInput = document.createElement('input');
-											    fileInput.setAttribute('type', 'file');
-											    fileInput.setAttribute('name', 'archivoImagen');
-											    fileInput.files = archivoImagen;
-											    formElement.appendChild(fileInput);
-
-											    document.body.appendChild(formElement);
-											    formElement.submit();
+												window.location.href = "/ProyectoRestauranteChino/EditarInventario?id="
+														+ id
+														+ "&nombre="
+														+ nombreProducto
+														+ "&unidad="
+														+ unidad
+														+ "&precio="
+														+ precioUnitario
+														+ "&inventario="
+														+ inventarioInicial
+														+ "&stock="
+														+ stock
+														+ "&stockMinimo="
+														+ stockMinimo
+														+ "&caducidad="
+														+ caducidad
+														+ "&categoria=" + categoria;
 											});
 						});
 	</script>

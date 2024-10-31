@@ -11,7 +11,7 @@ import java.io.IOException;
 
 import datos.impl.DaoMesaImpl;
 
-@WebServlet(name = "EditarMesa", urlPatterns = {"/EditarMesa"})
+@WebServlet(name = "EditarMesa", urlPatterns = { "/EditarMesa" })
 public class EditarMesa extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -27,19 +27,26 @@ public class EditarMesa extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		DaoMesaImpl daoMesa = new DaoMesaImpl();
-		int id = Integer.parseInt(request.getParameter("id"));
-		int mesa = Integer.parseInt(request.getParameter("mesa"));
-		int salon = Integer.parseInt(request.getParameter("salon"));
-		String estado = request.getParameter("estado");
-		if("Selecciona estado de mesa".equals(estado)) {
-	    	response.sendRedirect("AdmiMesa?mensaje=Operacion Fallida");
-	    }
-		Mesa mesaUpdated = new Mesa(id, salon, mesa, Mesa.EstadoMesa.valueOf(estado));
-		if (daoMesa.editar(mesaUpdated)) {
-			response.sendRedirect("AdmiMesa");
-		}else {
+
+		try {
+			int id = Integer.parseInt(request.getParameter("id"));
+			int mesa = Integer.parseInt(request.getParameter("mesa"));
+			int salon = Integer.parseInt(request.getParameter("salon"));
+			String estado = request.getParameter("estado");
+			Mesa mesaUpdated = new Mesa();
+			mesaUpdated.setId(id);
+			mesaUpdated.setN_mesa(mesa);
+			mesaUpdated.setN_salon(salon);
+			mesaUpdated.setEstado(Mesa.EstadoMesa.valueOf(estado));
+			if (daoMesa.editar(mesaUpdated)) {
+				response.sendRedirect("AdmiMesa");
+			} else {
+				response.sendRedirect("AdmiMesa?mensaje=Operacion Fallida");
+			}
+		} catch (Exception e) {
 			response.sendRedirect("AdmiMesa?mensaje=Operacion Fallida");
 		}
+
 	}
 
 }
