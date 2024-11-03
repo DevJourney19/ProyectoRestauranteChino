@@ -18,6 +18,7 @@ public class Entradas implements Filter {
 
 	public static boolean validarEntrada(Trabajador trabajador, String ruta) {
 		String rol = trabajador.getRol().getNombre();
+		System.out.print(ruta);
 		switch (rol.toLowerCase()) {
 		case "administrador":
 			return validarAdmin(ruta);
@@ -39,14 +40,14 @@ public class Entradas implements Filter {
 
 	private static boolean validarMozo(String ruta) {
 		return switch (ruta) {
-		case "TrabajadorMenu", "TrabajadorPedido", "TrabajadorMesa", "AgregarPedido", "EditarPedido", "EliminarPedido", "AgregarDetallePedido", "EditarDetallePedido", "EliminarDetallePedido", "EditarMesa" -> true;
+		case "TrabajadorPedido","TrabajadorInventario", "TrabajadorMenu", "TrabajadorMesa", "AgregarPedido", "EditarPedido", "EliminarPedido", "EditarInventario", "AgregarDetallePedido", "EditarDetallePedido", "EliminarDetallePedido", "EditarMesa" -> true;
 		default -> false;
 		};
 	}
 
 	private static boolean validarCocinero(String ruta) {
 		return switch (ruta) {
-		case "TrabajadorMenu", "TrabajadorCocineroPedido", "EditarPedido" -> true;
+		case "TrabajadorMenu","TrabajadorInventario", "TrabajadorCocineroPedido", "EditarPedido" -> true;
 		default -> false;
 		};
 	}
