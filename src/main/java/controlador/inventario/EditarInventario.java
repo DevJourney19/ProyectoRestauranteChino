@@ -1,22 +1,34 @@
 package controlador.inventario;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 import modelo.Categoria;
 import modelo.Inventario;
+import util.gestionarImagen;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import datos.DaoCategoria;
 import datos.impl.DaoCategoriaImpl;
 import datos.impl.DaoInventarioImpl;
 
 @WebServlet(name = "EditarInventario", urlPatterns = {"/EditarInventario"})
+@MultipartConfig
 public class EditarInventario extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,23 +47,29 @@ public class EditarInventario extends HttpServlet {
         DaoCategoria daoCategoria = new DaoCategoriaImpl();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         
-        try {
-            Inventario inventarioUpdated = new Inventario();
-            inventarioUpdated.setId(Integer.parseInt(request.getParameter("id")));
-            inventarioUpdated.setNombre(request.getParameter("nombre"));
-            inventarioUpdated.setUnidad(Inventario.Unidad.valueOf(request.getParameter("unidad")));
-            inventarioUpdated.setPrecioUnitario(Double.parseDouble(request.getParameter("precio")));
-            inventarioUpdated.setInventarioInicial(Integer.parseInt(request.getParameter("inventario")));
-            inventarioUpdated.setStock(Integer.parseInt(request.getParameter("stock")));
-            inventarioUpdated.setStockMin(Integer.parseInt(request.getParameter("stockMinimo")));
-            inventarioUpdated.setCaducidad(LocalDate.parse(request.getParameter("caducidad"), formatter));
-            inventarioUpdated.setCategoria(daoCategoria.obtener(Integer.parseInt(request.getParameter("categoria"))));
-            
-            if (daoInventario.editar(inventarioUpdated)) {
-                response.sendRedirect("AdmiInventario");
-            }
-        }catch(Exception e) {
-        	response.sendRedirect("AdmiInventario?mensaje=Operacion Fallida");
+        int id = Integer.parseInt(request.getParameter("id"));
+        String nombre = request.getParameter("nombre");
+        Inventario.Unidad unidad = Inventario.Unidad.valueOf(request.getParameter("unidad"));
+        double precioUnitario = Double.parseDouble(request.getParameter("precio"));
+        int inventarioInicial = Integer.parseInt(request.getParameter("inventario"));
+        int stock = Integer.parseInt(request.getParameter("stock"));
+        int stockMin = Integer.parseInt(request.getParameter("stockMinimo"));
+        String caducidad = request.getParameter("caducidad");
+        Categoria idCategoria = daoCategoria.obtener(Integer.parseInt(request.getParameter("categoria")));
+        String imagen = request.getParameter("imagen");
+        Boolean trabajador = Boolean.parseBoolean(request.getParameter("trabajador"));
+        Part archivoImagen = request.getPart("archivoImagen");
+
+        Inventario inventarioUpdated = new Inventario(id, idCategoria, nombre, unidad, precioUnitario, inventarioInicial, stock, stockMin, LocalDate.parse(caducidad, formatter), imagen, archivoImagen);
+        if (daoInventario.editar(inventarioUpdated)) {
+        	gestionarImagen gestionarImagen = new gestionarImagen();
+          	gestionarImagen.borrarImagen(inventarioUpdated);      
+        	gestionarImagen.guardarImagen(inventarioUpdated);
+        	if(trabajador == true) {
+	            response.sendRedirect("TrabajadorInventario");
+	        } else {
+	            response.sendRedirect("AdmiInventario");
+	        }
         }
-    }
+    }    
 }
