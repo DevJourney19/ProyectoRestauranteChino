@@ -26,18 +26,19 @@ public class AgregarCategoria extends HttpServlet {
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DaoCategoriaImpl daoCategoria = new DaoCategoriaImpl();
-		Categoria categoria = new Categoria();
-	    String nombre = request.getParameter("nombre");
-	    String tipo = request.getParameter("tipo");
-		if(nombre != "" && tipo != null && !("Selecciona el tipo".equals(tipo))) {
-			categoria.setNombre(nombre);
-			categoria.setTipo(Categoria.TipoCategoria.valueOf(tipo));
-			if(daoCategoria.agregar(categoria)) {
-			response.sendRedirect("AdmiCategoria");
-			}else {
-				response.sendRedirect("AdmiCategoria?mensaje=Operacion Fallida");
-			}
-		}else {
+		try {
+			Categoria categoria = new Categoria();
+		    String nombre = request.getParameter("nombre");
+		    String tipo = request.getParameter("tipo");
+				categoria.setNombre(nombre);
+				categoria.setTipo(Categoria.TipoCategoria.valueOf(tipo));
+				if(daoCategoria.agregar(categoria)) {
+					response.sendRedirect("AdmiCategoria");
+				}else {
+					response.sendRedirect("AdmiCategoria?mensaje=Operacion Fallida");
+				}
+			
+		}catch (Exception e) {
 			response.sendRedirect("AdmiCategoria?mensaje=Operacion Fallida");
 		}
 	}

@@ -33,21 +33,21 @@ public class Entradas implements Filter {
 
 	private static boolean validarAdmin(String ruta) {
 		return switch (ruta) {
-		case "AdmiCategoria", "AdmiTrabajador", "AdmiPedido", "AdmiInventario", "AdmiMenu", "AdmiMesa", "AgregarCategoria", "EditarCategoria", "EliminarCategoria", "AgregarTrabajador", "EditarTrabajador", "EliminarTrabajador", "AgregarPedido", "EditarPedido", "EliminarPedido", "AgregarDetallePedido", "EditarDetallePedido", "EliminarDetallePedido", "AgregarInventario", "EditarInventario", "EliminarInventario","AgregarMesa",  "EditarMesa", "EliminarMesa", "AgregarMenu",  "EditarMenu", "EliminarMenu" -> true;
+		case "AdmiCategoria", "AdmiTrabajador", "AdmiPedido", "AdmiDetallePedido", "AdmiInventario", "AdmiMenu", "AdmiMesa", "AgregarCategoria", "EditarCategoria", "EliminarCategoria", "AgregarTrabajador", "EditarTrabajador", "EliminarTrabajador", "AgregarPedido", "EditarPedido", "EliminarPedido", "AgregarDetalle", "EditarDetalle", "EliminarDetalle", "AgregarInventario", "EditarInventario", "EliminarInventario","AgregarMesa",  "EditarMesa", "EliminarMesa", "AgregarMenu",  "EditarMenu", "EliminarMenu" -> true;
 		default -> false;
 		};
 	}
 
 	private static boolean validarMozo(String ruta) {
 		return switch (ruta) {
-		case "TrabajadorPedido","TrabajadorInventario", "TrabajadorMenu", "TrabajadorMesa", "AgregarPedido", "EditarPedido", "EliminarPedido", "EditarInventario", "AgregarDetallePedido", "EditarDetallePedido", "EliminarDetallePedido", "EditarMesa" -> true;
+		case "TrabajadorPedido","TrabajadorInventario", "TrabajadorMenu", "TrabajadorMesa", "AgregarPedido", "EditarPedido", "EliminarPedido", "EditarInventario", "AgregarDetalle", "EditarDetalle", "EliminarDetalle", "EditarMesa" -> true;
 		default -> false;
 		};
 	}
 
 	private static boolean validarCocinero(String ruta) {
 		return switch (ruta) {
-		case "TrabajadorMenu","TrabajadorInventario", "TrabajadorCocineroPedido", "EditarPedido" -> true;
+		case "TrabajadorMenu","TrabajadorInventario", "EditarInventario", "TrabajadorCocineroPedido", "EditarPedido" -> true;
 		default -> false;
 		};
 	}
@@ -69,7 +69,7 @@ public class Entradas implements Filter {
 		// Obtener la sesión
 		HttpSession session = httpRequest.getSession(false);
 		
-	    if (requestURI.endsWith(".css") || requestURI.endsWith(".js") || requestURI.endsWith(".jpg") || requestURI.endsWith(".png") || requestURI.endsWith(".jsp")) {
+	    if (requestURI.endsWith(".css") || requestURI.endsWith(".js") || requestURI.endsWith(".jpg") || requestURI.endsWith(".png") || requestURI.endsWith(".jsp") || requestURI.endsWith(".webp")) {
 	        chain.doFilter(request, response);
 	        return;
 	    }

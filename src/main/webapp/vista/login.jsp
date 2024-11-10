@@ -32,7 +32,6 @@
                 <input type="password" name="password" id="password" placeholder="A12345">             
 
                 <button type="submit" class="login-btn">INICIAR SESIÓN</button>
-                <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
             </form>
 		</div>
 		<div class="image-box">

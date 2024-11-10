@@ -5,7 +5,7 @@
 <head>
 <title>MENU</title>
 <%@include file="../fragmentos/head.jsp"%>
-<link href="menu.css" rel="stylesheet" />
+<link href="./vista/trabajadores/menu/menu.css" rel="stylesheet" />
 </head>
 <body>
 

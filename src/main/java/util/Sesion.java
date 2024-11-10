@@ -10,6 +10,6 @@ public class Sesion {
         if (session != null) {
             return session.getAttribute(nombreAtributo);
         }
-        return null; // O puedes lanzar una excepción o retornar un valor por defecto
+        return null;
     }
 }

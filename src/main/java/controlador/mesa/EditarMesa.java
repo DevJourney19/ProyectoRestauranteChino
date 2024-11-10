@@ -27,22 +27,34 @@ public class EditarMesa extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		DaoMesaImpl daoMesa = new DaoMesaImpl();
-
 		try {
+			String estado = "Libre";
 			int id = Integer.parseInt(request.getParameter("id"));
 			int mesa = Integer.parseInt(request.getParameter("mesa"));
 			int salon = Integer.parseInt(request.getParameter("salon"));
-			String estado = request.getParameter("estado");
 			Mesa mesaUpdated = new Mesa();
 			mesaUpdated.setId(id);
 			mesaUpdated.setN_mesa(mesa);
 			mesaUpdated.setN_salon(salon);
 			mesaUpdated.setEstado(Mesa.EstadoMesa.valueOf(estado));
-			if (daoMesa.editar(mesaUpdated)) {
-				response.sendRedirect("AdmiMesa");
+			if (request.getParameter("accion") != null) {
+				estado = request.getParameter("accion");
+				mesaUpdated.setEstado(Mesa.EstadoMesa.valueOf(estado));
+				if (daoMesa.editar(mesaUpdated)) {
+					response.sendRedirect("TrabajadorMesa");
+				} else {
+					response.sendRedirect("TrabajadorMesa?mensaje=Operacion Fallida");
+				}
 			} else {
-				response.sendRedirect("AdmiMesa?mensaje=Operacion Fallida");
+				estado = request.getParameter("estado");
+				mesaUpdated.setEstado(Mesa.EstadoMesa.valueOf(estado));
+				if (daoMesa.editar(mesaUpdated)) {
+					response.sendRedirect("AdmiMesa");
+				} else {
+					response.sendRedirect("AdmiMesa?mensaje=Operacion Fallida");
+				}
 			}
+
 		} catch (Exception e) {
 			response.sendRedirect("AdmiMesa?mensaje=Operacion Fallida");
 		}

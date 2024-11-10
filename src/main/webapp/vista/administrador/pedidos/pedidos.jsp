@@ -67,14 +67,13 @@
 											<label for="n_mesa">N&ordm; Mesa</label> <select id="n_mesa"
 												name="n_mesa" class="form-select"
 												aria-label="Default select example">
-												<option selected>Seleccione una mesa</option>
+												<option selected disabled>Seleccione una mesa</option>
 												<%
 												for (Mesa mesa : listaMesas) {
-													if (Mesa.EstadoMesa.valueOf(mesa.getEstado().toString()) == Mesa.EstadoMesa.Ocupado) {
+													
 												%>
 												<option value="<%=mesa.getId()%>"><%=mesa.getN_mesa()%></option>
 												<%
-												}
 												}
 												%>
 											</select>
@@ -84,7 +83,7 @@
 												<label for="recibo">Tipo Recibo</label> <select id="recibo"
 													name="recibo" class="form-select"
 													aria-label="Default select example">
-													<option selected>Seleccione un tipo</option>
+													<option selected disabled>Seleccione un tipo</option>
 													<%
 													for (Pedido.TipoRecibo tipo : Pedido.TipoRecibo.values()) {
 													%>
@@ -98,7 +97,7 @@
 												<label for="metodo">Metodo de Pago</label> <select
 													id="metodo" name="metodo" class="form-select"
 													aria-label="Default select example">
-													<option selected>Seleccione un metodo</option>
+													<option selected disabled>Seleccione un metodo</option>
 													<%
 													for (Pedido.MetodoPago metodo : Pedido.MetodoPago.values()) {
 													%>
@@ -244,7 +243,7 @@
 												<label for="edEstado">Estado</label> <select id="edEstado"
 													name="edEstado" class="form-select"
 													aria-label="Default select example">
-													<option selected>Seleccione un estado</option>
+													<option selected disabled>Seleccione un estado</option>
 													<%
 													for (Pedido.EstadoPedido estado : Pedido.EstadoPedido.values()) {
 													%>
@@ -258,7 +257,7 @@
 												<label for="edMesa">N&ordm; Mesa</label> <select id="edMesa"
 													name="edMesa" class="form-select"
 													aria-label="Default select example">
-													<option selected>Seleccione una mesa</option>
+													<option selected disabled>Seleccione una mesa</option>
 													<%
 													for (Mesa mesa : listaMesas) {
 													%>
@@ -274,7 +273,7 @@
 												<label for="edRecibo">Tipo Recibo</label> <select
 													id="edRecibo" name="edRecibo" class="form-select"
 													aria-label="Default select example">
-													<option selected>Seleccione un tipo</option>
+													<option selected disabled>Seleccione un tipo</option>
 													<%
 													for (Pedido.TipoRecibo tipo : Pedido.TipoRecibo.values()) {
 													%>
@@ -288,7 +287,7 @@
 												<label for="edMetodo">Metodo de Pago</label> <select
 													id="edMetodo" name="edMetodo" class="form-select"
 													aria-label="Default select example">
-													<option selected>Seleccione un metodo</option>
+													<option selected disabled>Seleccione un metodo</option>
 													<%
 													for (Pedido.MetodoPago metodo : Pedido.MetodoPago.values()) {
 													%>

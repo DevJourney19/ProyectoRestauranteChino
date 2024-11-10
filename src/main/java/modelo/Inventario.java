@@ -19,10 +19,18 @@ public class Inventario {
     private int stock;
     private int stockMin;
     private LocalDate caducidad;
-    private String imagen;
     private Part archivoImagen;
+    private String urlImagen;
 
-    public int getId() {
+	public String getUrlImagen() {
+		return urlImagen;
+	}
+
+	public void setUrlImagen(String urlImagen) {
+		this.urlImagen = urlImagen;
+	}
+
+	public int getId() {
         return id;
     }
 
@@ -93,14 +101,6 @@ public class Inventario {
     public void setCaducidad(LocalDate localDate) {
         this.caducidad = localDate;
     }
-    
-	public String getImagen() {
-		return imagen;
-	}
-
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
 
     public Part getArchivoImagen() {
         return archivoImagen;
@@ -111,21 +111,5 @@ public class Inventario {
     }
 
     public Inventario() {
-    }
-
-    public Inventario(int id, Categoria categoria, String nombre, Unidad unidad, double precioUnitario,
-                      int inventarioInicial, int stock, int stockMin, LocalDate caducidad, String imagen, Part archivoImagen) {
-        super();
-        this.id = id;
-        this.categoria = categoria;
-        this.nombre = nombre;
-        this.unidad = unidad;
-        this.precioUnitario = precioUnitario;
-        this.inventarioInicial = inventarioInicial;
-        this.stock = stock;
-        this.stockMin = stockMin;
-        this.caducidad = caducidad;
-        this.imagen = imagen;
-        this.archivoImagen = archivoImagen;
     }
 }

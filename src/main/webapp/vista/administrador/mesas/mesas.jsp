@@ -27,13 +27,7 @@
 							<span class="fs-3 numero-mesas">200 mesas</span>
 						</div>
 						<div
-							class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between gap-md-4 gap-3">
-							<div class="d-flex align-items-center gap-2">
-								<!-- Apareceran mas botones con categorias -->
-								<button class="btn-filtrar">
-									Filtrar <i class="lni lni-funnel"></i>
-								</button>
-							</div>
+							class="d-flex flex-wrap align-items-center justify-content-end gap-md-4 gap-3">
 							<button class="btn-agregar" type="button" data-bs-toggle="modal"
 								data-bs-target="#modalAdd">
 								Nueva Mesa <i class="lni lni-plus"></i>
@@ -167,7 +161,7 @@
 												<label for="editEstado">Estado</label> <select
 													id="editEstado" name="estado" class="form-select"
 													aria-label="Default select example">
-													<option selected>Selecciona estado de mesa</option>
+													<option selected disabled>Selecciona estado de mesa</option>
 													<%for(Mesa.EstadoMesa estado: Mesa.EstadoMesa.values()) {%>
 													<option value="<%=estado%>"><%=estado%></option>
 													<%} %>

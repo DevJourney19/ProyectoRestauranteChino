@@ -25,26 +25,33 @@
 							<h1>GESTIÓN DEL MENÚ - 菜单管理</h1>
 						</div>
 						<div class="d-flex justify-content-between gap-4 flex-wrap">
-						<form class="d-flex gap-2 align-items-center" action="AdmiMenu" method="GET">
-						<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Busca por titulo..." name="tituloSearch">
-						<button type="submit" class="btn btn-dark d-flex gap-2 align-items-center fw-bolder fs-4"><i class="lni lni-search"></i></button>
-						</form>
-						<div class="d-flex align-items-center justify-content-end gap-4">
-							<button class="btn-pdf" type="button" data-bs-toggle="modal"
-								data-bs-target="#modalAddEdit">
-								<i class="lni lni-download"></i> Descargar PDF
-							</button>
+							<form class="d-flex gap-2 align-items-center" action="AdmiMenu"
+								method="GET">
+								<input class="form-control" list="datalistOptions"
+									id="exampleDataList" placeholder="Busca por titulo..."
+									name="tituloSearch">
+								<button type="submit"
+									class="btn btn-dark d-flex gap-2 align-items-center fw-bolder fs-4">
+									<i class="lni lni-search"></i>
+								</button>
+							</form>
+							<div class="d-flex align-items-center justify-content-end gap-4">
+								<button class="btn-pdf" type="button" data-bs-toggle="modal"
+									data-bs-target="#modalAddEdit">
+									<i class="lni lni-download"></i> Descargar PDF
+								</button>
 
-							<button class="btn-excel" type="button" data-bs-toggle="modal"
-								data-bs-target="#modalAddEdit">
-								<i class="lni lni-download"></i> Descargar Excel
-							</button>
+								<button class="btn-excel" type="button" data-bs-toggle="modal"
+									data-bs-target="#modalAddEdit">
+									<i class="lni lni-download"></i> Descargar Excel
+								</button>
 
-							<button class="btn-agregar" type="button" data-bs-toggle="modal"
-								data-bs-target="#modalAddEdit">
-								<i class="lni lni-plus"></i> Nuevo Producto
-							</button>
-						</div></div>
+								<button class="btn-agregar" type="button" data-bs-toggle="modal"
+									data-bs-target="#modalAddEdit">
+									<i class="lni lni-plus"></i> Nuevo Producto
+								</button>
+							</div>
+						</div>
 					</div>
 
 					<!-- Modal Agregar o Editar (para verificar editar solo ver la url)-->
@@ -163,7 +170,7 @@
 								</tr>
 							</thead>
 							<tbody>
-							<%
+								<%
 								List<Menu> listaMenu = (List<Menu>) menu;
 								for (Menu menus : listaMenu) {
 									String estado = "estado-desconocido";
@@ -178,7 +185,8 @@
 								%>
 
 								<tr>
-									<td><img src="<%=menus.getImagen() %>" class="img-menu img-fluid"></td>
+									<td><img src="<%=menus.getImagen()%>"
+										class="img-menu img-fluid"></td>
 									<td><%=menus.getId()%></td>
 									<td><%=menus.getNombre()%></td>
 									<td><%=menus.getDescripcion()%></td>
@@ -195,8 +203,9 @@
 											<!-- Abrir Modal Editar -->
 											<button data-id="<%=menus.getId()%>"
 												data-nombre="<%=menus.getNombre()%>"
-												data-categoria="<%=menus.getCategoria().getId()%>" class="icon-action"
-												data-bs-toggle="modal" data-bs-target="#modalEdit">
+												data-categoria="<%=menus.getCategoria().getId()%>"
+												class="icon-action" data-bs-toggle="modal"
+												data-bs-target="#modalEdit">
 												<i class="lni lni-pencil fs-4"></i>
 											</button>
 										</div>
@@ -205,8 +214,8 @@
 								<%
 								}
 								%>
-								
-								
+
+
 							</tbody>
 						</table>
 					</div>

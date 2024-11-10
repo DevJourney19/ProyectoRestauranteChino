@@ -219,4 +219,54 @@
     <servlet-name>EditarPedido</servlet-name>
     <url-pattern>/EditarPedido</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AgregarCliente</display-name>
+    <servlet-name>AgregarCliente</servlet-name>
+    <servlet-class>controlador.cliente.AgregarCliente</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AgregarCliente</servlet-name>
+    <url-pattern>/AgregarCliente</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TrabajadorMesa</display-name>
+    <servlet-name>TrabajadorMesa</servlet-name>
+    <servlet-class>controlador.mesa.TrabajadorMesa</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TrabajadorMesa</servlet-name>
+    <url-pattern>/TrabajadorMesa</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EliminarDetalle</display-name>
+    <servlet-name>EliminarDetalle</servlet-name>
+    <servlet-class>controlador.pedido.EliminarDetalle</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EliminarDetalle</servlet-name>
+    <url-pattern>/EliminarDetalle</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AgregarDetalle</display-name>
+    <servlet-name>AgregarDetalle</servlet-name>
+    <servlet-class>controlador.pedido.AgregarDetalle</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AgregarDetalle</servlet-name>
+    <url-pattern>/AgregarDetalle</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditarDetalle</display-name>
+    <servlet-name>EditarDetalle</servlet-name>
+    <servlet-class>controlador.pedido.EditarDetalle</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditarDetalle</servlet-name>
+    <url-pattern>/EditarDetalle</url-pattern>
+  </servlet-mapping>
 </web-app>

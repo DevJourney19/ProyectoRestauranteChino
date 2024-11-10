@@ -4,6 +4,7 @@ body {
 	background-color: #f8f8f8;
 }
 
+
 main {
 	display: flex;
 	flex-direction: row;
@@ -60,7 +61,6 @@ main {
 .stock-alto::before {
     background-color: var(--verde);
 }
-@charset "UTF-8";
 
 body {
 	background-color: #f8f8f8;
@@ -143,5 +143,6 @@ main {
 }
 
 .img-inventario {
+	object-fit: cover;
 	height: 200px;
 }

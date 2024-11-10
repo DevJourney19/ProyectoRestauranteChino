@@ -2,7 +2,7 @@ package modelo;
 
 public class Mesa {
 	public enum EstadoMesa {
-		Libre, Reservado, Ocupado
+		Libre, Reservado, Ocupado, Limpieza
 	}
 	private int id;
 	private int n_salon;

@@ -1,4 +1,4 @@
-package controlador.menu;
+package controlador.mesa;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -6,10 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import modelo.Menu;
-import modelo.Trabajador;
-import util.Entradas;
+import modelo.Mesa;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,9 +15,11 @@ import java.util.stream.Collectors;
 
 import datos.DaoMenu;
 import datos.impl.DaoMenuImpl;
+import datos.impl.DaoMesaImpl;
 
-@WebServlet(name = "AdmiMenu", urlPatterns = { "/AdmiMenu" })
-public class AdmiMenu extends HttpServlet {
+@WebServlet(name = "TrabajadorMesa", urlPatterns = { "/TrabajadorMesa" })
+public class TrabajadorMesa extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -33,27 +33,29 @@ public class AdmiMenu extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		DaoMesaImpl daoMesa = new DaoMesaImpl();
+		List<Mesa> mesas = daoMesa.consultar();
 
-
-		DaoMenu daoMenu = new DaoMenuImpl();
-		List<Menu> menu = daoMenu.consultar();
-
-		// Verificar si hay un título de búsqueda
 		if (request.getParameter("tituloSearch") != null && !request.getParameter("tituloSearch").isEmpty()) {
-			String titulo = request.getParameter("tituloSearch");
+			int titulo = Integer.parseInt(request.getParameter("tituloSearch"));
 
 			// Filtrar el menú basado en el título
-			menu = menu.stream().filter(m -> m.getNombre().toLowerCase().contains(titulo.toLowerCase()))
-					.collect(Collectors.toList()); // Guardar el resultado del filtrado
+			mesas = mesas.stream().filter(m -> m.getN_mesa() == titulo )
+					.collect(Collectors.toList()); 
 		}
+		
+		if (request.getParameter("estado") != null && !request.getParameter("estado").isEmpty()) {
+			String estado = request.getParameter("estado");
 
-		// Establecer la lista filtrada o completa en el atributo de solicitud
-		request.setAttribute("menu", menu);
+			// Filtrar el menú basado en el título
+			mesas = mesas.stream().filter(m -> m.getEstado().toString().equals(estado) )
+					.collect(Collectors.toList()); 
+		}
+		
 
-		// Redirigir a la vista
-		RequestDispatcher rd = request.getRequestDispatcher("vista/administrador/menu/menu.jsp");
+		request.setAttribute("mesas", mesas);
+		RequestDispatcher rd = request.getRequestDispatcher("vista/trabajadores/mesas_mozo/mesas_mozo.jsp");
 		rd.forward(request, response);
-
 	}
 
 }

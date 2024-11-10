@@ -111,7 +111,7 @@ public class DaoMenuImpl implements DaoMenu{
 		@Override
 	    // Obtener un trabajador por su ID
 	    public Menu obtener(int id) {
-	        String sql = "SELECT * FROM trabajador WHERE id = ?";
+	        String sql = "SELECT * FROM menu WHERE id = ?";
 	        try (Connection conn = con.getConexion();
 	             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 	            

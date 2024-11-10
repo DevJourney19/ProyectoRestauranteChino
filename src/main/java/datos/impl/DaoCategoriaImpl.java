@@ -48,7 +48,7 @@ public class DaoCategoriaImpl implements DaoCategoria {
 		try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString());) {
 			ps.setString(1, objeto.getNombre());
 			ps.setString(2, objeto.getTipo().toString());
-			return (ps.executeUpdate() == 0);
+			return (ps.executeUpdate() != 0);
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -103,7 +103,7 @@ public class DaoCategoriaImpl implements DaoCategoria {
                 	categoria = new Categoria();
                 	categoria.setId(rs.getInt(1));
                 	categoria.setNombre(rs.getString(2));
-                	categoria.setTipo(Categoria.TipoCategoria.valueOf(rs.getString(4)));
+                	categoria.setTipo(Categoria.TipoCategoria.valueOf(rs.getString(3)));
                 }
             } catch (Exception e) {
             	System.out.println(e.getMessage());

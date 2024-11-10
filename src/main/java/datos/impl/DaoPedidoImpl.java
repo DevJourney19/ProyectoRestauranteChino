@@ -3,13 +3,16 @@ package datos.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import datos.DaoCliente;
+import datos.DaoMesa;
 import datos.DaoPedido;
 import datos.DaoTrabajador;
 import modelo.Cliente;
+import modelo.Menu;
 import modelo.Mesa;
 import modelo.Pedido;
 import util.Conexion;
@@ -17,6 +20,7 @@ public class DaoPedidoImpl implements DaoPedido{
 	
 	Conexion con;
     private DaoCliente cli;
+    private DaoMesa mes;
     private DaoTrabajador tra;
     public static Integer idPed;
 
@@ -24,6 +28,7 @@ public class DaoPedidoImpl implements DaoPedido{
         con = new Conexion();
         cli = new DaoClienteImpl();
         tra = new DaoTrabajadorImpl();
+        mes = new DaoMesaImpl();
     }
 
 	@Override
@@ -61,8 +66,7 @@ public class DaoPedidoImpl implements DaoPedido{
 	@Override
 	public boolean editar(Pedido objeto) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("UPDATE pedido SET ").append("id_cliente = ?, id_mesa = ?, estado = ?, tipo_recibo = ?, metodo_pago = ?, total = ?").append("id_trabajador = ?")
-				.append(" WHERE id = ?");
+		sql.append("UPDATE pedido SET ").append("id_cliente = ?, id_mesa = ?, estado = ?, tipo_recibo = ?, metodo_pago = ?, total = ?").append("id_trabajador = ?").append(" WHERE id = ?");
 		try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString());) {
 			ps.setInt(1, objeto.getCliente().getId());
 			ps.setInt(2, objeto.getMesa().getId());
@@ -92,9 +96,29 @@ public class DaoPedidoImpl implements DaoPedido{
 
 	@Override
 	public Pedido obtener(int codigo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		String sql = "SELECT id, id_cliente, id_mesa, estado, tipo_recibo, metodo_pago, total, id_trabajador FROM pedido WHERE id = ?";
+        try (Connection conn = con.getConexion();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, codigo);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    Pedido ped = new Pedido();
+                    ped.setId(rs.getInt(1));
+                    ped.setCliente(cli.obtener(rs.getInt(2)));
+                    ped.setMesa(mes.obtener(rs.getInt(3)));
+                    ped.setEstado(Pedido.EstadoPedido.valueOf(rs.getString(4)));
+                    ped.setTipo_recibo(Pedido.TipoRecibo.valueOf(rs.getString(5)));
+                    ped.setMetodo_pago(Pedido.MetodoPago.valueOf(rs.getString(6)));
+                    ped.setTotal(Double.valueOf(rs.getDouble(7)));
+                    ped.setTrabajador(tra.obtener(rs.getInt(8)));
+                    return ped;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 	@Override
 	public List<Object[]> verData() {

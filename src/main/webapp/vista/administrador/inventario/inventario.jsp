@@ -20,6 +20,9 @@
 <title>ADMIN | INVENTARIO</title>
 </head>
 <body>
+<%
+List<Inventario> listaInventario = (List<Inventario>) inventario;
+%>
 	<div class="d-flex flex-row">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
@@ -30,17 +33,10 @@
 						<div
 							class="text-center d-md-flex align-items-center justify-content-between flex-wrap mb-2">
 							<h1>GESTIÓN DE INVENTARIO - 库存管理</h1>
-							<span class="fs-3 numero-productos">200 items</span>
+							<span class="fs-3 numero-productos"><%=listaInventario.size() %> items</span>
 						</div>
 						<div
-							class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between gap-md-4 gap-3">
-							<div class="d-flex align-items-center gap-2">
-								<!-- Apareceran mas botones con categorias -->
-								<button
-									class="btn btn-warning d-flex align-items-center gap-2 fw-bolder">
-									Filtrar <i class="lni lni-funnel"></i>
-								</button>
-							</div>
+							class="d-flex flex-wrap align-items-center justify-content-end gap-md-4 gap-3">
 							<button class="btn btn-success d-flex align-items-center gap-2"
 								type="button" data-bs-toggle="modal" data-bs-target="#modalAdd">
 								Nuevo Item <i class="lni lni-plus"></i>
@@ -75,12 +71,11 @@
 												<label for="familia">Categoria</label> <select id="familia"
 													name="familia" class="form-select"
 													aria-label="Default select example">
-													<option selected>Selecciona categoria</option>
+													<option selected disabled>Selecciona categoria</option>
 													<%
 													List<Categoria> listaCategorias = (List<Categoria>) categorias;
 													for (Categoria categoria : listaCategorias) {
 													%>
-
 													<option value="<%=categoria.getId()%>"><%=categoria.getNombre()%></option>
 													<%
 													}
@@ -89,17 +84,12 @@
 											</div>
 										</div>
 
-										<!-- <div class="my-3">
-											<label for="formFile" class="form-label">Elegir una
-												imagen</label> <input class="form-control" type="file" id="formFile">
-										</div>-->
-
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<div class="col-12 col-md">
 												<label for="unidad">Unidad</label> <select id="unidad"
 													name="unidad" class="form-select"
 													aria-label="Default select example">
-													<option selected>Selecciona unidad</option>
+													<option selected disabled>Selecciona unidad</option>
 													<%
 													for (Inventario.Unidad unidad : Inventario.Unidad.values()) {
 													%>
@@ -162,7 +152,7 @@
 							<thead>
 								<tr>
 									<th>Id</th>
-									<th>Nombre</th>
+									<th>Imagen</th>
 									<th>Nombre</th>
 									<th>Categoria</th>
 									<th>Unidad</th>
@@ -176,7 +166,6 @@
 							</thead>
 							<tbody>
 								<%
-								List<Inventario> listaInventario = (List<Inventario>) inventario;
 								for (Inventario producto : listaInventario) {
 									String stock = "stock-desconocido";
 									if (producto.getStock() <= producto.getStockMin()) {
@@ -196,7 +185,7 @@
 
 								<tr>
 									<td><%=producto.getId()%></td>
-									<td><img class="img-inventario" src="vista/img/img_inventario/<%=producto.getId()%>_<%=producto.getImagen()%>"></td>
+									<td><img class="img-inventario" src="<%=producto.getUrlImagen()%>"></td>
 									<td><%=producto.getNombre()%></td>
 									<td><%=producto.getCategoria().getNombre()%></td>
 									<td><%=producto.getUnidad()%></td>
@@ -208,7 +197,7 @@
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
-											<button data-id="<%=producto.getId()%>" class="icon-action"
+											<button data-id="<%=producto.getId()%>" data-url="<%=producto.getUrlImagen()%>" class="icon-action"
 												data-bs-toggle="modal"
 												data-bs-target="#staticBackdropInventario">
 												<i class="lni lni-trash-can fs-4"></i>
@@ -223,7 +212,7 @@
 												data-stock="<%=producto.getStock()%>"
 												data-stock-min="<%=producto.getStockMin()%>"
 												data-caducidad="<%=producto.getCaducidad()%>"
-												data-imagen="<%=producto.getImagen()%>"
+												data-imagen="<%=producto.getUrlImagen()%>"
 												class="icon-action" data-bs-toggle="modal"
 												data-bs-target="#modalEditInventario">
 												<i class="lni lni-pencil fs-4"></i>
@@ -289,7 +278,7 @@
 												<label for="editCategoria">Categoria</label> <select id="editCategoria"
 													name="editCategoria" class="form-select"
 													aria-label="Default select example">
-													<option selected>Selecciona categoria</option>
+													<option selected disabled>Selecciona categoria</option>
 													<%
 													for (Categoria categoria : listaCategorias) {
 													%>
@@ -303,7 +292,7 @@
 												<label for="editUnidad">Unidad</label> <select id="editUnidad"
 													name="editUnidad" class="form-select"
 													aria-label="Default select example">
-													<option selected>Selecciona unidad</option>
+													<option selected disabled>Selecciona unidad</option>
 													<%
 													for (Inventario.Unidad unidad : Inventario.Unidad.values()) {
 													%>
@@ -377,6 +366,7 @@
 						function(event) {
 							const button = event.relatedTarget;
 							const id = button.getAttribute('data-id');
+							const url = button.getAttribute('data-url');
 							document
 									.getElementById('modalIdEliminarInventario').innerHTML = "#"
 									+ id;
@@ -387,7 +377,7 @@
 											'click',
 											function(event) {
 												window.location.href = "/ProyectoRestauranteChino/EliminarInventario?id="
-														+ id;
+														+ id + "&url="+url;
 											});
 						});
 

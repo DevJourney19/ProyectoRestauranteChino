@@ -22,7 +22,7 @@ Trabajador trabajadorNombre = (Trabajador) Sesion.obtenerAtributo(request, "usua
             </span>
         </button>
         <div class="d-flex align-items-center gap-2"><img class="m-2 rounded-5" width="50" height="50"
-             src="${pageContext.request.contextPath}/vista/img/tallarin_saltado.png" alt="alt" /> <span class="fw-bold"><%= trabajadorNombre.getNombre() %></span></div>
+             src="vista/img/tallarin_saltado.png" alt="alt" /> <span class="fw-bold"><%= trabajadorNombre != null ? trabajadorNombre.getNombre() : "Unknown" %></span></div>
     </div>
 </nav>
 

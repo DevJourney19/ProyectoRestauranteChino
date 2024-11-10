@@ -1,4 +1,3 @@
-
 <%@page import="java.util.List"%>
 <%@page import="modelo.*"%>
 <%@page import="java.util.Date"%>
@@ -15,7 +14,7 @@
 
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/vista/administrador/usuarios/usuarios.css">
+	href="vista/administrador/usuarios/usuarios.css">
 
 
 <%@ include file="../fragmentos/head.jsp"%>

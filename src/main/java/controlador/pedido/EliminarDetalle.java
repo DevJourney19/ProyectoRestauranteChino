@@ -1,19 +1,19 @@
-package controlador.categoria;
+package controlador.pedido;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 
-import datos.DaoCategoria;
-import datos.impl.DaoCategoriaImpl;
+import datos.DaoDetalle;
+import datos.DaoPedido;
+import datos.impl.DaoDetalleImpl;
+import datos.impl.DaoPedidoImpl;
 
-@WebServlet(name = "EliminarCategoria", urlPatterns = { "/EliminarCategoria" })
-public class EliminarCategoria extends HttpServlet {
-
+@WebServlet(name = "EliminarDetalle", urlPatterns = { "/EliminarDetalle" })
+public class EliminarDetalle extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		processRequest(request, response);
@@ -26,16 +26,17 @@ public class EliminarCategoria extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		DaoCategoria daoCategoria = new DaoCategoriaImpl();
+		DaoDetalle daoDetalle = new DaoDetalleImpl();
+		int idPedido = Integer.parseInt(request.getParameter("idPedido"));
 		try {
 			int id = Integer.parseInt(request.getParameter("id"));
-			if (daoCategoria.eliminar(id)) {
-				response.sendRedirect("AdmiCategoria");
-			} else {
-				response.sendRedirect("AdmiCategoria?mensaje=Operacion Fallida");
+			if (daoDetalle.eliminar(id)) {
+				response.sendRedirect("AdmiDetallePedido?id="+idPedido);
+			}else {
+				response.sendRedirect("AdmiDetallePedido?id=" + idPedido + "&mensaje=Operacion Fallida");
 			}
 		} catch (Exception e) {
-			response.sendRedirect("AdmiCategoria?mensaje=Operacion Fallida");
+			response.sendRedirect("AdmiDetallePedido?id=" + idPedido + "&mensaje=Operacion Fallida");
 		}
 	}
 

@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import modelo.Categoria;
 import modelo.Inventario;
-import util.gestionarImagen;
+import util.GestionarImagen;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,30 +46,33 @@ public class EditarInventario extends HttpServlet {
         DaoInventarioImpl daoInventario = new DaoInventarioImpl();
         DaoCategoria daoCategoria = new DaoCategoriaImpl();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        Inventario inventarioUpdated = new Inventario();
         
-        int id = Integer.parseInt(request.getParameter("id"));
-        String nombre = request.getParameter("nombre");
-        Inventario.Unidad unidad = Inventario.Unidad.valueOf(request.getParameter("unidad"));
-        double precioUnitario = Double.parseDouble(request.getParameter("precio"));
-        int inventarioInicial = Integer.parseInt(request.getParameter("inventario"));
-        int stock = Integer.parseInt(request.getParameter("stock"));
-        int stockMin = Integer.parseInt(request.getParameter("stockMinimo"));
-        String caducidad = request.getParameter("caducidad");
-        Categoria idCategoria = daoCategoria.obtener(Integer.parseInt(request.getParameter("categoria")));
+        inventarioUpdated.setId(Integer.parseInt(request.getParameter("id")));
+        inventarioUpdated.setNombre(request.getParameter("nombre"));
+        inventarioUpdated.setUnidad(Inventario.Unidad.valueOf(request.getParameter("unidad")));
+        inventarioUpdated.setPrecioUnitario(Double.parseDouble(request.getParameter("precio")));
+        inventarioUpdated.setInventarioInicial(Integer.parseInt(request.getParameter("inventario")));
+        inventarioUpdated.setStock(Integer.parseInt(request.getParameter("stock")));
+        inventarioUpdated.setStockMin(Integer.parseInt(request.getParameter("stockMinimo")));
+        inventarioUpdated.setCaducidad(LocalDate.parse(request.getParameter("caducidad"), formatter));
+        inventarioUpdated.setUnidad(Inventario.Unidad.valueOf(request.getParameter("unidad")));
+        inventarioUpdated.setCategoria(daoCategoria.obtener(Integer.parseInt(request.getParameter("categoria"))));
         String imagen = request.getParameter("imagen");
         Boolean trabajador = Boolean.parseBoolean(request.getParameter("trabajador"));
         Part archivoImagen = request.getPart("archivoImagen");
+        inventarioUpdated.setUrlImagen(imagen);
+        inventarioUpdated.setArchivoImagen(archivoImagen);
+        
+        boolean operacionExitosa = false;
 
-        Inventario inventarioUpdated = new Inventario(id, idCategoria, nombre, unidad, precioUnitario, inventarioInicial, stock, stockMin, LocalDate.parse(caducidad, formatter), imagen, archivoImagen);
-        if (daoInventario.editar(inventarioUpdated)) {
-        	gestionarImagen gestionarImagen = new gestionarImagen();
-          	gestionarImagen.borrarImagen(inventarioUpdated);      
-        	gestionarImagen.guardarImagen(inventarioUpdated);
-        	if(trabajador == true) {
-	            response.sendRedirect("TrabajadorInventario");
-	        } else {
-	            response.sendRedirect("AdmiInventario");
-	        }
+        if (trabajador) {
+            operacionExitosa = daoInventario.editarStock(inventarioUpdated);
+            response.sendRedirect(operacionExitosa ? "TrabajadorInventario" : "TrabajadorInventario?mensaje=Operacion Fallida");
+        } else {
+            operacionExitosa = daoInventario.editar(inventarioUpdated);
+            response.sendRedirect(operacionExitosa ? "AdmiInventario" : "AdmiInventario?mensaje=Operacion Fallida");
         }
+
     }    
 }

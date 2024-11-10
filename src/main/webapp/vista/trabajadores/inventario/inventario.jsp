@@ -33,11 +33,11 @@
 					<div class="col-6 col-md-4 col-lg-3">
 						<div class="card mb-4 p-3">
 							<div class="row no-gutters">
-								<img src="vista/img/img_inventario/<%=producto.getId()%>_<%=producto.getImagen()%>" class="img-inventario card-img-top" alt="Chaufa">
+								<img src="<%=producto.getUrlImagen()%>" class="img-inventario card-img-top">
 								<div class="card-body text-center">
-									<h5 class="card-title"><%=producto.getNombre()%></h5>
+									<h5 class="card-title"><%=producto.getNombre()%> </h5>
 									<p class="card-text">Stock</p>
-									<h2 class="fw-semibold <%=stock%>"><%=producto.getStock()%> <%=producto.getUnidad()%></h2>
+									<h2 class="fw-semibold <%=stock%>"><%=producto.getStock()%></h2>
 									<button data-id="<%=producto.getId()%>"
 										data-nombre="<%=producto.getNombre()%>"
 										data-categoria="<%=producto.getCategoria().getId()%>"
@@ -47,7 +47,7 @@
 										data-stock="<%=producto.getStock()%>"
 										data-stock-min="<%=producto.getStockMin()%>"
 										data-caducidad="<%=producto.getCaducidad()%>"
-										data-imagen="<%=producto.getImagen()%>"
+										data-imagen="<%=producto.getUrlImagen()%>"
 										class="btn btn-warning" data-bs-toggle="modal"
 										data-bs-target="#modalEditInventario">
 										<i class="fa-solid fa-edit" style="color: #000000;"></i>
@@ -77,7 +77,6 @@
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form action="" class="needs-validation" novalidate>
 						<div class="col-12 col-md">
 							<label for="editStock">Stock Actual</label> <input
 								type="number" class="form-control" id="editStock"
@@ -89,7 +88,6 @@
 							<button type="button" class="btn btn-warning"
 							id="editarIdInventario">Guardar</button>
 						</div>
-					</form>
 				</div>
 			</div>
 		</div>
