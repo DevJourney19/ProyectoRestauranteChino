@@ -1,10 +1,10 @@
+
 <%@page import="java.util.List"%>
 <%@page import="modelo.*"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:useBean id="trabajadores" class="java.util.ArrayList"
-	scope="request" />
+<jsp:useBean id="trabajadores" class="java.util.ArrayList" scope="request" />
 <jsp:useBean id="rol" class="java.util.ArrayList" scope="request" />
 
 <!DOCTYPE html>
@@ -13,8 +13,7 @@
 <meta charset="UTF-8">
 
 
-<link rel="stylesheet"
-	href="vista/administrador/usuarios/usuarios.css">
+<link rel="stylesheet" href="vista/administrador/usuarios/usuarios.css">
 
 
 <%@ include file="../fragmentos/head.jsp"%>
@@ -37,12 +36,24 @@
 							class="text-center d-md-flex align-items-center justify-content-between flex-wrap">
 							<h1>GESTIÓN DE USUARIOS - 用户管理</h1>
 						</div>
-						<div
-							class="d-flex align-items-center justify-content-center mt-2 mt-md-0 justify-content-md-end gap-4">
-							<button class="btn-agregar" type="button" data-bs-toggle="modal"
-								data-bs-target="#modalAdd">
-								Nuevo Usuario <i class="lni lni-plus"></i>
-							</button>
+						<div class="d-flex justify-content-between gap-4 flex-wrap" style="padding-top: 20px">
+							<form class="d-flex gap-2 align-items-center" action="AdmiTrabajador" method="GET">
+								<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Busca por nombre..." name="nombreSearch">
+								<button type="submit" class="btn btn-dark d-flex gap-2 align-items-center fw-bolder fs-4"><i class="lni lni-search"></i></button>
+							</form>
+							<div class="d-flex align-items-center justify-content-end gap-4">
+								<button class="btn-pdf" type="submit">
+									<i class="lni lni-download"></i> Descargar PDF
+								</button>
+	
+								<button class="btn-excel" type="submit">
+									<i class="lni lni-download"></i> Descargar Excel
+								</button>
+								<button class="btn-agregar" type="button" data-bs-toggle="modal"
+									data-bs-target="#modalAdd">
+									Nuevo Usuario <i class="lni lni-plus"></i>
+								</button>
+							</div>
 						</div>
 					</div>
 
@@ -242,12 +253,12 @@
 							<thead>
 								<tr>
 									<th>Código</th>
-									<th>Apellidos</th>
 									<th>Nombres</th>
+									<th>Apellidos</th>
 									<th>Usuario</th>
 									<th>Celular</th>
 									<th>Rol</th>
-									<th></th>
+									<th>Acciones</th>
 								</tr>
 							</thead>
 
@@ -273,8 +284,8 @@
 								%>
 								<tr>
 									<td><%=trabajador.getId()%></td>
-									<td><%=trabajador.getApellido()%></td>
 									<td><%=trabajador.getNombre()%></td>
+									<td><%=trabajador.getApellido()%></td>
 									<td><%=trabajador.getNombreUsuario()%></td>
 									<td><%=trabajador.getCelular()%></td>
 
