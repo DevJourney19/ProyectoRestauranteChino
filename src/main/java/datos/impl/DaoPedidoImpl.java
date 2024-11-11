@@ -12,12 +12,10 @@ import datos.DaoMesa;
 import datos.DaoPedido;
 import datos.DaoTrabajador;
 import modelo.Cliente;
-import modelo.Menu;
-import modelo.Mesa;
 import modelo.Pedido;
 import util.Conexion;
 public class DaoPedidoImpl implements DaoPedido{
-	
+
 	Conexion con;
     private DaoCliente cli;
     private DaoMesa mes;

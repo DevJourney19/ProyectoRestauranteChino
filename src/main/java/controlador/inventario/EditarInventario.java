@@ -1,5 +1,12 @@
 package controlador.inventario;
 
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import datos.DaoCategoria;
+import datos.impl.DaoCategoriaImpl;
+import datos.impl.DaoInventarioImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,24 +14,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
-import modelo.Categoria;
 import modelo.Inventario;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
-import datos.DaoCategoria;
-import datos.impl.DaoCategoriaImpl;
-import datos.impl.DaoInventarioImpl;
 
 @WebServlet(name = "EditarInventario", urlPatterns = { "/EditarInventario" })
 @MultipartConfig
@@ -57,23 +56,21 @@ public class EditarInventario extends HttpServlet {
 			inventarioUpdated.setCaducidad(LocalDate.parse(request.getParameter("caducidad"), formatter));
 			inventarioUpdated.setUnidad(Inventario.Unidad.valueOf(request.getParameter("unidad")));
 			inventarioUpdated.setCategoria(daoCategoria.obtener(Integer.parseInt(request.getParameter("categoria"))));
-			
-			if(request.getParameter("file")!=null) {
+
+			if (request.getParameter("file") != null) {
 				Part imagenPart = request.getPart("file");
 				if (imagenPart != null && imagenPart.getSize() > 0) {
-				    InputStream inputStream = imagenPart.getInputStream();
-				    inventarioUpdated.setArchivoImagen(imagenPart);
+					InputStream inputStream = imagenPart.getInputStream();
+					inventarioUpdated.setArchivoImagen(imagenPart);
 				}
-			}else {
+			} else {
 				String imagenBase64 = request.getParameter("imagen");
 				if (imagenBase64 != null && !imagenBase64.isEmpty()) {
 					inventarioUpdated.setImagen(imagenBase64);
-				    inventarioUpdated.setTipoImagen(request.getParameter("tipo"));
+					inventarioUpdated.setTipoImagen(request.getParameter("tipo"));
 				}
 
 			}
-			
-			boolean operacionExitosa = false;
 
 			boolean exito = daoInventario.editar(inventarioUpdated);
 
@@ -92,6 +89,6 @@ public class EditarInventario extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			response.getWriter().write("{\"mensaje\": \"Error en el servidor\"}");
 		}
-
 	}
+
 }

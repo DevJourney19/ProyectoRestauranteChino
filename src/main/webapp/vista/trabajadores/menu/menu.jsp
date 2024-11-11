@@ -1,172 +1,157 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page import="java.util.List"%>
+<%@page import="modelo.*"%>
+<%@page import="modelo.Categoria"%>
+<%@page import="datos.impl.DaoCategoriaImpl" %>
+<%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<jsp:useBean id="menu" class="java.util.ArrayList" scope="request" />
+<jsp:useBean id="categorias" class="java.util.ArrayList" scope="request" />
 <!DOCTYPE html>
 <html>
-<head>
-<title>MENU</title>
-<%@include file="../fragmentos/head.jsp"%>
-<link href="./vista/trabajadores/menu/menu.css" rel="stylesheet" />
-</head>
-<body>
 
-	<div class="d-flex ">
-		<%@ include file="../fragmentos/sidebar.jsp"%>
-		<div class="main">
-			<%@ include file="../fragmentos/nav.jsp"%>
-			<div class="titulo_mesas p-3">
-				<h1 class="text-center">MENU - 菜单</h1>
-				<main>
-					<section class="entradas">
-						<h2>Entradas</h2>
-						<div class="card_menu d-flex gap-4 align-item-center justify-content-between">
-							<div class="description">
-								<h3 class="fs-4">Rollitos Primavera</h3>
-								<p>Crujientes rollos rellenos de verduras frescas, servidos
-									con salsa agridulce.</p>
-							</div>
-							<span class="fs-2 fw-bolder">S/12.00</span>
-						</div>
-						<div class="card_menu">
-							<div class="description">
-								<h3>Wantán Frito</h3>
-								<p>Masa rellena de carne y verduras, frita hasta dorarse y
-									servida con salsa de soya.</p>
-							</div>
-							<span>S/ 10.00</span>
-						</div>
-						<div class="card_menu">
-							<div class="description">
-								<h3>Sopa Wonton</h3>
-								<p>Caldo ligero con wontones rellenos de carne, ideal para
-									comenzar la comida.</p>
-							</div>
-							<span>S/14.00</span>
-						</div>
-					</section>
-					<section class="principal">
-						<h2>Platos Principales</h2>
-						<div class="card_menu">
-							<div class="description">
-								<h3>Pollo Kung Pao</h3>
-								<p>Trozos de pollo salteados con cacahuates y verduras en una salsa picante.</p>
-							</div>
-							<span>S/24.90</span>
-						</div>
-						<div class="card_menu">
-							<div class="description">
-								<h3>Pato Laqueado</h3>
-								<p>Pato crujiente servido con crepas finas, cebolla y salsa hoisin.</p>
-							</div>
-							<span>S/35.00</span>
-						</div>
-						<div class="card_menu">
-							<div class="description">
-								<h3>Arroz Frito Yangzhou</h3>
-								<p>Arroz salteado con mariscos, jamón y verduras frescas.</p>
-							</div>
-							<span>S/18.90</span>
-						</div>
-						<div class="card_menu">
-							<div class="description">
-								<h3>Cerdo agridulce</h3>
-								<p>Cerdo tierno en una salsa agridulce con piña y pimientos.</p>
-							</div>
-							<span>S/25.90</span>
-						</div>
-					</section>
-					<section class="arroz">
-						<h2>Arroz y Fideos</h2>
-						<div class="card_menu">
-							<div class="description">
-								<h3>Fideos Chinos Salteados</h3>
-								<p>Fideos finos salteados con carne y vegetales al gusto.</p>
-							</div>
-							<span>S/20.00</span>
-						</div>
-						<div class="card_menu">
-							<div class="description">
-								<h3>Arroz Blanco al Vapor</h3>
-								<p>Arroz cocido al vapor, ideal como acompañante para cualquier plato.</p>
-							</div>
-							<span>S/ 5.00</span>
-						</div>
-						<div class="card_menu">
-							<div class="description">
-								<h3>Tallarín Chino</h3>
-								<p>Fideos gruesos salteados con pollo y salsa especial.</p>
-							</div>
-							<span>S/ 21.00</span>
-						</div>
-					</section>
-					<section class="sopas">
-						<h2>Sopas</h2>
-						<div class="card_menu">
-							<div class="description">
-								<h3>Sopa Picante de Tofu</h3>
-								<p>Caldo picante con tofu suave, setas y vegetales variados.</p>
-							</div>
-							<span>S/ 15.00</span>
-						</div>
-						<div class="card_menu">
-							<div class="description">
-								<h3>Cerdo agridulce</h3>
-								<p>Cerdo tierno en una salsa agridulce con piña y pimientos.</p>
-							</div>
-							<span>S/ 25.90</span>
-						</div>
-					</section>
-					<section class="postres">
-						<h2>Postres</h2>
-						<div class="card_menu">
-							<div class="description">
-								<h3>Cerdo agridulce</h3>
-								<p>Cerdo tierno en una salsa agridulce con piña y pimientos.</p>
-							</div>
-							<span>S/ 25.90</span>
-						</div>
-						<div class="card_menu">
-							<div class="description">
-								<h3>Cerdo agridulce</h3>
-								<p>Cerdo tierno en una salsa agridulce con piña y pimientos.</p>
-							</div>
-							<span>S/ 25.90</span>
-						</div>
-						<div class="card_menu">
-							<div class="description">
-								<h3>Cerdo agridulce</h3>
-								<p>Cerdo tierno en una salsa agridulce con piña y pimientos.</p>
-							</div>
-							<span>S/ 25.90</span>
-						</div>
-					</section>
-					<section class="bebidas">
-						<h2>Bebidas</h2>
-						<div class="card_menu">
-							<div class="description">
-								<h3>Cerdo agridulce</h3>
-								<p>Cerdo tierno en una salsa agridulce con piña y pimientos.</p>
-							</div>
-							<span>S/ 25.90</span>
-						</div>
-						<div class="card_menu">
-							<div class="description">
-								<h3>Cerdo agridulce</h3>
-								<p>Cerdo tierno en una salsa agridulce con piña y pimientos.</p>
-							</div>
-							<span>S/ 25.90</span>
-						</div>
-						<div class="card_menu">
-							<div class="description">
-								<h3>Cerdo agridulce</h3>
-								<p>Cerdo tierno en una salsa agridulce con piña y pimientos.</p>
-							</div>
-							<span>S/ 25.90</span>
-						</div>
-					</section>
-				</main>
-			</div>
-		</div>
-	</div>
-	<script src="https://kit.fontawesome.com/c353473263.js"></script>
+<head>
+    <title>Menú - Noche en Pekín</title>
+    <%@include file="../fragmentos/head.jsp"%>
+    <link href="vista/trabajadores/menu/menu.css" rel="stylesheet" />
+</head>
+
+<body class="body">
+    <%
+    List<Menu> listaMenu = (List<Menu>) menu;
+    %>
+    <div class="d-flex ">
+        <%@ include file="../fragmentos/sidebar.jsp"%>
+        <div class="main">
+            <%@ include file="../fragmentos/nav.jsp"%>
+            <div class="container">
+                <div class="mb-3">
+                    <div class="text-center d-md-flex align-items-center justify-content-between flex-wrap mb-2">
+                        <h1 class="text-center py-4">MENÚ - 菜单</h1>
+                        <span class="fs-3 numero-productos"><%= listaMenu.size() %> items</span>
+                    </div>
+                </div>
+
+				<!-- Carrusel de productos -->
+				<div id="menuCarouselXl" class="carousel slide d-none d-xl-block" data-bs-ride="carousel" data-bs-interval="3000">
+				    <div class="carousel-inner">
+				        <%
+				        if (menu != null && !menu.isEmpty()) {
+				            int totalMenus = listaMenu.size();
+				            for (int i = 0; i < totalMenus; i += 6) {
+				                String activeClass = (i == 0) ? "active" : ""; // Clase activa para el primer elemento
+				        %>
+				        <div class="carousel-item <%= activeClass %>">
+				            <div class="row">
+				                <%
+				                // Mostrar hasta 3 elementos en cada carousel-item
+				                for (int j = 0; j < 6 && (i + j) < totalMenus; j++) {
+				                    Menu menus = listaMenu.get(i + j);
+				                    String estadoMenu = menus.getEstado() == Menu.Estado.Venta ? "Disponible" : "No Disponible";
+				                    String estadoClass = menus.getEstado() == Menu.Estado.Venta ? "bg-success" : "bg-danger";
+				                %>
+				                <div class="col-12 col-xl-4 col-xxl-4">
+				                    <div class="card mb-5">
+				                        <div class="row g-0">
+				                            <div class="col-md-4">
+				                                <img src="<%= menus.getImagen() %>" class="img-menu m-2 rounded-start" alt="<%= menus.getNombre() %>">
+				                            </div>
+				                            <div class="col-md-8">
+				                                <div class="card-body">
+				                                    <h5 class="card-title text-truncate"><%= menus.getNombre() %></h5>
+				                                    <p class="card-text text-truncado"><%= menus.getDescripcion() %></p>
+				                                </div>
+				                            </div>
+				                        </div>
+             							<div class="card-footer bg-transparent">
+		                                      <div class="d-flex justify-content-between align-items-start">
+											    <div class="ms-2 mt-2 me-auto">
+		                                   			 <h2 class="fw-semibold">S/ <%= menus.getPrecio() %></h2>
+											    </div>
+											    <h5><span class="badge bg-primary mt-3 rounded-pill <%= estadoClass %>"><%= estadoMenu %></span></h5>
+											  </div>
+									  	</div>
+				                    </div>
+				                </div>
+				                <%
+				                }
+				                %>
+				            </div>
+				        </div>
+				        <%
+				            }
+				        } else {
+				            out.write("No se registraron menús...");
+				            System.out.println("No hay registros");
+				        }
+				        %>
+				    </div>
+				    <button class="boton bg-dark carousel-control-prev" type="button" data-bs-target="#menuCarouselXl" data-bs-slide="prev" style="width: 50px;">
+				        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				        <span class="visually-hidden">Previous</span>
+				    </button>
+				    <button class="boton bg-dark carousel-control-next" type="button" data-bs-target="#menuCarouselXl" data-bs-slide="next" style="width: 50px;">
+				        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				        <span class="visually-hidden">Next</span>
+				    </button>
+				</div>
+				                
+                <!-- Carrusel de productos -->
+                <div id="menuCarousel" class="carousel slide d-block d-xl-none" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <%
+                        if (menu != null && !menu.isEmpty()) {
+                            for (int i = 0; i < listaMenu.size(); i++) {
+                                Menu menus = listaMenu.get(i);
+                                String estadoMenu = menus.getEstado() == Menu.Estado.Venta ? "Disponible" : "No Disponible";
+                                String estadoClass = menus.getEstado() == Menu.Estado.Venta ? "bg-success" : "bg-danger";
+                                String activeClass = (i == 0) ? "active" : ""; // Clase activa para el primer elemento
+                        %>
+                        <div class="carousel-item <%= activeClass %>">
+               			   <div class="card mb-5">
+                          		<div class="row g-0">
+	                                <div class="col-md-4">
+	                                    <img src="<%= menus.getImagen() %>" class="img-menu m-2 rounded-start" alt="<%= menus.getNombre() %>">
+	                                </div>
+	                                <div class="col-md-8">
+	                                    <div class="card-body">
+	                                        <h5 class="card-title"><%= menus.getNombre() %></h5>
+	                                        <p class="card-text text-truncado"><%= menus.getDescripcion() %></p>
+	                                    </div>
+	                                </div>
+           							<div class="card-footer bg-transparent">
+	                                      <div class="d-flex justify-content-between align-items-start">
+										    <div class="ms-2 mt-2 me-auto">
+	                                   			 <h2 class="fw-semibold">S/ <%= menus.getPrecio() %></h2>
+										    </div>
+										    <h5><span class="badge bg-primary mt-3 rounded-pill <%= estadoClass %>"><%= estadoMenu %></span></h5>
+										  </div>
+								  	</div>
+                                </div>
+                           </div>
+                        </div>
+                        <%
+                            }
+                        } else {
+                            out.write("No se registraron menús...");
+                            System.out.println("No hay registros");
+                        }
+                        %>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#menuCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#menuCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/c353473263.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js /bootstrap.bundle.min.js"></script>
 </body>
 </html>

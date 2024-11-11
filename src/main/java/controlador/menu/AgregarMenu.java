@@ -1,5 +1,11 @@
 package controlador.menu;
 
+import java.io.IOException;
+
+import datos.DaoCategoria;
+import datos.DaoMenu;
+import datos.impl.DaoCategoriaImpl;
+import datos.impl.DaoMenuImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,15 +16,6 @@ import jakarta.servlet.http.Part;
 import modelo.Categoria;
 import modelo.Menu;
 import modelo.Menu.Estado;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
-
-import datos.DaoCategoria;
-import datos.DaoMenu;
-import datos.impl.DaoCategoriaImpl;
-import datos.impl.DaoMenuImpl;
 
 @WebServlet(name = "AgregarMenu", urlPatterns = { "/AgregarMenu" })
 @MultipartConfig
@@ -36,8 +33,7 @@ public class AgregarMenu extends HttpServlet {
 		processRequest(request, response);
 	}
 
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DaoMenu daoMenu = new DaoMenuImpl();
 		DaoCategoria daoCategoria = new DaoCategoriaImpl();
 		Menu menu = new Menu();

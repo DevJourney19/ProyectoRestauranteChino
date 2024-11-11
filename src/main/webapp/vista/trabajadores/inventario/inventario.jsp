@@ -1,8 +1,12 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="java.util.List"%>
 <%@page import="modelo.Inventario"%>
+<%@page import="modelo.Categoria"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:useBean id="inventario" class="java.util.ArrayList" scope="request" />
+<jsp:useBean id="categorias" class="java.util.ArrayList" scope="request" />
 <!DOCTYPE html>
 <html>
 
@@ -13,13 +17,37 @@
 	rel="stylesheet" />
 </head>
 <body class="body">
+<%
+List<Inventario> cantInventario = (List<Inventario>) inventario;
+%>
 	<div class="d-flex ">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
 			<%@ include file="../fragmentos/nav.jsp"%>
 			<div class="container">
-				<h1 class="text-center py-4">INVENTARIO - 存货</h1>
-
+				<div class="mb-3">
+					<div
+						class="text-center d-md-flex align-items-center justify-content-between flex-wrap mb-2">
+						<h1 class="text-center py-4">INVENTARIO - 存货</h1>
+						<span class="fs-3 numero-productos"><%=cantInventario.size() %> items</span>
+					</div>
+				<div class="d-flex align-items-center gap-3 mb-4">
+				    <select id="inputCategoria" name="inputCategoria" class="form-select" aria-label="Selecciona categoria">
+				        <option selected disabled>Selecciona categoría</option>
+				        <%
+				        List<Categoria> listaCategorias = (List<Categoria>) categorias;
+				        for (Categoria categoria : listaCategorias) {
+				        %>
+				        <option value="<%=categoria.getId()%>"><%=categoria.getNombre()%></option>
+				        <%
+				        }
+				        %>
+				    </select>
+				    <button id="filtrarBtn" class="btn btn-success" type="button">
+				        Filtrar
+				    </button>
+				</div>
+				</div>
 				<div class="row overflow-auto inventario_row">
 					<%
 					List<Inventario> listaInventario = (List<Inventario>) inventario;
@@ -30,8 +58,16 @@
 						} else if (producto.getStock() > 0) {
 							stock = "stock-alto";
 						}
+					    LocalDate fechaActual = LocalDate.now();
+						String estado = "badge rounded-pill text-bg-warning";
+
+						if (producto.getCaducidad().isBefore(fechaActual)) {
+							estado = "badge rounded-pill text-bg-danger";
+						} else if (producto.getStock() > 0) {
+							estado = "badge rounded-pill text-bg-success";
+						}
 					%>
-					<div class="col-6 col-md-4 col-lg-3">
+					<div class="col-6 col-md-4 col-lg-3 inventario-item" data-categoria="<%=producto.getCategoria().getId()%>">
 						<div class="card mb-4 p-3">
 							<div class="row no-gutters">
 								<img
@@ -42,6 +78,8 @@
 									</h5>
 									<p class="card-text">Stock</p>
 									<h2 class="fw-semibold <%=stock%>"><%=producto.getStock()%></h2>
+									<p class="card-text">Caducidad</p>
+									<h2 class="mb-4 fw-semibold <%=estado%>"><%=producto.getCaducidad()%></h2><br>
 									<button data-id="<%=producto.getId()%>"
 										data-nombre="<%=producto.getNombre()%>"
 										data-categoria="<%=producto.getCategoria().getId()%>"
@@ -159,6 +197,21 @@
 						    });
 						});
 					});
+	
+	document.getElementById('filtrarBtn').addEventListener('click', function() {
+		const selectedCategory = document.getElementById('inputCategoria').value;
+		const items = document.querySelectorAll('.inventario-item');
+
+	 items.forEach(item => {
+			const itemCategory = item.getAttribute('data-categoria');
+			if (selectedCategory === "Selecciona categoria" || itemCategory === selectedCategory) {
+				item.style.display = 'block';
+			} else {
+				item.style.display = 'none';
+			}
+		});
+	});
+	
 	</script>
 	<script src="https://kit.fontawesome.com/c353473263.js"></script>
 </body>

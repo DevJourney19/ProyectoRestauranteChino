@@ -1,5 +1,11 @@
 package controlador.menu;
 
+import java.io.IOException;
+
+import datos.DaoCategoria;
+import datos.DaoMenu;
+import datos.impl.DaoCategoriaImpl;
+import datos.impl.DaoMenuImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,14 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import modelo.Menu;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.Base64;
-
-import datos.DaoCategoria;
-import datos.DaoMenu;
-import datos.impl.DaoCategoriaImpl;
-import datos.impl.DaoMenuImpl;
 
 @WebServlet(name = "EditarMenu", urlPatterns = { "/EditarMenu" })
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10, // 10 MB

@@ -6,7 +6,7 @@ public class Rol {
 
 	public Rol() {
 	}
-	
+
 	public int getId() {
 		return id;
 	}

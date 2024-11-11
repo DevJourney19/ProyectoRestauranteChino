@@ -1,5 +1,9 @@
 package controlador.mesa;
 
+import java.io.IOException;
+import java.util.List;
+
+import datos.impl.DaoMesaImpl;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,11 +11,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import modelo.Mesa;
-
-import java.io.IOException;
-import java.util.List;
-
-import datos.impl.DaoMesaImpl;
 
 @WebServlet(name = "AdmiMesa", urlPatterns = {"/AdmiMesa"})
 public class AdmiMesa extends HttpServlet {
@@ -24,7 +23,7 @@ public class AdmiMesa extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 	}
-	
+
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DaoMesaImpl daoMesa = new DaoMesaImpl();
 		List<Mesa> mesas = daoMesa.consultar();
@@ -32,6 +31,6 @@ public class AdmiMesa extends HttpServlet {
 		 RequestDispatcher rd = request.getRequestDispatcher("vista/administrador/mesas/mesas.jsp");
 		    rd.forward(request, response);
 	}
-	
+
 
 }

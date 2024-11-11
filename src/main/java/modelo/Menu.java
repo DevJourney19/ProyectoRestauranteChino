@@ -6,7 +6,7 @@ public class Menu {
 	public enum Estado {
 		Venta, Desactivado
 	}
-	
+
 	private int id;
 	private String nombre;
 	private String descripcion;
@@ -84,7 +84,7 @@ public class Menu {
 	public Menu() {
 		super();
 	}
-	
-	
+
+
 
 }

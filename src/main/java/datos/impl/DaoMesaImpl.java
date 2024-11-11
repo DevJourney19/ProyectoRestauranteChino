@@ -1,16 +1,19 @@
 package datos.impl;
 
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import datos.DaoMesa;
 import modelo.Mesa;
 import util.Conexion;
 
 public class DaoMesaImpl implements DaoMesa {
-	
+
 	Conexion con;
-	
+
 	public DaoMesaImpl() {
         con = new Conexion();
     }

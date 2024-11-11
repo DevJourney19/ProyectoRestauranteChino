@@ -59,22 +59,22 @@ public class Entradas implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 
 		String requestURI = httpRequest.getRequestURI();
-		
+
 		if (requestURI.endsWith("LogoutControlador")) {
 			chain.doFilter(request, response); // Permitir acceso
 			return;
 		}
-		
+
 
 		// Obtener la sesión
 		HttpSession session = httpRequest.getSession(false);
-		
+
 	    if (requestURI.endsWith(".css") || requestURI.endsWith(".js") || requestURI.endsWith(".jpg") || requestURI.endsWith(".png") || requestURI.endsWith(".jsp") || requestURI.endsWith(".webp")) {
 	        chain.doFilter(request, response);
 	        return;
 	    }
 
-		
+
 		// Verificar si la sesión existe y si el usuario está en la sesión
 		if (session == null || session.getAttribute("usuario") == null) {
 
@@ -82,7 +82,7 @@ public class Entradas implements Filter {
 				chain.doFilter(request, response); // Permitir acceso
 				return;
 			}
-			
+
 	        httpResponse.sendRedirect("vista/login.jsp");
 	        return;
 		}

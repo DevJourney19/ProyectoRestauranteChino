@@ -1,6 +1,8 @@
 package controlador.categoria;
 
-import jakarta.servlet.RequestDispatcher;
+import java.io.IOException;
+
+import datos.impl.DaoCategoriaImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,14 +10,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import modelo.Categoria;
 
-import java.io.IOException;
-import java.util.List;
-
-import datos.impl.DaoCategoriaImpl;
-
 @WebServlet(name = "AgregarCategoria", urlPatterns = {"/AgregarCategoria"})
 public class AgregarCategoria extends HttpServlet {
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 	}
@@ -23,7 +20,7 @@ public class AgregarCategoria extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 	}
-	
+
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DaoCategoriaImpl daoCategoria = new DaoCategoriaImpl();
 		try {
@@ -37,10 +34,10 @@ public class AgregarCategoria extends HttpServlet {
 				}else {
 					response.sendRedirect("AdmiCategoria?mensaje=Operacion Fallida");
 				}
-			
+
 		}catch (Exception e) {
 			response.sendRedirect("AdmiCategoria?mensaje=Operacion Fallida");
 		}
 	}
-	
+
 }

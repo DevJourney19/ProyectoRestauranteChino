@@ -3,12 +3,18 @@ package datos.impl;
 import java.io.IOException;
 import java.sql.*;
 import java.time.format.DateTimeFormatter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
 
 import datos.DaoCategoria;
 import datos.DaoInventario;
-import datos.DaoTrabajador;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Part;
 import modelo.Inventario;
@@ -182,22 +188,6 @@ public class DaoInventarioImpl implements DaoInventario {
 		return inventario;
 	}
 
-	@Override
-	public boolean editarStock(Inventario objeto) {
-		String sql = "UPDATE inventario SET stock = ? WHERE id = ?";
 
-		try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql)) {
-			ps.setInt(1, objeto.getStock());
-			ps.setInt(2, objeto.getId());
-			int filasActualizadas = ps.executeUpdate();
-			if (filasActualizadas > 0) {
-				return true;
-			}
-
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		return false;
-	}
 
 }

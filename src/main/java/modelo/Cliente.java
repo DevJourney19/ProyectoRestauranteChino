@@ -4,13 +4,13 @@ public class Cliente {
 	public enum Tipo{
 		RUC, DNI
 	}
-	
+
 	private int id;
 	private String dni_ruc;
 	private String telefono;
 	private String correo;
 	private Tipo tipo;
-	
+
 	public int getId() {
 		return id;
 	}
@@ -44,6 +44,6 @@ public class Cliente {
 	public Cliente() {
 		super();
 	}
-	
-	
+
+
 }

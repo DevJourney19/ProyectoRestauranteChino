@@ -1,6 +1,5 @@
 package modelo;
 
-import java.io.InputStream; // Importa esta clase si decides usar InputStream
 import java.time.LocalDate;
 
 import jakarta.servlet.http.Part;

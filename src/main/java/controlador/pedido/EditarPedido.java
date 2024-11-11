@@ -1,26 +1,23 @@
 package controlador.pedido;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import modelo.Categoria;
-import modelo.Pedido;
-import modelo.Trabajador;
-
 import java.io.IOException;
 
 import datos.DaoCliente;
 import datos.DaoMesa;
 import datos.DaoPedido;
 import datos.DaoTrabajador;
-import datos.impl.DaoCategoriaImpl;
 import datos.impl.DaoClienteImpl;
 import datos.impl.DaoMesaImpl;
 import datos.impl.DaoPedidoImpl;
 import datos.impl.DaoTrabajadorImpl;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import modelo.Pedido;
+import modelo.Trabajador;
 
 @WebServlet(name = "EditarPedido", urlPatterns = {"/EditarPedido"})
 public class EditarPedido extends HttpServlet {

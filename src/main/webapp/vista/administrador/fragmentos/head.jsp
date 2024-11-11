@@ -21,6 +21,9 @@
 	href="${pageContext.request.contextPath}/vista/administrador/fragmentos/sidebar.css">
 <script defer
 	src="${pageContext.request.contextPath}/vista/administrador/fragmentos/sidebar.js"></script>
+	
+<script defer
+	src="${pageContext.request.contextPath}/vista/administrador/fragmentos/nav.js"></script>
 
 <script defer
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

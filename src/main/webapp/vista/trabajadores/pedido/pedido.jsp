@@ -23,8 +23,8 @@
 						class="aniadir_pedido fs-5 d-flex align-items-center gap-2 btn btn-warning"
 						data-bs-toggle="modal" data-bs-target="#modalEdit">
 						<img src="${pageContext.request.contextPath}/vista/img/boton-mas.png"
-							style="width: 20px; height: 20px"> <span>Añadir
-							Pedido</span>
+							style="width: 20px; height: 20px"> 
+							<span>Añadir Pedido</span>
 					</button>
 				</div>
 

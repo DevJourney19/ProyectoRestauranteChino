@@ -8,11 +8,11 @@ public class Trabajador {
 	private String contrasenia;
 	private String celular;
 	private Rol rol;
-	
+
 	public Trabajador() {
-		
+
 	}
-	
+
 
 	public int getId() {
 		return id;
