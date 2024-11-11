@@ -1,29 +1,21 @@
 package datos.impl;
-
-import java.nio.charset.StandardCharsets;
-import java.sql.*;
-import util.Conexion;
-
+import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.mindrot.jbcrypt.BCrypt;
 
 import datos.DaoRol;
 import datos.DaoTrabajador;
-import modelo.Rol;
-import modelo.Trabajador;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.nio.charset.StandardCharsets;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import org.mindrot.jbcrypt.BCrypt;
-
+import jakarta.servlet.http.HttpServletResponse;
 import modelo.Trabajador;
 import util.Conexion;
 
@@ -135,7 +127,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 				return traer_bd(rs);
 			} else {
 				System.out.println("No se encontraron trabajadores con el ID proporcionado.");
-				return null; 
+				return null;
 			}
 		} catch (Exception e) {
 			System.out.println("Error en el buscar trabajadores: " + e.getMessage());
@@ -172,7 +164,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 		Trabajador trabajador = null;
 		ps = null;
 		rs = null;
-		String sql = "SELECT id, nombre, apellido, usuario, password, telefono, id_rol FROM trabajador WHERE usuario = ?";
+		String sql = "SELECT * FROM trabajador WHERE usuario = ?";
 		try {
 			ps = con.getConexion().prepareStatement(sql);
 			ps.setString(1, usuario);
@@ -190,16 +182,17 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 					trabajador.setCelular(rs.getString("telefono"));
 					trabajador.setRol(rol.obtener(rs.getInt("id_rol")));
 				}
+
 			} else {
 				System.out.println("Usuario no encontrado");
 				return null;
 			}
 			return trabajador;
 		} catch (SQLException e) {
-			System.err.println("Error SQL en validarUsuario: " + e.getMessage());
+			System.err.println("Error SQL en validar Usuario: " + e.getMessage());
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.err.println("Error general en validarUsuario: " + e.getMessage());
+			System.err.println("Error general en validar Usuario: " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			cerrarRecursos(ps, rs);
@@ -207,13 +200,73 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 
 		return trabajador;
 	}
+/*
+	@Override
+	public List<Trabajador> filtrar(String titulo) {
+		List<Trabajador> lista = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT ").append("id, nombre, apellido, usuario, password, telefono, id_rol").append(" FROM trabajador WHERE nombre = ?");
+		try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString())) {
+			ps.setString(1, titulo);
+			try (ResultSet rs = ps.executeQuery()) {
+				lista = new ArrayList<>();
+				while (rs.next()) {
+					Trabajador trab = new Trabajador();
+					trab.setId(rs.getInt(1));
+					trab.setNombre(rs.getString(2));
+					trab.setApellido(rs.getString(3));
+					trab.setNombreUsuario(rs.getString(4));
+					trab.setContrasenia(rs.getString(5));
+					trab.setCelular(rs.getString(6));
+					trab.setRol(rol.obtener(rs.getInt(7)));
+					lista.add(trab);
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return lista;
+	}
+	*/
+	public void exportToExcel(HttpServletResponse response, List<Trabajador> trabjList) throws IOException {
+	    Workbook workbook = new XSSFWorkbook();
+	    Sheet sheet = workbook.createSheet("Trabajadores");
+
+	    Row headerRow = sheet.createRow(0);
+	    String[] columns = {"ID", "Nombre", "Apellidos", "Usuario", "Contrasenia", "Celular", "Rol"};
+	    for (int i = 0; i < columns.length; i++) {
+	        Cell cell = headerRow.createCell(i);
+	        cell.setCellValue(columns[i]);
+	    }
+
+	    int rowIdx = 1;
+	    for (Trabajador trabaj : trabjList) {
+	        Row row = sheet.createRow(rowIdx++);
+	        row.createCell(0).setCellValue(trabaj.getId());
+	        row.createCell(1).setCellValue(trabaj.getNombre());
+	        row.createCell(2).setCellValue(trabaj.getApellido());
+	        row.createCell(3).setCellValue(trabaj.getNombreUsuario());
+	        row.createCell(4).setCellValue(trabaj.getCelular());
+	        row.createCell(5).setCellValue(trabaj.getRol().getNombre());
+	    }
+
+	    response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+	    response.setHeader("Content-Disposition", "attachment; filename=menu.xlsx");
+
+	    workbook.write(response.getOutputStream());
+	    workbook.close();
+	}
 
 	private void cerrarRecursos(PreparedStatement ps, ResultSet rs) {
 		try {
-			if (rs != null)
+			if (rs != null) {
 				rs.close();
-			if (ps != null)
+			}
+			if (ps != null) {
 				ps.close();
+			}
 
 		} catch (SQLException e) {
 			System.err.println("Error al cerrar recursos: " + e.getMessage());
