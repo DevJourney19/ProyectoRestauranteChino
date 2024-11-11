@@ -7,12 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import datos.DaoRol;
-import modelo.Categoria;
 import modelo.Rol;
 import util.Conexion;
 
 public class DaoRolImpl implements DaoRol {
-	
+
 	Conexion con;
 
 	public DaoRolImpl() {

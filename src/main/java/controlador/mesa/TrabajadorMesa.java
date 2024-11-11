@@ -1,21 +1,17 @@
 package controlador.mesa;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import datos.impl.DaoMesaImpl;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import modelo.Menu;
 import modelo.Mesa;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import datos.DaoMenu;
-import datos.impl.DaoMenuImpl;
-import datos.impl.DaoMesaImpl;
 
 @WebServlet(name = "TrabajadorMesa", urlPatterns = { "/TrabajadorMesa" })
 public class TrabajadorMesa extends HttpServlet {
@@ -41,17 +37,17 @@ public class TrabajadorMesa extends HttpServlet {
 
 			// Filtrar el menú basado en el título
 			mesas = mesas.stream().filter(m -> m.getN_mesa() == titulo )
-					.collect(Collectors.toList()); 
+					.collect(Collectors.toList());
 		}
-		
+
 		if (request.getParameter("estado") != null && !request.getParameter("estado").isEmpty()) {
 			String estado = request.getParameter("estado");
 
 			// Filtrar el menú basado en el título
 			mesas = mesas.stream().filter(m -> m.getEstado().toString().equals(estado) )
-					.collect(Collectors.toList()); 
+					.collect(Collectors.toList());
 		}
-		
+
 
 		request.setAttribute("mesas", mesas);
 		RequestDispatcher rd = request.getRequestDispatcher("vista/trabajadores/mesas_mozo/mesas_mozo.jsp");

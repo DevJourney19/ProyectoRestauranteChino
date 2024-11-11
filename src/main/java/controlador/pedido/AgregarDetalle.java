@@ -1,27 +1,19 @@
 package controlador.pedido;
 
+import java.io.IOException;
+
+import datos.DaoDetalle;
+import datos.DaoMenu;
+import datos.DaoPedido;
+import datos.impl.DaoDetalleImpl;
+import datos.impl.DaoMenuImpl;
+import datos.impl.DaoPedidoImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import modelo.DetallePedido;
-import modelo.Pedido;
-import modelo.Trabajador;
-
-import java.io.IOException;
-
-import datos.DaoCliente;
-import datos.DaoDetalle;
-import datos.DaoMenu;
-import datos.DaoMesa;
-import datos.DaoPedido;
-import datos.impl.DaoClienteImpl;
-import datos.impl.DaoDetalleImpl;
-import datos.impl.DaoMenuImpl;
-import datos.impl.DaoMesaImpl;
-import datos.impl.DaoPedidoImpl;
 
 @WebServlet(name = "AgregarDetalle", urlPatterns = { "/AgregarDetalle" })
 public class AgregarDetalle extends HttpServlet {

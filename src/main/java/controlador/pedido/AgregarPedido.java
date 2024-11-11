@@ -1,15 +1,5 @@
 package controlador.pedido;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import modelo.Mesa;
-import modelo.Pedido;
-import modelo.Trabajador;
-
 import java.io.IOException;
 
 import datos.DaoCliente;
@@ -18,6 +8,14 @@ import datos.DaoPedido;
 import datos.impl.DaoClienteImpl;
 import datos.impl.DaoMesaImpl;
 import datos.impl.DaoPedidoImpl;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import modelo.Pedido;
+import modelo.Trabajador;
 
 @WebServlet(name = "AgregarPedido", urlPatterns = { "/AgregarPedido" })
 public class AgregarPedido extends HttpServlet {
@@ -34,7 +32,7 @@ public class AgregarPedido extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false); 
+		HttpSession session = request.getSession(false);
 		DaoPedido daoPedido = new DaoPedidoImpl();
 		DaoCliente daoCliente = new DaoClienteImpl();
 		DaoMesa daoMesa = new DaoMesaImpl();

@@ -8,7 +8,6 @@ import java.util.List;
 
 import datos.DaoCategoria;
 import modelo.Categoria;
-import modelo.Mesa;
 import util.Conexion;
 
 public class DaoCategoriaImpl implements DaoCategoria {

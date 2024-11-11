@@ -1,10 +1,30 @@
 <%@page import="modelo.Trabajador"%>
+
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page import="datos.DaoInventario" %>
+<%@ page import="datos.impl.DaoInventarioImpl" %>
+<%@page import="modelo.Inventario"%>
+
 <%@page import="util.Sesion"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%
 Trabajador trabajadorNombre = (Trabajador) Sesion.obtenerAtributo(request, "usuario");
+
+DaoInventario daoInventarioImpl = new DaoInventarioImpl();
+List<Inventario> inventarioList = daoInventarioImpl.consultar();
+
+List<Inventario> inventarioBajoStock = new ArrayList<>();
+for (Inventario item : inventarioList) {
+    LocalDate fechaActual = LocalDate.now();
+    if (item.getStock() <= item.getStockMin() || item.getCaducidad().isBefore(fechaActual)) {
+        inventarioBajoStock.add(item);
+    }
+}
 %>
+
 <nav class="navbar d-flex align-items-center">
 
     <button class="toggler-btn" type="button">
@@ -17,7 +37,7 @@ Trabajador trabajadorNombre = (Trabajador) Sesion.obtenerAtributo(request, "usua
         <button type="button" data-bs-toggle="modal" data-bs-target="#modalMessages" class="btn btn-white rounded-5 position-relative mt-2 d-flex align-items-center">
             <i class="lni lni-popup fs-2"></i>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                1
+                <%= inventarioBajoStock.size() %>
                 <span class="visually-hidden">unread messages</span>
             </span>
         </button>
@@ -34,24 +54,24 @@ Trabajador trabajadorNombre = (Trabajador) Sesion.obtenerAtributo(request, "usua
                 <h1 class="modal-title fs-3 fw-semibold" id="modalMessagesLabel">Mensajes</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="message-list">
-                    <div class="message-item mb-3">
-                        <strong>De:</strong> Usuario 1 <br>
-                        <strong>Mensaje:</strong> Este es un mensaje de prueba.
-                    </div>
-                    <hr> <!-- Separator -->
-                    <div class="message-item mb-3">
-                        <strong>De:</strong> Usuario 2 <br>
-                        <strong>Mensaje:</strong> Otro mensaje para revisar.
-                    </div>
-                    <hr> <!-- Separator -->
-                    <div class="message-item mb-3">
-                        <strong>De:</strong> Usuario 3 <br>
-                        <strong>Mensaje:</strong> Necesito ayuda con un problema.
-                    </div>
-                </div>
-            </div>
+			<div class="modal-body">
+			    <div class="message-list">
+			        <% if (!inventarioBajoStock.isEmpty()) { %>
+			            <% for (Inventario item : inventarioBajoStock) { %>
+		           		 	<h5><%= item.getNombre() %></h5>
+			                <div class="message-item mb-3">
+			                    <strong>Stock:</strong> <%= item.getStock() %> <br>
+                                <strong>Caducidad:</strong> <%= item.getCaducidad() %> <br>
+			                </div>
+			                <hr> <!-- Separator -->
+			            <% } %>
+			        <% } else { %>
+			            <div class="message-item mb-3">
+			                No hay artículos vencidos o con bajo stock.
+			            </div>
+			        <% } %>
+			    </div>
+			</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
             </div>

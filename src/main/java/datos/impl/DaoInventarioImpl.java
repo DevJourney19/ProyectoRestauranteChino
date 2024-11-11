@@ -1,13 +1,17 @@
 package datos.impl;
 
-import java.sql.*;
-import java.time.format.DateTimeFormatter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.*;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import datos.DaoCategoria;
 import datos.DaoInventario;
-import datos.DaoTrabajador;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Part;
 import modelo.Inventario;
@@ -206,7 +210,7 @@ public class DaoInventarioImpl implements DaoInventario {
 
 	        if (ps.executeUpdate() != 0) {
 	            if (subir.existeImagen(objeto) && subir.eliminarImagen(objeto)) {
-	                return true; 
+	                return true;
 	            } else {
 	                return false;
 	            }

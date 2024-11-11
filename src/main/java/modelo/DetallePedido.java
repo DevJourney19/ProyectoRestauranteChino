@@ -6,7 +6,7 @@ public class DetallePedido {
 	private int cantidad;
 	private double subtotal;
 	private Pedido pedido;
-	
+
 	public DetallePedido() {
 		super();
 	}
@@ -40,6 +40,6 @@ public class DetallePedido {
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
-	
-	
+
+
 }

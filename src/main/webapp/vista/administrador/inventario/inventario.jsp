@@ -35,12 +35,19 @@ List<Inventario> listaInventario = (List<Inventario>) inventario;
 							<h1>GESTIÓN DE INVENTARIO - 库存管理</h1>
 							<span class="fs-3 numero-productos"><%=listaInventario.size() %> items</span>
 						</div>
-						<div
-							class="d-flex flex-wrap align-items-center justify-content-end gap-md-4 gap-3">
-							<button class="btn btn-success d-flex align-items-center gap-2"
-								type="button" data-bs-toggle="modal" data-bs-target="#modalAdd">
-								Nuevo Item <i class="lni lni-plus"></i>
-							</button>
+						<div class="d-flex flex-wrap align-items-center justify-content-between gap-md-4 gap-3">
+							<form class="d-flex gap-2 align-items-center" action="AdmiInventario" method="GET">
+								<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Busca por nombre..." name="buscar">
+								<button type="submit" class="btn btn-dark d-flex gap-2 align-items-center fw-bolder fs-4"><i class="lni lni-search"></i></button>
+							</form>
+							<div class="d-flex align-items-center justify-content-end gap-4">
+							
+							
+								<button class="btn btn-success d-flex align-items-center gap-2"
+									type="button" data-bs-toggle="modal" data-bs-target="#modalAdd">
+									Nuevo Item <i class="lni lni-plus"></i>
+								</button>
+							</div>
 						</div>
 					</div>
 
@@ -151,7 +158,6 @@ List<Inventario> listaInventario = (List<Inventario>) inventario;
 						<table class="table">
 							<thead>
 								<tr>
-									<th>Id</th>
 									<th>Imagen</th>
 									<th>Nombre</th>
 									<th>Categoria</th>
@@ -182,9 +188,7 @@ List<Inventario> listaInventario = (List<Inventario>) inventario;
 										estado = "badge rounded-pill text-bg-success";
 									}
 								%>
-
 								<tr>
-									<td><%=producto.getId()%></td>
 									<td><img class="img-inventario" src="<%=producto.getUrlImagen()%>"></td>
 									<td><%=producto.getNombre()%></td>
 									<td><%=producto.getCategoria().getNombre()%></td>

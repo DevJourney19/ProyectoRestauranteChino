@@ -1,19 +1,26 @@
 package controlador.menu;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
+
+import datos.DaoCategoria;
+import datos.DaoMenu;
+import datos.impl.DaoCategoriaImpl;
+import datos.impl.DaoMenuImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
+import modelo.Categoria;
 import modelo.Menu;
-
-import java.io.IOException;
-
-import datos.impl.DaoMenuImpl;
+import modelo.Menu.Estado;
 
 @WebServlet(name = "AgregarMenu", urlPatterns = {"/AgregarMenu"})
 public class AgregarMenu extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,7 +30,7 @@ public class AgregarMenu extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 	}
-	
+
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DaoMenu daoMenu = new DaoMenuImpl();
 		DaoCategoria daoCategoria = new DaoCategoriaImpl();
@@ -88,5 +95,5 @@ public class AgregarMenu extends HttpServlet {
 	            response.sendRedirect("AdmiMenu?mensaje=Operacion Fallida 2");
 	        }
 	}
-	
+
 }

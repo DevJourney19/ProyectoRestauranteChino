@@ -7,10 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import jakarta.servlet.ServletException;
@@ -76,18 +74,18 @@ public class GestionarImagen {
 		String rutaImagenes = rutaBaseProyecto + rutaImagen;
 
 		File archivo = new File(rutaImagenes);
-		
+
 		if(existeImagen(inventario)) {
 			if (archivo.delete()) {
 				System.out.println("Imagen eliminada: " + rutaImagen);
-				return true; 
+				return true;
 			} else {
-				throw new ServletException("No se pudo eliminar la imagen: " + rutaImagen); 
+				throw new ServletException("No se pudo eliminar la imagen: " + rutaImagen);
 			}
 		}
 		return false;
 	}
-	
+
 	public boolean existeImagen(Inventario inventario) {
 		String urlImagen = inventario.getUrlImagen();
 		String rutaImagen = "";

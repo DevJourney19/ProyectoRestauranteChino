@@ -1,5 +1,7 @@
 package controlador.trabajador;
 
+import java.io.IOException;
+
 import datos.DaoRol;
 import datos.DaoTrabajador;
 import datos.impl.DaoRolImpl;
@@ -9,10 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import modelo.Rol;
 import modelo.Trabajador;
-
-import java.io.IOException;
 
 @WebServlet(name = "AgregarTrabajador", urlPatterns = {"/AgregarTrabajador"})
 public class AgregarTrabajador extends HttpServlet {
@@ -40,11 +39,11 @@ public class AgregarTrabajador extends HttpServlet {
 			String celular = request.getParameter("celular");
 			String rol_seleccionado = request.getParameter("rol");
 			if (rol_seleccionado != null && !rol_seleccionado.isEmpty()) {
-				id_rol = Integer.parseInt(rol_seleccionado); // 
+				id_rol = Integer.parseInt(rol_seleccionado); //
 			} else {
 				System.out.println("No se seleccionó un rol válido.");
 			}
-			
+
 			Trabajador tra = new Trabajador();
 			tra.setApellido(apellido);
 			tra.setNombre(nombre);
@@ -52,7 +51,7 @@ public class AgregarTrabajador extends HttpServlet {
 			tra.setNombreUsuario(usuario);
 			tra.setContrasenia(password);
 			tra.setCelular(celular);
-			
+
 			if (trabajadorDao.agregar(tra)) {
 				response.sendRedirect("AdmiTrabajador");
 			}else {
