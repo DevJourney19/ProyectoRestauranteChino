@@ -23,18 +23,46 @@
 	border-radius:20px;
 }
 
-.btn-agregar{
+.btn-pdf{
 	border:var(--blanco);
-	background-color:var(--rojo);
+	background-color: #D51818;
 	border:none;
 	color:var(--blanco);
 	display:flex;
 	gap:10px;
 	align-items:center;
 	outline:none;
-	border-radius:10px;
-	font-weight:600;
-	padding:5px 20px;
+	border-radius:5px;
+	font-weight:500;
+	padding:10px 20px;
+}
+
+.btn-excel{
+	border:var(--blanco);
+	background-color: #014301;
+	border:none;
+	color:var(--blanco);
+	display:flex;
+	gap:10px;
+	align-items:center;
+	outline:none;
+	border-radius:5px;
+	font-weight:500;
+	padding:10px 20px;
+}
+
+.btn-agregar{
+	border:var(--blanco);
+	background-color: #EFB810!important;
+	border:none;
+	color: #333;
+	display:flex;
+	gap:10px;
+	align-items:center;
+	outline:none;
+	border-radius:5px;
+	font-weight:500;
+	padding:10px 20px!important;
 }
 
 .estado-admi{
