@@ -1,5 +1,6 @@
 package datos.impl;
 
+import java.io.IOException;
 import java.sql.*;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
@@ -12,24 +13,21 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Part;
 import modelo.Inventario;
 import util.Conexion;
-import util.GestionarImagen;
 
 public class DaoInventarioImpl implements DaoInventario {
 
 	Conexion con;
 	private DaoCategoria cat;
-	private GestionarImagen subir;
 
 	public DaoInventarioImpl() {
 		con = new Conexion();
 		cat = new DaoCategoriaImpl();
-		subir = new GestionarImagen();
 	}
 
 	@Override
 	public List<Inventario> consultar() {
 		List<Inventario> lista = new ArrayList<>();
-		String sql = "SELECT id, id_categoria, nombre, unidad, precio_unitario, inventario_inicial, stock, stock_min, caducidad, url_imagen FROM inventario";
+		String sql = "SELECT id, id_categoria, nombre, unidad, precio_unitario, inventario_inicial, stock, stock_min, caducidad, imagen, tipo_imagen FROM inventario";
 
 		try (Connection c = con.getConexion();
 				PreparedStatement ps = c.prepareStatement(sql);
@@ -46,7 +44,14 @@ public class DaoInventarioImpl implements DaoInventario {
 				inventario.setStock(rs.getInt(7));
 				inventario.setStockMin(rs.getInt(8));
 				inventario.setCaducidad(LocalDate.parse(rs.getString(9), formato));
-				inventario.setUrlImagen(rs.getString(10));
+				byte[] imagenBytes = rs.getBytes(10);
+				if (imagenBytes != null) {
+					String imagenBase64 = java.util.Base64.getEncoder().encodeToString(imagenBytes);
+					inventario.setImagen(imagenBase64);
+				} else {
+					inventario.setImagen(null);
+				}
+				inventario.setTipoImagen(rs.getString(11));
 				lista.add(inventario);
 			}
 		} catch (SQLException e) {
@@ -57,7 +62,7 @@ public class DaoInventarioImpl implements DaoInventario {
 
 	@Override
 	public boolean agregar(Inventario objeto) {
-		String sql = "INSERT INTO inventario (id_categoria, nombre, unidad, precio_unitario, inventario_inicial, stock, stock_min, caducidad) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO inventario (id_categoria, nombre, unidad, precio_unitario, inventario_inicial, stock, stock_min, caducidad, imagen, tipo_imagen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try (Connection c = con.getConexion()) {
 			try (PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -70,25 +75,18 @@ public class DaoInventarioImpl implements DaoInventario {
 				ps.setInt(7, objeto.getStockMin());
 				ps.setString(8, objeto.getCaducidad().toString());
 
-				if (ps.executeUpdate() != 0) {
-					try (ResultSet rs = ps.getGeneratedKeys()) {
-						if (rs.next()) {
-							int ultimoRegistro = rs.getInt(1);
-							objeto.setId(ultimoRegistro);
-							String urlImagen = subir.guardarImagen(objeto);
-							if (urlImagen == null) {
-								return false;
-							}
-							objeto.setUrlImagen(urlImagen);
-							if (editarImagen(objeto)) {
-								return true;
-							}
-						}
-					} catch (ServletException e) {
-						e.printStackTrace();
-					}
+				Part archivoImagen = objeto.getArchivoImagen();
+
+				if (archivoImagen != null) {
+					ps.setBlob(9, archivoImagen.getInputStream());
+				} else {
+					ps.setNull(9, java.sql.Types.BLOB);
 				}
-			} catch (SQLException e) {
+				String mimeType = archivoImagen.getContentType();
+				ps.setString(10, mimeType);  
+
+				return ps.executeUpdate() != 0;
+			} catch (SQLException |IOException e) {
 				e.printStackTrace();
 			}
 		} catch (SQLException e) {
@@ -99,7 +97,7 @@ public class DaoInventarioImpl implements DaoInventario {
 
 	@Override
 	public boolean editar(Inventario objeto) {
-		String sql = "UPDATE inventario SET id_categoria = ?, nombre = ?, unidad = ?, precio_unitario = ?, inventario_inicial = ?, stock = ?, stock_min = ?, caducidad = ? WHERE id = ?";
+		String sql = "UPDATE inventario SET id_categoria = ?, nombre = ?, unidad = ?, precio_unitario = ?, inventario_inicial = ?, stock = ?, stock_min = ?, caducidad = ?, imagen = ?, tipo_imagen = ? WHERE id = ?";
 
 		try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql)) {
 			ps.setInt(1, objeto.getCategoria().getId());
@@ -111,27 +109,25 @@ public class DaoInventarioImpl implements DaoInventario {
 			ps.setInt(7, objeto.getStockMin());
 			ps.setString(8, objeto.getCaducidad().toString());
 
-			ps.setInt(9, objeto.getId());
-			Part archivoImagen = objeto.getArchivoImagen();
-			if (ps.executeUpdate() != 0) {
-				if ((archivoImagen != null || archivoImagen.getSize() != 0) && subir.existeImagen(objeto) && !subir.eliminarImagen(objeto)) {
-				    return false;
-				}
 
-				String urlImagen = subir.guardarImagen(objeto);
-				if (urlImagen == null) {
-				    return false;
-				}
+			if(objeto.getArchivoImagen()!=null) {
+				Part archivoImagen = objeto.getArchivoImagen();
+				ps.setBlob(9, archivoImagen.getInputStream());
+			}else {
+				String imagenBase64 = objeto.getImagen();
+			    byte[] imagenBytes = Base64.getDecoder().decode(imagenBase64);
 
-				objeto.setUrlImagen(urlImagen);
-				return editarImagen(objeto);
+			    Blob imagenBlob = c.createBlob();
+			    imagenBlob.setBytes(1, imagenBytes);  
+				ps.setBlob(9, imagenBlob);
 			}
-
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} catch (ServletException e) {
+			ps.setString(10, objeto.getTipoImagen());
+			
+			ps.setInt(11, objeto.getId());
+			return ps.executeUpdate() != 0;
+		} catch (SQLException |IOException e) {
 			e.printStackTrace();
-		}
+		} 
 		return false;
 	}
 
@@ -151,7 +147,7 @@ public class DaoInventarioImpl implements DaoInventario {
 	@Override
 	public Inventario obtener(int codigo) {
 		Inventario inventario = null;
-		String sql = "SELECT id, id_categoria, nombre, unidad, precio_unitario, inventario_inicial, stock, stock_min, caducidad, url_imagen FROM inventario WHERE id = ?";
+		String sql = "SELECT id, id_categoria, nombre, unidad, precio_unitario, inventario_inicial, stock, stock_min, caducidad, i FROM inventario WHERE id = ?";
 
 		try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql)) {
 			ps.setInt(1, codigo);
@@ -168,7 +164,14 @@ public class DaoInventarioImpl implements DaoInventario {
 					inventario.setStock(rs.getInt(7));
 					inventario.setStockMin(rs.getInt(8));
 					inventario.setCaducidad(LocalDate.parse(rs.getString(9), formato));
-					inventario.setUrlImagen(rs.getString(10));
+					byte[] imagenBytes = rs.getBytes(10);
+					if (imagenBytes != null) {
+						String imagenBase64 = java.util.Base64.getEncoder().encodeToString(imagenBytes);
+						inventario.setImagen(imagenBase64);
+					} else {
+						inventario.setImagen(null);
+					}
+					inventario.setTipoImagen(rs.getString(11));
 				}
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
@@ -177,49 +180,6 @@ public class DaoInventarioImpl implements DaoInventario {
 			System.out.println(e.getMessage());
 		}
 		return inventario;
-	}
-
-	@Override
-	public boolean editarImagen(Inventario objeto) {
-		String sql = "UPDATE inventario SET url_imagen = ? WHERE id = ?";
-
-		try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql)) {
-			ps.setString(1, objeto.getUrlImagen());
-			ps.setInt(2, objeto.getId());
-			int filasActualizadas = ps.executeUpdate();
-			if (filasActualizadas > 0) {
-				return true;
-			}
-
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		return false;
-	}
-
-	@Override
-	public boolean eliminar(int codigo, Inventario objeto) {
-	    String sql = "DELETE FROM inventario WHERE id = ?";
-
-	    try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql)) {
-	        ps.setInt(1, codigo);
-
-	        if (ps.executeUpdate() != 0) {
-	            if (subir.existeImagen(objeto) && subir.eliminarImagen(objeto)) {
-	                return true; 
-	            } else {
-	                return false;
-	            }
-	        } else {
-	            System.out.println("No se pudo eliminar el inventario con id: " + codigo);
-	            return false;
-	        }
-	    } catch (SQLException e) {
-	        System.out.println("Error SQL: " + e.getMessage());
-	    } catch (ServletException e) {
-	        System.out.println("Error al eliminar la imagen: " + e.getMessage());
-	    }
-	    return false;
 	}
 
 	@Override
@@ -239,6 +199,5 @@ public class DaoInventarioImpl implements DaoInventario {
 		}
 		return false;
 	}
-
 
 }

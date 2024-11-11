@@ -13,12 +13,14 @@ import com.itextpdf.text.pdf.PdfWriter;
 import datos.DaoMenu;
 import datos.impl.DaoMenuImpl;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import modelo.Menu;
 
+@WebServlet(name = "ExportPDFServlet", urlPatterns = {"/ExportPDFServlet"})
 public class ExportPDFServlet extends HttpServlet {
 
     @Override

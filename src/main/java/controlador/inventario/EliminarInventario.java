@@ -30,8 +30,7 @@ public class EliminarInventario extends HttpServlet {
         Inventario in = new Inventario();
         try {
         	int id = Integer.parseInt(request.getParameter("id"));
-        	in.setUrlImagen(request.getParameter("url"));
-            if (daoInventario.eliminar(id, in)) {
+            if (daoInventario.eliminar(id)) {
                 response.sendRedirect("AdmiInventario");
             }else {
     			response.sendRedirect("AdmiInventario?mensaje=Operacion Fallida");

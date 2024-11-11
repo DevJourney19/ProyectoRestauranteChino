@@ -33,7 +33,7 @@ public class Entradas implements Filter {
 
 	private static boolean validarAdmin(String ruta) {
 		return switch (ruta) {
-		case "AdmiCategoria", "AdmiTrabajador", "AdmiPedido", "AdmiDetallePedido", "AdmiInventario", "AdmiMenu", "AdmiMesa", "AgregarCategoria", "EditarCategoria", "EliminarCategoria", "AgregarTrabajador", "EditarTrabajador", "EliminarTrabajador", "AgregarPedido", "EditarPedido", "EliminarPedido", "AgregarDetalle", "EditarDetalle", "EliminarDetalle", "AgregarInventario", "EditarInventario", "EliminarInventario","AgregarMesa",  "EditarMesa", "EliminarMesa", "AgregarMenu",  "EditarMenu", "EliminarMenu" -> true;
+		case "AdmiCategoria", "AdmiTrabajador", "AdmiPedido", "AdmiDetallePedido", "AdmiInventario", "AdmiMenu", "AdmiMesa", "AgregarCategoria", "EditarCategoria", "EliminarCategoria", "AgregarTrabajador", "EditarTrabajador", "EliminarTrabajador", "AgregarPedido", "EditarPedido", "EliminarPedido", "AgregarDetalle", "EditarDetalle", "EliminarDetalle", "AgregarInventario", "EditarInventario", "EliminarInventario","AgregarMesa",  "EditarMesa", "EliminarMesa", "AgregarMenu",  "EditarMenu", "EliminarMenu", "ExportExcelServlet", "ExportPDFServlet" -> true;
 		default -> false;
 		};
 	}

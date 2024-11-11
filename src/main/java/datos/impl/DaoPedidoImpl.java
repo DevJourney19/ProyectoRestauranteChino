@@ -87,7 +87,7 @@ public class DaoPedidoImpl implements DaoPedido{
 		sql.append("DELETE FROM pedido ").append("WHERE id = ?");
 		try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString());) {
 			ps.setInt(1, codigo);
-			return (ps.executeUpdate() == 0);
+			return (ps.executeUpdate() != 0);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

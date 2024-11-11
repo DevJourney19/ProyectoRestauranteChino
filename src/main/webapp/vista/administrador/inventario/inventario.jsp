@@ -185,7 +185,7 @@ List<Inventario> listaInventario = (List<Inventario>) inventario;
 
 								<tr>
 									<td><%=producto.getId()%></td>
-									<td><img class="img-inventario" src="<%=producto.getUrlImagen()%>"></td>
+									<td><img class="img-inventario" src="data:<%=producto.getTipoImagen()%>;base64,<%=producto.getImagen()%>"></td>
 									<td><%=producto.getNombre()%></td>
 									<td><%=producto.getCategoria().getNombre()%></td>
 									<td><%=producto.getUnidad()%></td>
@@ -197,7 +197,7 @@ List<Inventario> listaInventario = (List<Inventario>) inventario;
 									<td>
 										<div
 											class="d-flex align-item-center justify-content-center gap-3">
-											<button data-id="<%=producto.getId()%>" data-url="<%=producto.getUrlImagen()%>" class="icon-action"
+											<button data-id="<%=producto.getId()%>" class="icon-action"
 												data-bs-toggle="modal"
 												data-bs-target="#staticBackdropInventario">
 												<i class="lni lni-trash-can fs-4"></i>
@@ -212,7 +212,8 @@ List<Inventario> listaInventario = (List<Inventario>) inventario;
 												data-stock="<%=producto.getStock()%>"
 												data-stock-min="<%=producto.getStockMin()%>"
 												data-caducidad="<%=producto.getCaducidad()%>"
-												data-imagen="<%=producto.getUrlImagen()%>"
+												data-imagen="<%=producto.getImagen()%>"
+												data-tipo="<%=producto.getTipoImagen()%>
 												class="icon-action" data-bs-toggle="modal"
 												data-bs-target="#modalEditInventario">
 												<i class="lni lni-pencil fs-4"></i>
@@ -366,7 +367,6 @@ List<Inventario> listaInventario = (List<Inventario>) inventario;
 						function(event) {
 							const button = event.relatedTarget;
 							const id = button.getAttribute('data-id');
-							const url = button.getAttribute('data-url');
 							document
 									.getElementById('modalIdEliminarInventario').innerHTML = "#"
 									+ id;
@@ -377,7 +377,7 @@ List<Inventario> listaInventario = (List<Inventario>) inventario;
 											'click',
 											function(event) {
 												window.location.href = "/ProyectoRestauranteChino/EliminarInventario?id="
-														+ id + "&url="+url;
+														+ id;
 											});
 						});
 
@@ -402,7 +402,6 @@ List<Inventario> listaInventario = (List<Inventario>) inventario;
 							let caducidad = button
 									.getAttribute('data-caducidad');
 							let categoria = button.getAttribute('data-categoria');
-							let imagen = button.getAttribute('data-imagen');
 
 							document.getElementById('editNombreProducto').value = nombreProducto;
 							document.getElementById('editUnidad').value = unidad;
@@ -413,66 +412,57 @@ List<Inventario> listaInventario = (List<Inventario>) inventario;
 							document.getElementById('editCaducidad').value = caducidad;
 							document.getElementById('editCategoria').value = categoria;
 
-							document
-									.getElementById('editarIdInventario')
-									.addEventListener(
-											'click',
-											function(event) {
-												nombreProducto = document
-														.getElementById('editNombreProducto').value;
-												unidad = document
-														.getElementById('editUnidad').value;
-												precioUnitario = document
-														.getElementById('editPrecioUnitario').value;
-												inventarioInicial = document
-														.getElementById('editInventarioInicial').value;
-												stock = document
-														.getElementById('editStock').value;
-												stockMinimo = document
-														.getElementById('editStockMinimo').value;
-												caducidad = document
-														.getElementById('editCaducidad').value;
-												estado = document
-														.getElementById('editCategoria').value;
-												archivoImagen = document
-														.getElementById('editArchivoImagen').files;
+							document.getElementById('editarIdInventario').addEventListener('click', function(event) {
+							     nombreProducto = document.getElementById('editNombreProducto').value;
+							     unidad = document.getElementById('editUnidad').value;
+							     precioUnitario = document.getElementById('editPrecioUnitario').value;
+							     inventarioInicial = document.getElementById('editInventarioInicial').value;
+							     stock = document.getElementById('editStock').value;
+							     stockMinimo = document.getElementById('editStockMinimo').value;
+							     caducidad = document.getElementById('editCaducidad').value;
+							     categoria = document.getElementById('editCategoria').value;
+							    const archivoImagen = document.getElementById('editArchivoImagen').files[0]; // Si es un archivo de imagen
 
-											    const formElement = document.createElement('form');
-											    formElement.setAttribute('enctype', 'multipart/form-data');
-											    formElement.setAttribute('method', 'POST');
-											    formElement.setAttribute('action', 'EditarInventario');
+							    const formData = new FormData();
 
-											    const inputs = [
-											        { name: 'nombre', value: nombreProducto, type: 'text' },
-											        { name: 'unidad', value: unidad, type: 'text' },
-											        { name: 'precio', value: precioUnitario, type: 'number' },
-											        { name: 'inventario', value: inventarioInicial, type: 'number' },
-											        { name: 'stock', value: stock, type: 'number' },
-											        { name: 'stockMinimo', value: stockMinimo, type: 'number' },
-											        { name: 'caducidad', value: caducidad, type: 'date' },
-											        { name: 'categoria', value: categoria, type: 'hidden' },
-											        { name: 'imagen', value: imagen, type: 'hidden' },
-											        { name: 'id', value: id, type: 'hidden' } 
-											    ];
+							    formData.append('nombre', nombreProducto);
+							    formData.append('unidad', unidad);
+							    formData.append('precio', precioUnitario);
+							    formData.append('inventario', inventarioInicial);
+							    formData.append('stock', stock);
+							    formData.append('stockMinimo', stockMinimo);
+							    formData.append('caducidad', caducidad);
+							    formData.append('categoria', categoria);
+							    formData.append('id', id); // Asegúrate de tener un valor de id
 
-											    inputs.forEach(input => {
-											        const el = document.createElement('input');
-											        el.setAttribute('type', input.type);
-											        el.setAttribute('name', input.name);
-											        el.setAttribute('value', input.value);
-											        formElement.appendChild(el);
-											    });
+							    if (archivoImagen) {
+							        formData.append('file', archivoImagen); // Si hay imagen, agregarla
+							    } else {
+							        formData.append("tipo", button.getAttribute('data-tipo')); 
+							        formData.append('imagen', button.getAttribute('data-imagen')); 
+							    }
 
-											    const fileInput = document.createElement('input');
-											    fileInput.setAttribute('type', 'file');
-											    fileInput.setAttribute('name', 'archivoImagen');
-											    fileInput.files = archivoImagen;
-											    formElement.appendChild(fileInput);
+							    fetch('EditarInventario', {
+							        method: 'POST',
+							        body: formData
+							    }).then(response => {
+							        if (!response.ok) {
+							            throw new Error('Error en la red');
+							        }
+							        return response.json(); 
+							    })
+							    .then(data => {
+							        console.log('Éxito:', data.mensaje); 
+							        if (data.mensaje === "Edición exitosa") {
+							            window.location.reload(); 
+							        }
+							    })
+							    .catch((error) => {
+							        console.error('Error:', error);
+							    });
+							});
+							});
 
-											    document.body.appendChild(formElement);
-											    formElement.submit();
-											});
-						});
 	</script>
 
 </body>

@@ -12,7 +12,7 @@ import datos.DaoPedido;
 import datos.impl.DaoCategoriaImpl;
 import datos.impl.DaoPedidoImpl;
 
-@WebServlet(name = "EliminarPedido", urlPatterns = {"/EliminarPedido"})
+@WebServlet(name = "EliminarPedido", urlPatterns = { "/EliminarPedido" })
 public class EliminarPedido extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -26,13 +26,15 @@ public class EliminarPedido extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		DaoPedido daoPedido= new DaoPedidoImpl();
+		DaoPedido daoPedido = new DaoPedidoImpl();
 		try {
-		int id = Integer.parseInt(request.getParameter("id"));
-		if (daoPedido.eliminar(id)) {
-			response.sendRedirect("AdmiPedido");
-		}
-		}catch(Exception e) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			if (daoPedido.eliminar(id)) {
+				response.sendRedirect("AdmiPedido");
+			}else {
+				response.sendRedirect("AdmiPedido?mensaje=Operacion Fallida");
+			}
+		} catch (Exception e) {
 			response.sendRedirect("AdmiPedido?mensaje=Operacion Fallida");
 		}
 	}

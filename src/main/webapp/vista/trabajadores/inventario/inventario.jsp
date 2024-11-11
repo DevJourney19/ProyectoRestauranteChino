@@ -9,7 +9,8 @@
 <head>
 <title>Inventario - Noche en Pekín</title>
 <%@include file="../fragmentos/head.jsp"%>
-<link href="vista/trabajadores/inventario/inventario.css" rel="stylesheet" />
+<link href="vista/trabajadores/inventario/inventario.css"
+	rel="stylesheet" />
 </head>
 <body class="body">
 	<div class="d-flex ">
@@ -33,9 +34,12 @@
 					<div class="col-6 col-md-4 col-lg-3">
 						<div class="card mb-4 p-3">
 							<div class="row no-gutters">
-								<img src="<%=producto.getUrlImagen()%>" class="img-inventario card-img-top">
+								<img
+									src="data:<%=producto.getTipoImagen()%>;base64,<%=producto.getImagen()%>"
+									class="img-inventario card-img-top">
 								<div class="card-body text-center">
-									<h5 class="card-title"><%=producto.getNombre()%> </h5>
+									<h5 class="card-title"><%=producto.getNombre()%>
+									</h5>
 									<p class="card-text">Stock</p>
 									<h2 class="fw-semibold <%=stock%>"><%=producto.getStock()%></h2>
 									<button data-id="<%=producto.getId()%>"
@@ -47,7 +51,8 @@
 										data-stock="<%=producto.getStock()%>"
 										data-stock-min="<%=producto.getStockMin()%>"
 										data-caducidad="<%=producto.getCaducidad()%>"
-										data-imagen="<%=producto.getUrlImagen()%>"
+										data-imagen="<%=producto.getImagen()%>"
+										data-tipo="<%=producto.getTipoImagen()%>"
 										class="btn btn-warning" data-bs-toggle="modal"
 										data-bs-target="#modalEditInventario">
 										<i class="fa-solid fa-edit" style="color: #000000;"></i>
@@ -77,17 +82,17 @@
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-						<div class="col-12 col-md">
-							<label for="editStock">Stock Actual</label> <input
-								type="number" class="form-control" id="editStock"
-								name="editStock" required min="0" max="1000">
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-danger"
-								data-bs-dismiss="modal">Cerrar</button>
-							<button type="button" class="btn btn-warning"
+					<div class="col-12 col-md">
+						<label for="editStock">Stock Actual</label> <input type="number"
+							class="form-control" id="editStock" name="editStock" required
+							min="0" max="1000">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger"
+							data-bs-dismiss="modal">Cerrar</button>
+						<button type="button" class="btn btn-warning"
 							id="editarIdInventario">Guardar</button>
-						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -114,48 +119,45 @@
 						let caducidad = button
 								.getAttribute('data-caducidad');
 						let categoria = button.getAttribute('data-categoria');
-						let imagen = button.getAttribute('data-imagen');
 
 						document.getElementById('editStock').value = stock;
 
-						document
-								.getElementById('editarIdInventario')
-								.addEventListener(
-										'click',
-										function(event) {
-											stock = document
-													.getElementById('editStock').value;
+						document.getElementById('editarIdInventario').addEventListener('click', function(event) {
+						     stock = document.getElementById('editStock').value;
 
-										    const formElement = document.createElement('form');
-										    formElement.setAttribute('enctype', 'multipart/form-data');
-										    formElement.setAttribute('method', 'POST');
-										    formElement.setAttribute('action', 'EditarInventario');
+						    const formData = new FormData();
 
-										    const inputs = [
-										        { name: 'nombre', value: nombreProducto, type: 'text' },
-										        { name: 'unidad', value: unidad, type: 'text' },
-										        { name: 'precio', value: precioUnitario, type: 'number' },
-										        { name: 'inventario', value: inventarioInicial, type: 'number' },
-										        { name: 'stock', value: stock, type: 'number' },
-										        { name: 'stockMinimo', value: stockMinimo, type: 'number' },
-										        { name: 'caducidad', value: caducidad, type: 'date' },
-										        { name: 'categoria', value: categoria, type: 'hidden' },
-										        { name: 'imagen', value: imagen, type: 'hidden' },
-										        { name: 'trabajador', value: true, type: 'hidden' },
-										        { name: 'id', value: id, type: 'hidden' } 
-										    ];
+						    formData.append('nombre', nombreProducto);
+						    formData.append('unidad', unidad);
+						    formData.append('precio', precioUnitario);
+						    formData.append('inventario', inventarioInicial);
+						    formData.append('stock', stock);
+						    formData.append('stockMinimo', stockMinimo);
+						    formData.append('caducidad', caducidad);
+						    formData.append('categoria', categoria);
+						    formData.append('id', id); // Asegúrate de tener un valor de id
+						    formData.append("tipo", button.getAttribute('data-tipo')); 
+						    formData.append('imagen', button.getAttribute('data-imagen')); 
 
-										    inputs.forEach(input => {
-										        const el = document.createElement('input');
-										        el.setAttribute('type', input.type);
-										        el.setAttribute('name', input.name);
-										        el.setAttribute('value', input.value);
-										        formElement.appendChild(el);
-										    });
-
-										    document.body.appendChild(formElement);
-										    formElement.submit();
-										});
+						    fetch('EditarInventario', {
+						        method: 'POST',
+						        body: formData
+						    }).then(response => {
+						        if (!response.ok) {
+						            throw new Error('Error en la red');
+						        }
+						        return response.json(); 
+						    })
+						    .then(data => {
+						        console.log('Éxito:', data.mensaje); 
+						        if (data.mensaje === "Edición exitosa") {
+						            window.location.reload(); 
+						        }
+						    })
+						    .catch((error) => {
+						        console.error('Error:', error);
+						    });
+						});
 					});
 	</script>
 	<script src="https://kit.fontawesome.com/c353473263.js"></script>

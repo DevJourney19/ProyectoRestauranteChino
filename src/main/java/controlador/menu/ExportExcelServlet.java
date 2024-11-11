@@ -15,12 +15,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import datos.DaoMenu;
 import datos.impl.DaoMenuImpl;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import modelo.Menu;
 
+@WebServlet(name = "ExportExcelServlet", urlPatterns = {"/ExportExcelServlet"})
 public class ExportExcelServlet extends HttpServlet {
 
     @Override

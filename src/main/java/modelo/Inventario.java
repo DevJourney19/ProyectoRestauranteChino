@@ -20,14 +20,25 @@ public class Inventario {
     private int stockMin;
     private LocalDate caducidad;
     private Part archivoImagen;
-    private String urlImagen;
+    private String imagen;
+    private String tipoImagen;
+    
+    
 
-	public String getUrlImagen() {
-		return urlImagen;
+	public String getImagen() {
+		return imagen;
 	}
 
-	public void setUrlImagen(String urlImagen) {
-		this.urlImagen = urlImagen;
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	public String getTipoImagen() {
+		return tipoImagen;
+	}
+
+	public void setTipoImagen(String tipoImagen) {
+		this.tipoImagen = tipoImagen;
 	}
 
 	public int getId() {

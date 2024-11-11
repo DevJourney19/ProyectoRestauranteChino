@@ -1,5 +1,7 @@
 package modelo;
 
+import jakarta.servlet.http.Part;
+
 public class Menu {
 	public enum Estado {
 		Venta, Desactivado
@@ -12,6 +14,16 @@ public class Menu {
 	private double precio;
 	private Estado estado;
 	private Categoria categoria;
+    private Part archivoImagen;
+    private String urlImagen;
+    private String tipoImagen;
+    
+	public String getTipoImagen() {
+		return tipoImagen;
+	}
+	public void setTipoImagen(String tipoImagen) {
+		this.tipoImagen = tipoImagen;
+	}
 	public int getId() {
 		return id;
 	}
@@ -54,7 +66,21 @@ public class Menu {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+	
+	
 
+	public Part getArchivoImagen() {
+		return archivoImagen;
+	}
+	public void setArchivoImagen(Part archivoImagen) {
+		this.archivoImagen = archivoImagen;
+	}
+	public String getUrlImagen() {
+		return urlImagen;
+	}
+	public void setUrlImagen(String urlImagen) {
+		this.urlImagen = urlImagen;
+	}
 	public Menu() {
 		super();
 	}

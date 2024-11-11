@@ -9,7 +9,6 @@ if (btn_e_input) {
 		const descripcion = this.getAttribute('data-descripcion');
 		const precio = this.getAttribute('data-precio');
 		const estado = this.getAttribute('data-estado');
-		document.querySelector("#menuIdForm_e").value = id;
 		document.querySelector("#nombreE").value = nombre;
 		document.querySelector("#descripcionE").value = descripcion;
 		document.querySelector("#precioE").value = precio;
@@ -27,9 +26,9 @@ window.onload = function() {
 
 	if (mensaje) {
 		alert(mensaje);
-
+		// Eliminar el parámetro 'mensaje' de la URL
 		urlParams.delete('mensaje');
-
+		// Actualizar la URL sin recargar la página
 		window.history.replaceState({}, document.title, window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : ''));
 	}
 };
@@ -57,69 +56,71 @@ document
 // Modal de edición
 document
 	.getElementById('modalEdit')
-	.addEventListener(
-		'show.bs.modal',
-		function(event) {
+	.addEventListener('show.bs.modal', function(event) {
 		const button = event.relatedTarget;
-			let id = button.getAttribute('data-id');
-			let nombre = button.getAttribute('data-nombre');
-			let descripcion = button.getAttribute('data-descripcion');
-			let precio = button.getAttribute('data-precio');
-			let estado = button.getAttribute('data-estado');
-			let id_categoria = button.getAttribute('data-categoria');
-			document.querySelector("#nombreE").value = nombre;
-			document.querySelector("#descripcionE").value = descripcion;
-			document.querySelector("#precioE").value = precio;
-			document.querySelector("#estadoE").value = estado;
+		let id = button.getAttribute('data-id');
+		let nombre = button.getAttribute('data-nombre');
+		let descripcion = button.getAttribute('data-descripcion');
+		let precio = button.getAttribute('data-precio');
+		let estado = button.getAttribute('data-estado');
+		let id_categoria = button.getAttribute('data-categoria');
 
-			const categoriaSelect = document.querySelector("#categoriaE");
-			categoriaSelect.value = id_categoria;
-			document
-			    .getElementById('editarId')
-			    .addEventListener(
-			        'click',
-			        function(event) {
-			             nombre = document.querySelector("#nombreE").value;
-			             descripcion = document.querySelector("#descripcionE").value;
-			             precio = document.querySelector("#precioE").value;
-			             estado = document.querySelector("#estadoE").value;
-			             categoria = document.querySelector("#categoriaE").value; // Asegúrate de obtener el valor correcto
+		// Llenar los campos del formulario con los valores obtenidos
+		document.querySelector("#nombreE").value = nombre;
+		document.querySelector("#descripcionE").value = descripcion;
+		document.querySelector("#precioE").value = precio;
+		document.querySelector("#estadoE").value = estado;
 
-			            // Crear un objeto con los datos a enviar
-			            const data = {
-			                id: id,
-			                nombre: nombre,
-							descripcion: descripcion,
-			                precio: precio,
-			                estado: estado,
-			                categoria: {id:categoria}
-			            };
+		const categoriaSelect = document.querySelector("#categoriaE");
+		categoriaSelect.value = id_categoria;
 
-			            // Hacer la petición POST
-			            fetch('/ProyectoRestauranteChino/EditarMenu', {
-			                method: 'POST',
-			                headers: {
-			                    'Content-Type': 'application/json'
-			                },
-			                body: JSON.stringify(data)
-			            })
-			            .then(response => {
-			                if (response.ok) {
-							window.location.reload();
-			                    return response.json().then(data => {
-							            window.location.reload();
-							        });
-			                }
-			                throw new Error('Error en la red');
-			            })
-			            .then(data => {
-			                console.log('Éxito:', data);
-			            })
-			            .catch((error) => {
-			                console.error('Error:', error);
-			            });
-					
-			        }
-			    );
+		document
+			.getElementById('editarId')
+			.addEventListener('click', function(event) {
+				// Obtener los valores de los campos después de la edición
+				nombre = document.querySelector("#nombreE").value;
+				descripcion = document.querySelector("#descripcionE").value;
+				precio = document.querySelector("#precioE").value;
+				estado = document.querySelector("#estadoE").value;
+				id_categoria = document.querySelector("#categoriaE").value;
 
-		});
+				// Crear un objeto FormData para manejar los datos del formulario
+				const formData = new FormData();
+
+				// Agregar los datos al FormData
+				formData.append('id', id);
+				formData.append('nombre', nombre);
+				formData.append('descripcion', descripcion);
+				formData.append('precio', precio);
+				formData.append('estado', estado);
+				formData.append('categoria', id_categoria);
+
+				// Verificar si hay una imagen seleccionada en el formulario y agregarla
+				const imagenInput = document.querySelector("#imagenE");
+				const archivoImagen = imagenInput.files[0];
+				if (archivoImagen) {
+					formData.append('file', archivoImagen);
+				} else {
+					formData.append("tipo", button.getAttribute('data-tipo'));
+					formData.append('imagen', button.getAttribute('data-imagen'));
+				}
+
+				// Hacer la solicitud POST con multipart/form-data usando fetch
+				fetch('/ProyectoRestauranteChino/EditarMenu', {
+					method: 'POST',
+					body: formData
+				}).then(response => {
+					if (!response.ok) {
+						throw new Error('Error en la red');
+					}
+					return response.json(); // Esperar un JSON de respuesta
+				})
+					.then(data => {
+						console.log('Éxito:', data);
+						window.location.reload(); // Recargar la página después de la respuesta exitosa
+					})
+					.catch((error) => {
+						console.error('Error:', error);
+					});
+			});
+	});

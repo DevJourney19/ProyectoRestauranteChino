@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import modelo.Inventario; // Asegúrate de tener esta clase creada
-import util.GestionarImagen;
 
 import java.io.File;
 import java.io.IOException;

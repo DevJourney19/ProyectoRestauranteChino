@@ -1,17 +1,26 @@
 package controlador.menu;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 import modelo.Menu;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Base64;
 
+import datos.DaoCategoria;
+import datos.DaoMenu;
+import datos.impl.DaoCategoriaImpl;
 import datos.impl.DaoMenuImpl;
 
-@WebServlet(name = "EditarMenu", urlPatterns = {"/EditarMenu"})
+@WebServlet(name = "EditarMenu", urlPatterns = { "/EditarMenu" })
+@MultipartConfig(maxFileSize = 1024 * 1024 * 10, // 10 MB
+maxRequestSize = 1024 * 1024 * 15) // 15 MB
 public class EditarMenu extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -26,25 +35,59 @@ public class EditarMenu extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		DaoMenu daoMenu = new DaoMenuImpl();
 		DaoCategoria daoCategoria = new DaoCategoriaImpl();
 
+		Menu menu = new Menu();
+
 		try {
-        	ObjectMapper objectMapper = new ObjectMapper();
-        	Menu men = objectMapper.readValue(request.getInputStream(), Menu.class);
+			if(request.getParameter("file")!=null) {
+				Part imagenPart = request.getPart("file");
+				if (imagenPart != null && imagenPart.getSize() > 0) {
+				    InputStream inputStream = imagenPart.getInputStream();
+				    menu.setArchivoImagen(imagenPart);
+				}
+			}else {
+				String imagenBase64 = request.getParameter("imagen");
+				if (imagenBase64 != null && !imagenBase64.isEmpty()) {
+				    menu.setImagen(imagenBase64);
+				    menu.setTipoImagen(request.getParameter("tipo"));
+				}
 
-        	int id = men.getId();
+			}
+			
 
-        	men.setCategoria(daoCategoria.obtener(men.getCategoria().getId()));
+			String nombre = request.getParameter("nombre");
+			String descripcion = request.getParameter("descripcion");
+			double precio = Double.parseDouble(request.getParameter("precio"));
+			String estado = request.getParameter("estado");
+			int idCategoria = Integer.parseInt(request.getParameter("categoria"));
+			int id = Integer.parseInt(request.getParameter("id"));
 
-        	if (daoMenu.editar(men)) {
-        	    response.sendRedirect("AdmiMenu");
-        	}
+			menu.setId(id);
+			menu.setNombre(nombre);
+			menu.setDescripcion(descripcion);
+			menu.setPrecio(precio);
+			menu.setEstado(Menu.Estado.valueOf(estado));
+			menu.setCategoria(daoCategoria.obtener(idCategoria));
 
+            boolean exito = daoMenu.editar(menu);
+
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+
+            if (exito) {
+                response.setStatus(HttpServletResponse.SC_OK);
+                response.getWriter().write("{\"mensaje\": \"Edición exitosa\"}");
+            } else {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST); 
+                response.getWriter().write("{\"mensaje\": \"Operación fallida\"}");
+            }
         } catch (Exception e) {
-            e.printStackTrace(); // Log the error for debugging
-            response.sendRedirect("AdmiMenu?mensaje=Operacion Fallida");
+            e.printStackTrace();
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR); 
+            response.getWriter().write("{\"mensaje\": \"Error en el servidor\"}");
         }
 	}
-
 }

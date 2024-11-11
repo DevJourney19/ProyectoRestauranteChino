@@ -1,5 +1,7 @@
 package datos;
 
+import java.util.List;
+
 import modelo.Trabajador;
 
 //Vas a llamar a la interface Dao con el tipo Usuario

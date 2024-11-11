@@ -39,8 +39,8 @@
 							</form>
 							<div class="d-flex align-items-center justify-content-end gap-4">
 							
-								<a href="exportPDF" class="btn-pdf"><i class="lni lni-download"></i> Exportar PDF</a>
-								<a href="exportExcel" class="btn-excel"><i class="lni lni-download"></i> Exportar Excel</a>
+								<a href="ExportExcelServlet" class="btn-pdf"><i class="lni lni-download"></i> Exportar PDF</a>
+								<a href="ExportPDFServlet" class="btn-excel"><i class="lni lni-download"></i> Exportar Excel</a>
 								
 	
 								<button class="btn-agregar" type="button" data-bs-toggle="modal"
@@ -64,18 +64,18 @@
 								</div>
 								<div class="modal-body">
 									<form action="AgregarMenu" class="needs-validation"
-										novalidate method="POST" enctype="multipart/form-data">
+										novalidate method="post" enctype="multipart/form-data">
 										<div class="form-group mb-4 ">
 											<div>
-												<label for="cliente">Nombre</label> <input type="text"
+												<label for="nombre">Nombre</label> <input type="text"
 													class="form-control" name="nombre" id="nombre" required>
 											</div>
 										</div>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
 											<div>
-												<label for="cliente">Categoría</label> 
+												<label for="categoria">Categoría</label> 
 												<select	class="form-select" aria-label="large select example" name="categoria" id="categoria">
-													<option selected>- Selecciona -</option>
+													<option selected disabled>- Selecciona -</option>
 													<% if(listaCategoria != null && !listaCategoria.isEmpty()) { %>
 					                                    <% for(Categoria cat : listaCategoria) { %>
 					                                        <option value="<%= cat.getId() %>"><%= cat.getNombre() %></option>
@@ -84,15 +84,15 @@
 												</select>
 											</div>
 											<div>
-												<label for="cliente">Precio:</label> <input type="text"
+												<label for="precio">Precio:</label> <input min=1 step=0.01 type="number"
 													class="form-control" name="precio" id="precio" required>
 											</div>
 										</div>
 										<div class="form-group mb-4">
 											<div>
-												<label for="cliente">Estado:</label> <select
+												<label for="estado">Estado:</label> <select
 													class="form-select" aria-label="Default select example" name="estado" id="estado">
-													<option selected>- Selecciona -</option>
+													<option selected disabled>- Selecciona -</option>
 													<%for(Menu.Estado estado: Menu.Estado.values()) {%>
 													<option value="<%=estado%>"><%=estado%></option>
 													<%} %>
@@ -100,11 +100,11 @@
 											</div>
 										</div>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<label for="cliente">Imagen:</label> 
-											<input class="form-control" type="file" id="imagen" name="imagen" accept="image/*" >
+											<label for="imagen">Imagen:</label> 
+											<input class="form-control" type="file" id="imagen" name="imagen" accept="image/*" required>
 										</div>
 										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<label for="totalPagar">Descripción:</label>
+											<label for="descripcion">Descripción:</label>
 											<textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
 										</div>
 
@@ -135,8 +135,6 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-									<form action="EditarMenu" class="needs-validation"
-										novalidate method="POST" enctype="multipart/form-data">
 										<div class="form-group mb-4 ">
 											<div>
 												<label for="cliente">Nombre</label> <input type="text"
@@ -147,7 +145,7 @@
 											<div>
 												<label for="cliente">Categoría</label> 
 												<select	class="form-select" aria-label="large select example" name="categoria" id="categoriaE">
-													<option selected>- Selecciona -</option>
+													<option selected disabled>- Selecciona -</option>
 													<%for(Categoria item: listaCategoria) {%>
 														<option value="<%=item.getId()%>"><%=item.getNombre()%></option>
 													<%} %>
@@ -162,7 +160,7 @@
 											<div>
 												<label for="cliente">Estado:</label> <select
 													class="form-select" aria-label="Default select example" name="estado" id="estadoE">
-													<option selected>- Selecciona -</option>
+													<option selected disabled>- Selecciona -</option>
 													<%for(Menu.Estado estado: Menu.Estado.values()) {%>
 													<option value="<%=estado%>"><%=estado%></option>
 													<%} %>
@@ -185,7 +183,6 @@
 											<button type="button" class="btn btn-warning" id="editarId">
 												Editar</button>
 										</div>
-									</form>
 								</div>
 							</div>
 						</div>
@@ -252,7 +249,7 @@
 								%>
 
 								<tr>
-									<td><img src="<%=menus.getImagen() %>" class="img-menu img-fluid"></td>
+									<td><img src="data:<%=menus.getTipoImagen()%>;base64,<%=menus.getImagen()%>" class="img-menu img-fluid"></td>
 									<td><%=menus.getId()%></td>
 									<td><%=menus.getNombre()%></td>
 									<td><%=menus.getDescripcion()%></td>
@@ -270,6 +267,7 @@
 											<!-- Abrir Modal Editar -->
 											<button data-id="<%=menus.getId()%>"
 												data-nombre="<%=menus.getNombre()%>"
+												data-tipo="<%=menus.getTipoImagen()%>"
 												data-categoria="<%=menus.getCategoria().getId()%>"
 												data-descripcion="<%=menus.getDescripcion()%>" 
 												data-precio="<%=menus.getPrecio()%>"
