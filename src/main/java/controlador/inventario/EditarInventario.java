@@ -1,5 +1,12 @@
 package controlador.inventario;
 
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import datos.DaoCategoria;
+import datos.impl.DaoCategoriaImpl;
+import datos.impl.DaoInventarioImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,25 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
-import modelo.Categoria;
 import modelo.Inventario;
-import util.GestionarImagen;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-
-import datos.DaoCategoria;
-import datos.impl.DaoCategoriaImpl;
-import datos.impl.DaoInventarioImpl;
 
 @WebServlet(name = "EditarInventario", urlPatterns = {"/EditarInventario"})
 @MultipartConfig
@@ -47,7 +36,7 @@ public class EditarInventario extends HttpServlet {
         DaoCategoria daoCategoria = new DaoCategoriaImpl();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         Inventario inventarioUpdated = new Inventario();
-        
+
         inventarioUpdated.setId(Integer.parseInt(request.getParameter("id")));
         inventarioUpdated.setNombre(request.getParameter("nombre"));
         inventarioUpdated.setUnidad(Inventario.Unidad.valueOf(request.getParameter("unidad")));
@@ -63,7 +52,7 @@ public class EditarInventario extends HttpServlet {
         Part archivoImagen = request.getPart("archivoImagen");
         inventarioUpdated.setUrlImagen(imagen);
         inventarioUpdated.setArchivoImagen(archivoImagen);
-        
+
         boolean operacionExitosa = false;
 
         if (trabajador) {
@@ -74,5 +63,5 @@ public class EditarInventario extends HttpServlet {
             response.sendRedirect(operacionExitosa ? "AdmiInventario" : "AdmiInventario?mensaje=Operacion Fallida");
         }
 
-    }    
+    }
 }

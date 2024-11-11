@@ -4,13 +4,13 @@ public class Categoria {
 	public enum TipoCategoria {
 		Inventario, Menu
 	}
-	
+
 	private int id;
 	private String nombre;
 	private TipoCategoria tipo;
-	
-	
-	
+
+
+
 	public TipoCategoria getTipo() {
 		return tipo;
 	}
@@ -29,10 +29,10 @@ public class Categoria {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public Categoria() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+
+
 }

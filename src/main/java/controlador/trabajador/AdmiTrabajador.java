@@ -43,15 +43,15 @@ public class AdmiTrabajador extends HttpServlet {
 		DaoRol rolDao = new DaoRolImpl();
 		List<Trabajador> lista = trabajadorDao.consultar();
 		List<Rol> listaRol = rolDao.consultar();
-		
+
 		// Verificar si hay un título de búsqueda
 		if (request.getParameter("tituloSearch") != null) {
 				String titulo = request.getParameter("tituloSearch");
 					// Filtrar el menú basado en el título
 				lista = lista.stream().filter(m -> m.getNombre().toLowerCase().contains(titulo.toLowerCase()))
 						.collect(Collectors.toList()); // Guardar el resultado del filtrado
-		}				
-				
+		}
+
 		request.setAttribute("trabajadores", lista);
 		request.setAttribute("rol", listaRol);
 		String archivo = "vista/administrador/usuarios/usuarios.jsp";

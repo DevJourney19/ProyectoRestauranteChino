@@ -2,22 +2,28 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
+import datos.DaoInventario;
 import datos.DaoTrabajador;
+import datos.impl.DaoInventarioImpl;
 import datos.impl.DaoTrabajadorImpl;
-import modelo.Trabajador;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import modelo.Inventario;
+import modelo.Trabajador;
 
 @WebServlet(name = "LoginControlador", urlPatterns = { "/LoginControlador" })
 public class LoginControlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final DaoTrabajador tra = new DaoTrabajadorImpl();
+	
+	private DaoInventario daoInventario = new DaoInventarioImpl();
+    private List<Inventario> inventarios = daoInventario.consultar();
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,7 +41,7 @@ public class LoginControlador extends HttpServlet {
 			throws ServletException, IOException {
 		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
-		
+
 		if(usuario.isEmpty() && password.isEmpty()) {
 			response.sendRedirect("vista/login.jsp");
 			return;
@@ -47,6 +53,9 @@ public class LoginControlador extends HttpServlet {
 				// Iniciar sesión
 				HttpSession session = request.getSession();
 				session.setAttribute("usuario", trabajador);
+				
+				HttpSession invent = request.getSession();
+				invent.setAttribute("inventarioList", inventarios);
 				// Redirigir según el rol
 				String destino;
 				switch (trabajador.getRol().getNombre()) {

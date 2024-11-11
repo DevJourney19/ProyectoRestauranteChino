@@ -1,24 +1,19 @@
 package controlador.trabajador;
 
+import java.io.IOException;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import datos.DaoRol;
+import datos.DaoTrabajador;
+import datos.impl.DaoRolImpl;
+import datos.impl.DaoTrabajadorImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import modelo.Rol;
 import modelo.Trabajador;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import datos.DaoRol;
-import datos.DaoTrabajador;
-import datos.impl.DaoRolImpl;
-import datos.impl.DaoTrabajadorImpl;
 
 @WebServlet(name = "EditarTrabajador", urlPatterns = { "/EditarTrabajador" })
 public class EditarTrabajador extends HttpServlet {

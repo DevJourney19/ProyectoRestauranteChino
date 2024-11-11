@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import datos.DaoCliente;
-import modelo.Categoria;
 import modelo.Cliente;
 import util.Conexion;
 

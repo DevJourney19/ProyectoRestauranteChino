@@ -1,15 +1,15 @@
 package datos.impl;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import datos.DaoCliente;
 import datos.DaoDetalle;
 import datos.DaoMenu;
-import datos.DaoTrabajador;
 import modelo.DetallePedido;
-import modelo.Pedido;
 import util.Conexion;
 
 public class DaoDetalleImpl implements DaoDetalle{
@@ -97,20 +97,20 @@ public class DaoDetalleImpl implements DaoDetalle{
 	       .append("cantidad, ")
 	       .append("subtotal ")
 	       .append("FROM detallepedidoview WHERE id_pedido = ?");
-	    
-	    try (Connection c = con.getConexion(); 
+
+	    try (Connection c = con.getConexion();
 	         PreparedStatement ps = c.prepareStatement(sql.toString())) {
-	        
+
 	        ps.setInt(1, id);
-	        
+
 	        try (ResultSet rs = ps.executeQuery()) {
 	            lista = new ArrayList<>();
 	            while (rs.next()) {
-	                Object[] obj = new Object[4];  
-	                obj[0] = rs.getInt("id"); 
+	                Object[] obj = new Object[4];
+	                obj[0] = rs.getInt("id");
 	                obj[1] = rs.getString("nombre");
-	                obj[2] = rs.getInt("cantidad"); 
-	                obj[3] = rs.getDouble("subtotal"); 
+	                obj[2] = rs.getInt("cantidad");
+	                obj[3] = rs.getDouble("subtotal");
 	                lista.add(obj);
 	            }
 	        }
