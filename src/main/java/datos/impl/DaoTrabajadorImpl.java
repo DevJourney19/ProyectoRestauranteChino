@@ -1,21 +1,14 @@
 package datos.impl;
-import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.mindrot.jbcrypt.BCrypt;
 
 import datos.DaoRol;
 import datos.DaoTrabajador;
-import jakarta.servlet.http.HttpServletResponse;
 import modelo.Trabajador;
 import util.Conexion;
 
@@ -200,7 +193,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 
 		return trabajador;
 	}
-	
+
 	@Override
 	public List<Trabajador> filtrar(String titulo) {
 		List<Trabajador> lista = null;
