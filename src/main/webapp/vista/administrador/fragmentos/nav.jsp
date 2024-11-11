@@ -3,6 +3,8 @@
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
+<%@ page import="datos.DaoInventario" %>
+<%@ page import="datos.impl.DaoInventarioImpl" %>
 <%@page import="modelo.Inventario"%>
 
 <%@page import="util.Sesion"%>
@@ -10,12 +12,14 @@
          pageEncoding="UTF-8"%>
 <%
 Trabajador trabajadorNombre = (Trabajador) Sesion.obtenerAtributo(request, "usuario");
-List<Inventario> inventarioList = (List<Inventario>) session.getAttribute("inventarioList");
+
+DaoInventario daoInventarioImpl = new DaoInventarioImpl();
+List<Inventario> inventarioList = daoInventarioImpl.consultar();
 
 List<Inventario> inventarioBajoStock = new ArrayList<>();
 for (Inventario item : inventarioList) {
     LocalDate fechaActual = LocalDate.now();
-    if (item.getStock() < item.getStockMin() || item.getCaducidad().isBefore(fechaActual)) {
+    if (item.getStock() <= item.getStockMin() || item.getCaducidad().isBefore(fechaActual)) {
         inventarioBajoStock.add(item);
     }
 }

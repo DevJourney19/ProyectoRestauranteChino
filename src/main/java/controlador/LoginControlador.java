@@ -21,9 +21,6 @@ import modelo.Trabajador;
 public class LoginControlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final DaoTrabajador tra = new DaoTrabajadorImpl();
-	
-	private DaoInventario daoInventario = new DaoInventarioImpl();
-    private List<Inventario> inventarios = daoInventario.consultar();
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -53,9 +50,7 @@ public class LoginControlador extends HttpServlet {
 				// Iniciar sesión
 				HttpSession session = request.getSession();
 				session.setAttribute("usuario", trabajador);
-				
-				HttpSession invent = request.getSession();
-				invent.setAttribute("inventarioList", inventarios);
+
 				// Redirigir según el rol
 				String destino;
 				switch (trabajador.getRol().getNombre()) {
