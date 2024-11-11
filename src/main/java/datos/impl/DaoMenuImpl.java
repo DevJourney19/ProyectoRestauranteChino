@@ -1,20 +1,19 @@
 package datos.impl;
 
-import java.sql.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import datos.DaoCategoria;
 import datos.DaoMenu;
-import modelo.Categoria;
-import modelo.Inventario;
 import modelo.Menu;
 import util.Conexion;
 
 public class DaoMenuImpl implements DaoMenu{
-	
+
 	Conexion con;
     private DaoCategoria cat;
 
@@ -50,18 +49,20 @@ public class DaoMenuImpl implements DaoMenu{
 		return lista;
 	}
 
-	// Crear (Insertar) un nuevo trabajador
+	// Crear un nuevo menu
 		@Override
 	    public boolean agregar(Menu menu) {
-	        String sql = "INSERT INTO menu (nombre, descripcion, precio, id_categoria) VALUES (null, ?, ?, ?, ?)";
+	        String sql = "INSERT INTO menu (id, nombre, descripcion, imagen, precio, estado, id_categoria) VALUES (null, ?, ?, ?, ?, ?, ?)";
 	        try (Connection conn = con.getConexion();
 	             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-	            
+
 	            pstmt.setString(1, menu.getNombre());
 	            pstmt.setString(2, menu.getDescripcion());
-	            pstmt.setDouble(3, menu.getPrecio());
-	            pstmt.setInt(4, menu.getCategoria().getId());
-	            
+	            pstmt.setString(3, menu.getImagen());
+	            pstmt.setDouble(4, menu.getPrecio());
+	            pstmt.setString(5, menu.getEstado().name());
+	            pstmt.setInt(6, menu.getCategoria().getId());
+
 	            int affectedRows = pstmt.executeUpdate();
 	            return affectedRows > 0;
 	        } catch (SQLException e) {
@@ -69,9 +70,9 @@ public class DaoMenuImpl implements DaoMenu{
 	            return false;
 	        }
 	    }
-		
+
 		@Override
-		// Actualizar un trabajador existente
+		// Actualizar menu
 	    public boolean editar(Menu menu) {
 			String sql = "UPDATE menu SET nombre = ?, descripcion = ?, precio = ?, estado =?, id_categoria = ? WHERE id = ?";
 	        try (Connection conn = con.getConexion();
@@ -82,7 +83,7 @@ public class DaoMenuImpl implements DaoMenu{
 	            pstmt.setString(4, menu.getEstado().toString());
 	            pstmt.setInt(5, menu.getCategoria().getId());
 	            pstmt.setInt(6, menu.getId());
-	            
+
 	            int affectedRows = pstmt.executeUpdate();
 	            return affectedRows > 0;
 	        } catch (SQLException e) {
@@ -90,16 +91,16 @@ public class DaoMenuImpl implements DaoMenu{
 	            return false;
 	        }
 	    }
-		
+
 		@Override
-	    // Eliminar un trabajador
+	    // Eliminar menu
 	    public boolean eliminar(int id) {
 	        String sql = "DELETE FROM menu WHERE id = ?";
 	        try (Connection conn = con.getConexion();
 	             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-	            
+
 	            pstmt.setInt(1, id);
-	            
+
 	            int affectedRows = pstmt.executeUpdate();
 	            return affectedRows > 0;
 	        } catch (SQLException e) {
@@ -107,14 +108,14 @@ public class DaoMenuImpl implements DaoMenu{
 	            return false;
 	        }
 	    }
-		
+
 		@Override
-	    // Obtener un trabajador por su ID
+	    // Obtener un menu por su ID
 	    public Menu obtener(int id) {
 	        String sql = "SELECT * FROM menu WHERE id = ?";
 	        try (Connection conn = con.getConexion();
 	             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-	            
+
 	            pstmt.setInt(1, id);
 	            try (ResultSet rs = pstmt.executeQuery()) {
 	                if (rs.next()) {
@@ -163,5 +164,19 @@ public class DaoMenuImpl implements DaoMenu{
 		return lista;
 	}
 
+	private void cerrarRecursos(PreparedStatement ps, ResultSet rs) {
+		try {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+
+		} catch (SQLException e) {
+			System.err.println("Error al cerrar recursos: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
 
 }
