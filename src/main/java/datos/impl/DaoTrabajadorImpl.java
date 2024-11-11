@@ -200,7 +200,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 
 		return trabajador;
 	}
-/*
+	
 	@Override
 	public List<Trabajador> filtrar(String titulo) {
 		List<Trabajador> lista = null;
@@ -228,35 +228,6 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 			System.out.println(e.getMessage());
 		}
 		return lista;
-	}
-	*/
-	public void exportToExcel(HttpServletResponse response, List<Trabajador> trabjList) throws IOException {
-	    Workbook workbook = new XSSFWorkbook();
-	    Sheet sheet = workbook.createSheet("Trabajadores");
-
-	    Row headerRow = sheet.createRow(0);
-	    String[] columns = {"ID", "Nombre", "Apellidos", "Usuario", "Contrasenia", "Celular", "Rol"};
-	    for (int i = 0; i < columns.length; i++) {
-	        Cell cell = headerRow.createCell(i);
-	        cell.setCellValue(columns[i]);
-	    }
-
-	    int rowIdx = 1;
-	    for (Trabajador trabaj : trabjList) {
-	        Row row = sheet.createRow(rowIdx++);
-	        row.createCell(0).setCellValue(trabaj.getId());
-	        row.createCell(1).setCellValue(trabaj.getNombre());
-	        row.createCell(2).setCellValue(trabaj.getApellido());
-	        row.createCell(3).setCellValue(trabaj.getNombreUsuario());
-	        row.createCell(4).setCellValue(trabaj.getCelular());
-	        row.createCell(5).setCellValue(trabaj.getRol().getNombre());
-	    }
-
-	    response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-	    response.setHeader("Content-Disposition", "attachment; filename=menu.xlsx");
-
-	    workbook.write(response.getOutputStream());
-	    workbook.close();
 	}
 
 	private void cerrarRecursos(PreparedStatement ps, ResultSet rs) {
