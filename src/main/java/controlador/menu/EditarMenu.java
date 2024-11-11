@@ -26,18 +26,25 @@ public class EditarMenu extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		DaoMenuImpl daoMenu = new DaoMenuImpl();
-		int id = Integer.parseInt(request.getParameter("id"));
-		String nombre = request.getParameter("nombre");
-	    String descripcion = request.getParameter("descripcion");
-	    double precio = Double.parseDouble(request.getParameter("precio"));
-	    int categoria = Integer.parseInt(request.getParameter("categoria"));
-	    Menu.EstadoMenu estado = Menu.EstadoMenu.valueOf(request.getParameter("estado"));
-	    
-		Menu menuUpdated = new Menu(id, nombre, descripcion, precio, estado, categoria);
-		if (daoMenu.editar(menuUpdated)) {
-			response.sendRedirect("AdmiMenu");
-		}
+		DaoMenu daoMenu = new DaoMenuImpl();
+		DaoCategoria daoCategoria = new DaoCategoriaImpl();
+
+		try {
+        	ObjectMapper objectMapper = new ObjectMapper();
+        	Menu men = objectMapper.readValue(request.getInputStream(), Menu.class);
+
+        	int id = men.getId();
+
+        	men.setCategoria(daoCategoria.obtener(men.getCategoria().getId()));
+
+        	if (daoMenu.editar(men)) {
+        	    response.sendRedirect("AdmiMenu");
+        	}
+
+        } catch (Exception e) {
+            e.printStackTrace(); // Log the error for debugging
+            response.sendRedirect("AdmiMenu?mensaje=Operacion Fallida");
+        }
 	}
 
 }
