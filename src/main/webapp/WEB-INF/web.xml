@@ -269,4 +269,32 @@
     <servlet-name>EditarDetalle</servlet-name>
     <url-pattern>/EditarDetalle</url-pattern>
   </servlet-mapping>
+  
+  <servlet> 
+    <description></description> 
+    <display-name>AgregarMenu</display-name>
+    <servlet-name>AgregarMenu</servlet-name>  
+    <servlet-class>controlador.menu.AgregarMenu</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>AgregarMenu</servlet-name>
+    <url-pattern>/AgregarMenu</url-pattern>
+</servlet-mapping>
+<servlet>
+    <servlet-name>ExportPDFServlet</servlet-name>
+    <servlet-class>controlador.menu.ExportPDFServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>ExportPDFServlet</servlet-name>
+    <url-pattern>/exportPDF</url-pattern>
+</servlet-mapping>
+
+<servlet>
+    <servlet-name>ExportExcelServlet</servlet-name>
+    <servlet-class>controlador.menu.ExportExcelServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>ExportExcelServlet</servlet-name>
+    <url-pattern>/exportExcel</url-pattern>
+</servlet-mapping>
 </web-app>
