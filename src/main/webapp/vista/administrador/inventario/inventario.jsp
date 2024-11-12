@@ -189,12 +189,8 @@ List<Inventario> listaInventario = (List<Inventario>) inventario;
 									}
 								%>
 								<tr>
-<<<<<<< HEAD
 									<td><%=producto.getId()%></td>
 									<td><img class="img-inventario" src="data:<%=producto.getTipoImagen()%>;base64,<%=producto.getImagen()%>"></td>
-=======
-									<td><img class="img-inventario" src="<%=producto.getUrlImagen()%>"></td>
->>>>>>> b7ebd4e8330dd43d14170382febf838c1af37cd6
 									<td><%=producto.getNombre()%></td>
 									<td><%=producto.getCategoria().getNombre()%></td>
 									<td><%=producto.getUnidad()%></td>

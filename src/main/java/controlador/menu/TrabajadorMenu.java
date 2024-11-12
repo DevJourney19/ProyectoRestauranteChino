@@ -16,11 +16,13 @@ import modelo.Menu;
 @WebServlet(name = "TrabajadorMenu", urlPatterns = { "/TrabajadorMenu" })
 public class TrabajadorMenu extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		processRequest(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		processRequest(request, response);
@@ -31,7 +33,7 @@ public class TrabajadorMenu extends HttpServlet {
 
 		DaoMenu daoMenu = new DaoMenuImpl();
 		List<Menu> menu = daoMenu.consultar();
-		
+
 		request.setAttribute("menu", menu);
 
 		RequestDispatcher rd = request.getRequestDispatcher("vista/trabajadores/menu/menu.jsp");

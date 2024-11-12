@@ -6,15 +6,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
 import datos.DaoCategoria;
 import datos.DaoMenu;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Part;
-import modelo.Inventario;
 import modelo.Menu;
 import util.Conexion;
 
@@ -69,7 +68,7 @@ public class DaoMenuImpl implements DaoMenu {
 	public boolean agregar(Menu menu) {
 		String sql = "INSERT INTO menu (nombre, descripcion, precio, estado, id_categoria, imagen, tipo_imagen) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		try (Connection conn = con.getConexion();
-				PreparedStatement pstmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+				PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 			pstmt.setString(1, menu.getNombre());
 			pstmt.setString(2, menu.getDescripcion());
 			pstmt.setDouble(3, menu.getPrecio());
@@ -97,7 +96,7 @@ public class DaoMenuImpl implements DaoMenu {
 	public boolean editar(Menu menu) {
 		String sql = "UPDATE menu SET nombre = ?, descripcion = ?, precio = ?, estado =?, id_categoria = ?, imagen = ?, tipo_imagen = ? WHERE id = ?";
 		try (Connection conn = con.getConexion();
-				PreparedStatement pstmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+				PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 			pstmt.setString(1, menu.getNombre());
 			pstmt.setString(2, menu.getDescripcion());
 			pstmt.setDouble(3, menu.getPrecio());
@@ -112,11 +111,11 @@ public class DaoMenuImpl implements DaoMenu {
 			    byte[] imagenBytes = Base64.getDecoder().decode(imagenBase64);
 
 			    Blob imagenBlob = conn.createBlob();
-			    imagenBlob.setBytes(1, imagenBytes);  
+			    imagenBlob.setBytes(1, imagenBytes);
 				pstmt.setBlob(6, imagenBlob);
 			}
 			pstmt.setString(7, menu.getTipoImagen());
-			
+
 			pstmt.setInt(8, menu.getId());
 
 			return pstmt.executeUpdate() != 0;

@@ -17,7 +17,7 @@ public class Menu {
     private Part archivoImagen;
     private String urlImagen;
     private String tipoImagen;
-    
+
 	public String getTipoImagen() {
 		return tipoImagen;
 	}
@@ -66,8 +66,8 @@ public class Menu {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
-	
+
+
 
 	public Part getArchivoImagen() {
 		return archivoImagen;
