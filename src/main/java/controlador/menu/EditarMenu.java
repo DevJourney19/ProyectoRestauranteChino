@@ -1,6 +1,7 @@
 package controlador.menu;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import datos.DaoCategoria;
 import datos.DaoMenu;
@@ -15,18 +16,18 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import modelo.Menu;
 
-import java.io.InputStream;
-
 @WebServlet(name = "EditarMenu", urlPatterns = { "/EditarMenu" })
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10, // 10 MB
 maxRequestSize = 1024 * 1024 * 15) // 15 MB
 public class EditarMenu extends HttpServlet {
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		processRequest(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		processRequest(request, response);
@@ -55,7 +56,7 @@ public class EditarMenu extends HttpServlet {
 				}
 
 			}
-			
+
 
 			String nombre = request.getParameter("nombre");
 			String descripcion = request.getParameter("descripcion");
@@ -80,12 +81,12 @@ public class EditarMenu extends HttpServlet {
                 response.setStatus(HttpServletResponse.SC_OK);
                 response.getWriter().write("{\"mensaje\": \"Edición exitosa\"}");
             } else {
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST); 
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 response.getWriter().write("{\"mensaje\": \"Operación fallida\"}");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR); 
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("{\"mensaje\": \"Error en el servidor\"}");
         }
 	}

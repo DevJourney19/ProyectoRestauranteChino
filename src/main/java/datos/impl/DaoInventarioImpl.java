@@ -1,21 +1,20 @@
 package datos.impl;
 
 import java.io.IOException;
-import java.sql.*;
-import java.time.format.DateTimeFormatter;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
 import datos.DaoCategoria;
 import datos.DaoInventario;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Part;
 import modelo.Inventario;
 import util.Conexion;
@@ -89,7 +88,7 @@ public class DaoInventarioImpl implements DaoInventario {
 					ps.setNull(9, java.sql.Types.BLOB);
 				}
 				String mimeType = archivoImagen.getContentType();
-				ps.setString(10, mimeType);  
+				ps.setString(10, mimeType);
 
 				return ps.executeUpdate() != 0;
 			} catch (SQLException |IOException e) {
@@ -124,16 +123,16 @@ public class DaoInventarioImpl implements DaoInventario {
 			    byte[] imagenBytes = Base64.getDecoder().decode(imagenBase64);
 
 			    Blob imagenBlob = c.createBlob();
-			    imagenBlob.setBytes(1, imagenBytes);  
+			    imagenBlob.setBytes(1, imagenBytes);
 				ps.setBlob(9, imagenBlob);
 			}
 			ps.setString(10, objeto.getTipoImagen());
-			
+
 			ps.setInt(11, objeto.getId());
 			return ps.executeUpdate() != 0;
 		} catch (SQLException |IOException e) {
 			e.printStackTrace();
-		} 
+		}
 		return false;
 	}
 

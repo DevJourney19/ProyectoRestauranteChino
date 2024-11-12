@@ -21,8 +21,8 @@ public class Inventario {
     private Part archivoImagen;
     private String imagen;
     private String tipoImagen;
-    
-    
+
+
 
 	public String getImagen() {
 		return imagen;
