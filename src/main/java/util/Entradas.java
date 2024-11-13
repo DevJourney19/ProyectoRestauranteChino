@@ -69,7 +69,7 @@ public class Entradas implements Filter {
 		// Obtener la sesión
 		HttpSession session = httpRequest.getSession(false);
 
-	    if (requestURI.endsWith(".css") || requestURI.endsWith(".js") || requestURI.endsWith(".jpg") || requestURI.endsWith(".png") || requestURI.endsWith(".jsp") || requestURI.endsWith(".webp")) {
+	    if (requestURI.endsWith(".css") || requestURI.endsWith(".js") || requestURI.endsWith(".jpg") || requestURI.endsWith(".png") || requestURI.endsWith(".jsp") || requestURI.endsWith(".webp") || requestURI.endsWith("AdmiTrabajador")) {
 	        chain.doFilter(request, response);
 	        return;
 	    }

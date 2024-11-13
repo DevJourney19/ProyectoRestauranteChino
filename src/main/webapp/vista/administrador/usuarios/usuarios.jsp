@@ -11,13 +11,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-
 <link rel="stylesheet" href="vista/administrador/usuarios/usuarios.css">
-
-
 <%@ include file="../fragmentos/head.jsp"%>
-
 <title>ADMIN | USUARIOS</title>
 </head>
 <body>

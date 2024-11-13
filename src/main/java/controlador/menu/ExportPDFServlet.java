@@ -1,24 +1,11 @@
 package controlador.menu;
 import java.io.IOException;
-import java.util.List;
 
-//import com.itextpdf.text.Document;
-//import com.itextpdf.text.Element;
-//import com.itextpdf.text.Font;
-//import com.itextpdf.text.PageSize;
-//import com.itextpdf.text.Paragraph;
-//import com.itextpdf.text.pdf.PdfPTable;
-//import com.itextpdf.text.pdf.PdfWriter;
-
-import datos.DaoMenu;
-import datos.impl.DaoMenuImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import modelo.Menu;
 
 @WebServlet(name = "ExportPDFServlet", urlPatterns = {"/ExportPDFServlet"})
 public class ExportPDFServlet extends HttpServlet {

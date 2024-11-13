@@ -20,9 +20,6 @@ import modelo.Trabajador;
 @WebServlet(name = "AdmiTrabajador", urlPatterns = { "/AdmiTrabajador" })
 public class AdmiTrabajador extends HttpServlet {
 
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override

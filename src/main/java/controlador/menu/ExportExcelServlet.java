@@ -1,26 +1,12 @@
 package controlador.menu;
 
 import java.io.IOException;
-import java.util.List;
 
-//import org.apache.poi.ss.usermodel.Cell;
-//import org.apache.poi.ss.usermodel.CellStyle;
-//import org.apache.poi.ss.usermodel.FillPatternType;
-//import org.apache.poi.ss.usermodel.IndexedColors;
-//import org.apache.poi.ss.usermodel.Row;
-//import org.apache.poi.ss.usermodel.Sheet;
-//import org.apache.poi.ss.usermodel.Workbook;
-//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import datos.DaoMenu;
-import datos.impl.DaoMenuImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import modelo.Menu;
 
 @WebServlet(name = "ExportExcelServlet", urlPatterns = {"/ExportExcelServlet"})
 public class ExportExcelServlet extends HttpServlet {
