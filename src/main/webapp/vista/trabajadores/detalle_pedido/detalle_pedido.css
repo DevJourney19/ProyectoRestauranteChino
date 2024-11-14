@@ -43,7 +43,10 @@ body {
 	transition: all 0.5s ease 0s;
 	border-radius: 20px;
 	font-size: 16px;
-	font-weight: 600;
+    font-weight: 600;
+    margin: auto;
+    width: 80%;
+    padding: 10px 0px 10px 0px;
 }
 
 .estilo_btn_1:hover {
@@ -73,11 +76,15 @@ body {
 	cursor: pointer;
 }
 
+.row{
+	display: grid;
+	    width: fit-content;
+}
+.col{
+	grid-template-columns: 1fr;
+}
 /*@media queries*/
 @media ( min-width : 1px) {
-	.contenedor_cards {
-		width: 300px;
-	}
 	.boton_deta_pedi {
 		width: 200px;
 		background: #ac0000;
@@ -104,11 +111,17 @@ body {
 	}
 }
 
-@media ( min-width : 1200px) {
+@media (min-width: 1200px) {
+	.col{
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
 	.boton_deta_pedi {
 		width: 300px;
 	}
 	.combinado_tabla_y_productos {
-		flex-direction: row !important;
+		flex-direction: row-reverse !important;
+	}
+	.tabla_detalle_pedidos{
+		width: 30%;
 	}
 }

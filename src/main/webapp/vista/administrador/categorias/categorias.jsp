@@ -92,33 +92,33 @@
 										aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-										<div class="form-group mb-4 d-flex flex-wrap gap-2">
-											<div class="col-12 col-md">
-												<label for="editNombre">Nombre</label> <input type="text"
-													class="form-control" id="editNombre"
-													aria-describedby="emailHelp" placeholder="Ingrese Nombre"
-													name="nombre" required>
-											</div>
-											<div class="col-12 col-md">
-												<label for="editTipo">Tipo</label> <select id="editTipo"
-													name="tipo" class="form-select"
-													aria-label="Default select example" required>
-													<option selected disabled>Selecciona el tipo</option>
-													<%
-													for (Categoria.TipoCategoria tipo : Categoria.TipoCategoria.values()) {
-													%>
-													<option value="<%=tipo%>"><%=tipo%></option>
-													<%
-													}
-													%>
-												</select>
-											</div>
+									<div class="form-group mb-4 d-flex flex-wrap gap-2">
+										<div class="col-12 col-md">
+											<label for="editNombre">Nombre</label> <input type="text"
+												class="form-control" id="editNombre"
+												aria-describedby="emailHelp" placeholder="Ingrese Nombre"
+												name="nombre" required>
 										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-danger"
-												data-bs-dismiss="modal">Cerrar</button>
-											<button id="editarId" type="button" class="btn btn-warning">Editar</button>
+										<div class="col-12 col-md">
+											<label for="editTipo">Tipo</label> <select id="editTipo"
+												name="tipo" class="form-select"
+												aria-label="Default select example" required>
+												<option selected disabled>Selecciona el tipo</option>
+												<%
+												for (Categoria.TipoCategoria tipo : Categoria.TipoCategoria.values()) {
+												%>
+												<option value="<%=tipo%>"><%=tipo%></option>
+												<%
+												}
+												%>
+											</select>
 										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-danger"
+											data-bs-dismiss="modal">Cerrar</button>
+										<button id="editarId" type="button" class="btn btn-warning">Editar</button>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -141,10 +141,10 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-warning"
 										data-bs-dismiss="modal">Cancelar</button>
-										<button type="button" id="eliminarId"
-											class="btn btn-danger d-flex align-items-center gap-2">
-											<i class="lni lni-trash-can"></i>Eliminar
-										</button>
+									<button type="button" id="eliminarId"
+										class="btn btn-danger d-flex align-items-center gap-2">
+										<i class="lni lni-trash-can"></i>Eliminar
+									</button>
 								</div>
 							</div>
 						</div>

@@ -48,6 +48,7 @@ public class DaoMenuImpl implements DaoMenu {
 				if (imagenBytes != null) {
 					String imagenBase64 = java.util.Base64.getEncoder().encodeToString(imagenBytes);
 					menu.setImagen(imagenBase64);
+					
 				} else {
 					menu.setImagen(null);
 				}
@@ -103,15 +104,15 @@ public class DaoMenuImpl implements DaoMenu {
 			pstmt.setString(4, menu.getEstado().name());
 			pstmt.setInt(5, menu.getCategoria().getId());
 
-			if(menu.getArchivoImagen()!=null) {
+			if (menu.getArchivoImagen() != null) {
 				Part archivoImagen = menu.getArchivoImagen();
 				pstmt.setBlob(6, archivoImagen.getInputStream());
-			}else {
+			} else {
 				String imagenBase64 = menu.getImagen();
-			    byte[] imagenBytes = Base64.getDecoder().decode(imagenBase64);
+				byte[] imagenBytes = Base64.getDecoder().decode(imagenBase64);
 
-			    Blob imagenBlob = conn.createBlob();
-			    imagenBlob.setBytes(1, imagenBytes);
+				Blob imagenBlob = conn.createBlob();
+				imagenBlob.setBytes(1, imagenBytes);
 				pstmt.setBlob(6, imagenBlob);
 			}
 			pstmt.setString(7, menu.getTipoImagen());

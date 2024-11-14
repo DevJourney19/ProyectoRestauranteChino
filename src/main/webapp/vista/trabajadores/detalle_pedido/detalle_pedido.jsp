@@ -1,18 +1,28 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="java.util.List"%>
+<%@page import="modelo.Menu"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <%@include file="../fragmentos/head.jsp"%>
-<link href="detalle_pedido.css" rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/vista/trabajadores/detalle_pedido/detalle_pedido.css"
+	rel="stylesheet">
 <title>Detalle Pedido</title>
 </head>
 <body>
-
+	<!-- Obtener todos los platillos para mostrarlo -->
+	<%
+	List<Menu> listaMenu = (List<Menu>) request.getAttribute("listaMenu");
+	%>
 	<div class="d-flex ">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
 			<%@ include file="../fragmentos/nav.jsp"%>
+
 			<main>
 				<div class="container detalle_pedido_div"></div>
 				<button onclick="myFunction()"
@@ -23,7 +33,7 @@
 					<!-- Inicio TABLA Y CARDS -->
 					<div
 						class="container d-flex flex-column flex-wrap mt-4 bg-white tabla_detalle_pedidos"
-						style="border: 1px solid lightgray; border-radius: 10px; max-width: 90%"
+						style="border: 1px solid lightgray; border-radius: 10px;"
 						id="tabla_detalle_pedidos">
 						<div class="p-3 fs-3">
 							<b>Resumen de Pedido</b> <br />#0000001
@@ -170,204 +180,62 @@
 
 							<!-- Inicio CARD PRODUCTO -->
 							<div class="container py-2 contenedor_cards">
-								<div
-									class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xxl-3 g-4 py-2 px-xl-5 overflow-auto">
+								<div class="row overflow-auto" style="margin: auto">
 									<!-- inicio card 1 -->
+									<%
+									for (Menu lm : listaMenu) {
+									%>
+
 									<div class="col">
-										<div class="shadow-sm card card_plato"
-											style="border: 2px solid #FFD700; border-radius: 15px">
-											<img src="../../img/arroz_chaufa.png" style="width: 200px"
-												class="mx-auto card-img-top" alt="chaufa">
-											<div class="contador_suma_resta" id="contador_suma_resta"></div>
-											<div class="card-body ">
-												<h1 class="card-title text-center mb-3">Arroz Chaufa</h1>
-												<div
-													class="d-flex justify-content-center align-items-center mb-4 gap-4 gap-md-5">
-													<h2 class="fw-bolder">S/. 18</h2>
-
+										<form
+											action="${pageContext.request.contextPath}/MoAgregarDetaPedi">
+											<div class="shadow-sm card card_plato "
+												style="border: 2px solid #FFD700; width: 300px; height: 350px; border-radius: 15px">
+												<!-- Formato para poder utilizar las imágenes tipo base 64 -->
+												<img
+													src="data:<%=lm.getTipoImagen()%>;base64, <%=lm.getImagen()%>"
+													style="width: 200px" class="mx-auto card-img-top"
+													alt="<%=lm.getNombre()%>">
+												<div class="contador_suma_resta" id="contador_suma_resta"></div>
+												<div class="card-body ">
+													<h1 class="card-title text-center mb-3"><%=lm.getNombre()%></h1>
 													<div
-														class="d-flex justify-content-center align-items-center px-2 rounded-pill"
-														style="background: lightgray; gap: 10px; height: 35px;">
+														class="d-flex justify-content-center align-items-center mb-4 gap-4 gap-md-5">
+														<h2 class="fw-bolder">
+															S/.
+															<%=lm.getPrecio()%></h2>
 
-														<!-- inicio del circulo -->
-														<i class="fa-solid fa-circle fa-2x circulito_card"
-															data-target="contador_suma_resta"
-															style="color: #fafafa; position: relative"> <i
-															class="fa-solid fa-minus fa-2xs"
-															style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
-														</i>
-														<!-- fin del circulo -->
-														<div>1</div>
-														<i class="fa-solid fa-circle fa-2x circulito_card"
-															style="color: #fafafa; position: relative"> <i
-															class="fa-solid fa-plus fa-2xs"
-															style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
-														</i>
+														<div
+															class="d-flex justify-content-center align-items-center px-2 rounded-pill"
+															style="background: lightgray; gap: 10px; height: 35px;">
+
+															<!-- inicio del circulo -->
+															<i class="fa-solid fa-circle fa-2x circulito_card"
+																data-target="contador_suma_resta"
+																style="color: #fafafa; position: relative"> <i
+																class="fa-solid fa-minus fa-2xs"
+																style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
+															</i>
+															<!-- fin del circulo -->
+															<div>1</div>
+															<i class="fa-solid fa-circle fa-2x circulito_card"
+																style="color: #fafafa; position: relative"> <i
+																class="fa-solid fa-plus fa-2xs"
+																style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
+															</i>
+														</div>
 													</div>
+													<button type="submit"
+														class="d-flex justify-content-center estilo_btn_1 py-3 agregar_btn">Agregar</button>
 												</div>
-												<a href="#"
-													class="d-flex justify-content-center estilo_btn_1 py-3 agregar_btn">Agregar</a>
 											</div>
-										</div>
-									</div>
-									<!-- fin card 1 -->
-									<div class="col" data-target="card_2">
-										<div class="shadow-sm card card_plato"
-											style="border: 2px solid #FFD700; border-radius: 15px">
-											<img src="../../img/arroz_chaufa.png" style="width: 200px"
-												class="mx-auto card-img-top" alt="chaufa">
-											<div class="contador_suma_resta" id="contador_suma_resta"></div>
-											<div class="card-body ">
-												<h1 class="card-title text-center mb-3">Arroz Chaufa</h1>
-												<div
-													class="d-flex justify-content-center align-items-center mb-4 gap-4 gap-md-5">
-													<h2 class="fw-bolder">S/. 18</h2>
-
-													<div
-														class="d-flex justify-content-center align-items-center px-2 rounded-pill"
-														style="background: lightgray; gap: 10px; height: 35px;">
-
-														<!-- inicio del circulo -->
-														<i class="fa-solid fa-circle fa-2x circulito_card"
-															data-target="contador_suma_resta"
-															style="color: #fafafa; position: relative"> <i
-															class="fa-solid fa-minus fa-2xs"
-															style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
-														</i>
-														<!-- fin del circulo -->
-														<div>1</div>
-														<i class="fa-solid fa-circle fa-2x circulito_card"
-															style="color: #fafafa; position: relative"> <i
-															class="fa-solid fa-plus fa-2xs"
-															style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
-														</i>
-													</div>
-												</div>
-												<a href="#"
-													class="d-flex justify-content-center estilo_btn_1 py-3 agregar_btn">Agregar</a>
-											</div>
-										</div>
+										</form>
 									</div>
 
-									<div class="col" data-target="card_3">
-										<div class="shadow-sm card card_plato"
-											style="border: 2px solid #FFD700; border-radius: 15px">
-											<img src="../../img/arroz_chaufa.png" style="width: 200px"
-												class="mx-auto card-img-top" alt="chaufa">
-											<div class="contador_suma_resta" id="contador_suma_resta"></div>
-											<div class="card-body ">
-												<h1 class="card-title text-center mb-3">Arroz Chaufa</h1>
-												<div
-													class="d-flex justify-content-center align-items-center mb-4 gap-4 gap-md-5">
-													<h2 class="fw-bolder">S/. 18</h2>
+									<%
+									}
+									%>
 
-													<div
-														class="d-flex justify-content-center align-items-center px-2 rounded-pill"
-														style="background: lightgray; gap: 10px; height: 35px;">
-
-														<!-- inicio del circulo -->
-														<i class="fa-solid fa-circle fa-2x circulito_card"
-															data-target="contador_suma_resta"
-															style="color: #fafafa; position: relative"> <i
-															class="fa-solid fa-minus fa-2xs"
-															style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
-														</i>
-														<!-- fin del circulo -->
-														<div>1</div>
-														<i class="fa-solid fa-circle fa-2x circulito_card"
-															style="color: #fafafa; position: relative"> <i
-															class="fa-solid fa-plus fa-2xs"
-															style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
-														</i>
-													</div>
-												</div>
-												<a href="#"
-													class="d-flex justify-content-center estilo_btn_1 py-3 agregar_btn">Agregar</a>
-											</div>
-										</div>
-									</div>
-									
-									<div class="col" data-target="card_4">
-										<div class="shadow-sm card card_plato"
-											style="border: 2px solid #FFD700; border-radius: 15px">
-											<img src="../../img/arroz_chaufa.png" style="width: 200px"
-												class="mx-auto card-img-top" alt="chaufa">
-											<div class="contador_suma_resta" id="contador_suma_resta"></div>
-											<div class="card-body ">
-												<h1 class="card-title text-center mb-3">
-													Arroz Chaufa
-												</h1>
-												<div class="d-flex justify-content-center align-items-center mb-4 gap-4 gap-md-5">
-													<h2 class="fw-bolder">
-														S/. 18
-													</h2>
-
-													<div
-														class="d-flex justify-content-center align-items-center px-2 rounded-pill"
-														style="background: lightgray; gap: 10px; height: 35px;">
-
-														<!-- inicio del circulo -->
-														<i class="fa-solid fa-circle fa-2x circulito_card"
-															data-target="contador_suma_resta"
-															style="color: #fafafa; position: relative"> <i
-															class="fa-solid fa-minus fa-2xs"
-															style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
-														</i>
-														<!-- fin del circulo -->
-														<div>1</div>
-														<i class="fa-solid fa-circle fa-2x circulito_card"
-															style="color: #fafafa; position: relative"> <i
-															class="fa-solid fa-plus fa-2xs"
-															style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
-														</i>
-													</div>
-												</div>
-												<a href="#"
-													class="d-flex justify-content-center estilo_btn_1 py-3 agregar_btn">Agregar</a>
-											</div>
-										</div>
-									</div>
-									
-									<div class="col" data-target="card_5">
-										<div class="shadow-sm card card_plato"
-											style="border: 2px solid #FFD700; border-radius: 15px">
-											<img src="../../img/arroz_chaufa.png" style="width: 200px"
-												class="mx-auto card-img-top" alt="chaufa">
-											<div class="contador_suma_resta" id="contador_suma_resta"></div>
-											<div class="card-body ">
-												<h1 class="card-title text-center mb-3">
-													Arroz Chaufa
-												</h1>
-												<div class="d-flex justify-content-center align-items-center mb-4 gap-4 gap-md-5">
-													<h2 class="fw-bolder">
-														S/. 18
-													</h2>
-
-													<div
-														class="d-flex justify-content-center align-items-center px-2 rounded-pill"
-														style="background: lightgray; gap: 10px; height: 35px;">
-
-														<!-- inicio del circulo -->
-														<i class="fa-solid fa-circle fa-2x circulito_card"
-															data-target="contador_suma_resta"
-															style="color: #fafafa; position: relative"> <i
-															class="fa-solid fa-minus fa-2xs"
-															style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
-														</i>
-														<!-- fin del circulo -->
-														<div>1</div>
-														<i class="fa-solid fa-circle fa-2x circulito_card"
-															style="color: #fafafa; position: relative"> <i
-															class="fa-solid fa-plus fa-2xs"
-															style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
-														</i>
-													</div>
-												</div>
-												<a href="#"
-													class="d-flex justify-content-center estilo_btn_1 py-3 agregar_btn">Agregar</a>
-											</div>
-										</div>
-									</div>
 									<!-- Fin CARD PRODUCTO -->
 								</div>
 							</div>
@@ -378,7 +246,10 @@
 		</div>
 	</div>
 	<!-- Fin TABLA Y CARDS -->
+	<script
+		src="${pageContext.request.contextPath}/vista/trabajadores/detalle_pedido/detalle_pedido.js"
+		type="text/javascript"></script>
 	<script src="https://kit.fontawesome.com/c353473263.js"></script>
-	<script src="detalle_pedido.js"></script>
+
 </body>
 </html>

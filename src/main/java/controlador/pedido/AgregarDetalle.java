@@ -28,7 +28,7 @@ public class AgregarDetalle extends HttpServlet {
 			throws ServletException, IOException {
 		processRequest(request, response);
 	}
-
+	//ADMINISTRACIÓN ADMIN PEDIDOS
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int idPedido = Integer.valueOf(request.getParameter("id"));
