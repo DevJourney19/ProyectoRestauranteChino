@@ -59,62 +59,6 @@
 									<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
 										style="color: red;"></i>
 								</div>
-								<div
-									class="d-flex p-2 m-2 align-items-center justify-content-between"
-									style="border: 1px solid lightgray; border-radius: 10px; gap: 16px;">
-									<div
-										class="d-flex gap-2 align-items-center justify-content-center">
-										<img src="../../img/tallarin_saltado.png" style="width: 60px"
-											alt="img">
-										<h6 class="mx-2 " style="font-weight: 600">
-											Tallarín Saltado<br /> (S/. 16) x2
-										</h6>
-									</div>
-									<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
-										style="color: red;"></i>
-								</div>
-								<div
-									class="d-flex p-2 m-2 align-items-center justify-content-between"
-									style="border: 1px solid lightgray; border-radius: 10px; gap: 16px;">
-									<div
-										class="d-flex gap-2 align-items-center justify-content-center">
-										<img src="../../img/aeropuerto.png" style="width: 60px"
-											alt="img">
-										<h6 class="mx-2 " style="font-weight: 600">
-											Aeropuerto<br /> (S/. 20) x2
-										</h6>
-									</div>
-									<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
-										style="color: red;"></i>
-								</div>
-								<div
-									class="d-flex p-2 m-2 align-items-center justify-content-between"
-									style="border: 1px solid lightgray; border-radius: 10px; gap: 16px;">
-									<div
-										class="d-flex gap-2 align-items-center justify-content-center">
-										<img src="../../img/arroz_chaufa.png" style="width: 60px"
-											alt="img">
-										<h6 class="mx-2 " style="font-weight: 600">
-											Arroz Chaufa<br /> (S/. 18) x2
-										</h6>
-									</div>
-									<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
-										style="color: red;"></i>
-								</div>
-								<div
-									class="d-flex p-2 m-2 align-items-center justify-content-between"
-									style="border: 1px solid lightgray; border-radius: 10px; gap: 16px;">
-									<div
-										class="d-flex gap-2 align-items-center justify-content-center">
-										<img src="../../img/arroz_chaufa.png" style="width: 60px"
-											alt="img">
-										<h6 class="mx-2 " style="font-weight: 600">
-											Arroz Chaufa<br /> (S/. 18) x2
-										</h6>
-									</div>
-									<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
-										style="color: red;"></i>
-								</div>
 							</div>
 						</div>
 						<!-- Resumen de pago -->
@@ -145,11 +89,6 @@
 							</div>
 						</div>
 
-						<!--  
-		<!-- Inicio TABLA -->
-						<!--  
-		
-		<!-- Fin TABLA -->
 						<!-- FIN DE UNIÓN DIVS BUSQUEDA Y CARD_PRODUCTS -->
 					</div>
 					<div class="d-flex justify-content-center">
@@ -173,14 +112,14 @@
 									<button class="btn btn-warning">Sopas</button>
 									<button class="btn btn-warning">Otros</button>
 								</div>
-
-
 							</div>
 							<!-- Fin BUSQUEDA -->
 
 							<!-- Inicio CARD PRODUCTO -->
 							<div class="container py-2 contenedor_cards">
-								<div class="row overflow-auto" style="margin: auto">
+								<div
+									class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xxl-3 g-4 py-2 px-xl-5 overflow-auto"
+									style="margin: auto">
 									<!-- inicio card 1 -->
 									<%
 									for (Menu lm : listaMenu) {
@@ -225,8 +164,10 @@
 															</i>
 														</div>
 													</div>
+													<input type="hidden" name="id_input"
+														value="<%=lm.getId()%>">
 													<button type="submit"
-														class="d-flex justify-content-center estilo_btn_1 py-3 agregar_btn">Agregar</button>
+														class="d-flex justify-content-center estilo_btn_1 agregar_btn">Agregar</button>
 												</div>
 											</div>
 										</form>

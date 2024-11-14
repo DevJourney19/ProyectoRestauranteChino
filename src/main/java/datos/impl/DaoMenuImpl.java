@@ -158,7 +158,7 @@ public class DaoMenuImpl implements DaoMenu {
 					menu.setPrecio(rs.getDouble("precio"));
 					menu.setEstado(Menu.Estado.valueOf(rs.getString("estado")));
 					menu.setCategoria(cat.obtener(rs.getInt("id_categoria")));
-					byte[] imagenBytes = rs.getBytes("image");
+					byte[] imagenBytes = rs.getBytes("imagen");
 					if (imagenBytes != null) {
 						String imagenBase64 = java.util.Base64.getEncoder().encodeToString(imagenBytes);
 						menu.setImagen(imagenBase64);
