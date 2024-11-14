@@ -1,32 +1,31 @@
 package controlador.pedido;
 
-import java.io.IOException;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-@WebServlet(name = "TrabajadorPedido", urlPatterns = { "/TrabajadorPedido" })
-public class TrabajadorPedido extends HttpServlet {
+
+@WebServlet(name = "DetaPediMozo", urlPatterns = { "/DetaPediMozo" })
+public class DetaPediMozo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	@Override
+	// Ver los pedidos y ver como agregarlos
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		processRequest(request, response);
+		proccesRequest(request, response);
 	}
 
-	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		processRequest(request, response);
+		proccesRequest(request, response);
 	}
 
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+	protected void proccesRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("vista/trabajadores/pedido/pedido.jsp");
-		//Ahora tengo que ver como hacer para agregar primero el detalle de pedido a la columna izquierda
+
+		response.sendRedirect("vista/trabajadores/detalle_pedido/detalle_pedido.jsp");
 	}
 }

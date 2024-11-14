@@ -18,7 +18,7 @@ public class Entradas implements Filter {
 
 	public static boolean validarEntrada(Trabajador trabajador, String ruta) {
 		String rol = trabajador.getRol().getNombre();
-		System.out.print(ruta);
+		//System.out.print(ruta);
 		switch (rol.toLowerCase()) {
 		case "administrador":
 			return validarAdmin(ruta);
@@ -33,21 +33,32 @@ public class Entradas implements Filter {
 
 	private static boolean validarAdmin(String ruta) {
 		return switch (ruta) {
-		case "AdmiCategoria", "AdmiTrabajador", "AdmiPedido", "AdmiDetallePedido", "AdmiInventario", "AdmiMenu", "AdmiMesa", "AgregarCategoria", "EditarCategoria", "EliminarCategoria", "AgregarTrabajador", "EditarTrabajador", "EliminarTrabajador", "AgregarPedido", "EditarPedido", "EliminarPedido", "AgregarDetalle", "EditarDetalle", "EliminarDetalle", "AgregarInventario", "EditarInventario", "EliminarInventario","AgregarMesa",  "EditarMesa", "EliminarMesa", "AgregarMenu",  "EditarMenu", "EliminarMenu", "ExportExcelServlet", "ExportPDFServlet" -> true;
+		case "AdmiCategoria", "AdmiTrabajador", "AdmiPedido", "AdmiDetallePedido", "AdmiInventario", "AdmiMenu",
+				"AdmiMesa", "AgregarCategoria", "EditarCategoria", "EliminarCategoria", "AgregarTrabajador",
+				"EditarTrabajador", "EliminarTrabajador", "AgregarPedido", "EditarPedido", "EliminarPedido",
+				"AgregarDetalle", "EditarDetalle", "EliminarDetalle", "AgregarInventario", "EditarInventario",
+				"EliminarInventario", "AgregarMesa", "EditarMesa", "EliminarMesa", "AgregarMenu", "EditarMenu",
+				"EliminarMenu", "ExportExcelServlet", "ExportPDFServlet" ->
+			true;
 		default -> false;
 		};
 	}
 
 	private static boolean validarMozo(String ruta) {
 		return switch (ruta) {
-		case "TrabajadorPedido","TrabajadorInventario", "TrabajadorMenu", "TrabajadorMesa", "AgregarPedido", "EditarPedido", "EliminarPedido", "EditarInventario", "AgregarDetalle", "EditarDetalle", "EliminarDetalle", "EditarMesa" -> true;
+		case "TrabajadorPedido", "TrabajadorInventario", "TrabajadorMenu", "TrabajadorMesa", "AgregarPedido",
+				"EditarPedido", "EliminarPedido", "EditarInventario", "AgregarDetalle", "EditarDetalle",
+				"EliminarDetalle", "EditarMesa", "DetaPediMozo", "MesaMozoProceso", "MoAgregarDetaPedi",
+				"MoConsultarMenu" ->
+			true;
 		default -> false;
 		};
 	}
 
 	private static boolean validarCocinero(String ruta) {
 		return switch (ruta) {
-		case "TrabajadorMenu","TrabajadorInventario", "EditarInventario", "TrabajadorCocineroPedido", "EditarPedido" -> true;
+		case "TrabajadorMenu", "TrabajadorInventario", "EditarInventario", "TrabajadorCocineroPedido", "EditarPedido" ->
+			true;
 		default -> false;
 		};
 	}
@@ -65,26 +76,27 @@ public class Entradas implements Filter {
 			return;
 		}
 
-
 		// Obtener la sesión
 		HttpSession session = httpRequest.getSession(false);
 
-	    if (requestURI.endsWith(".css") || requestURI.endsWith(".js") || requestURI.endsWith(".jpg") || requestURI.endsWith(".png") || requestURI.endsWith(".jsp") || requestURI.endsWith(".webp") || requestURI.endsWith("AdmiTrabajador")) {
-	        chain.doFilter(request, response);
-	        return;
-	    }
-
+		if (requestURI.endsWith(".css") || requestURI.endsWith(".js") || requestURI.endsWith(".jpg")
+				|| requestURI.endsWith(".png") || requestURI.endsWith(".jsp") || requestURI.endsWith(".webp")
+				|| requestURI.endsWith("AdmiTrabajador")) {
+			chain.doFilter(request, response);
+			return;
+		}
 
 		// Verificar si la sesión existe y si el usuario está en la sesión
 		if (session == null || session.getAttribute("usuario") == null) {
 
-			if (requestURI.endsWith("login.jsp") || requestURI.endsWith("LoginControlador")|| requestURI.endsWith("LogoutControlador")) {
+			if (requestURI.endsWith("login.jsp") || requestURI.endsWith("LoginControlador")
+					|| requestURI.endsWith("LogoutControlador")) {
 				chain.doFilter(request, response); // Permitir acceso
 				return;
 			}
 
-	        httpResponse.sendRedirect("vista/login.jsp");
-	        return;
+			httpResponse.sendRedirect("vista/login.jsp");
+			return;
 		}
 
 		Trabajador trabajador = (Trabajador) session.getAttribute("usuario");

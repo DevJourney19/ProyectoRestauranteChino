@@ -6,7 +6,9 @@
 
 <title>PEDIDO - MOZO</title>
 <%@include file="../fragmentos/head.jsp"%>
-<link href="${pageContext.request.contextPath}/vista/trabajadores/pedido/pedido.css" rel="stylesheet" />
+<link
+	href="${pageContext.request.contextPath}/vista/trabajadores/pedido/pedido.css"
+	rel="stylesheet" />
 
 </head>
 <body class="body">
@@ -22,9 +24,10 @@
 					<button
 						class="aniadir_pedido fs-5 d-flex align-items-center gap-2 btn btn-warning"
 						data-bs-toggle="modal" data-bs-target="#modalEdit">
-						<img src="${pageContext.request.contextPath}/vista/img/boton-mas.png"
-							style="width: 20px; height: 20px"> 
-							<span>Añadir Pedido</span>
+						<img
+							src="${pageContext.request.contextPath}/vista/img/boton-mas.png"
+							style="width: 20px; height: 20px"> <span>Añadir
+							Pedido</span>
 					</button>
 				</div>
 
@@ -32,8 +35,7 @@
 					class="row row-cols-1 row-cols-xl-4 gap-4 justify-content-center overflow-auto mb-4">
 					<%@include file="../fragmentos/pedido_realizado.jsp"%>
 					<%@include file="../fragmentos/pedido_realizado.jsp"%>
-					<%@include file="../fragmentos/pedido_realizado.jsp"%>
-					<%@include file="../fragmentos/pedido_realizado.jsp"%>
+
 				</div>
 			</main>
 		</div>
@@ -50,31 +52,34 @@
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form action="../detalle_pedido/detalle_pedido.jsp" class="needs-validation" novalidate>
+
+					<!-- TIENE QUE LLEVARTE AL CONTROLADOR PARA CAMBIAR EL ESTADO DE LA MESA Y DE AHÍ TE TIENE QUE LLEVAR PARA SELECCIONAR EL PLATILLO (DETALLE DE PEDIDO) -->
+					<form action="${pageContext.request.contextPath}/MesaMozoProceso"
+						class="needs-validation" novalidate>
 						<div class="d-flex justify-content-center flex-wrap">
 							<div class="box_mesa">
-								<label class="img_mesa" id="mesa1">
-									<img src="${pageContext.request.contextPath}/vista/img/mesa.png" />
-								<span>Mesa 1</span> 
-								</label><input for="mesa1" type="radio" value="mesa1" name="mesa" />
+								<label class="img_mesa" id="mesa1" for="mesa1"> <img
+									src="${pageContext.request.contextPath}/vista/img/mesa.png" />
+									<span>Mesa 1</span>
+								</label><input type="radio" value="mesa1" name="mesa" data-target="1" />
 							</div>
 							<div class="box_mesa">
-								<label class="img_mesa" id="mesa2">
-									<img src="${pageContext.request.contextPath}/vista/img/mesa.png" />
-								<span>Mesa 2</span> 
-								</label><input for="mesa2" type="radio" value="mesa2" name="mesa" />
+								<label class="img_mesa" id="mesa2" for="mesa2"> <img
+									src="${pageContext.request.contextPath}/vista/img/mesa.png" />
+									<span>Mesa 2</span>
+								</label><input type="radio" value="mesa2" name="mesa" data-target="2" />
 							</div>
 							<div class="box_mesa">
-								<label class="img_mesa" id="mesa3">
-									<img src="${pageContext.request.contextPath}/vista/img/mesa.png" />
-								<span>Mesa 3</span> 
-								</label><input for="mesa3" type="radio" value="mesa3" name="mesa" />
+								<label class="img_mesa" id="mesa3" for="mesa3"> <img
+									src="${pageContext.request.contextPath}/vista/img/mesa.png" />
+									<span>Mesa 3</span>
+								</label><input type="radio" value="mesa3" name="mesa" data-target="3" />
 							</div>
 							<div class="box_mesa">
-								<label class="img_mesa" id="mesa4">
-									<img src="${pageContext.request.contextPath}/vista/img/mesa.png" />
-								<span>Mesa 4</span> 
-								</label><input for="mesa4" type="radio" value="mesa4" name="mesa" />
+								<label class="img_mesa" id="mesa4" for="mesa4"> <img
+									src="${pageContext.request.contextPath}/vista/img/mesa.png" />
+									<span>Mesa 4</span>
+								</label><input type="radio" value="mesa4" name="mesa" data-target="4" />
 							</div>
 
 						</div>

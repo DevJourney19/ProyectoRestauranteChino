@@ -67,8 +67,6 @@ public class Menu {
 		this.categoria = categoria;
 	}
 
-
-
 	public Part getArchivoImagen() {
 		return archivoImagen;
 	}

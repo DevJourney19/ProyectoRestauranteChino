@@ -9,11 +9,6 @@ public class Trabajador {
 	private String celular;
 	private Rol rol;
 
-	public Trabajador() {
-
-	}
-
-
 	public int getId() {
 		return id;
 	}
