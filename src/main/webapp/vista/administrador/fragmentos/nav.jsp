@@ -57,11 +57,26 @@ for (Inventario item : inventarioList) {
 			<div class="modal-body">
 			    <div class="message-list">
 			        <% if (!inventarioBajoStock.isEmpty()) { %>
-			            <% for (Inventario item : inventarioBajoStock) { %>
+			            <% for (Inventario item : inventarioBajoStock) {
+							String stock = "stock-desconocido";
+							if (item.getStock() <= item.getStockMin()) {
+								stock = "stock-bajo";
+							} else if (item.getStock() > 0) {
+								stock = "stock-alto";
+							}
+						    LocalDate fechaActual = LocalDate.now();
+							String estado = "badge rounded-pill text-bg-warning";
+
+							if (item.getCaducidad().isBefore(fechaActual)) {
+								estado = "badge rounded-pill text-bg-danger";
+							} else if (item.getStock() > 0) {
+								estado = "badge rounded-pill text-bg-success";
+							}  	
+	            	%>
 		           		 	<h5><%= item.getNombre() %></h5>
-			                <div class="message-item mb-3">
-			                    <strong>Stock:</strong> <%= item.getStock() %> <br>
-                                <strong>Caducidad:</strong> <%= item.getCaducidad() %> <br>
+			                <div class="row message-item mb-3">
+			                	<div class="col-6"><strong>Stock:</strong> <span class="<%=stock%>"><%=item.getStock()%></span> </div>
+                                <div class="col-6"><strong>Caducidad:</strong> <br> <span class="<%=estado%>"><%=item.getCaducidad()%></span> </div>
 			                </div>
 			                <hr> <!-- Separator -->
 			            <% } %>

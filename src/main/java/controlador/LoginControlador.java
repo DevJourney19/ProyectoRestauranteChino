@@ -1,7 +1,6 @@
 package controlador;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import datos.DaoTrabajador;
 import datos.impl.DaoTrabajadorImpl;
