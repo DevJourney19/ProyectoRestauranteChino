@@ -1,4 +1,5 @@
 package datos.impl;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,7 +49,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 	}
 
 	@Override
-	public boolean agregar(Trabajador trabajador) {
+	public Trabajador agregar(Trabajador trabajador) {
 
 		String sql = "INSERT INTO trabajador (nombre, apellido, usuario, password, telefono, id_rol) values(?,?,?,?,?,?);";
 		try {
@@ -61,12 +62,12 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 			ps.setString(5, trabajador.getCelular());
 			ps.setInt(6, trabajador.getRol().getId());
 			ps.executeUpdate();
-			return true;
+			return trabajador;
 		} catch (Exception e) {
 			System.out.println("Error en el agregar trabajadores: " + e.getMessage());
 			con.closeConexion();
 		}
-		return false;
+		return null;
 	}
 
 	@Override
@@ -199,7 +200,8 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
 	public List<Trabajador> filtrar(String titulo) {
 		List<Trabajador> lista = null;
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT ").append("id, nombre, apellido, usuario, password, telefono, id_rol").append(" FROM trabajador WHERE nombre = ?");
+		sql.append("SELECT ").append("id, nombre, apellido, usuario, password, telefono, id_rol")
+				.append(" FROM trabajador WHERE nombre = ?");
 		try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString())) {
 			ps.setString(1, titulo);
 			try (ResultSet rs = ps.executeQuery()) {

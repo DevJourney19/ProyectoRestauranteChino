@@ -35,7 +35,8 @@ public class AgregarMesa extends HttpServlet {
 			if (!numSalon.isEmpty() && !numMesa.isEmpty()) {
 				mesa.setN_salon(Integer.parseInt(numSalon));
 				mesa.setN_mesa(Integer.parseInt(numMesa));
-				if (daoMesa.agregar(mesa)) {
+				Mesa x = daoMesa.agregar(mesa);
+				if (x != null) {
 					response.sendRedirect("AdmiMesa");
 				} else {
 					response.sendRedirect("AdmiMesa?mensaje=Operacion Fallida");

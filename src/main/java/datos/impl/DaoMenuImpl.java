@@ -66,7 +66,7 @@ public class DaoMenuImpl implements DaoMenu {
 	}
 
 	@Override
-	public boolean agregar(Menu menu) {
+	public Menu agregar(Menu menu) {
 		String sql = "INSERT INTO menu (nombre, descripcion, precio, estado, id_categoria, imagen, tipo_imagen) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		try (Connection conn = con.getConexion();
 				PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -86,10 +86,11 @@ public class DaoMenuImpl implements DaoMenu {
 			String mimeType = archivoImagen.getContentType();
 			pstmt.setString(7, mimeType);
 
-			return pstmt.executeUpdate() != 0;
+			pstmt.executeUpdate();
+			return menu;
 		} catch (SQLException | IOException e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		}
 	}
 

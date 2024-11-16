@@ -7,14 +7,55 @@ function myFunction() {
 		elemento.classList.toggle("toggle_tabla_detalle_pedidos");
 		console.log("todo funcional");
 	}
-
 }
-
 
 const agregar_btn = document.querySelectorAll(".agregar_btn");
 
-agregar_btn.forEach(t => t.addEventListener("click", function() {
+agregar_btn.forEach(t => t.addEventListener("click", async function(event) {
+	event.preventDefault();
+	console.log("WE ARE HERESSSSSSSSS");
 	Swal.fire("Producto agregado");
+
+	//Se detecta la clase col, en la que se seleccionó el botón
+	const productContainer = t.closest(".col");
+
+	//Obtener el id del producto
+	const idInput = productContainer.querySelector(".product-id").value;
+	if (!idInput) {
+		console.error("ID del producto no encontrado");
+		return;
+	}
+
+	//Relizar la solicitud asincrónica con fetch
+	try {
+
+		let response = await fetch("MoAgregarDetaPedi", {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+			},
+			body:`id_input=${idInput}`
+		});
+
+		if (!response.ok) {
+			throw new Error('Error al agregar el producto');
+		}
+
+		let data = await response.json();
+		if (data.error) {
+			Swal.fire("Error", data.error, "error");
+		} else {
+			Swal.fire("Producto agregado correctamente", "", "success");
+		}
+
+	} catch (error) {
+		console.error("Hubo un problema con la solicitud:", error);
+		Swal.fire("Hubo un problema al agregar el producto", error.message, "error");
+	}
+
+
+
+
 }))
 
 let icono_eliminar = document.querySelectorAll(".icono_eliminar");

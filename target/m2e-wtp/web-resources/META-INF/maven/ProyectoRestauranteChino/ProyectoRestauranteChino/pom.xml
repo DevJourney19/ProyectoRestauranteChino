@@ -16,7 +16,8 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.10.1</version> <!-- Actualizado para compatibilidad con Java 21 -->
+				<version>3.10.1</version> <!-- Actualizado para compatibilidad
+				con Java 21 -->
 				<configuration>
 					<source>${maven.compiler.source}</source>
 					<target>${maven.compiler.target}</target>
@@ -30,6 +31,12 @@
 	</build>
 
 	<dependencies>
+		<dependency>
+		<!-- Para trabajar con JSON en Java-->
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20210307</version>
+		</dependency>
 		<dependency>
 			<groupId>org.mindrot</groupId>
 			<artifactId>jbcrypt</artifactId>

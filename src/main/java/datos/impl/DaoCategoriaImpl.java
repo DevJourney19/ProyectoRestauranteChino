@@ -40,19 +40,20 @@ public class DaoCategoriaImpl implements DaoCategoria {
 	}
 
 	@Override
-	public boolean agregar(Categoria objeto) {
+	public Categoria agregar(Categoria objeto) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO categoria(").append("id,").append("nombre,").append("tipo").append(") VALUES (null,?,?)");
 
 		try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString());) {
 			ps.setString(1, objeto.getNombre());
 			ps.setString(2, objeto.getTipo().toString());
-			return (ps.executeUpdate() != 0);
+			ps.executeUpdate();
+			return objeto;
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return false;
+		return null;
 	}
 
 	@Override
