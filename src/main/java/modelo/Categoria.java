@@ -9,8 +9,6 @@ public class Categoria {
 	private String nombre;
 	private TipoCategoria tipo;
 
-
-
 	public TipoCategoria getTipo() {
 		return tipo;
 	}

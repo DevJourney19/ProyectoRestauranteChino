@@ -48,7 +48,7 @@ public class DaoMenuImpl implements DaoMenu {
 				if (imagenBytes != null) {
 					String imagenBase64 = java.util.Base64.getEncoder().encodeToString(imagenBytes);
 					menu.setImagen(imagenBase64);
-					
+
 				} else {
 					menu.setImagen(null);
 				}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" version="6.0">
+<web-app xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" version="6.0">
   <servlet>
     <description></description>
     <display-name>Proceso3</display-name>
@@ -281,20 +281,38 @@
     <url-pattern>/AgregarMenu</url-pattern>
 </servlet-mapping>
 <servlet>
-    <servlet-name>ExportPDFServlet</servlet-name>
-    <servlet-class>controlador.menu.ExportPDFServlet</servlet-class>
+    <servlet-name>ReporteMenuExcel</servlet-name>
+    <servlet-class>controlador.menu.ReporteMenuExcel</servlet-class>
 </servlet>
 <servlet-mapping>
-    <servlet-name>ExportPDFServlet</servlet-name>
-    <url-pattern>/exportPDF</url-pattern>
+    <servlet-name>ReporteMenuExcel</servlet-name>
+    <url-pattern>/ReporteMenuExcel</url-pattern>
 </servlet-mapping>
 
 <servlet>
-    <servlet-name>ExportExcelServlet</servlet-name>
-    <servlet-class>controlador.menu.ExportExcelServlet</servlet-class>
+    <servlet-name>ReporteMenuPDF</servlet-name>
+    <servlet-class>controlador.menu.ReporteMenuPDF</servlet-class>
 </servlet>
 <servlet-mapping>
-    <servlet-name>ExportExcelServlet</servlet-name>
-    <url-pattern>/exportExcel</url-pattern>
+    <servlet-name>ReporteMenuPDF</servlet-name>
+    <url-pattern>/ReporteMenuPDF</url-pattern>
+</servlet-mapping>
+
+<servlet>
+    <servlet-name>ReporteUsuarioExcel</servlet-name>
+    <servlet-class>controlador.trabajador.ReporteUsuarioExcel</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>ReporteUsuarioExcel</servlet-name>
+    <url-pattern>/ReporteUsuarioExcel</url-pattern>
+</servlet-mapping>
+
+<servlet>
+    <servlet-name>ReporteUsuarioPDF</servlet-name>
+    <servlet-class>controlador.trabajador.ReporteUsuarioPDF</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>ReporteUsuarioPDF</servlet-name>
+    <url-pattern>/ReporteUsuarioPDF</url-pattern>
 </servlet-mapping>
 </web-app>

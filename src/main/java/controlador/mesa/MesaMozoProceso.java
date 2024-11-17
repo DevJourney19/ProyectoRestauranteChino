@@ -1,15 +1,6 @@
 package controlador.mesa;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
-import java.time.Instant;
 import java.util.Date;
 
 import datos.DaoCliente;
@@ -18,12 +9,20 @@ import datos.DaoPedido;
 import datos.impl.DaoClienteImpl;
 import datos.impl.DaoMesaImpl;
 import datos.impl.DaoPedidoImpl;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import modelo.Cliente;
 import modelo.Mesa;
 import modelo.Mesa.EstadoMesa;
 import modelo.Pedido;
 import modelo.Pedido.EstadoPedido;
 import modelo.Trabajador;
+
 
 @WebServlet(name = "MesaMozoProceso", urlPatterns = { "/MesaMozoProceso" })
 public class MesaMozoProceso extends HttpServlet {
@@ -32,11 +31,13 @@ public class MesaMozoProceso extends HttpServlet {
 	DaoPedido daoPedi = new DaoPedidoImpl();
 
 	// Ver los pedidos y ver como agregarlos
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		proccesRequest(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		proccesRequest(request, response);
@@ -87,7 +88,7 @@ public class MesaMozoProceso extends HttpServlet {
 
 		HttpSession mysession = request.getSession();
 		mysession.setAttribute("pedidoAttribute", pe);
-		
+
 		RequestDispatcher rd = request.getRequestDispatcher("MoConsultarMenu");
 		rd.forward(request, response);
 

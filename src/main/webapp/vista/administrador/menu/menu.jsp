@@ -38,11 +38,12 @@
 								<button type="submit" class="btn btn-dark d-flex gap-2 align-items-center fw-bolder fs-4"><i class="lni lni-search"></i></button>
 							</form>
 							<div class="d-flex align-items-center justify-content-end gap-4">
-							
-								<a href="ExportExcelServlet" class="btn-pdf"><i class="lni lni-download"></i> Exportar PDF</a>
-								<a href="ExportPDFServlet" class="btn-excel"><i class="lni lni-download"></i> Exportar Excel</a>
-								
-	
+								<form action="ReporteMenuPDF" method="GET">
+									<button type="submit" class="btn-pdf" ><i class="lni lni-download"></i> Exportar PDF</button>
+								</form>
+								<form action="ReporteMenuExcel" method="GET">
+									<button type="submit" class="btn-excel" ><i class="lni lni-download"></i> Exportar Excel</button>
+								</form>								
 								<button class="btn-agregar" type="button" data-bs-toggle="modal"
 									data-bs-target="#modalAdd">
 									<i class="lni lni-plus"></i> Nuevo Producto

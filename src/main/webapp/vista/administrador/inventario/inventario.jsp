@@ -167,7 +167,7 @@ List<Inventario> listaInventario = (List<Inventario>) inventario;
 									<th>Stock</th>
 									<th>Stock Mínimo</th>
 									<th>Caducidad</th>
-									<th></th>
+									<th>Acciones</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -189,7 +189,6 @@ List<Inventario> listaInventario = (List<Inventario>) inventario;
 									}
 								%>
 								<tr>
-									<td><%=producto.getId()%></td>
 									<td><img class="img-inventario" src="data:<%=producto.getTipoImagen()%>;base64,<%=producto.getImagen()%>"></td>
 									<td><%=producto.getNombre()%></td>
 									<td><%=producto.getCategoria().getNombre()%></td>
@@ -218,7 +217,7 @@ List<Inventario> listaInventario = (List<Inventario>) inventario;
 												data-stock-min="<%=producto.getStockMin()%>"
 												data-caducidad="<%=producto.getCaducidad()%>"
 												data-imagen="<%=producto.getImagen()%>"
-												data-tipo="<%=producto.getTipoImagen()%>
+												data-tipo="<%=producto.getTipoImagen()%>"
 												class="icon-action" data-bs-toggle="modal"
 												data-bs-target="#modalEditInventario">
 												<i class="lni lni-pencil fs-4"></i>

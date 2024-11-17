@@ -1,26 +1,25 @@
 package controlador.pedido;
 
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONObject;
+
+import datos.DaoDetalle;
+import datos.DaoMenu;
+import datos.impl.DaoDetalleImpl;
+import datos.impl.DaoMenuImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import datos.impl.*;
-import datos.*;
 import modelo.DetallePedido;
 import modelo.Menu;
 import modelo.Pedido;
-import modelo.Pedido.EstadoPedido;
-
 @WebServlet("/MoAgregarDetaPedi")
 public class MoAgregarDetaPedi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -30,11 +29,13 @@ public class MoAgregarDetaPedi extends HttpServlet {
 	int cantidad = 1;
 	List<DetallePedido> listaDetaPedi = new ArrayList<>();
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		processRequest(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		processRequest(request, response);
@@ -50,7 +51,7 @@ public class MoAgregarDetaPedi extends HttpServlet {
 		Menu menuEncontrado = daoMenu.obtener(id_menu_seleccionado);
 
 		Menu menu = new Menu();
-		
+
 
 		DetallePedido dp = new DetallePedido();
 		menu.setId(menuEncontrado.getId());
@@ -80,10 +81,11 @@ public class MoAgregarDetaPedi extends HttpServlet {
 		session.setAttribute("contador", listaDetaPedi.size());
 		System.out.println("Buenas buenas");
 
-		
+
+
 		JSONObject jsonDP = new JSONObject();
 		jsonDP.put("detallePedido",detallePedido);
-				
+
 		JSONObject jsonResponse = new JSONObject();
 		jsonResponse.put("success", true);
 		jsonResponse.put("message", "Producto agregado correctamente");
@@ -92,6 +94,7 @@ public class MoAgregarDetaPedi extends HttpServlet {
 		responseJson.put("jsonDP", jsonDP);
 		responseJson.put("jsonResponse", jsonResponse);
 		response.getWriter().write(responseJson.toString());
+
 
 	}
 }
