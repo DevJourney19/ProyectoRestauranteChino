@@ -66,7 +66,7 @@ public class DaoInventarioImpl implements DaoInventario {
 	}
 
 	@Override
-	public boolean agregar(Inventario objeto) {
+	public Inventario agregar(Inventario objeto) {
 		String sql = "INSERT INTO inventario (id_categoria, nombre, unidad, precio_unitario, inventario_inicial, stock, stock_min, caducidad, imagen, tipo_imagen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try (Connection c = con.getConexion()) {
@@ -90,14 +90,15 @@ public class DaoInventarioImpl implements DaoInventario {
 				String mimeType = archivoImagen.getContentType();
 				ps.setString(10, mimeType);
 
-				return ps.executeUpdate() != 0;
-			} catch (SQLException |IOException e) {
+				ps.executeUpdate();
+				return objeto;
+			} catch (SQLException | IOException e) {
 				e.printStackTrace();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return null;
 	}
 
 	@Override
@@ -114,23 +115,22 @@ public class DaoInventarioImpl implements DaoInventario {
 			ps.setInt(7, objeto.getStockMin());
 			ps.setString(8, objeto.getCaducidad().toString());
 
-
-			if(objeto.getArchivoImagen()!=null) {
+			if (objeto.getArchivoImagen() != null) {
 				Part archivoImagen = objeto.getArchivoImagen();
 				ps.setBlob(9, archivoImagen.getInputStream());
-			}else {
+			} else {
 				String imagenBase64 = objeto.getImagen();
-			    byte[] imagenBytes = Base64.getDecoder().decode(imagenBase64);
+				byte[] imagenBytes = Base64.getDecoder().decode(imagenBase64);
 
-			    Blob imagenBlob = c.createBlob();
-			    imagenBlob.setBytes(1, imagenBytes);
+				Blob imagenBlob = c.createBlob();
+				imagenBlob.setBytes(1, imagenBytes);
 				ps.setBlob(9, imagenBlob);
 			}
 			ps.setString(10, objeto.getTipoImagen());
 
 			ps.setInt(11, objeto.getId());
 			return ps.executeUpdate() != 0;
-		} catch (SQLException |IOException e) {
+		} catch (SQLException | IOException e) {
 			e.printStackTrace();
 		}
 		return false;
@@ -186,7 +186,5 @@ public class DaoInventarioImpl implements DaoInventario {
 		}
 		return inventario;
 	}
-
-
 
 }

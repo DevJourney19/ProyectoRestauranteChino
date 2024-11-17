@@ -66,7 +66,7 @@ public class DaoMenuImpl implements DaoMenu {
 	}
 
 	@Override
-	public boolean agregar(Menu menu) {
+	public Menu agregar(Menu menu) {
 		String sql = "INSERT INTO menu (nombre, descripcion, precio, estado, id_categoria, imagen, tipo_imagen) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		try (Connection conn = con.getConexion();
 				PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -86,10 +86,11 @@ public class DaoMenuImpl implements DaoMenu {
 			String mimeType = archivoImagen.getContentType();
 			pstmt.setString(7, mimeType);
 
-			return pstmt.executeUpdate() != 0;
+			pstmt.executeUpdate();
+			return menu;
 		} catch (SQLException | IOException e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		}
 	}
 
@@ -158,7 +159,7 @@ public class DaoMenuImpl implements DaoMenu {
 					menu.setPrecio(rs.getDouble("precio"));
 					menu.setEstado(Menu.Estado.valueOf(rs.getString("estado")));
 					menu.setCategoria(cat.obtener(rs.getInt("id_categoria")));
-					byte[] imagenBytes = rs.getBytes("image");
+					byte[] imagenBytes = rs.getBytes("imagen");
 					if (imagenBytes != null) {
 						String imagenBase64 = java.util.Base64.getEncoder().encodeToString(imagenBytes);
 						menu.setImagen(imagenBase64);

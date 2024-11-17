@@ -26,6 +26,8 @@ public class TrabajadorPedido extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+
 		response.sendRedirect("vista/trabajadores/pedido/pedido.jsp");
 		//Ahora tengo que ver como hacer para agregar primero el detalle de pedido a la columna izquierda
 	}

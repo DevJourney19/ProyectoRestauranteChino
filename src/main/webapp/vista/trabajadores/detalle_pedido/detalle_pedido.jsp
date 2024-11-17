@@ -59,62 +59,6 @@
 									<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
 										style="color: red;"></i>
 								</div>
-								<div
-									class="d-flex p-2 m-2 align-items-center justify-content-between"
-									style="border: 1px solid lightgray; border-radius: 10px; gap: 16px;">
-									<div
-										class="d-flex gap-2 align-items-center justify-content-center">
-										<img src="../../img/tallarin_saltado.png" style="width: 60px"
-											alt="img">
-										<h6 class="mx-2 " style="font-weight: 600">
-											Tallarín Saltado<br /> (S/. 16) x2
-										</h6>
-									</div>
-									<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
-										style="color: red;"></i>
-								</div>
-								<div
-									class="d-flex p-2 m-2 align-items-center justify-content-between"
-									style="border: 1px solid lightgray; border-radius: 10px; gap: 16px;">
-									<div
-										class="d-flex gap-2 align-items-center justify-content-center">
-										<img src="../../img/aeropuerto.png" style="width: 60px"
-											alt="img">
-										<h6 class="mx-2 " style="font-weight: 600">
-											Aeropuerto<br /> (S/. 20) x2
-										</h6>
-									</div>
-									<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
-										style="color: red;"></i>
-								</div>
-								<div
-									class="d-flex p-2 m-2 align-items-center justify-content-between"
-									style="border: 1px solid lightgray; border-radius: 10px; gap: 16px;">
-									<div
-										class="d-flex gap-2 align-items-center justify-content-center">
-										<img src="../../img/arroz_chaufa.png" style="width: 60px"
-											alt="img">
-										<h6 class="mx-2 " style="font-weight: 600">
-											Arroz Chaufa<br /> (S/. 18) x2
-										</h6>
-									</div>
-									<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
-										style="color: red;"></i>
-								</div>
-								<div
-									class="d-flex p-2 m-2 align-items-center justify-content-between"
-									style="border: 1px solid lightgray; border-radius: 10px; gap: 16px;">
-									<div
-										class="d-flex gap-2 align-items-center justify-content-center">
-										<img src="../../img/arroz_chaufa.png" style="width: 60px"
-											alt="img">
-										<h6 class="mx-2 " style="font-weight: 600">
-											Arroz Chaufa<br /> (S/. 18) x2
-										</h6>
-									</div>
-									<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
-										style="color: red;"></i>
-								</div>
 							</div>
 						</div>
 						<!-- Resumen de pago -->
@@ -145,11 +89,6 @@
 							</div>
 						</div>
 
-						<!--  
-		<!-- Inicio TABLA -->
-						<!--  
-		
-		<!-- Fin TABLA -->
 						<!-- FIN DE UNIÓN DIVS BUSQUEDA Y CARD_PRODUCTS -->
 					</div>
 					<div class="d-flex justify-content-center">
@@ -173,69 +112,65 @@
 									<button class="btn btn-warning">Sopas</button>
 									<button class="btn btn-warning">Otros</button>
 								</div>
-
-
 							</div>
 							<!-- Fin BUSQUEDA -->
 
 							<!-- Inicio CARD PRODUCTO -->
 							<div class="container py-2 contenedor_cards">
-								<div class="row overflow-auto" style="margin: auto">
+								<div
+									class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xxl-3 g-4 py-2 px-xl-5 overflow-auto"
+									style="margin: auto">
 									<!-- inicio card 1 -->
 									<%
 									for (Menu lm : listaMenu) {
 									%>
-
 									<div class="col">
-										<form
-											action="${pageContext.request.contextPath}/MoAgregarDetaPedi">
-											<div class="shadow-sm card card_plato "
-												style="border: 2px solid #FFD700; width: 300px; height: 350px; border-radius: 15px">
-												<!-- Formato para poder utilizar las imágenes tipo base 64 -->
-												<img
-													src="data:<%=lm.getTipoImagen()%>;base64, <%=lm.getImagen()%>"
-													style="width: 200px" class="mx-auto card-img-top"
-													alt="<%=lm.getNombre()%>">
-												<div class="contador_suma_resta" id="contador_suma_resta"></div>
-												<div class="card-body ">
-													<h1 class="card-title text-center mb-3"><%=lm.getNombre()%></h1>
+										<div class="shadow-sm card card_plato "
+											style="border: 2px solid #FFD700; width: 300px; height: 350px; border-radius: 15px">
+											<!-- Formato para poder utilizar las imágenes tipo base 64 -->
+											<img
+												src="data:<%=lm.getTipoImagen()%>;base64, <%=lm.getImagen()%>"
+												style="width: 200px" class="mx-auto card-img-top"
+												alt="<%=lm.getNombre()%>">
+											<div class="contador_suma_resta" id="contador_suma_resta"></div>
+											<div class="card-body ">
+												<h1 class="card-title text-center mb-3"><%=lm.getNombre()%></h1>
+												<div
+													class="d-flex justify-content-center align-items-center mb-4 gap-4 gap-md-5">
+													<h2 class="fw-bolder">
+														S/.
+														<%=lm.getPrecio()%></h2>
+
 													<div
-														class="d-flex justify-content-center align-items-center mb-4 gap-4 gap-md-5">
-														<h2 class="fw-bolder">
-															S/.
-															<%=lm.getPrecio()%></h2>
+														class="d-flex justify-content-center align-items-center px-2 rounded-pill"
+														style="background: lightgray; gap: 10px; height: 35px;">
 
-														<div
-															class="d-flex justify-content-center align-items-center px-2 rounded-pill"
-															style="background: lightgray; gap: 10px; height: 35px;">
-
-															<!-- inicio del circulo -->
-															<i class="fa-solid fa-circle fa-2x circulito_card"
-																data-target="contador_suma_resta"
-																style="color: #fafafa; position: relative"> <i
-																class="fa-solid fa-minus fa-2xs"
-																style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
-															</i>
-															<!-- fin del circulo -->
-															<div>1</div>
-															<i class="fa-solid fa-circle fa-2x circulito_card"
-																style="color: #fafafa; position: relative"> <i
-																class="fa-solid fa-plus fa-2xs"
-																style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
-															</i>
-														</div>
+														<!-- inicio del circulo -->
+														<i class="fa-solid fa-circle fa-2x circulito_card"
+															data-target="contador_suma_resta"
+															style="color: #fafafa; position: relative"> <i
+															class="fa-solid fa-minus fa-2xs"
+															style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
+														</i>
+														<!-- fin del circulo -->
+														<div>1</div>
+														<i class="fa-solid fa-circle fa-2x circulito_card"
+															style="color: #fafafa; position: relative"> <i
+															class="fa-solid fa-plus fa-2xs"
+															style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
+														</i>
 													</div>
-													<button type="submit"
-														class="d-flex justify-content-center estilo_btn_1 py-3 agregar_btn">Agregar</button>
 												</div>
+												<input type="hidden" class="product-id" name="id_input"
+													value="<%=lm.getId()%>">
+												<button type="submit"
+													class="d-flex justify-content-center estilo_btn_1 agregar_btn">Agregar</button>
 											</div>
-										</form>
+										</div>
 									</div>
-
 									<%
 									}
 									%>
-
 									<!-- Fin CARD PRODUCTO -->
 								</div>
 							</div>
@@ -250,6 +185,8 @@
 		src="${pageContext.request.contextPath}/vista/trabajadores/detalle_pedido/detalle_pedido.js"
 		type="text/javascript"></script>
 	<script src="https://kit.fontawesome.com/c353473263.js"></script>
-
+	<script>
+		
+	</script>
 </body>
 </html>

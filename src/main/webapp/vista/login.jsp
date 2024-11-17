@@ -25,14 +25,13 @@
 				administrativo de tu restaurante.</p>
 
 			<form action="../LoginControlador" method="post">
-                <label for="usuario">Usuario</label><br>
-                <input type="text" name="usuario" id="usuario" placeholder="MO001"><br>
+				<label for="usuario">Usuario</label><br> <input type="text"
+					name="usuario" id="usuario" placeholder="MO001"><br> <label
+					for="password">Contraseña</label><br> <input type="password"
+					name="password" id="password" placeholder="A12345">
 
-                <label for="password">Contraseña</label><br>
-                <input type="password" name="password" id="password" placeholder="A12345">             
-
-                <button type="submit" class="login-btn">INICIAR SESIÓN</button>
-            </form>
+				<button type="submit" class="login-btn">INICIAR SESIÓN</button>
+			</form>
 		</div>
 		<div class="image-box">
 			<img src="img/login.jpg" alt="Food">

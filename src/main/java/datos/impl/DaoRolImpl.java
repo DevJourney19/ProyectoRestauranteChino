@@ -41,9 +41,9 @@ public class DaoRolImpl implements DaoRol {
 	}
 
 	@Override
-	public boolean agregar(Rol objeto) {
+	public Rol agregar(Rol objeto) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 	@Override

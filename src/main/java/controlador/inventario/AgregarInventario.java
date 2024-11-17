@@ -61,7 +61,7 @@ public class AgregarInventario extends HttpServlet {
 		    inventario.setCaducidad(LocalDate.parse(caducidad, formatter));
 		    inventario.setArchivoImagen(archivoImagen);
 
-		    if (daoInventario.agregar(inventario)) {
+		    if (daoInventario.agregar(inventario) != null) {
 		        response.sendRedirect("AdmiInventario");
 		    } else {
 		        response.sendRedirect("AdmiInventario?mensaje=Operacion Fallida");

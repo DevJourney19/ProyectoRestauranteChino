@@ -31,7 +31,7 @@ public class AgregarCategoria extends HttpServlet {
 		    String tipo = request.getParameter("tipo");
 				categoria.setNombre(nombre);
 				categoria.setTipo(Categoria.TipoCategoria.valueOf(tipo));
-				if(daoCategoria.agregar(categoria)) {
+				if(daoCategoria.agregar(categoria) != null) {
 					response.sendRedirect("AdmiCategoria");
 				}else {
 					response.sendRedirect("AdmiCategoria?mensaje=Operacion Fallida");

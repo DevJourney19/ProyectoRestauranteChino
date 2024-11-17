@@ -41,7 +41,8 @@ public class AgregarDetalle extends HttpServlet {
 			detalle.setCantidad(Integer.valueOf(request.getParameter("cantidad")));
 			detalle.setSubtotal(Double.valueOf(request.getParameter("subtotal")));
 			detalle.setPedido(daoPedido.obtener(idPedido));
-			if (daoDetalle.agregar(detalle)) {
+			DetallePedido dp = daoDetalle.agregar(detalle);
+			if (dp != null) {
 				response.sendRedirect("AdmiDetallePedido?id=" + idPedido);
 			}
 		} catch (Exception e) {

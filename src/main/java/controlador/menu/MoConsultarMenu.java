@@ -35,6 +35,8 @@ public class MoConsultarMenu extends HttpServlet {
 		DaoMenu menu = new DaoMenuImpl();
 		List<Menu> listaMenu = menu.consultar();
 
+		System.out.println("listaMenu: "+listaMenu);
+
 		request.setAttribute("listaMenu", listaMenu);
 
 		RequestDispatcher rd = request.getRequestDispatcher("vista/trabajadores/detalle_pedido/detalle_pedido.jsp");
