@@ -34,7 +34,7 @@ agregar_btn.forEach(t => t.addEventListener("click", async function(event) {
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',
 			},
-			body:`id_input=${idInput}`
+			body: `id_input=${idInput}`
 		});
 
 		if (!response.ok) {
@@ -45,7 +45,10 @@ agregar_btn.forEach(t => t.addEventListener("click", async function(event) {
 		if (data.error) {
 			Swal.fire("Error", data.error, "error");
 		} else {
+			let detallePedido = data.jsonDP.detallePedido;
+			console.log(detallePedido);
 			Swal.fire("Producto agregado correctamente", "", "success");
+
 		}
 
 	} catch (error) {

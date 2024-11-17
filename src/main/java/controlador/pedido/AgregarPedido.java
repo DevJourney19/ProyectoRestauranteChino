@@ -51,7 +51,8 @@ public class AgregarPedido extends HttpServlet {
 
 			pedido.setTotal(precio);
 			pedido.setTrabajador((Trabajador) session.getAttribute("usuario"));
-			if (daoPedido.agregar(pedido)) {
+			
+			if (daoPedido.agregar(pedido) != null) {
 				response.sendRedirect("AdmiPedido");
 			}
 		} catch (Exception e) {

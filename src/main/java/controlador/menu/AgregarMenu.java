@@ -62,7 +62,8 @@ public class AgregarMenu extends HttpServlet {
 				return;
 			}
 			menu.setCategoria(categoria);
-			if (daoMenu.agregar(menu)) {
+			Menu x = daoMenu.agregar(menu);
+			if (x != null) {
 				System.out.println("Registro exitoso - Nombre: " + menu.getNombre());
 				response.sendRedirect("AdmiMenu?mensaje=Registro Exitoso");
 			} else {

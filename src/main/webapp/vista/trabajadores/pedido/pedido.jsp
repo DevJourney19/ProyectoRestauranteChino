@@ -14,39 +14,7 @@
 	rel="stylesheet" />
 
 </head>
-<%
-/*
-HttpSession sessionMesas = request.getSession(false);
-List<Mesa> listaMesitas = null;
-if (sessionMesas != null) {
-	try {
-		// Intentamos obtener el atributo
-		System.out.println("Si existe la session ------------");
 
-		Object listaMesas = sessionMesas.getAttribute("listaMesas");
-		System.out.println("Objeto listaMesas ------------");
-		if (listaMesas != null && listaMesas instanceof List) {
-	listaMesitas = (List<Mesa>) listaMesas;
-
-	// Aquí puedes usar la listaMesitas
-	for (Mesa mesa : listaMesitas) {
-		System.out.println("Mesa: " + mesa.getN_mesa() + "<br>");
-	}
-
-		} else {
-	// Aquí puedes manejar el caso en que el atributo no es una lista, tal vez loguear un error
-	System.out.println("Se crea el array y chau");
-	listaMesitas = new ArrayList<>(); // O manejarlo de alguna forma predeterminada
-		}
-	} catch (Exception e) {
-		System.out.println("Error en obtener la lista de mesas!! : " + e.getMessage());
-	}
-	//CORREGIR
-} else {
-	// Si no hay sesión activa
-	out.println("No hay sesión activa.");
-}*/
-%>
 <body class="body">
 	<div class="d-flex">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
@@ -118,13 +86,11 @@ if (sessionMesas != null) {
 	const url=contextPath+"/MoMostrarMesa";
 	
 		    let botoncito_modal_mesa = document.getElementById("botoncito_modal_mesas");
+		    
 		    botoncito_modal_mesa.addEventListener("click", async function() {
 		        console.log("BOTONCITOOOOO");
 		        try {
-		    		//let contextPath = "${pageContext.request.contextPath}";
 		    		let response = await fetch(url);
-		    		//console.log("Respuesta del servidor:", await response.text()); // Ver qué está devolviendo el servidor
-
 		    		let data = await response.json();
 		    		if (data.error) {
 		    			console.log("Error");
@@ -144,8 +110,7 @@ if (sessionMesas != null) {
 
 		    				// Crear el contenido del label con la imagen y el nombre de la mesa
 		    				mesaElemento.innerHTML = 
-    '<label class="img_mesa" for="mesa' + mesa.id + '">' +
-        '<p>Buenas noches</p>' +
+    '<label class="img_mesa" for="mesa' + mesa.id + '">'+
         '<img src="/ProyectoRestauranteChino/vista/img/mesa.png" />' +
         '<span>' + mesa.nombre + '</span>' +
     '</label>' +

@@ -54,7 +54,7 @@ public class AgregarTrabajador extends HttpServlet {
 			tra.setContrasenia(password);
 			tra.setCelular(celular);
 
-			if (trabajadorDao.agregar(tra)) {
+			if (trabajadorDao.agregar(tra) != null) {
 				response.sendRedirect("AdmiTrabajador");
 			}else {
 				response.sendRedirect("AdmiTrabajador?mensaje=Operacion Fallida");
