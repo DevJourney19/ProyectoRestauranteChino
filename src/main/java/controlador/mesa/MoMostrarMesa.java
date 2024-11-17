@@ -36,41 +36,33 @@ public class MoMostrarMesa extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		response.setContentType("application/json"); // Asegúrate de que la respuesta sea JSON
+		response.setCharacterEncoding("UTF-8");
+
 		// Se pone DaoMesa porque se obtienen los metodos particulares
 		DaoMesa daoMesa = new DaoMesaImpl();
 
-		List<Mesa> mesas = daoMesa.consultar();
-		List<Mesa> listaMesas = new ArrayList<>();
+		List<Mesa> listaMesa = daoMesa.consultar();
 		// request.setAttribute("listaMesa", listaMesa);
-		HttpSession session = request.getSession();
 
-		// Convertir listaMesa a JSON
-
-		for (Mesa mesa : mesas) { // La listaMesa si funciona
-
-			Mesa me = new Mesa();
-			me.setId(mesa.getId());
-			me.setN_mesa(mesa.getN_mesa());
-			me.setN_salon(mesa.getN_salon());
-			me.setEstado(mesa.getEstado());
-			listaMesas.add(me);
-		}
-
-		// Agregar la lista de mesas al objeto JSON
-		session.setAttribute("listaMesas", listaMesas);
-		// Brindar la respuesta en JSON
-		response.setContentType("application/json"); // Asegúrate de que la respuesta sea JSON
-		response.setCharacterEncoding("UTF-8");
 		JSONObject jsonResponse = new JSONObject();
 		jsonResponse.put("success", true);
 		jsonResponse.put("message", "Se obtuvo el listado de mesas");
-		// Obtener el PrintWriter para escribir la respuesta
-		PrintWriter out = response.getWriter();
 
-		// Escribir el JSON en la respuesta
-		out.print(jsonResponse.toString());
+		// Convertir listaMesa a JSON
+		JSONArray mesasArray = new JSONArray();
+		for (Mesa mesa : listaMesa) {
+			JSONObject mesaJson = new JSONObject();
+			mesaJson.put("id", mesa.getId());
+			mesaJson.put("nombre", mesa.getN_mesa());
+			mesaJson.put("salon", mesa.getN_salon());
+			mesaJson.put("estado", mesa.getEstado());
+			mesasArray.put(mesaJson);
+		}
+		// Agregar la lista de mesas al objeto JSON
+		jsonResponse.put("mesas", mesasArray);
 
-		// Cerrar el flujo de salida
-		out.flush();
+		// Brindar la respuesta en JSON
+		response.getWriter().write(jsonResponse.toString());
 	}
 }
