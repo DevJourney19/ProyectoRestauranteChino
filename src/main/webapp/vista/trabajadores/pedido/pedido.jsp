@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="modelo.Mesa"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,6 +14,38 @@
 	rel="stylesheet" />
 
 </head>
+<%
+HttpSession sessionMesas = request.getSession(true);
+List<Mesa> listaMesitas = null;
+if (sessionMesas != null) {
+	try{
+	// Intentamos obtener el atributo
+	System.out.println("Si existe la session ------------");
+
+	Object listaMesas = sessionMesas.getAttribute("listaMesas");
+	System.out.println("Objeto listaMesas ------------");
+	if (listaMesas != null && listaMesas instanceof List) {
+		listaMesitas = (List<Mesa>) listaMesas;
+
+		// Aquí puedes usar la listaMesitas
+		for (Mesa mesa : listaMesitas) {
+	System.out.println("Mesa: " + mesa.getN_mesa() + "<br>");
+		}
+
+	} else {
+		// Aquí puedes manejar el caso en que el atributo no es una lista, tal vez loguear un error
+		System.out.println("Se crea el array y chau");
+		listaMesitas = new ArrayList<>(); // O manejarlo de alguna forma predeterminada
+	}
+	}catch(Exception e){
+		System.out.println("Error en obtener la lista de mesas!! : "+e.getMessage());
+	}
+	//CORREGIR
+} else {
+	// Si no hay sesión activa
+	out.println("No hay sesión activa.");
+}
+%>
 <body class="body">
 	<div class="d-flex">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
@@ -59,7 +94,30 @@
 						class="needs-validation" novalidate>
 
 						<div class="d-flex justify-content-center flex-wrap"
-							id="eleccion_mesas"></div>
+							id="eleccion_mesas">
+							<%
+							if (listaMesitas != null) {
+								for (Mesa mesa : listaMesitas) {
+							%>
+							<div class="box_mesa">
+								<label class="img_mesa" for="mesa<%=mesa.getId()%>"> <img
+									src="<%=request.getContextPath()%>/vista/img/mesa.png" /> <span><%=mesa.getN_mesa()%></span>
+								</label>
+								<p>
+									Valor:
+									<%=mesa.getId()%></p>
+								<input type="radio"
+									onclick="console.log('Mesa seleccionada: ' + <%=mesa.getId()%>);"
+									id="mesa<%=mesa.getId()%>" value="<%=mesa.getId()%>"
+									name="mesa" data-target="<%=mesa.getId()%>" />
+							</div>
+							<%
+							}
+							}
+							%>
+						</div>
+
+
 						<div class="modal-footer">
 							<button type="button" class="btn btn-danger"
 								data-bs-dismiss="modal">Cerrar</button>
@@ -71,48 +129,33 @@
 			</div>
 		</div>
 	</div>
-	<script src="pedido.js"></script>
 	<script src="https://kit.fontawesome.com/c353473263.js"></script>
 	<script type="text/javascript">
-let botoncito_modal_mesa = document.getElementById("botoncito_modal_mesas");
-botoncito_modal_mesa.addEventListener("click", async function() {
-	console.log("BOTONCITOOOOO");
-	try {
-		//let contextPath = "${pageContext.request.contextPath}";
-		let response = await fetch("${pageContext.request.contextPath}/MoMostrarMesa");
+	document.addEventListener("DOMContentLoaded", function() {
 
-		let data = await response.json();
-		if (data.error) {
-			console.log("Error");
-		} else {
-			console.log("Fue un exito");
-			let mesas = data.mesas; //Accedemos a la lista de mesas
-			let bloque = document.getElementById("eleccion_mesas");
-			bloque.innerHTML = "";
+		    let botoncito_modal_mesa = document.getElementById("botoncito_modal_mesas");
+		    botoncito_modal_mesa.addEventListener("click", async function() {
+		        console.log("BOTONCITOOOOO");
+		        try {
+		            // Obtener contextPath correctamente en JSP
+		            
+		            let response = await fetch("${pageContext.request.contextPath}/MoMostrarMesa");
 
-			// Iteramos sobre las mesas y las mostramos
-			mesas.forEach(mesa => {
-				// Crear un div para cada mesa con la clase "box_mesa"
-				let mesaElemento = document.createElement("div");
-				mesaElemento.classList.add("box_mesa");
+		            let data = await response.json();
+		            if (data.error) {
+		                console.log("Error: " + data.error); 
+		            } else {
+		                console.log("Fue un éxito");
+					
+		        	    };
+		            
+		        } catch (error) {
+		            console.log("Error detectado en el fetch MoMostrarMesa: " + error);
+		        }
+		    });
+		
+	});
 
-				// Crear el contenido del label con la imagen y el nombre de la mesa
-				mesaElemento.innerHTML = `
-			                       <label class="img_mesa" for="mesa${mesa.id}">
-			                           <img src="${pageContext.request.contextPath}/vista/img/mesa.png" />
-			                           <span>${mesa.nombre}</span>
-			                       </label>
-			                       <input type="radio" id="mesa${mesa.id}" value="${mesa.id}" name="mesa" data-target="${mesa.id}" />
-			                   `;
-
-				// Añadir el nuevo div de la mesa al bloque
-				bloque.appendChild(mesaElemento);
-			});
-
-		}
-	} catch (error) {
-		console.log("Error detectado en el fetch MoMostrarMesa: " + error);
-	}
-});</script>
+	</script>
 </body>
 </html>
