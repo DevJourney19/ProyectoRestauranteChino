@@ -38,7 +38,7 @@ public class Entradas implements Filter {
 				"EditarTrabajador", "EliminarTrabajador", "AgregarPedido", "EditarPedido", "EliminarPedido",
 				"AgregarDetalle", "EditarDetalle", "EliminarDetalle", "AgregarInventario", "EditarInventario",
 				"EliminarInventario", "AgregarMesa", "EditarMesa", "EliminarMesa", "AgregarMenu", "EditarMenu",
-				"EliminarMenu", "ExportExcelServlet", "ExportPDFServlet" ->
+				"EliminarMenu", "ReporteMenuExcel", "ReporteMenuPDF", "ReporteUsuarioExcel", "ReporteUsuarioPDF"  ->
 			true;
 		default -> false;
 		};
