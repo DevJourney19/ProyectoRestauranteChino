@@ -3,24 +3,24 @@ package controlador.trabajador;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import datos.DaoTrabajador;
 import datos.impl.DaoTrabajadorImpl;
+
+import org.apache.poi.ss.usermodel.*;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import modelo.Trabajador;
-
+ 
 @WebServlet(name = "ReporteUsuarioExcel", urlPatterns = {"/ReporteUsuarioExcel"})
 public class ReporteUsuarioExcel extends HttpServlet {
 

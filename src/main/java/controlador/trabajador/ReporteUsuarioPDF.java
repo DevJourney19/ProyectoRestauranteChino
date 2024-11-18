@@ -87,5 +87,6 @@ public class ReporteUsuarioPDF extends HttpServlet {
         } catch (Exception e) {
             throw new ServletException("Error al generar PDF", e);
         }
+        
     }
 }
