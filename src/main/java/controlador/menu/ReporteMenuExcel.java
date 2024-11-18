@@ -1,25 +1,12 @@
 package controlador.menu;
 
 import java.io.IOException;
-import java.util.List;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.FillPatternType;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import datos.DaoMenu;
-import datos.impl.DaoMenuImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import modelo.Menu;
 
 @WebServlet(name = "ReporteMenuExcel", urlPatterns = {"/ReporteMenuExcel"})
 public class ReporteMenuExcel extends HttpServlet {
@@ -42,7 +29,7 @@ public class ReporteMenuExcel extends HttpServlet {
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.setHeader("Content-Disposition", "attachment; filename=Reporte_Menu.xlsx");
 
-        try (Workbook workbook = new XSSFWorkbook()) {
+       /* try (Workbook workbook = new XSSFWorkbook()) {
             Sheet sheet = workbook.createSheet("Listado del Menu");
 
             // Crear estilo para encabezados
@@ -84,6 +71,6 @@ public class ReporteMenuExcel extends HttpServlet {
             workbook.write(response.getOutputStream());
         } catch (Exception e) {
             throw new ServletException("Error al generar Excel", e);
-        }
+        }*/
     }
 }

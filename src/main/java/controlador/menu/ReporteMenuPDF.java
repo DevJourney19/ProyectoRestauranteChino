@@ -1,23 +1,11 @@
 package controlador.menu;
 import java.io.IOException;
-import java.util.List;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
-
-import datos.DaoMenu;
-import datos.impl.DaoMenuImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import modelo.Menu;
 
 @WebServlet(name = "ReporteMenuPDF", urlPatterns = {"/ReporteMenuPDF"})
 public class ReporteMenuPDF extends HttpServlet {
@@ -39,7 +27,7 @@ public class ReporteMenuPDF extends HttpServlet {
 
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment; filename=Reporte_Menu.pdf");
-
+/*
         try {
             // Crear documento PDF
             Document document = new Document(PageSize.A4);
@@ -85,6 +73,6 @@ public class ReporteMenuPDF extends HttpServlet {
 
         } catch (Exception e) {
             throw new ServletException("Error al generar PDF", e);
-        }
+        }*/
     }
 }
