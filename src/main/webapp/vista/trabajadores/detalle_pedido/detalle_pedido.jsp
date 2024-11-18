@@ -40,25 +40,13 @@
 						</div>
 
 						<hr />
+						<!-- ################################## -->
 						<div>
 							<div class=" fs-5" style="display: inline; font-weight: 600">Total
 								de objetos (6)</div>
-							<div style="height: 300px; overflow: scroll;">
-
-								<div
-									class="d-flex p-2 m-2 align-items-center justify-content-between"
-									style="border: 1px solid lightgray; border-radius: 10px; gap: 16px;">
-									<div
-										class="d-flex gap-2 align-items-center justify-content-center">
-										<img src="../../img/arroz_chaufa.png" style="width: 60px"
-											alt="img">
-										<h6 class="mx-2 " style="font-weight: 600">
-											Arroz Chaufa<br /> (S/. 18) x2
-										</h6>
-									</div>
-									<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar"
-										style="color: red;"></i>
-								</div>
+							<div id="resumen_pedido_platos"
+								style="height: 300px; overflow: scroll;">
+								<!-- AQUI DEBE DE APARECER LOS PLATOS SELECCIONADOS -->
 							</div>
 						</div>
 						<!-- Resumen de pago -->

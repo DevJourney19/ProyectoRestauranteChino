@@ -1,6 +1,5 @@
 package controlador.pedido;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +19,7 @@ import jakarta.servlet.http.HttpSession;
 import modelo.DetallePedido;
 import modelo.Menu;
 import modelo.Pedido;
+
 @WebServlet("/MoAgregarDetaPedi")
 public class MoAgregarDetaPedi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -52,17 +52,29 @@ public class MoAgregarDetaPedi extends HttpServlet {
 
 		Menu menu = new Menu();
 
-
 		DetallePedido dp = new DetallePedido();
 		menu.setId(menuEncontrado.getId());
 		menu.setNombre(menuEncontrado.getNombre());
 		menu.setDescripcion(menuEncontrado.getDescripcion());
 		menu.setPrecio(menuEncontrado.getPrecio());
-		menu.setArchivoImagen(menuEncontrado.getArchivoImagen());
+		
+		//SOLUCIONAR - Lo que pasa es que no lo obtiene correctamente, aunque en la bd si existe
+		
+		menu.setImagen(menuEncontrado.getImagen());
+		//System.out.println(menuEncontrado.getArchivoImagen());
+		
 		menu.setCategoria(menuEncontrado.getCategoria());
 		menu.setTipoImagen(menuEncontrado.getTipoImagen());
-		menu.setPrecio(menuEncontrado.getPrecio());
-
+		
+		//Serializamos para enviar la respuesta como JSON
+		JSONObject menuJSON = new JSONObject();
+		menuJSON.put("nombre", menu.getNombre());
+		menuJSON.put("descripcion", menu.getDescripcion());
+		menuJSON.put("precio", menu.getPrecio());
+		menuJSON.put("archivo_imagen", menu.getImagen());
+		menuJSON.put("categoria", menu.getCategoria());
+		menuJSON.put("tipo_imagen", menu.getTipoImagen());
+		
 		dp.setMenu(menu);
 		dp.setSubtotal(cantidad * menuEncontrado.getPrecio());
 		dp.setCantidad(cantidad);
@@ -72,29 +84,35 @@ public class MoAgregarDetaPedi extends HttpServlet {
 
 		// Se obtiene el pedido creado previamente
 		Pedido pe = (Pedido) session.getAttribute("pedidoAttribute");
-
 		dp.setPedido(pe);
 
-		DetallePedido detallePedido = daoDetalleP.agregar(dp);
+		// AGREGAR DETALLE PEDIDO
+		daoDetalleP.agregar(dp);
+
+		// Serializar
+		JSONObject detPedidoJSON = new JSONObject();
+		detPedidoJSON.put("subtotal", dp.getSubtotal());
+		detPedidoJSON.put("cantidad", dp.getCantidad());
+
+		// SE AGREGA EL DETALLE PEDIDO PARA CONTABILIZAR CUANTOS PEDIDOS SE ENCONTRARON
 		listaDetaPedi.add(dp);
-
+		
 		session.setAttribute("contador", listaDetaPedi.size());
-		System.out.println("Buenas buenas");
+		//System.out.println("Buenas buenas");
+		
+		/*JSONObject dpJSON = new JSONObject();
+		dpJSON.put("detalleJSON", detalleJSON);*/
+		
+		System.out.println(detPedidoJSON.toString());
+		JSONObject responseJSON = new JSONObject();
+		responseJSON.put("success", true);
+		responseJSON.put("message", "Producto agregado correctamente");
 
-
-
-		JSONObject jsonDP = new JSONObject();
-		jsonDP.put("detallePedido",detallePedido);
-
-		JSONObject jsonResponse = new JSONObject();
-		jsonResponse.put("success", true);
-		jsonResponse.put("message", "Producto agregado correctamente");
-
-		JSONObject responseJson = new JSONObject();
-		responseJson.put("jsonDP", jsonDP);
-		responseJson.put("jsonResponse", jsonResponse);
-		response.getWriter().write(responseJson.toString());
-
+		JSONObject JSONresponse = new JSONObject();
+		JSONresponse.put("detPedidoJSON", detPedidoJSON);
+		JSONresponse.put("menuJSON", menuJSON);
+		JSONresponse.put("responseJSON", responseJSON);
+		response.getWriter().write(JSONresponse.toString());
 
 	}
 }

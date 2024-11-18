@@ -110,11 +110,11 @@
 
 		    				// Crear el contenido del label con la imagen y el nombre de la mesa
 		    				mesaElemento.innerHTML = 
-    '<label class="img_mesa" for="mesa' + mesa.id + '">'+
-        '<img src="/ProyectoRestauranteChino/vista/img/mesa.png" />' +
-        '<span>' + mesa.nombre + '</span>' +
-    '</label>' +
-    '<input type="radio" id="mesa' + mesa.id + '" value="' + mesa.id + '" name="mesa" data-target="' + mesa.id + '" />';
+    												'<label class="img_mesa" for="mesa' + mesa.id + '">'+
+        											'<img src="/ProyectoRestauranteChino/vista/img/mesa.png" />' +
+	        										'<span>' + mesa.nombre + '</span>' +
+	   												 '</label>' +
+    												'<input type="radio" id="mesa' + mesa.id + '" value="' + mesa.id + '" name="mesa" data-target="' + mesa.id + '" />';
 
 
 		    				// Añadir el nuevo div de la mesa al bloque

@@ -51,13 +51,15 @@ public class MoMostrarMesa extends HttpServlet {
 		JSONArray mesasArray = new JSONArray();
 		for (Mesa mesa : listaMesa) {
 			JSONObject mesaJson = new JSONObject();
+			//Se agregan los valores para obtenerlos en js
 			mesaJson.put("id", mesa.getId());
 			mesaJson.put("nombre", mesa.getN_mesa());
 			mesaJson.put("salon", mesa.getN_salon());
 			mesaJson.put("estado", mesa.getEstado());
+			//Se agrega ese elemento al array
 			mesasArray.put(mesaJson);
 		}
-		// Agregar la lista de mesas al objeto JSON
+		// Agregar la lista de mesas al objeto JSON con un identificador llamado "mesas"
 		jsonResponse.put("mesas", mesasArray);
 
 		// Brindar la respuesta en JSON
