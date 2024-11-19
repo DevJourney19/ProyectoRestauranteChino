@@ -43,9 +43,7 @@
 								<form action="ReporteUsuarioExcel" method="GET">
 									<button type="submit" class="btn-excel" ><i class="lni lni-download"></i> Exportar Excel</button>
 								</form>
-								<button class="btn-excel" type="submit">
-									<i class="lni lni-download"></i> Descargar Excel
-								</button>
+								
 								<button class="btn-agregar" type="button" data-bs-toggle="modal"
 									data-bs-target="#modalAdd">
 									Nuevo Usuario <i class="lni lni-plus"></i>
