@@ -64,7 +64,7 @@ public class ReporteUsuarioPDF extends HttpServlet {
             PdfPTable table = new PdfPTable(6); // Ajusta el número de columnas según tus datos
             table.setWidthPercentage(100);
             table.setWidths(new float[]{3f, 3f, 4f, 3f, 3f, 3f}); // Ajustar proporciones de columnas
-            
+
             // Crear estilo para encabezados
             Font headerFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.WHITE);
             PdfPCell headerCell = new PdfPCell();
@@ -72,7 +72,7 @@ public class ReporteUsuarioPDF extends HttpServlet {
             headerCell.setHorizontalAlignment(Element.ALIGN_CENTER);
             headerCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
             headerCell.setFixedHeight(35);
-            
+
             // Agregar encabezados
             String[] headers = {"CÓDIGO", "NOMBRE", "APELLIDOS", "USUARIO", "CELULAR", "ROL"};
             for (String header : headers) {
@@ -114,7 +114,7 @@ public class ReporteUsuarioPDF extends HttpServlet {
             }
 
             document.add(table);
-            
+
             // Agregar pie de página
             Font footerFont = new Font(Font.FontFamily.HELVETICA, 10, Font.ITALIC);
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -123,7 +123,7 @@ public class ReporteUsuarioPDF extends HttpServlet {
             footer.setAlignment(Element.ALIGN_CENTER);
             document.add(new Paragraph(" ")); // Espacio en blanco
             document.add(footer);
-            
+
             document.close();
 
         } catch (Exception e) {

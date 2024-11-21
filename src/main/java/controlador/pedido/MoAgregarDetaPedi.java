@@ -24,9 +24,8 @@ import modelo.Pedido;
 public class MoAgregarDetaPedi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DaoMenu daoMenu = new DaoMenuImpl();
-	DaoDetalle daoDetalleP = new DaoDetalleImpl();
-	int count = 0;
-	int cantidad = 1;
+	//DaoDetalle daoDetalleP = new DaoDetalleImpl();
+	//int cantidad = 1;
 	List<DetallePedido> listaDetaPedi = new ArrayList<>();
 
 	@Override
@@ -57,16 +56,17 @@ public class MoAgregarDetaPedi extends HttpServlet {
 		menu.setNombre(menuEncontrado.getNombre());
 		menu.setDescripcion(menuEncontrado.getDescripcion());
 		menu.setPrecio(menuEncontrado.getPrecio());
-		
-		//SOLUCIONAR - Lo que pasa es que no lo obtiene correctamente, aunque en la bd si existe
-		
+
+		// SOLUCIONAR - Lo que pasa es que no lo obtiene correctamente, aunque en la bd
+		// si existe
+
 		menu.setImagen(menuEncontrado.getImagen());
-		//System.out.println(menuEncontrado.getArchivoImagen());
-		
+		// System.out.println(menuEncontrado.getArchivoImagen());
+
 		menu.setCategoria(menuEncontrado.getCategoria());
 		menu.setTipoImagen(menuEncontrado.getTipoImagen());
-		
-		//Serializamos para enviar la respuesta como JSON
+
+		// Serializamos para enviar la respuesta como JSON
 		JSONObject menuJSON = new JSONObject();
 		menuJSON.put("nombre", menu.getNombre());
 		menuJSON.put("descripcion", menu.getDescripcion());
@@ -75,44 +75,54 @@ public class MoAgregarDetaPedi extends HttpServlet {
 		menuJSON.put("categoria", menu.getCategoria());
 		menuJSON.put("tipo_imagen", menu.getTipoImagen());
 		
+		
+		
+		
+		/*
 		dp.setMenu(menu);
 		dp.setSubtotal(cantidad * menuEncontrado.getPrecio());
-		dp.setCantidad(cantidad);
+		dp.setCantidad(cantidad);*/
 		// Se debe traer el pedido creado en mesa
 
-		HttpSession session = request.getSession();
-
 		// Se obtiene el pedido creado previamente
-		Pedido pe = (Pedido) session.getAttribute("pedidoAttribute");
-		dp.setPedido(pe);
-
-		// AGREGAR DETALLE PEDIDO
-		daoDetalleP.agregar(dp);
-
-		// Serializar
-		JSONObject detPedidoJSON = new JSONObject();
-		detPedidoJSON.put("subtotal", dp.getSubtotal());
-		detPedidoJSON.put("cantidad", dp.getCantidad());
+		/*
+		 * Pedido pe = (Pedido) session.getAttribute("pedidoAttribute");
+		 * dp.setPedido(pe);
+		 * 
+		 * // AGREGAR DETALLE PEDIDO daoDetalleP.agregar(dp);
+		 *///
+			// Serializar
+		/*
+		 * JSONObject detPedidoJSON = new JSONObject(); detPedidoJSON.put("subtotal",
+		 * dp.getSubtotal()); detPedidoJSON.put("cantidad", dp.getCantidad());
+		 */
 
 		// SE AGREGA EL DETALLE PEDIDO PARA CONTABILIZAR CUANTOS PEDIDOS SE ENCONTRARON
-		listaDetaPedi.add(dp);
-		
-		session.setAttribute("contador", listaDetaPedi.size());
-		//System.out.println("Buenas buenas");
-		
-		/*JSONObject dpJSON = new JSONObject();
-		dpJSON.put("detalleJSON", detalleJSON);*/
-		
-		System.out.println(detPedidoJSON.toString());
+		// listaDetaPedi.add(dp);
+		// JSONObject cantidadProductosJSON = new JSONObject();
+		// cantidadProductosJSON.put("size", listaDetaPedi.size());
+		// System.out.println("Buenas buenas");
+
+		/*
+		 * JSONObject dpJSON = new JSONObject(); dpJSON.put("detalleJSON", detalleJSON);
+		 */
+
+		// System.out.println(detPedidoJSON.toString());
 		JSONObject responseJSON = new JSONObject();
 		responseJSON.put("success", true);
 		responseJSON.put("message", "Producto agregado correctamente");
 
 		JSONObject JSONresponse = new JSONObject();
-		JSONresponse.put("detPedidoJSON", detPedidoJSON);
+		// JSONresponse.put("detPedidoJSON", detPedidoJSON);
 		JSONresponse.put("menuJSON", menuJSON);
+		// JSONresponse.put("cantidadProductosJSON", cantidadProductosJSON);
 		JSONresponse.put("responseJSON", responseJSON);
 		response.getWriter().write(JSONresponse.toString());
 
+		// En mi opinión el detalle de pedido no se debe de crear hasta que se de en
+		// crear pedido, para evitar asi gastas de memoria
+
+		// Creo que el pedido también se debe de crear solo y si le da clic en el bocon
+		// de crear pedido
 	}
 }
