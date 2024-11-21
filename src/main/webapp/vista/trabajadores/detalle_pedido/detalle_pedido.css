@@ -83,6 +83,9 @@ body {
 .col{
 	grid-template-columns: 1fr;
 }
+.circulito_card:hover{
+	cursor:pointer;
+}
 /*@media queries*/
 @media ( min-width : 1px) {
 	.boton_deta_pedi {

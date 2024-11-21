@@ -73,7 +73,7 @@ public class ReporteMenuExcel extends HttpServlet {
             dataStyle.setBorderRight(BorderStyle.THIN);
             dataStyle.setAlignment(HorizontalAlignment.CENTER);
             dataStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-            
+
             CellStyle alternateStyle = workbook.createCellStyle();
             alternateStyle.cloneStyleFrom(dataStyle);
             alternateStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());

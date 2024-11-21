@@ -42,8 +42,9 @@
 						<hr />
 						<!-- ################################## -->
 						<div>
-							<div class=" fs-5" style="display: inline; font-weight: 600">Total
-								de objetos (6)</div>
+							<div id="total_objetos" class=" fs-5"
+								style="display: inline; font-weight: 600">Total de
+								platillos (0)</div>
 							<div id="resumen_pedido_platos"
 								style="height: 300px; overflow: scroll;">
 								<!-- AQUI DEBE DE APARECER LOS PLATOS SELECCIONADOS -->
@@ -57,16 +58,16 @@
 								<div>Resumen de pago</div>
 								<div class="d-flex justify-content-between ">
 									<div>Importe:</div>
-									<div>S/. 54.00</div>
+									<div id="importe">S/. 0.00</div>
 								</div>
 								<div class="d-flex justify-content-between ">
 									<div>Impuestos:</div>
-									<div>S/. 9.80</div>
+									<div id="impuestos">S/. 0.00</div>
 								</div>
 								<div class="d-flex justify-content-between"
 									style="color: #ac0000; font-size: 800;">
 									<div>Total:</div>
-									<div>S/. 63.80</div>
+									<div id="total">S/. 0.00</div>
 								</div>
 
 								<hr />
@@ -121,52 +122,62 @@
 												style="width: 200px" class="mx-auto card-img-top"
 												alt="<%=lm.getNombre()%>">
 											<div class="contador_suma_resta" id="contador_suma_resta"></div>
-											<div class="card-body ">
+											<div class="card-body"
+												style="padding-bottom: 0px !important;">
+
 												<h1 class="card-title text-center mb-3"><%=lm.getNombre()%></h1>
 												<div
-													class="d-flex justify-content-center align-items-center mb-4 gap-4 gap-md-5">
+													class="d-flex justify-content-center align-items-center mb-4 gap-4 gap-md-4">
 													<h2 class="fw-bolder">
 														S/.
 														<%=lm.getPrecio()%></h2>
-
+													<!-- 
 													<div
 														class="d-flex justify-content-center align-items-center px-2 rounded-pill"
 														style="background: lightgray; gap: 10px; height: 35px;">
-
-														<!-- inicio del circulo -->
+ -->
+													<!-- inicio del circulo -->
+													<!-- DISMINUCIÓN -->
+													<!--  
 														<i class="fa-solid fa-circle fa-2x circulito_card"
-															data-target="contador_suma_resta"
 															style="color: #fafafa; position: relative"> <i
+															data-target="contador_resta"
 															class="fa-solid fa-minus fa-2xs"
 															style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
 														</i>
-														<!-- fin del circulo -->
-														<div>1</div>
-														<i class="fa-solid fa-circle fa-2x circulito_card"
-															style="color: #fafafa; position: relative"> <i
-															class="fa-solid fa-plus fa-2xs"
-															style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
-														</i>
-													</div>
+														-->
+													<!-- fin del circulo -->
+													<!-- ADICIÓN -->
+													<!--  
+													<div id="numerito_de_cantidad">1</div>
+													<i class="fa-solid fa-circle fa-2x circulito_card"
+														style="color: #fafafa; position: relative"> <i
+														data-target="contador_suma"
+														class="fa-solid fa-plus fa-2xs"
+														style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
+													</i>
+													-->
 												</div>
-												<input type="hidden" class="product-id" name="id_input"
-													value="<%=lm.getId()%>">
-												<button type="submit"
-													class="d-flex justify-content-center estilo_btn_1 agregar_btn">Agregar</button>
 											</div>
+											<input type="hidden" class="product-id" name="id_input"
+												value="<%=lm.getId()%>">
+											<button type="submit"
+												class="d-flex justify-content-center estilo_btn_1 agregar_btn"
+												style="margin-bottom: 35px;">Agregar</button>
 										</div>
 									</div>
-									<%
-									}
-									%>
-									<!-- Fin CARD PRODUCTO -->
 								</div>
+								<%
+								}
+								%>
+								<!-- Fin CARD PRODUCTO -->
 							</div>
 						</div>
 					</div>
 				</div>
-			</main>
 		</div>
+		</main>
+	</div>
 	</div>
 	<!-- Fin TABLA Y CARDS -->
 	<script

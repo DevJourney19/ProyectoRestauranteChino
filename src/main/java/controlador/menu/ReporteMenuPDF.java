@@ -63,7 +63,7 @@ public class ReporteMenuPDF extends HttpServlet {
             PdfPTable table = new PdfPTable(6); // Ajusta el número de columnas según tus datos
             table.setWidthPercentage(100);
             table.setWidths(new float[]{2f, 3f, 5f, 3f, 3f, 3f}); // Ajustar proporciones de columnas
-            
+
             // Crear estilo para encabezados
             Font headerFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.WHITE);
             PdfPCell headerCell = new PdfPCell();
@@ -90,9 +90,9 @@ public class ReporteMenuPDF extends HttpServlet {
             // Agregar datos a la tabla
             Font dataFont = new Font(Font.FontFamily.HELVETICA, 10);
             boolean isAlternate = false; // Alternar color de filas
-            
+
             for(Menu item : data) {
-            	
+
             	BaseColor rowColor = isAlternate ? BaseColor.LIGHT_GRAY : BaseColor.WHITE;
             	for (int i = 0; i < 6; i++) {
                     PdfPCell cell = new PdfPCell();
@@ -115,7 +115,7 @@ public class ReporteMenuPDF extends HttpServlet {
             }
 
             document.add(table);
-            
+
             // Agregar pie de página
             Font footerFont = new Font(Font.FontFamily.HELVETICA, 10, Font.ITALIC);
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -124,7 +124,7 @@ public class ReporteMenuPDF extends HttpServlet {
             footer.setAlignment(Element.ALIGN_CENTER);
             document.add(new Paragraph(" ")); // Espacio en blanco
             document.add(footer);
-            
+
             document.close();
 
         } catch (Exception e) {

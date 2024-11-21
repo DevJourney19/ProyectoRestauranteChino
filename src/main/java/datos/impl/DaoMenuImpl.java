@@ -1,7 +1,6 @@
 package datos.impl;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -76,7 +75,7 @@ public class DaoMenuImpl implements DaoMenu {
 			pstmt.setDouble(3, menu.getPrecio());
 			pstmt.setString(4, menu.getEstado().name());
 			pstmt.setInt(5, menu.getCategoria().getId());
-			
+
 			Part archivoImagen = menu.getArchivoImagen();
 
 			if (archivoImagen != null) {
@@ -227,14 +226,5 @@ public class DaoMenuImpl implements DaoMenu {
 			System.err.println("Error al cerrar recursos: " + e.getMessage());
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public String convertirImagenBase64(Part archivoImagen) throws IOException {
-
-		InputStream inputStream = archivoImagen.getInputStream();
-		byte[] bytes = inputStream.readAllBytes(); // Lee todos los bytes de la imagen
-		return Base64.getEncoder().encodeToString(bytes); // Convierte a Base64
-
 	}
 }

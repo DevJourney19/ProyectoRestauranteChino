@@ -23,7 +23,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import modelo.Menu;
 import modelo.Trabajador;
 
 @WebServlet(name = "ReporteUsuarioExcel", urlPatterns = {"/ReporteUsuarioExcel"})
@@ -74,7 +73,7 @@ public class ReporteUsuarioExcel extends HttpServlet {
             dataStyle.setBorderRight(BorderStyle.THIN);
             dataStyle.setAlignment(HorizontalAlignment.CENTER);
             dataStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-            
+
             CellStyle alternateStyle = workbook.createCellStyle();
             alternateStyle.cloneStyleFrom(dataStyle);
             alternateStyle.setFillForegroundColor(IndexedColors.LIGHT_GREEN.getIndex());
