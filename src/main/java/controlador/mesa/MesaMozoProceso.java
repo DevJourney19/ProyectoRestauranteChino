@@ -63,27 +63,31 @@ public class MesaMozoProceso extends HttpServlet {
 		// ================= //
 		// Creamos un pedido
 
-		/*
-		 * Pedido pe = new Pedido(); // Cremamos la clase cliente Cliente cliente = new
-		 * Cliente(); // Creamos el daoCliente DaoCliente daoCli = new DaoClienteImpl();
-		 * 
-		 * Cliente agregando = daoCli.agregar(cliente);
-		 * cliente.setId(agregando.getId()); // Tengo que ver la manera de poder obtener
-		 * el ide del pedido que ha sido creado
-		 * 
-		 * // POSTERIORMENTE SE PODRÁ EDITAR ESE PEDIDO EN ESPECIFICO pe.setMesa(mesa);
-		 * // Se le asigna la mesa al pedido pe.setCreated_at(new Date());
-		 * pe.setTrabajador(trabajador); pe.setMetodo_pago(null);
-		 * pe.setTipo_recibo(null); pe.setTotal(0);
-		 * pe.setEstado(EstadoPedido.Pendiente); pe.setCliente(cliente); Pedido obtener
-		 * = daoPedi.agregar(pe); // Lo estoy agregando
-		 * 
-		 * pe.setId(obtener.getId()); System.out.println("El id del pedido es: " +
-		 * pe.getId()); System.out.println("ALL GOOD");
-		 * 
-		 * HttpSession mysession = request.getSession();
-		 * mysession.setAttribute("pedidoAttribute", pe);
-		 */
+		Pedido pe = new Pedido(); // Cremamos la clase cliente
+		Cliente cliente = new Cliente(); // Creamos el daoCliente
+		DaoCliente daoCli = new DaoClienteImpl();
+
+		Cliente agregando = daoCli.agregar(cliente);
+		cliente.setId(agregando.getId()); // Tengo que ver la manera de poder obtener el ide del pedido que ha sido
+											// creado
+
+		// POSTERIORMENTE SE PODRÁ EDITAR ESE PEDIDO EN ESPECIFICO pe.setMesa(mesa);
+		// Se le asigna la mesa al pedido pe.setCreated_at(new Date());
+		pe.setTrabajador(trabajador);
+		pe.setMetodo_pago(null);
+		pe.setTipo_recibo(null);
+		pe.setTotal(0);
+		pe.setEstado(EstadoPedido.Pendiente);
+		pe.setCliente(cliente);
+		Pedido obtener = daoPedi.agregar(pe); // Lo estoy agregando
+
+		pe.setId(obtener.getId());
+		System.out.println("El id del pedido es: " + pe.getId());
+		System.out.println("ALL GOOD");
+
+		HttpSession mysession = request.getSession();
+		mysession.setAttribute("pedidoAttribute", pe);
+
 		RequestDispatcher rd = request.getRequestDispatcher("MoConsultarMenu");
 		rd.forward(request, response);
 

@@ -1,3 +1,5 @@
+<%@page import="modelo.DetallePedido"%>
+<%@page import="modelo.Pedido"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="modelo.Mesa"%>
@@ -16,6 +18,10 @@
 </head>
 
 <body class="body">
+	<%
+	List<Pedido> listaPedido = (List<Pedido>) request.getAttribute("listaPedido");
+	List<DetallePedido> listaDetallePedido = (List<DetallePedido>) request.getAttribute("listaDetallePedido");
+	%>
 	<div class="d-flex">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
@@ -38,8 +44,85 @@
 
 				<div
 					class="row row-cols-1 row-cols-xl-4 gap-4 justify-content-center overflow-auto mb-4">
-					<%@include file="../fragmentos/pedido_realizado.jsp"%>
-					<%@include file="../fragmentos/pedido_realizado.jsp"%>
+					<%
+					if (listaPedido != null) {
+						for (Pedido pedido : listaPedido) {
+					%>
+
+					<div class="col p-3 border rounded bg-white"
+						style="width: 320px; position: relative; height: fit-content;">
+						<div class="mesa_numero">
+							M<%=pedido.getMesa().getN_mesa()%></div>
+						<div
+							style="position: absolute; top: 20px; left: 62px; font-size: 1rem">Cliente</div>
+						<div class="completado">
+							<i class="fa-solid fa-square-check" style="color: #000000;"></i>
+							<%=pedido.getEstado()%>
+						</div>
+						<div class="pedido_especifico_numero_pedido">
+							Pedido #000000<%=pedido.getId()%></div>
+						<div class="d-flex justify-content-between mt-2"
+							style="font-size: 0.7rem">
+							<div><%=pedido.getCreated_at()%></div>
+						</div>
+						<hr />
+						<div class="table-responsive"
+							style="overflow-y: scroll; height: 200px;">
+							<table class="table text-center" style="border: transparent;">
+								<thead>
+									<tr style="font-size: 0.8rem">
+										<th>Producto</th>
+										<th>Cantidad</th>
+										<th>Subtotal</th>
+									</tr>
+								</thead>
+								<tbody>
+									<%
+									if (listaDetallePedido != null) {
+										for (DetallePedido dp : listaDetallePedido) {
+									%>
+									<tr style="font-size: 0.8rem">
+										<th><%=dp.getMenu().getNombre()%></th>
+										<th><%=dp.getCantidad()%></th>
+										<th><%=dp.getMenu().getPrecio()%></th>
+									</tr>
+									<%
+									}
+									}
+									%>
+
+								</tbody>
+							</table>
+							<hr />
+
+						</div>
+						<div>
+							<div class="d-flex justify-content-between mb-3"
+								style="font-size: 0.8rem; font-weight: 600">
+								<div>Total</div>
+								<div><%=pedido.getTotal()%></div>
+							</div>
+							<div class="d-flex justify-content-evenly">
+								<form action="#" method="post">
+									<button class="btn btn-danger">Eliminar</button>
+								</form>
+								<form action="../detalle_pedido/detalle_pedido.jsp"
+									method="post">
+									<button class="btn btn-warning">Detalles</button>
+								</form>
+
+								<form action="../pagar/pagar.jsp" method="post">
+									<button class="btn btn-success">Pagar</button>
+								</form>
+							</div>
+						</div>
+					</div>
+					<%
+					}
+					} else {
+					out.print("No se encuentran pedidos realizados");
+					}
+					%>
 
 				</div>
 			</main>

@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import datos.DaoMesa;
 import datos.DaoPedido;
 import datos.DaoTrabajador;
 import modelo.Cliente;
+import modelo.Inventario;
 import modelo.Pedido;
 import util.Conexion;
 
@@ -33,7 +36,33 @@ public class DaoPedidoImpl implements DaoPedido {
 
 	@Override
 	public List<Pedido> consultar() {
-		return null;
+		List<Pedido> lista = new ArrayList<>();
+		StringBuilder sql = new StringBuilder();
+		sql.append("Select ").append("id, ").append("id_cliente, ").append("id_mesa, ").append("estado, ")
+				.append("tipo_recibo, ").append("metodo_pago, ").append("total, ").append("id_trabajador, ")
+				.append("created_at ").append("from ").append("pedido");
+
+		try (Connection c = con.getConexion();
+				PreparedStatement ps = c.prepareStatement(sql.toString());
+				ResultSet rs = ps.executeQuery()) {
+			while (rs.next()) {
+				Pedido pedido = new Pedido();
+				pedido.setId(rs.getInt(1));
+				pedido.setCliente(cli.obtener(rs.getInt(2)));
+				pedido.setMesa(mes.obtener(rs.getInt(3)));
+				pedido.setEstado(Pedido.EstadoPedido.valueOf(rs.getString(4)));
+				pedido.setTipo_recibo(Pedido.TipoRecibo.valueOf(rs.getString(5)));
+				pedido.setMetodo_pago(Pedido.MetodoPago.valueOf(rs.getString(6)));
+				pedido.setTotal(rs.getDouble(7));
+				pedido.setTrabajador(tra.obtener(rs.getInt(8)));
+				pedido.setCreated_at(rs.getDate(9));
+
+				lista.add(pedido);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return lista;
 	}
 
 	@Override
@@ -75,7 +104,7 @@ public class DaoPedidoImpl implements DaoPedido {
 			return objeto;
 
 		} catch (Exception e) {
-			System.out.println("Error en agregar pedido: "+e.getMessage());
+			System.out.println("Error en agregar pedido: " + e.getMessage());
 		}
 		return null;
 	}

@@ -9,23 +9,46 @@ import java.util.List;
 
 import datos.DaoDetalle;
 import datos.DaoMenu;
+import datos.DaoPedido;
 import modelo.DetallePedido;
+import modelo.Pedido;
 import util.Conexion;
 
 public class DaoDetalleImpl implements DaoDetalle {
 	Conexion con;
 	private DaoMenu men;
-	public static Integer idPed;
+	private DaoPedido pe;
 
 	public DaoDetalleImpl() {
 		con = new Conexion();
 		men = new DaoMenuImpl();
+		pe = new DaoPedidoImpl();
 	}
 
 	@Override
 	public List<DetallePedido> consultar() {
-		// TODO Auto-generated method stub
-		return null;
+		List<DetallePedido> lista = new ArrayList<>();
+		StringBuilder sql = new StringBuilder();
+
+		sql.append("Select ").append("id, ").append("id_menu, ").append("cantidad, ").append("subtotal, ")
+				.append("id_pedido ").append("from ").append("detallepedido");
+
+		try (Connection c = con.getConexion();
+				PreparedStatement ps = c.prepareStatement(sql.toString());
+				ResultSet rs = ps.executeQuery()) {
+			while (rs.next()) {
+				DetallePedido detaPedido = new DetallePedido();
+				detaPedido.setId(rs.getInt(1));
+				detaPedido.setMenu(men.obtener(rs.getInt(2)));
+				detaPedido.setCantidad(rs.getInt(3));
+				detaPedido.setSubtotal(rs.getDouble(4));
+				detaPedido.setPedido(pe.obtener(rs.getInt(5)));
+				lista.add(detaPedido);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return lista;
 	}
 
 	@Override
