@@ -106,6 +106,7 @@
 
 							<!-- Inicio CARD PRODUCTO -->
 							<div class="container py-2 contenedor_cards">
+
 								<div
 									class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xxl-3 g-4 py-2 px-xl-5 overflow-auto"
 									style="margin: auto">
@@ -113,7 +114,7 @@
 									<%
 									for (Menu lm : listaMenu) {
 									%>
-									<div class="col">
+									<div class="col" style="width: 100%;">
 										<div class="shadow-sm card card_plato "
 											style="border: 2px solid #FFD700; width: 300px; height: 350px; border-radius: 15px">
 											<!-- Formato para poder utilizar las imágenes tipo base 64 -->
@@ -131,32 +132,7 @@
 													<h2 class="fw-bolder">
 														S/.
 														<%=lm.getPrecio()%></h2>
-													<!-- 
-													<div
-														class="d-flex justify-content-center align-items-center px-2 rounded-pill"
-														style="background: lightgray; gap: 10px; height: 35px;">
- -->
-													<!-- inicio del circulo -->
-													<!-- DISMINUCIÓN -->
-													<!--  
-														<i class="fa-solid fa-circle fa-2x circulito_card"
-															style="color: #fafafa; position: relative"> <i
-															data-target="contador_resta"
-															class="fa-solid fa-minus fa-2xs"
-															style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
-														</i>
-														-->
-													<!-- fin del circulo -->
-													<!-- ADICIÓN -->
-													<!--  
-													<div id="numerito_de_cantidad">1</div>
-													<i class="fa-solid fa-circle fa-2x circulito_card"
-														style="color: #fafafa; position: relative"> <i
-														data-target="contador_suma"
-														class="fa-solid fa-plus fa-2xs"
-														style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>
-													</i>
-													-->
+
 												</div>
 											</div>
 											<input type="hidden" class="product-id" name="id_input"
@@ -166,26 +142,24 @@
 												style="margin-bottom: 35px;">Agregar</button>
 										</div>
 									</div>
+									<%
+									}
+									%>
 								</div>
-								<%
-								}
-								%>
+
 								<!-- Fin CARD PRODUCTO -->
 							</div>
+
 						</div>
 					</div>
 				</div>
+			</main>
 		</div>
-		</main>
-	</div>
 	</div>
 	<!-- Fin TABLA Y CARDS -->
 	<script
 		src="${pageContext.request.contextPath}/vista/trabajadores/detalle_pedido/detalle_pedido.js"
 		type="text/javascript"></script>
 	<script src="https://kit.fontawesome.com/c353473263.js"></script>
-	<script>
-		
-	</script>
 </body>
 </html>

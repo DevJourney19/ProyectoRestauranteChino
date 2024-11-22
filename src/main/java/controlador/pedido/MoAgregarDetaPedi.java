@@ -51,7 +51,7 @@ public class MoAgregarDetaPedi extends HttpServlet {
 
 		Menu menu = new Menu();
 
-		DetallePedido dp = new DetallePedido();
+		//DetallePedido dp = new DetallePedido();
 		menu.setId(menuEncontrado.getId());
 		menu.setNombre(menuEncontrado.getNombre());
 		menu.setDescripcion(menuEncontrado.getDescripcion());
