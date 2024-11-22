@@ -101,7 +101,7 @@ const agregarProducto = (menu) => {
 					precioDiv.setAttribute("data-precio", menu.precio);
 				}
 			}
-			break; 
+			break;
 		}
 	}
 
@@ -220,8 +220,8 @@ function restando_foot(precio_producto) {
 	let importe = document.getElementById("importe");
 	let impuestos = document.getElementById("impuestos");
 	let total = document.getElementById("total");
-	
-	console.log("suma importe es: "+sumaImporte);
+
+	console.log("suma importe es: " + sumaImporte);
 	//Hacemos la operación por separado
 	sumaImporte = parseFloat(sumaImporte) - (parseFloat(precio_producto));
 	//Mostramos el valor obtenido de la operación
@@ -277,43 +277,73 @@ icono_eliminar.forEach(t => {
 //FIN DE NOTIFICACION ANIMADA
 
 const crearBloque = (menu, cantidadesPorProducto) => {
-    return '<div class="d-flex p-2 m-2 align-items-center justify-content-between"' +
-        ' style="border:1px solid lightgray; border-radius: 10px; gap:6px;" data-nombre="' + menu.nombre + '">' +
-        
-        // Imagen y nombre del platillo
-        '<div class="d-flex gap-2 align-items-center justify-content-center">' +
-            '<img src="data:' + menu.tipo_imagen + ';base64,' + menu.archivo_imagen + '" ' +
-            'style="width: 60px" alt="' + menu.nombre + '">' +
-            '<h6 class="mx-2 cant_platillo" style="font-weight: 600">' + menu.nombre + '</h6>' +
-        '</div>' +
-        
-        // Controles de cantidad
-        '<div class="d-flex justify-content-center align-items-center px-2 rounded-pill"' +
-        ' style="gap:6px; height:35px;">' +
-            // Botón de disminuir cantidad
-            '<i data-menu="' + menu.nombre + '" data-precio="' + menu.precio + '"' +
-            ' class="fa-solid fa-circle fa-2x circulito_card" style="color: #f9f9f9; position: relative">' +
-                '<i data-target="contador_resta" class="fa-solid fa-minus fa-2xs"' +
-                ' style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>' +
-            '</i>' +
-            
-            // Cantidad actual
-            '<div  data-cantidad="' + cantidadesPorProducto[menu.nombre] + '">' +
-                cantidadesPorProducto[menu.nombre] +
-            '</div>' +
-            
-            // Botón de aumentar cantidad
-            '<i data-precio="' + menu.precio + '" data-menu="' + menu.nombre + '" class="fa-solid fa-circle fa-2x circulito_card"' +
-            ' style="color: #fafafa; position: relative">' +
-                '<i data-target="contador_suma" class="fa-solid fa-plus fa-2xs"' +
-                ' style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>' +
-            '</i>' +
-        '</div>' +
-        
-        // Botón de eliminar
-        '<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar" style="color:red;"></i>' +
-    '</div>';
+	return '<div class="d-flex p-2 m-2 align-items-center justify-content-between"' +
+		' style="border:1px solid lightgray; border-radius: 10px; gap:6px;" data-nombre="' + menu.nombre + '">' +
+
+		// Imagen y nombre del platillo
+		'<div class="d-flex gap-2 align-items-center justify-content-center">' +
+		'<img src="data:' + menu.tipo_imagen + ';base64,' + menu.archivo_imagen + '" ' +
+		'style="width: 60px" alt="' + menu.nombre + '">' +
+		'<h6 class="mx-2 cant_platillo" style="font-weight: 600">' + menu.nombre + '</h6>' +
+		'</div>' +
+
+		// Controles de cantidad
+		'<div class="d-flex justify-content-center align-items-center px-2 rounded-pill"' +
+		' style="gap:6px; height:35px;">' +
+		// Botón de disminuir cantidad
+		'<i data-menu="' + menu.nombre + '" data-precio="' + menu.precio + '"' +
+		' class="fa-solid fa-circle fa-2x circulito_card" style="color: #f9f9f9; position: relative">' +
+		'<i data-target="contador_resta" class="fa-solid fa-minus fa-2xs"' +
+		' style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>' +
+		'</i>' +
+
+		// Cantidad actual
+		'<div class="canti" data-cantidad="' + cantidadesPorProducto[menu.nombre] + '">' +
+		cantidadesPorProducto[menu.nombre] +
+		'</div>' +
+
+		// Botón de aumentar cantidad
+		'<i data-precio="' + menu.precio + '" data-menu="' + menu.nombre + '" class="fa-solid fa-circle fa-2x circulito_card"' +
+		' style="color: #fafafa; position: relative">' +
+		'<i data-target="contador_suma" class="fa-solid fa-plus fa-2xs"' +
+		' style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>' +
+		'</i>' +
+		'</div>' +
+
+		// Botón de eliminar
+		'<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar" data-eliminar="' + menu.nombre + '" style="color:red;"></i>' +
+		'</div>';
 };
+
+let contenedor = document.getElementById("resumen_pedido_platos");
+contenedor.addEventListener("click", (event) => {
+	let total_objetos = document.getElementById("total_objetos");
+
+	if (event.target.classList.contains("icono_eliminar")) {
+		const nombrePlatillo = event.target.getAttribute("data-eliminar");
+		const bloque = document.querySelector('[data-nombre="' + nombrePlatillo + '"]');
+		const bloquecito = bloque.querySelector(".circulito_card");
+		const precio = bloquecito.getAttribute('data-precio');
+		const cantidad_div = bloque.querySelector(".canti");
+		const cantidad = cantidad_div.getAttribute("data-cantidad");
+		console.log("EEEl precio ess:" + precio);
+		if (bloque) {
+			for (let i = tamanio_menu.length - 1; i >= 0; i--) {
+				if (nombrePlatillo === tamanio_menu[i]) {
+					tamanio_menu.splice(i, 1);
+				}
+				console.log(tamanio_menu);
+			}
+			bloque.remove();
+			console.log("Platillo " + nombrePlatillo + " eliminado.");
+			delete cantidadesPorProducto[nombrePlatillo];
+			
+			total_objetos.innerHTML = 'Total de platillos (' + 0 + ') ';
+
+			restando_foot(precio*cantidad);
+		}
+	}
+});
 
 
 const realizarPago = () => {
