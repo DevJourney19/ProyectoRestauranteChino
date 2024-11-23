@@ -445,7 +445,7 @@ List<Inventario> listaInventario = (List<Inventario>) inventario;
 							        formData.append("tipo", button.getAttribute('data-tipo')); 
 							        formData.append('imagen', button.getAttribute('data-imagen')); 
 							    }
-
+							    
 							    fetch('EditarInventario', {
 							        method: 'POST',
 							        body: formData

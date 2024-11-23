@@ -51,20 +51,19 @@ public class EditarInventario extends HttpServlet {
 			inventarioUpdated.setUnidad(Inventario.Unidad.valueOf(request.getParameter("unidad")));
 			inventarioUpdated.setCategoria(daoCategoria.obtener(Integer.parseInt(request.getParameter("categoria"))));
 
-			if (request.getParameter("file") != null) {
-				Part imagenPart = request.getPart("file");
-				if (imagenPart != null && imagenPart.getSize() > 0) {
-					InputStream inputStream = imagenPart.getInputStream();
-					inventarioUpdated.setArchivoImagen(imagenPart);
-				}
+			if (request.getPart("file") != null) {
+			    Part imagenPart = request.getPart("file");
+			    if (imagenPart != null && imagenPart.getSize() > 0) {
+			        inventarioUpdated.setArchivoImagen(imagenPart);
+			    }
 			} else {
-				String imagenBase64 = request.getParameter("imagen");
-				if (imagenBase64 != null && !imagenBase64.isEmpty()) {
-					inventarioUpdated.setImagen(imagenBase64);
-					inventarioUpdated.setTipoImagen(request.getParameter("tipo"));
-				}
-
+			    String imagenBase64 = request.getParameter("imagen");
+			    if (imagenBase64 != null && !imagenBase64.isEmpty()) {
+			        inventarioUpdated.setImagen(imagenBase64);
+			        inventarioUpdated.setTipoImagen(request.getParameter("tipo"));
+			    }
 			}
+
 
 			boolean exito = daoInventario.editar(inventarioUpdated);
 

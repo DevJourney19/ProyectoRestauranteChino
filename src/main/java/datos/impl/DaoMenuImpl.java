@@ -108,6 +108,7 @@ public class DaoMenuImpl implements DaoMenu {
 			if (menu.getArchivoImagen() != null) {
 				Part archivoImagen = menu.getArchivoImagen();
 				pstmt.setBlob(6, archivoImagen.getInputStream());
+				menu.setTipoImagen(archivoImagen.getContentType());
 			} else {
 				String imagenBase64 = menu.getImagen();
 				byte[] imagenBytes = Base64.getDecoder().decode(imagenBase64);

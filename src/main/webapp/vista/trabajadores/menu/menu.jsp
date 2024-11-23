@@ -53,7 +53,7 @@
 				                    <div class="card mb-5">
 				                        <div class="row g-0">
 				                            <div class="col-md-4">
-				                                <img src="<%= menus.getImagen() %>" class="img-menu m-2 rounded-start" alt="<%= menus.getNombre() %>">
+				                                <img src="data:<%=menus.getTipoImagen()%>;base64,<%=menus.getImagen()%>" class="img-menu m-2 rounded-start" alt="<%= menus.getNombre() %>">
 				                            </div>
 				                            <div class="col-md-8">
 				                                <div class="card-body">
