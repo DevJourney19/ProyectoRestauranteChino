@@ -1,0 +1,31 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+/*Defini los colores para poder trabajar más rápido*/
+:root {
+	--rojo: #ac0000;
+	--amarillo: #f8c612;
+	--verde: #014301;
+	--blanco: #f9f9f9;
+	--gray:#E1E1E1;
+	--fondo: #f9f9f9;
+	--texto: #000000;
+	--placeholder: rgb(119, 118, 123);
+}
+
+:root .modo-nocturno{
+	--rojo: #ac0000;
+	--amarillo: #FFC700;
+	--verde: #2ec27e;
+	--blanco: #f9f9f9;
+	--gray:#E1E1E1;
+	--fondo: #040405;
+	--texto: #FFFFFF;
+	--placeholder: rgb(154, 153, 150);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
