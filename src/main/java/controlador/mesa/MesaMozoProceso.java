@@ -1,8 +1,6 @@
 package controlador.mesa;
 
 import java.io.IOException;
-import java.util.Date;
-
 import datos.DaoCliente;
 import datos.DaoMesa;
 import datos.DaoPedido;

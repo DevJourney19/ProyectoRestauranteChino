@@ -42,7 +42,7 @@ public class EditarMenu extends HttpServlet {
 		Menu menu = new Menu();
 
 		try {
-			if(request.getParameter("file")!=null) {
+			if(request.getPart("file")!=null) {
 				Part imagenPart = request.getPart("file");
 				if (imagenPart != null && imagenPart.getSize() > 0) {
 				    InputStream inputStream = imagenPart.getInputStream();

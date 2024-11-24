@@ -118,6 +118,7 @@ public class DaoInventarioImpl implements DaoInventario {
 			if (objeto.getArchivoImagen() != null) {
 				Part archivoImagen = objeto.getArchivoImagen();
 				ps.setBlob(9, archivoImagen.getInputStream());
+				objeto.setTipoImagen(archivoImagen.getContentType());
 			} else {
 				String imagenBase64 = objeto.getImagen();
 				byte[] imagenBytes = Base64.getDecoder().decode(imagenBase64);
