@@ -14,30 +14,30 @@
 		<ul class="sidebar-nav p-0">
 		<%if(tra.getRol().getNombre().equals("Mozo")){ %>
 			<li class="sidebar-item"><a
-				href="TrabajadorMenu"
+				href="${pageContext.request.contextPath}/TrabajadorMenu"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-service"></i> <span>Menu</span>
 			</a></li>
-			<li class="sidebar-item"><a href="TrabajadorPedido"
+			<li class="sidebar-item"><a href="${pageContext.request.contextPath}/TrabajadorPedido"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-cart"></i> <span>Pedidos - Mozo</span>
 			</a></li>
-			<li class="sidebar-item"><a href="TrabajadorMesa"
+			<li class="sidebar-item"><a href="${pageContext.request.contextPath}/TrabajadorMesa"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-airtable"></i> <span>Mesas</span>
 			</a></li>
 			<%} %>
 			<%if(tra.getRol().getNombre().equals("Cocinero")){ %>
 			<li class="sidebar-item"><a
-				href="TrabajadorMenu"
+				href="${pageContext.request.contextPath}/TrabajadorMenu"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-service"></i> <span>Menu</span>
 			</a></li>
-			<li class="sidebar-item"><a href="TrabajadorInventario"
+			<li class="sidebar-item"><a href="${pageContext.request.contextPath}/TrabajadorInventario"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-agenda"></i> <span>Inventario</span>
 			</a></li>
-			<li class="sidebar-item"><a href="TrabajadorPedidoCocinero"
+			<li class="sidebar-item"><a href="${pageContext.request.contextPath}/TrabajadorPedidoCocinero"
 				class="sidebar-link d-flex align-items-center gap-2"> <i
 					class="lni lni-cart"></i> <span>Pedidos - Cocinero</span>
 			</a></li>
