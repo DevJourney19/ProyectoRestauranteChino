@@ -8,6 +8,7 @@ import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
@@ -52,11 +53,24 @@ public class ReporteMenuPDF extends HttpServlet {
 
             document.open();
 
-            // Agregar título
-            Font titleFont = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD);
-            Paragraph title = new Paragraph("Reporte de Menu", titleFont);
-            title.setAlignment(Element.ALIGN_CENTER);
-            document.add(title);
+            // Logo
+            String logoPath = getServletContext().getRealPath("/vista/img/logo.png");
+            Image logo = Image.getInstance(logoPath);
+            logo.scaleToFit(90, 90);
+            logo.setAlignment(Element.ALIGN_CENTER);
+            document.add(logo);
+
+            // Agregar información del restaurante
+            Font infoFont = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL);
+            Paragraph restaurantInfo = new Paragraph(
+                    "Av. Próceres de la Independencia 231 - Lima\n" +
+                    "Noche En Pekín S.A.C.\n"+
+                    		"20124578458",
+                    infoFont
+            );
+            restaurantInfo.setAlignment(Element.ALIGN_CENTER);
+            document.add(restaurantInfo); 
+            document.add(new Paragraph(" "));
             document.add(new Paragraph(" "));
 
             // Crear tabla
@@ -70,16 +84,15 @@ public class ReporteMenuPDF extends HttpServlet {
             headerCell.setBackgroundColor(new BaseColor(1, 67, 1)); // Color de fondo
             headerCell.setHorizontalAlignment(Element.ALIGN_CENTER);
             headerCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-            headerCell.setFixedHeight(35);
 
             // Agregar encabezados
             String[] headers = {"ID", "NOMBRE", "DESCRIPCIÓN", "CATEGORIA", "PRECIO", "ESTADO"};
             for (String header : headers) {
                 PdfPCell cell = new PdfPCell(new Phrase(header, headerFont));
-                cell.setBackgroundColor(new BaseColor(1, 67, 1));
+                cell.setBackgroundColor(new BaseColor(213, 24, 24));
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                headerCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                headerCell.setFixedHeight(25);
+                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                cell.setFixedHeight(28);
                 table.addCell(cell);
             }
 
