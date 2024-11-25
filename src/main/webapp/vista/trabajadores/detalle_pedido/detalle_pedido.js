@@ -4,6 +4,7 @@ let tamanio_menu = [];
 let cantidad_producto = 0;
 let quantity = 0;
 let cantidadesPorProducto = {};
+let pedido = document.getElementById("id_del_pedido").textContent;
 
 //Funcion para el toggle
 let elemento = document.getElementById("tabla_detalle_pedidos");
@@ -52,6 +53,9 @@ agregar_btn.forEach(t => t.addEventListener("click", async function(event) {
 		} else {
 			//Agregamos los detalles de pedido para mostrar la cantidad de platillos 
 			let menu = data.menuJSON;
+			console.log("El id del menu es: " + menu.id);
+
+
 			agregarProducto(menu);
 		}
 
@@ -100,6 +104,16 @@ const agregarProducto = (menu) => {
 					//precioDiv.textContent = menu.precio;
 					precioDiv.setAttribute("data-precio", menu.precio);
 				}
+				// Actualizar `localStorage`
+				let pedidos = JSON.parse(localStorage.getItem(pedido)) || [];
+				let productoExistente = pedidos.find(pedido => pedido.nombre === menu.nombre);
+				if (productoExistente) {
+					productoExistente.cantidad = cantidadesPorProducto[menu.nombre];
+					localStorage.setItem(pedido, JSON.stringify(pedidos));
+				}
+
+				break;
+
 			}
 			break;
 		}
@@ -122,7 +136,7 @@ const agregarProducto = (menu) => {
 		ubicacion.innerHTML += "";
 		//-------------------------------------------------
 
-		ubicacion.innerHTML += crearBloque(menu, cantidadesPorProducto);
+		ubicacion.innerHTML += crearBloque(menu, cantidadesPorProducto, pedido);
 
 		//-------------------------------------------------
 
@@ -139,6 +153,13 @@ function separar_accion_de_los_circulos() {
 	let circuloMasOMenos = document.querySelectorAll(".circulito_card");
 	let total_objetos = document.getElementById("total_objetos");
 
+	// Actualizar `localStorage`
+	let pedidos = JSON.parse(localStorage.getItem(pedido)) || [];
+
+
+	localStorage.setItem(pedido, JSON.stringify(pedidos));
+
+
 	circuloMasOMenos.forEach(e => (e.addEventListener("click", function(event) {
 		let menuName = e.getAttribute("data-menu");
 
@@ -153,8 +174,14 @@ function separar_accion_de_los_circulos() {
 
 		if (data_target === "contador_suma") {
 			cantidad_actual++;
+
+			let producto = pedidos.find(p => p.nombre === menuName);
+			if (producto) producto.cantidad = cantidad_actual;
+
 			//Actualizamos el valor del atributo especifico
 			cantidadesPorProducto[menuName] = cantidad_actual;
+
+			localStorage.setItem(pedido, JSON.stringify(pedidos));
 			agregando_foot(precio_producto);
 
 		} else if (data_target === "contador_resta") {
@@ -163,6 +190,7 @@ function separar_accion_de_los_circulos() {
 				alert("El platillo se agotó");
 				productoDOM.remove(); //Elimina el bloque del DOM
 				delete cantidadesPorProducto[menuName];
+				pedidos = pedidos.filter(p => p.nombre !== menuName);
 
 				//Eliminar todo el registro del producto agregado
 				for (let i = tamanio_menu.length - 1; i >= 0; i--) {
@@ -171,17 +199,21 @@ function separar_accion_de_los_circulos() {
 					}
 					console.log(tamanio_menu);
 				}
-
 				//cantidad_producto = 0;
 				ir_pagar = true;
 				restando_foot(precio_producto);
 				//total_objetos.innerHTML = 'Total de platillos (' + cantidad_producto + ') ';
 			} else {
 				cantidad_actual--;
+
+				let producto = pedidos.find(p => p.nombre === menuName);
+				if (producto) producto.cantidad = cantidad_actual;
+
 				cantidadesPorProducto[menuName] = cantidad_actual;
 				restando_foot(precio_producto);
 			}
 		}
+		localStorage.setItem(pedido, JSON.stringify(pedidos));
 		cantidad_div.textContent = cantidad_actual;
 		cantidad_div.setAttribute('data-cantidad', cantidad_actual);
 
@@ -220,7 +252,6 @@ function restando_foot(precio_producto) {
 	let impuestos = document.getElementById("impuestos");
 	let total = document.getElementById("total");
 
-	console.log("suma importe es: " + sumaImporte);
 	//Hacemos la operación por separado
 	sumaImporte = parseFloat(sumaImporte) - (parseFloat(precio_producto));
 	//Mostramos el valor obtenido de la operación
@@ -235,6 +266,239 @@ function restando_foot(precio_producto) {
 	total.innerHTML = 'S/. ' + Math.round(sumaImporteEimpuestos * 100) / 100;
 }
 
+
+const crearBloque = (menu, cantidadesPorProducto, idPedido) => {
+	let bloqueHTML = '<div  class="d-flex p-2 m-2 align-items-center justify-content-between" data-id="' + idPedido + '"' +
+		' style="border:1px solid lightgray; border-radius: 10px; gap:6px;" data-nombre="' + menu.nombre + '">' +
+
+		// Imagen y nombre del platillo
+		'<div data-idMenu="' + menu.id + '" class="d-flex gap-2 align-items-center justify-content-center">' +
+		'<img src="data:' + menu.tipo_imagen + ';base64,' + menu.archivo_imagen + '" ' +
+		'style="width: 60px" alt="' + menu.nombre + '">' +
+		'<h6 class="mx-2 cant_platillo" style="font-weight: 600">' + menu.nombre + '</h6>' +
+		'</div>' +
+
+		// Controles de cantidad
+		'<div class="d-flex justify-content-center align-items-center px-2 rounded-pill"' +
+		' style="gap:6px; height:35px;">' +
+		// Botón de disminuir cantidad
+		'<i data-menu="' + menu.nombre + '" data-precio="' + menu.precio + '"' +
+		' class="fa-solid fa-circle fa-2x circulito_card" style="color: #f9f9f9; position: relative">' +
+		'<i data-target="contador_resta" class="fa-solid fa-minus fa-2xs"' +
+		' style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>' +
+		'</i>' +
+
+		// Cantidad actual
+		'<div class="canti" data-cantidad="' + cantidadesPorProducto[menu.nombre] + '">' +
+		cantidadesPorProducto[menu.nombre] +
+		'</div>' +
+
+		// Botón de aumentar cantidad
+		'<i data-precio="' + menu.precio + '" data-menu="' + menu.nombre + '" class="fa-solid fa-circle fa-2x circulito_card"' +
+		' style="color: #fafafa; position: relative">' +
+		'<i data-target="contador_suma" class="fa-solid fa-plus fa-2xs"' +
+		' style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>' +
+		'</i>' +
+		'</div>' +
+
+		// Botón de eliminar
+		'<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar" data-eliminar="' + menu.nombre + '" style="color:red;"></i>' +
+		'</div>';
+
+	// Leer las cantidades actuales del localStorage o inicializar
+
+	let cantidades = JSON.parse(localStorage.getItem('cantidad')) || {};
+	console.log("Cantidad actual de", menu.nombre, ":", cantidadesPorProducto[menu.nombre]);
+
+	// Crear los datos del pedido
+	const pedidoData = {
+		id_menu: menu.id,
+		nombre: menu.nombre,
+		precio: menu.precio,
+		cantidad: cantidades[menu.nombre] || 0,
+		tipo_imagen: menu.tipo_imagen,
+		archivo_imagen: menu.archivo_imagen
+	};
+
+	// Obtener la lista de pedidos desde el localStorage
+	let pedidos = JSON.parse(localStorage.getItem(pedido)) || [];
+
+	pedidos.push(pedidoData);
+
+
+	// Guardar la lista actualizada de pedidos en localStorage
+	localStorage.setItem(pedido, JSON.stringify(pedidos));
+
+	// Retornar el bloque HTML generado
+	return bloqueHTML;
+};
+
+
+function cargarDatosPedido() {
+	// Obtén el ID del pedido desde una clave predefinida en localStorage
+	const idPedido = pedido; // Cambia esto según la clave real usada para guardar pedidos
+	const pedidos = JSON.parse(localStorage.getItem(idPedido));
+
+	if (pedidos && pedidos.length > 0) {
+		const contenedorDatos = document.getElementById("resumen_pedido_platos");
+		contenedorDatos.innerHTML = ""; // Limpia contenido previo
+
+		// Itera sobre los pedidos y crea bloques HTML para mostrarlos
+		pedidos.forEach(pedido => {
+			// Reconstruir el objeto `menu` esperado por crearBloque
+			const menu = {
+				nombre: pedido.nombre,
+				precio: pedido.precio,
+				tipo_imagen: pedido.tipo_imagen,
+				archivo_imagen: pedido.archivo_imagen,
+			};
+
+			// Obtener cantidades por producto (si aplica)
+			const cantidadesPorProducto = { [pedido.nombre]: pedido.cantidad };
+
+			// Generar bloque HTML
+			const bloqueHTML = crearBloque(menu, cantidadesPorProducto, idPedido);
+
+			// Agregar el bloque al contenedor
+			const bloque = document.createElement("div");
+			bloque.innerHTML = bloqueHTML;
+			contenedorDatos.appendChild(bloque);
+		});
+	} else {
+		console.log("No se encontraron datos en el localStorage para este pedido.");
+	}
+}
+
+
+let contenedor = document.getElementById("resumen_pedido_platos");
+//Todo ese campo es cliqueable
+contenedor.addEventListener("click", (event) => {
+	let total_objetos = document.getElementById("total_objetos");
+	//Si se hace clic en el elemento que tiene la clase icono_eliminar
+	if (event.target.classList.contains("icono_eliminar")) {
+		//Cuando se presione en el icono de tacho de basura se leera el data-eliminar, el cual leerá el nombre del producto
+		//lo cual viene a ser unico, ya que se determinó eliminar los platillos repetidos (Su cantidad aumentará por lo cual)
+		//estaría bien
+		const nombrePlatillo = event.target.getAttribute("data-eliminar");
+		//Se ubica en el nombre del menu "data-nombre" para ingresar a ese div
+		const bloquePrincipal = document.querySelector('[data-nombre="' + nombrePlatillo + '"]');
+		//============================================================
+		//Se hace esto con el fin de obtener el precio del producto a eliminar
+		const bloquecito = bloquePrincipal.querySelector(".circulito_card");
+		const precio = bloquecito.getAttribute('data-precio');
+
+
+		//Es el elemento de html
+		const cantidad_div = bloquePrincipal.querySelector(".canti");
+		//Es la cantidad actual
+		const cantidad = cantidad_div.getAttribute("data-cantidad");
+
+		if (bloquePrincipal) {
+			for (let i = tamanio_menu.length - 1; i >= 0; i--) {
+				if (nombrePlatillo === tamanio_menu[i]) {
+					tamanio_menu.splice(i, 1);
+				}
+				console.log(tamanio_menu);
+			}
+			bloquePrincipal.remove();
+			console.log("Platillo " + nombrePlatillo + " eliminado.");
+			delete cantidadesPorProducto[nombrePlatillo];
+			cantidad_producto = Object.values(cantidadesPorProducto).reduce((a, b) => a + b, 0);
+
+			total_objetos.innerHTML = 'Total de platillos (' + cantidad_producto + ') ';
+
+			restando_foot(precio * cantidad);
+		}
+	}
+});
+
+
+
+async function enviarDetallesDePedido() {
+	const retornando = obtenerDetallesPedido();
+	let detalles = retornando.detalles;
+	let importe = retornando.importe;
+	let impuesto = retornando.impuesto;
+	let total = retornando.total;
+
+	const formData = new URLSearchParams();
+
+	detalles.forEach((detalle, index) => {
+		formData.append(`detalle[${index}][id_menu]`, detalle.id_menu);
+		formData.append(`detalle[${index}][id_pedido]`, detalle.id_pedido);
+		formData.append(`detalle[${index}][nombre]`, detalle.nombre);
+		formData.append(`detalle[${index}][cantidad]`, detalle.cantidad);
+		formData.append(`detalle[${index}][precio]`, detalle.precio);
+		formData.append(`detalle[${index}][subtotal]`, detalle.subtotal);
+	});
+	formData.append('importe', importe);
+	formData.append('impuesto', impuesto);
+	formData.append('total', total);
+
+	try {
+		let response = await fetch("MoAsignarDetaPedi", {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			body: formData.toString()  // Convertir a string
+		});
+
+		if (!response.ok) {
+			throw new Error('Error al agregar el detalle de pedido');
+		}
+
+		let data = await response.json();
+		if (data.error) {
+			Swal.fire("Error", data.error, "error");
+		} else {
+			//Agregamos los detalles de pedido para mostrar la cantidad de platillos 
+			console.log("EL JSON FUNCIONÓ");
+
+		}
+
+	} catch (error) {
+		console.error("Hubo un problema con la solicitud:", error);
+		Swal.fire("Hubo un problema al agregar el detalle de pedido", error.message, "error");
+	}
+}
+
+function obtenerDetallesPedido() {
+	const contenedor = document.getElementById("resumen_pedido_platos");
+	const detalles = [];
+	let importe = document.getElementById("importe").textContent.replace("S/. ", "");
+	let impuesto = document.getElementById("impuestos").textContent.replace("S/. ", "");
+	let total = document.getElementById("total").textContent.replace("S/. ", "");
+
+	console.log("Importe: " + importe, "Impuesto: " + impuesto, "Total: " + total);
+	// Recorre todos los bloques de productos
+	const bloques = contenedor.querySelectorAll("[data-nombre]");
+	bloques.forEach((bloque) => {
+		const id_menu = parseInt(bloque.querySelector("[data-idMenu]").getAttribute("data-idMenu"), 10);
+		const nombre = bloque.getAttribute("data-nombre");
+		const cantidad = parseInt(bloque.querySelector("[data-cantidad]").getAttribute("data-cantidad"), 10);
+		const precio = parseFloat(bloque.querySelector("[data-precio]").getAttribute("data-precio"));
+		const subtotal = Math.round(precio * cantidad * 100) / 100;
+
+		// Agregar detalle al array
+		detalles.push({
+			id_menu: id_menu,
+			id_pedido: pedido,
+			nombre: nombre,
+			cantidad: cantidad,
+			precio: precio,
+			subtotal: subtotal // Subtotal por este platillo
+		});
+	});
+
+	console.log("Otro total: " + importe);
+	return {
+		detalles: detalles,
+		importe: importe,
+		impuesto: impuesto,
+		total: total
+	}
+}
 let icono_eliminar = document.querySelectorAll(".icono_eliminar");
 //NOTIFICACION ANIMADA
 icono_eliminar.forEach(t => {
@@ -275,108 +539,5 @@ icono_eliminar.forEach(t => {
 })
 //FIN DE NOTIFICACION ANIMADA
 
-const crearBloque = (menu, cantidadesPorProducto) => {
-	return '<div id_d="'+menu.id+'" class="d-flex p-2 m-2 align-items-center justify-content-between"' +
-		' style="border:1px solid lightgray; border-radius: 10px; gap:6px;" data-nombre="' + menu.nombre + '">' +
+document.addEventListener("DOMContentLoaded", cargarDatosPedido);
 
-		// Imagen y nombre del platillo
-		'<div class="d-flex gap-2 align-items-center justify-content-center">' +
-		'<img src="data:' + menu.tipo_imagen + ';base64,' + menu.archivo_imagen + '" ' +
-		'style="width: 60px" alt="' + menu.nombre + '">' +
-		'<h6 class="mx-2 cant_platillo" style="font-weight: 600">' + menu.nombre + '</h6>' +
-		'</div>' +
-
-		// Controles de cantidad
-		'<div class="d-flex justify-content-center align-items-center px-2 rounded-pill"' +
-		' style="gap:6px; height:35px;">' +
-		// Botón de disminuir cantidad
-		'<i data-menu="' + menu.nombre + '" data-precio="' + menu.precio + '"' +
-		' class="fa-solid fa-circle fa-2x circulito_card" style="color: #f9f9f9; position: relative">' +
-		'<i data-target="contador_resta" class="fa-solid fa-minus fa-2xs"' +
-		' style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>' +
-		'</i>' +
-
-		// Cantidad actual
-		'<div class="canti" data-cantidad="' + cantidadesPorProducto[menu.nombre] + '">' +
-		cantidadesPorProducto[menu.nombre] +
-		'</div>' +
-
-		// Botón de aumentar cantidad
-		'<i data-precio="' + menu.precio + '" data-menu="' + menu.nombre + '" class="fa-solid fa-circle fa-2x circulito_card"' +
-		' style="color: #fafafa; position: relative">' +
-		'<i data-target="contador_suma" class="fa-solid fa-plus fa-2xs"' +
-		' style="color: #000000; position: absolute; bottom: 14px; left: 8px"></i>' +
-		'</i>' +
-		'</div>' +
-
-		// Botón de eliminar
-		'<i class="fas fa-solid fa-trash fa-xl mx-2 icono_eliminar" data-eliminar="' + menu.nombre + '" style="color:red;"></i>' +
-		'</div>';
-};
-
-let contenedor = document.getElementById("resumen_pedido_platos");
-//Todo ese campo es cliqueable
-contenedor.addEventListener("click", (event) => {
-	let total_objetos = document.getElementById("total_objetos");
-	//Si se hace clic en el elemento que tiene la clase icono_eliminar
-	if (event.target.classList.contains("icono_eliminar")) {
-		//Cuando se presione en el icono de tacho de basura se leera el data-eliminar, el cual leerá el nombre del producto
-		//lo cual viene a ser unico, ya que se determinó eliminar los platillos repetidos (Su cantidad aumentará por lo cual)
-		//estaría bien
-		const nombrePlatillo = event.target.getAttribute("data-eliminar");
-		//Se ubica en el nombre del menu "data-nombre" para ingresar a ese div
-		const bloquePrincipal = document.querySelector('[data-nombre="' + nombrePlatillo + '"]');
-		//============================================================
-		//Se hace esto con el fin de obtener el precio del producto a eliminar
-		const bloquecito = bloquePrincipal.querySelector(".circulito_card");
-		const precio = bloquecito.getAttribute('data-precio');
-		//Es el elemento de html
-		const cantidad_div = bloquePrincipal.querySelector(".canti");
-		//Es la cantidad actual
-		const cantidad = cantidad_div.getAttribute("data-cantidad");
-
-		if (bloquePrincipal) {
-			for (let i = tamanio_menu.length - 1; i >= 0; i--) {
-				if (nombrePlatillo === tamanio_menu[i]) {
-					tamanio_menu.splice(i, 1);
-				}
-				console.log(tamanio_menu);
-			}
-			bloquePrincipal.remove();
-			console.log("Platillo " + nombrePlatillo + " eliminado.");
-			delete cantidadesPorProducto[nombrePlatillo];
-
-			total_objetos.innerHTML = 'Total de platillos (' + 0 + ') ';
-
-			restando_foot(precio * cantidad);
-		}
-	}
-});
-
-function realizarPago() {
-	console.log(obtenerDetallesPedido());
-}
-function obtenerDetallesPedido() {
-	const contenedor = document.getElementById("resumen_pedido_platos");
-	const detalles = [];
-
-	// Recorre todos los bloques de productos
-	const bloques = contenedor.querySelectorAll("[data-nombre]");
-	bloques.forEach((bloque) => {
-		const id = document.getElementById("");
-		const nombre = bloque.getAttribute("data-nombre");
-		const cantidad = parseInt(bloque.querySelector("[data-cantidad]").getAttribute("data-cantidad"), 10);
-		const precio = parseFloat(bloque.querySelector("[data-precio]").getAttribute("data-precio"));
-
-		// Agregar detalle al array
-		detalles.push({
-			id: id,
-			nombre: nombre,
-			cantidad: cantidad,
-			precio: precio,
-			subtotal: Math.round(precio * cantidad * 100) / 100,  // Subtotal por este platillo
-		});
-	});
-
-	return detalles;
-}

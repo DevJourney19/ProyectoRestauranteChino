@@ -98,33 +98,45 @@
 							<hr />
 
 						</div>
-						<div>
-							<div class="d-flex justify-content-between mb-3"
+						<div class= "p-3">
+							<div class="d-flex justify-content-between mb-1"
+								style="font-size: 0.8rem; font-weight: 600">
+								<div>Importe</div>
+								<div>S/. <%=pedido.getImporte()%></div>
+							</div>
+							<div class="d-flex justify-content-between mb-1"
+								style="font-size: 0.8rem; font-weight: 600">
+								<div>Impuesto</div>
+								<div>S/. <%=pedido.getImpuesto()%></div>
+							</div>
+							<div class="d-flex justify-content-between mb-1"
 								style="font-size: 0.8rem; font-weight: 600">
 								<div>Total</div>
-								<div><%=pedido.getTotal()%></div>
+								<div>S/. <%=pedido.getTotal()%></div>
 							</div>
-							<div class="d-flex justify-content-evenly">
-								<form
-									action="${pageContext.request.contextPath}/MoEliminarPedido"
-									method="post">
-									<input type="hidden" name="id_pedido"
-										value="<%=pedido.getId()%>">
-									<button class="btn btn-danger">Eliminar</button>
-								</form>
-								<form action="${pageContext.request.contextPath}/MoConsultarMenu"
-									method="post">
-									<input type="hidden" name="id_pedido"
-										value="<%pedido.getId();%>">
-									<button class="btn btn-warning">Detalles</button>
-								</form>
+						</div>
+						<div class="d-flex justify-content-evenly">
+							<form
+								action="${pageContext.request.contextPath}/MoEliminarPedido"
+								method="post">
+								<input type="hidden" name="id_pedido"
+									value="<%=pedido.getId()%>">
+								<button class="btn btn-danger">Eliminar</button>
+							</form>
+							<form action="${pageContext.request.contextPath}/MoConsultarMenu"
+								method="post">
+								<input type="hidden" name="id_pedido"
+									value="<%=pedido.getId()%>">
+								<button class="btn btn-warning">Detalles</button>
+							</form>
 
-								<form action="${pageContext.request.contextPath}/vista/trabajadores/pedido/pagar_pedido.jsp" method="post">
-									<input type="hidden" name="id_pedido"
-										value="<%pedido.getId();%>">
-									<button class="btn btn-success">Pagar</button>
-								</form>
-							</div>
+							<form
+								action="${pageContext.request.contextPath}/vista/trabajadores/pedido/pagar_pedido.jsp"
+								method="post">
+								<input type="hidden" name="id_pedido"
+									value="<%=pedido.getId()%>">
+								<button class="btn btn-success">Pagar</button>
+							</form>
 						</div>
 					</div>
 					<%
@@ -181,7 +193,6 @@
 		    let botoncito_modal_mesa = document.getElementById("botoncito_modal_mesas");
 		    
 		    botoncito_modal_mesa.addEventListener("click", async function() {
-		        console.log("BOTONCITOOOOO");
 		        try {
 		    		let response = await fetch(url);
 		    		let data = await response.json();
@@ -223,5 +234,7 @@
 	});
 
 	</script>
+	<script
+		src="${pageContext.request.contextPath}/vista/trabajadores/detalle_pedido/detalle_pedido.js"></script>
 </body>
 </html>

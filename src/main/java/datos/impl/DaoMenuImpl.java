@@ -86,7 +86,18 @@ public class DaoMenuImpl implements DaoMenu {
 			String mimeType = archivoImagen.getContentType();
 			pstmt.setString(7, mimeType);
 
-			pstmt.executeUpdate();
+			int resultSet = pstmt.executeUpdate();
+
+			if (resultSet > 0) {
+				try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+
+					if (generatedKeys.next()) {
+						// Asignar el ID generado al objeto Pedido
+						menu.setId(generatedKeys.getInt(1)); // Suponiendo que 'id' es de tipo INT
+					}
+				}
+			}
+
 			return menu;
 		} catch (SQLException | IOException e) {
 			e.printStackTrace();
@@ -226,5 +237,40 @@ public class DaoMenuImpl implements DaoMenu {
 			System.err.println("Error al cerrar recursos: " + e.getMessage());
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public Menu obtenerMenuPorNombre(String nombre) {
+		Menu menusito = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT ").append("id, nombre, descripcion, imagen, precio, estado, id_categoria, tipo_imagen")
+				.append(" FROM menu WHERE nombre = ?");
+		try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString())) {
+			ps.setString(1, nombre);
+			try (ResultSet rs = ps.executeQuery()) {
+
+				Menu menu = new Menu();
+				menu.setId(rs.getInt(1));
+				menu.setNombre(rs.getString(2));
+				menu.setDescripcion(rs.getString(3));
+				byte[] imagenBytes = rs.getBytes(4);
+				if (imagenBytes != null) {
+					String imagenBase64 = java.util.Base64.getEncoder().encodeToString(imagenBytes);
+					menu.setImagen(imagenBase64);
+				} else {
+					menu.setImagen(null);
+				}
+				menu.setPrecio(rs.getDouble(5));
+				menu.setEstado(Menu.Estado.valueOf(rs.getString(6)));
+				menu.setCategoria(cat.obtener(rs.getInt(7)));
+				menu.setTipoImagen(rs.getString(8));
+
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return menusito;
 	}
 }

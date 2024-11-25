@@ -31,14 +31,17 @@ public class MoConsultarMenu extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//Proceso para mostrar todos los menus al mozo
+
+		// Proceso para mostrar todos los menus al mozo
 		DaoMenu menu = new DaoMenuImpl();
 		List<Menu> listaMenu = menu.consultar();
 
-		System.out.println("listaMenu: "+listaMenu);
-
 		request.setAttribute("listaMenu", listaMenu);
 
+		// Obtenemos el id de pedido de la card de pedido
+		int id_pedido = Integer.parseInt(request.getParameter("id_pedido"));
+		request.setAttribute("id_pedido", id_pedido);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("vista/trabajadores/detalle_pedido/detalle_pedido.jsp");
 		rd.forward(request, response);
 

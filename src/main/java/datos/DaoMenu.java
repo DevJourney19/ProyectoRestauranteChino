@@ -6,4 +6,5 @@ import modelo.Menu;
 
 public interface DaoMenu extends Dao<Menu> {
 	List<Menu> filtrar(String titulo);
+	Menu obtenerMenuPorNombre(String nombre);
 }

@@ -11,7 +11,6 @@ import datos.DaoDetalle;
 import datos.DaoMenu;
 import datos.DaoPedido;
 import modelo.DetallePedido;
-import modelo.Pedido;
 import util.Conexion;
 
 public class DaoDetalleImpl implements DaoDetalle {

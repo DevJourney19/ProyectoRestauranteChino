@@ -24,6 +24,8 @@ public class Pedido {
 	private double total;
 	private Trabajador trabajador;
 	private Date created_at;
+	private double impuesto;
+	private double importe;
 
 	public int getId() {
 		return id;
@@ -96,4 +98,21 @@ public class Pedido {
 	public void setCreated_at(Date created_at) {
 		this.created_at = created_at;
 	}
+
+	public double getImpuesto() {
+		return impuesto;
+	}
+
+	public void setImpuesto(double impuesto) {
+		this.impuesto = impuesto;
+	}
+
+	public double getImporte() {
+		return importe;
+	}
+
+	public void setImporte(double importe) {
+		this.importe = importe;
+	}
+
 }

@@ -37,11 +37,11 @@ public class TrabajadorPedido extends HttpServlet {
 		// Proceso para mostrar todos los menus al mozo
 		DaoPedido pedido = new DaoPedidoImpl();
 		List<Pedido> listaPedido = pedido.consultar();
-		
+
 		DaoDetalle detalle = new DaoDetalleImpl();
 		List<DetallePedido> listaDetallePedido = detalle.consultar();
 
-		
+
 		request.setAttribute("listaPedido", listaPedido);
 		request.setAttribute("listaDetallePedido", listaDetallePedido);
 		RequestDispatcher rd = request.getRequestDispatcher("vista/trabajadores/pedido/pedido.jsp");

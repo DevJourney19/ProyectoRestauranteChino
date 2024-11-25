@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +13,6 @@ import datos.DaoMesa;
 import datos.DaoPedido;
 import datos.DaoTrabajador;
 import modelo.Cliente;
-import modelo.Inventario;
 import modelo.Pedido;
 import util.Conexion;
 
@@ -39,8 +36,8 @@ public class DaoPedidoImpl implements DaoPedido {
 		List<Pedido> lista = new ArrayList<>();
 		StringBuilder sql = new StringBuilder();
 		sql.append("Select ").append("id, ").append("id_cliente, ").append("id_mesa, ").append("estado, ")
-				.append("tipo_recibo, ").append("metodo_pago, ").append("total, ").append("id_trabajador, ")
-				.append("created_at ").append("from ").append("pedido");
+				.append("tipo_recibo, ").append("metodo_pago, ").append("importe, ").append("impuesto, ")
+				.append("total, ").append("id_trabajador, ").append("created_at ").append("from ").append("pedido");
 
 		try (Connection c = con.getConexion();
 				PreparedStatement ps = c.prepareStatement(sql.toString());
@@ -53,9 +50,11 @@ public class DaoPedidoImpl implements DaoPedido {
 				pedido.setEstado(Pedido.EstadoPedido.valueOf(rs.getString(4)));
 				pedido.setTipo_recibo(Pedido.TipoRecibo.valueOf(rs.getString(5)));
 				pedido.setMetodo_pago(Pedido.MetodoPago.valueOf(rs.getString(6)));
-				pedido.setTotal(rs.getDouble(7));
-				pedido.setTrabajador(tra.obtener(rs.getInt(8)));
-				pedido.setCreated_at(rs.getDate(9));
+				pedido.setImporte(rs.getDouble(7));
+				pedido.setImpuesto(rs.getDouble(8));
+				pedido.setTotal(rs.getDouble(9));
+				pedido.setTrabajador(tra.obtener(rs.getInt(10)));
+				pedido.setCreated_at(rs.getDate(11));
 
 				lista.add(pedido);
 			}
@@ -69,7 +68,8 @@ public class DaoPedidoImpl implements DaoPedido {
 	public Pedido agregar(Pedido objeto) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO pedido(").append("id_cliente,").append("id_mesa,").append("tipo_recibo,")
-				.append("metodo_pago,").append("total,").append("id_trabajador").append(") VALUES (?,?,?,?,?,?)");
+				.append("metodo_pago,").append("importe,").append("impuesto,").append("total, ").append("id_trabajador")
+				.append(") VALUES (?,?,?,?,?,?,?,?)");
 
 		try (Connection c = con.getConexion();
 				PreparedStatement ps = c.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);) {
@@ -85,9 +85,11 @@ public class DaoPedidoImpl implements DaoPedido {
 			} else {
 				ps.setString(4, "Efectivo");
 			}
+			ps.setDouble(5, objeto.getImporte());
+			ps.setDouble(6, objeto.getImpuesto());
+			ps.setDouble(7, objeto.getTotal());
 
-			ps.setDouble(5, objeto.getTotal());
-			ps.setInt(6, objeto.getTrabajador().getId());
+			ps.setInt(8, objeto.getTrabajador().getId());
 
 			int resultSet = ps.executeUpdate();
 
@@ -112,19 +114,22 @@ public class DaoPedidoImpl implements DaoPedido {
 	@Override
 	public boolean editar(Pedido objeto) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("UPDATE pedido SET ")
-				.append("id_cliente = ?, id_mesa = ?, estado = ?, tipo_recibo = ?, metodo_pago = ?, total = ?")
-				.append("id_trabajador = ?").append(" WHERE id = ?");
+		sql.append("UPDATE pedido SET ").append(
+				"id_cliente = ?, id_mesa = ?, estado = ?, tipo_recibo = ?, metodo_pago = ?, importe = ?,impuesto = ?,total = ?")
+				.append(" WHERE id = ?");
 		try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString());) {
 			ps.setInt(1, objeto.getCliente().getId());
 			ps.setInt(2, objeto.getMesa().getId());
 			ps.setString(3, objeto.getEstado().toString());
 			ps.setString(4, objeto.getTipo_recibo().toString());
 			ps.setString(5, objeto.getMetodo_pago().toString());
-			ps.setDouble(6, objeto.getTotal());
+			ps.setDouble(6, objeto.getImporte());
+			ps.setDouble(7, objeto.getImpuesto());
+			ps.setDouble(8, objeto.getTotal());
+			ps.setInt(9, objeto.getId());
 			return (ps.executeUpdate() != 0);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("Error en editar el pedido: " + e.getMessage());
 		}
 		return false;
 	}
@@ -203,5 +208,4 @@ public class DaoPedidoImpl implements DaoPedido {
 		return null;
 	}
 
-	
 }

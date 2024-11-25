@@ -1,7 +1,6 @@
 package controlador.mesa;
 
 import java.io.IOException;
-import java.util.Date;
 
 import datos.DaoCliente;
 import datos.DaoMesa;
@@ -71,7 +70,9 @@ public class MesaMozoProceso extends HttpServlet {
 		Cliente agregando = daoCli.agregar(cliente);
 		cliente.setId(agregando.getId()); // Tengo que ver la manera de poder obtener el ide del pedido que ha sido
 											// creado
-
+		HttpSession sessionCliente = request.getSession();
+		sessionCliente.setAttribute("cliente", cliente);
+		
 		// POSTERIORMENTE SE PODRÁ EDITAR ESE PEDIDO EN ESPECIFICO pe.setMesa(mesa);
 		// Se le asigna la mesa al pedido pe.setCreated_at(new Date());
 		pe.setTrabajador(trabajador);
@@ -84,11 +85,11 @@ public class MesaMozoProceso extends HttpServlet {
 		Pedido obtener = daoPedi.agregar(pe); // Lo estoy agregando
 
 		pe.setId(obtener.getId());
-
-		HttpSession mysession = request.getSession();
-		mysession.setAttribute("pedidoAttribute", pe);
-
-		RequestDispatcher rd = request.getRequestDispatcher("MoConsultarMenu");
+		/*
+		 * HttpSession mysession = request.getSession();
+		 * mysession.setAttribute("pedidoAttribute", pe);
+		 */
+		RequestDispatcher rd = request.getRequestDispatcher("MoConsultarMenu?id_pedido=" + pe.getId() + "");
 		rd.forward(request, response);
 
 	}

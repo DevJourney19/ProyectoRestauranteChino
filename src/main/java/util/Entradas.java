@@ -49,7 +49,7 @@ public class Entradas implements Filter {
 		case "TrabajadorPedido", "TrabajadorInventario", "TrabajadorMenu", "TrabajadorMesa", "AgregarPedido",
 				"EditarPedido", "EliminarPedido", "EditarInventario", "AgregarDetalle", "EditarDetalle",
 				"EliminarDetalle", "EditarMesa", "DetaPediMozo", "MesaMozoProceso", "MoAgregarDetaPedi",
-				"MoConsultarMenu", "MoMostrarMesa", "MoEliminarPedido" ->
+				"MoConsultarMenu", "MoMostrarMesa", "MoEliminarPedido","MoAsignarDetaPedi" ->
 			true;
 		default -> false;
 		};
