@@ -1,3 +1,4 @@
+<%@page import="modelo.Pedido"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="java.util.List"%>
 <%@page import="modelo.Menu"%>
@@ -17,6 +18,7 @@
 	<!-- Obtener todos los platillos para mostrarlo -->
 	<%
 	List<Menu> listaMenu = (List<Menu>) request.getAttribute("listaMenu");
+	int id_pedido = (int) request.getAttribute("id_pedido");
 	%>
 	<div class="d-flex ">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
@@ -31,7 +33,8 @@
 					<!-- Inicio TABLA Y CARDS -->
 					<div class="container d-flex flex-column flex-wrap mt-4 bg-white tabla_detalle_pedidos" style="border: 1px solid lightgray; border-radius: 10px;" id="tabla_detalle_pedidos">
 						<div class="p-3 fs-3">
-							<b>Resumen de Pedido</b> <br />#0000001
+							<b>Resumen de Pedido</b> <br />#<%=String.format("%06d", id_pedido)%>
+							<span style="display: none" id="id_del_pedido"><%=id_pedido%></span>
 						</div>
 
 						<hr />
@@ -67,7 +70,7 @@
 
 								<hr />
 								<!-- UN MODAL QUE PREGUNTE SI DESEA IMPRIMIR LA BOLETA CON LOS RESULTADOS, SI SI ENTONCES AHI RECIEN SE REGISTRA EL DETALLE DE PEDIDO Y SE CREA UNA BOLETA -->
-								<button type="button" onclick="realizarPago()"
+								<button type="button" onclick="enviarDetallesDePedido()"
 									class="btn mx-auto text-white" style="background: #ac0000">Realizar
 									pedido</button>
 							</div>
