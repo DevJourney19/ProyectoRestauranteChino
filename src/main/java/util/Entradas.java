@@ -2,15 +2,17 @@ package util;
 
 import java.io.IOException;
 
-import jakarta.servlet.Filter;
-import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
 import modelo.Trabajador;
 
 @WebFilter("/*") // Aplica a todas las rutas, ajusta según sea necesario
@@ -57,7 +59,7 @@ public class Entradas implements Filter {
 
 	private static boolean validarCocinero(String ruta) {
 		return switch (ruta) {
-		case "TrabajadorMenu", "TrabajadorInventario", "EditarInventario", "TrabajadorCocineroPedido", "EditarPedido" ->
+		case "TrabajadorMenu", "TrabajadorInventario", "EditarInventario", "TrabajadorPedidoCocinero", "EditarPedido" ->
 			true;
 		default -> false;
 		};

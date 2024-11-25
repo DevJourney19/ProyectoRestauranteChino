@@ -2,13 +2,14 @@ package controlador.trabajador;
 
 import java.io.IOException;
 
-import datos.DaoTrabajador;
-import datos.impl.DaoTrabajadorImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import datos.DaoTrabajador;
+import datos.impl.DaoTrabajadorImpl;
 
 @WebServlet(name = "EliminarTrabajador", urlPatterns = {"/EliminarTrabajador"})
 public class EliminarTrabajador extends HttpServlet {

@@ -4,16 +4,17 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import datos.DaoRol;
-import datos.DaoTrabajador;
-import datos.impl.DaoRolImpl;
-import datos.impl.DaoTrabajadorImpl;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import datos.DaoRol;
+import datos.DaoTrabajador;
+import datos.impl.DaoRolImpl;
+import datos.impl.DaoTrabajadorImpl;
 import modelo.Rol;
 import modelo.Trabajador;
 
@@ -42,10 +43,10 @@ public class AdmiTrabajador extends HttpServlet {
 		List<Rol> listaRol = rolDao.consultar();
 
 		// Verificar si hay un título de búsqueda
-		if (request.getParameter("tituloSearch") != null) {
-				String titulo = request.getParameter("tituloSearch");
+		if (request.getParameter("nombreSearch") != null) {
+				String nombre = request.getParameter("nombreSearch");
 					// Filtrar el menú basado en el título
-				lista = lista.stream().filter(m -> m.getNombre().toLowerCase().contains(titulo.toLowerCase()))
+				lista = lista.stream().filter(m -> m.getNombre().toLowerCase().contains(nombre.toLowerCase()))
 						.collect(Collectors.toList()); // Guardar el resultado del filtrado
 		}
 

@@ -14,6 +14,8 @@
 <title>ADMIN | MESAS</title>
 </head>
 <body>
+<%
+List<Mesa> listaMesas = (List<Mesa>) mesas; %>
 	<div class="d-flex flex-row">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
@@ -24,7 +26,7 @@
 						<div
 							class=" text-center d-md-flex align-items-center justify-content-between">
 							<h1>GESTIÓN DE MESAS - 餐桌管理</h1>
-							<span class="fs-3 numero-mesas">200 mesas</span>
+							<span class="fs-3 numero-mesas"><%=listaMesas != null ? listaMesas.size() : 0%> mesas</span>
 						</div>
 						<div
 							class="d-flex flex-wrap align-items-center justify-content-end gap-md-4 gap-3">
@@ -49,7 +51,6 @@
 							</thead>
 							<tbody>
 								<%
-								List<Mesa> listaMesas = (List<Mesa>) mesas;
 								for (Mesa mesa : listaMesas) {
 									String estado = "estado-desconocido";
 									switch (mesa.getEstado()) {
@@ -59,6 +60,9 @@
 										case Reservado :
 									estado = "estado-reservado";
 									break;
+										case Limpieza :
+											estado = "estado-limpieza";
+											break;
 										case Ocupado :
 									estado = "estado-ocupado";
 									break;

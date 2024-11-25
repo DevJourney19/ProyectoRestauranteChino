@@ -1,26 +1,25 @@
 package controlador.pedido;
 
-import java.io.IOException;
-import java.util.List;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import modelo.DetallePedido;
+import modelo.Pedido;
+
+import java.io.IOException;
+import java.util.List;
 
 import datos.DaoDetalle;
 import datos.DaoPedido;
 import datos.impl.DaoDetalleImpl;
 import datos.impl.DaoPedidoImpl;
-import modelo.DetallePedido;
-import modelo.Pedido;
 
-@WebServlet(name = "TrabajadorPedido", urlPatterns = { "/TrabajadorPedido" })
-public class TrabajadorPedido extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
+@WebServlet(name = "TrabajadorPedidoCocinero", urlPatterns = { "/TrabajadorPedidoCocinero" })
+public class TrabajadorPedidoCocinero extends HttpServlet {
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -45,7 +44,8 @@ public class TrabajadorPedido extends HttpServlet {
 
 		request.setAttribute("listaPedido", listaPedido);
 		request.setAttribute("listaDetallePedido", listaDetallePedido);
-		RequestDispatcher rd = request.getRequestDispatcher("vista/trabajadores/pedido/pedido.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("vista/trabajadores/pedidos_cocinero/pedidos_cocinero.jsp");
 		rd.forward(request, response);
 	}
+
 }

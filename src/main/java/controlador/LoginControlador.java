@@ -2,14 +2,14 @@ package controlador;
 
 import java.io.IOException;
 
-import datos.DaoTrabajador;
-import datos.impl.DaoTrabajadorImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import datos.DaoTrabajador;
+import datos.impl.DaoTrabajadorImpl;
 import modelo.Trabajador;
 
 @WebServlet(name = "LoginControlador", urlPatterns = { "/LoginControlador" })

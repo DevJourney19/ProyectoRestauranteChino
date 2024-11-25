@@ -2,13 +2,14 @@ package controlador.pedido;
 
 import java.io.IOException;
 
-import datos.DaoDetalle;
-import datos.impl.DaoDetalleImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import datos.DaoDetalle;
+import datos.impl.DaoDetalleImpl;
 
 @WebServlet(name = "EliminarDetalle", urlPatterns = { "/EliminarDetalle" })
 public class EliminarDetalle extends HttpServlet {

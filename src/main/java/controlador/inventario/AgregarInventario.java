@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+
 import datos.DaoCategoria;
 import datos.impl.DaoCategoriaImpl;
 import datos.impl.DaoInventarioImpl; // Asegúrate de tener esta clase creada
@@ -49,7 +50,7 @@ public class AgregarInventario extends HttpServlet {
 		    int stock = Integer.parseInt(request.getParameter("stock_inicial"));
 		    int stockMin = Integer.parseInt(request.getParameter("stock_minimo"));
 		    String caducidad = request.getParameter("dias_caducidad");
-		    Part archivoImagen = request.getPart("archivoImagen");
+		    Part archivoImagen = (Part) request.getPart("archivoImagen");
 
 		    inventario.setCategoria(daoCategoria.obtener(idCategoria));
 		    inventario.setNombre(nombre);

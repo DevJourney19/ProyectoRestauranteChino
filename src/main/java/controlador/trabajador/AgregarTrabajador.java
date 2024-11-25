@@ -2,15 +2,16 @@ package controlador.trabajador;
 
 import java.io.IOException;
 
-import datos.DaoRol;
-import datos.DaoTrabajador;
-import datos.impl.DaoRolImpl;
-import datos.impl.DaoTrabajadorImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import datos.DaoRol;
+import datos.DaoTrabajador;
+import datos.impl.DaoRolImpl;
+import datos.impl.DaoTrabajadorImpl;
 import modelo.Trabajador;
 
 @WebServlet(name = "AgregarTrabajador", urlPatterns = {"/AgregarTrabajador"})

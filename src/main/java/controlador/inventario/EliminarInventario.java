@@ -2,12 +2,13 @@ package controlador.inventario;
 
 import java.io.IOException;
 
-import datos.impl.DaoInventarioImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import datos.impl.DaoInventarioImpl;
 import modelo.Inventario;
 
 @WebServlet(name = "EliminarInventario", urlPatterns = {"/EliminarInventario"})

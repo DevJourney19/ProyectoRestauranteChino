@@ -3,10 +3,6 @@ package controlador.menu;
 import java.io.IOException;
 import java.io.InputStream;
 
-import datos.DaoCategoria;
-import datos.DaoMenu;
-import datos.impl.DaoCategoriaImpl;
-import datos.impl.DaoMenuImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,6 +10,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import datos.DaoCategoria;
+import datos.DaoMenu;
+import datos.impl.DaoCategoriaImpl;
+import datos.impl.DaoMenuImpl;
 import modelo.Menu;
 
 @WebServlet(name = "EditarMenu", urlPatterns = { "/EditarMenu" })

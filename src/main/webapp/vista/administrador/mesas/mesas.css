@@ -47,14 +47,22 @@
 }
 
 .estado-reservado{
+	color:blue;
+	background-color: rgb(0,0,255,25%);
+}
+.estado-reservado::before{
+	background-color:blue;
+}
+
+.estado-limpieza{
 	color:var(--amarillo);
 	background-color: rgb(255,199,0,25%);
 }
-.estado-reservado::before{
+.estado-limpieza::before{
 	background-color:var(--amarillo);
 }
 
-.estado-libre, .estado-ocupado,.estado-reservado{
+.estado-libre, .estado-ocupado,.estado-reservado, .estado-limpieza{
 	font-size:14px;
 	font-weight:500;
 	width:140px;
@@ -66,7 +74,7 @@
 	border-radius:20px;
 }
 
-.estado-libre::before, .estado-ocupado::before,.estado-reservado::before{
+.estado-libre::before, .estado-ocupado::before,.estado-reservado::before, .estado-limpieza::before{
 	content:"";
 	height:10px;
 	width:10px;

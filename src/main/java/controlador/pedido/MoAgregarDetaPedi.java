@@ -4,21 +4,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONObject;
-
-import datos.DaoDetalle;
-import datos.DaoMenu;
-import datos.impl.DaoDetalleImpl;
-import datos.impl.DaoMenuImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+
+import org.json.JSONObject;
+
+import datos.DaoMenu;
+import datos.impl.DaoMenuImpl;
 import modelo.DetallePedido;
 import modelo.Menu;
-import modelo.Pedido;
 
 @WebServlet("/MoAgregarDetaPedi")
 public class MoAgregarDetaPedi extends HttpServlet {
@@ -74,10 +71,10 @@ public class MoAgregarDetaPedi extends HttpServlet {
 		menuJSON.put("archivo_imagen", menu.getImagen());
 		menuJSON.put("categoria", menu.getCategoria());
 		menuJSON.put("tipo_imagen", menu.getTipoImagen());
-		
-		
-		
-		
+
+
+
+
 		/*
 		dp.setMenu(menu);
 		dp.setSubtotal(cantidad * menuEncontrado.getPrecio());
@@ -88,7 +85,7 @@ public class MoAgregarDetaPedi extends HttpServlet {
 		/*
 		 * Pedido pe = (Pedido) session.getAttribute("pedidoAttribute");
 		 * dp.setPedido(pe);
-		 * 
+		 *
 		 * // AGREGAR DETALLE PEDIDO daoDetalleP.agregar(dp);
 		 *///
 			// Serializar

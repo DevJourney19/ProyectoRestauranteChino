@@ -4,16 +4,17 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import datos.DaoCategoria;
-import datos.DaoInventario;
-import datos.impl.DaoCategoriaImpl;
-import datos.impl.DaoInventarioImpl;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import datos.DaoCategoria;
+import datos.DaoInventario;
+import datos.impl.DaoCategoriaImpl;
+import datos.impl.DaoInventarioImpl;
 import modelo.Categoria;
 import modelo.Inventario;
 

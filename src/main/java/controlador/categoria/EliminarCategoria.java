@@ -2,13 +2,14 @@ package controlador.categoria;
 
 import java.io.IOException;
 
-import datos.DaoCategoria;
-import datos.impl.DaoCategoriaImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import datos.DaoCategoria;
+import datos.impl.DaoCategoriaImpl;
 
 @WebServlet(name = "EliminarCategoria", urlPatterns = { "/EliminarCategoria" })
 public class EliminarCategoria extends HttpServlet {

@@ -3,16 +3,17 @@ package controlador.mesa;
 import java.io.IOException;
 import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import datos.DaoMesa;
-import datos.impl.DaoMesaImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import datos.DaoMesa;
+import datos.impl.DaoMesaImpl;
 import modelo.Mesa;
 
 @WebServlet("/MoMostrarMesa")
@@ -34,7 +35,7 @@ public class MoMostrarMesa extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("application/json"); 
+		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 
 		// Se pone DaoMesa porque se obtienen los metodos particulares

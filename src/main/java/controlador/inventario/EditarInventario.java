@@ -1,19 +1,19 @@
 package controlador.inventario;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import datos.DaoCategoria;
-import datos.impl.DaoCategoriaImpl;
-import datos.impl.DaoInventarioImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import datos.DaoCategoria;
+import datos.impl.DaoCategoriaImpl;
+import datos.impl.DaoInventarioImpl;
 import jakarta.servlet.http.Part;
 import modelo.Inventario;
 
@@ -52,7 +52,7 @@ public class EditarInventario extends HttpServlet {
 			inventarioUpdated.setCategoria(daoCategoria.obtener(Integer.parseInt(request.getParameter("categoria"))));
 
 			if (request.getPart("file") != null) {
-				Part imagenPart = request.getPart("file");
+				Part imagenPart = (Part) request.getPart("file");
 				if (imagenPart != null && imagenPart.getSize() > 0) {
 					inventarioUpdated.setArchivoImagen(imagenPart);
 				}

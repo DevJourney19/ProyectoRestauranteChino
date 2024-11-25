@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +13,6 @@ import datos.DaoMesa;
 import datos.DaoPedido;
 import datos.DaoTrabajador;
 import modelo.Cliente;
-import modelo.Inventario;
 import modelo.Pedido;
 import util.Conexion;
 
@@ -203,5 +200,5 @@ public class DaoPedidoImpl implements DaoPedido {
 		return null;
 	}
 
-	
+
 }
