@@ -1,4 +1,3 @@
-<%@page import="modelo.Pedido"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="java.util.List"%>
 <%@page import="modelo.Menu"%>
@@ -18,7 +17,6 @@
 	<!-- Obtener todos los platillos para mostrarlo -->
 	<%
 	List<Menu> listaMenu = (List<Menu>) request.getAttribute("listaMenu");
-	int id_pedido = (int) request.getAttribute("id_pedido");
 	%>
 	<div class="d-flex ">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
@@ -27,19 +25,13 @@
 
 			<main>
 				<div class="container detalle_pedido_div"></div>
-				<button onclick="myFunction()"
-					class=" d-flex justify-content-center mx-auto btn btn-warning my-3 boton_deta_pedi">Mostrar
+				<button onclick="myFunction()" class=" d-flex justify-content-center mx-auto btn btn-warning my-3 boton_deta_pedi">Mostrar
 					resumen de pedido</button>
-				<div
-					class="d-flex flex-column combinado_tabla_y_productos justify-content-center mx-4">
+				<div class="d-flex flex-column combinado_tabla_y_productos justify-content-center mx-4">
 					<!-- Inicio TABLA Y CARDS -->
-					<div
-						class="container d-flex flex-column flex-wrap mt-4 bg-white tabla_detalle_pedidos"
-						style="border: 1px solid lightgray; border-radius: 10px;"
-						id="tabla_detalle_pedidos">
+					<div class="container d-flex flex-column flex-wrap mt-4 bg-white tabla_detalle_pedidos" style="border: 1px solid lightgray; border-radius: 10px;" id="tabla_detalle_pedidos">
 						<div class="p-3 fs-3">
-							<b>Resumen de Pedido</b> <br />#<%=String.format("%06d", id_pedido)%>
-							<span style="display: none" id="id_del_pedido"><%=id_pedido%></span>
+							<b>Resumen de Pedido</b> <br />#0000001
 						</div>
 
 						<hr />
@@ -75,7 +67,7 @@
 
 								<hr />
 								<!-- UN MODAL QUE PREGUNTE SI DESEA IMPRIMIR LA BOLETA CON LOS RESULTADOS, SI SI ENTONCES AHI RECIEN SE REGISTRA EL DETALLE DE PEDIDO Y SE CREA UNA BOLETA -->
-								<button type="button" onclick="enviarDetallesDePedido()"
+								<button type="button" onclick="realizarPago()"
 									class="btn mx-auto text-white" style="background: #ac0000">Realizar
 									pedido</button>
 							</div>
@@ -96,12 +88,12 @@
 								<form class="d-flex" role="search">
 									<input class="form-control me-2" type="search"
 										placeholder="Buscar" aria-label="Search">
-									<button class="btn btn-warning" type="submit">Buscar</button>
+									<button class="btn btn-dark" type="submit">Buscar</button>
 								</form>
 								<div class=" d-flex mt-3 gap-1 rounded">
-									<button class="btn btn-warning">Todo</button>
-									<button class="btn btn-warning">Segundos</button>
-									<button class="btn btn-warning">Sopas</button>
+									<button class="btn btn-danger">Todo</button>
+									<button class="btn btn-danger">Segundos</button>
+									<button class="btn btn-danger">Sopas</button>
 									<button class="btn btn-warning">Otros</button>
 								</div>
 							</div>
@@ -117,13 +109,11 @@
 									<%
 									for (Menu lm : listaMenu) {
 									%>
-									<div class="col" style="width: 100%;">
-										<div class="shadow-sm card card_plato "
-											style="border: 2px solid #FFD700; width: 300px; height: 350px; border-radius: 15px">
+									<div class="col">
+										<div class="shadow-sm card card_plato" style="border: 2px solid #FFD700; height: 370px; border-radius: 15px">
 											<!-- Formato para poder utilizar las imágenes tipo base 64 -->
 											<img
-												src="data:<%=lm.getTipoImagen()%>;base64, <%=lm.getImagen()%>"
-												style="width: 200px" class="mx-auto card-img-top"
+												src="data:<%=lm.getTipoImagen()%>;base64, <%=lm.getImagen()%>" class="mx-auto card-img-top imgCard"
 												alt="<%=lm.getNombre()%>">
 											<div class="contador_suma_resta" id="contador_suma_resta"></div>
 											<div class="card-body"
@@ -132,7 +122,7 @@
 												<h1 class="card-title text-center mb-3"><%=lm.getNombre()%></h1>
 												<div
 													class="d-flex justify-content-center align-items-center mb-4 gap-4 gap-md-4">
-													<h2 class="fw-bolder">
+													<h2 class="precio-text">
 														S/.
 														<%=lm.getPrecio()%></h2>
 
