@@ -1,3 +1,4 @@
+```sql
 create database restaurante_chino;
 use restaurante_chino;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -315,3 +316,4 @@ ALTER TABLE `trabajadores`
  ADD CONSTRAINT `trabajadores_id_rol_foreign` FOREIGN KEY (`id_rol`) REFERENCES `rol`
 (`id`);
 COMMIT;
+```
