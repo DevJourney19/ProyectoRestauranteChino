@@ -76,20 +76,35 @@ body {
 	cursor: pointer;
 }
 
-.row{
+/*.row{
 	display: grid;
 	    width: fit-content;
-}
+}*/
 .col{
 	grid-template-columns: 1fr;
 }
 .circulito_card:hover{
 	cursor:pointer;
 }
+
+.imgCard{
+	border-radius: 14px 14px 0 0;
+	height: 160px;
+}
+
+h1.card-title{
+	font-size: 24px!important;	
+}
+
+h2.precio-text{
+	font-weight: bold;
+	font-size: 20px!important;	
+}
+
 /*@media queries*/
 @media ( min-width : 1px) {
 	.boton_deta_pedi {
-		width: 200px;
+		width: 250px;
 		background: #ac0000;
 		color: white;
 		border: none;
@@ -107,7 +122,7 @@ body {
 
 @media ( min-width : 768px) {
 	.row {
-		height: 55vh;
+		height: 60vh;
 	}
 	.contenedor_cards {
 		width: 100%;
