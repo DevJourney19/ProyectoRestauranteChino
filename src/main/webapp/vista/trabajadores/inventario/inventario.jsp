@@ -33,7 +33,7 @@ List<Inventario> cantInventario = (List<Inventario>) inventario;
 					</div>
 				<div class="d-flex align-items-center gap-3 mb-4">
 				    <select id="inputCategoria" name="inputCategoria" class="form-select" aria-label="Selecciona categoria">
-				        <option selected disabled>Selecciona categoría</option>
+				        <option selecte>Selecciona categoría</option>
 				        <%
 				        List<Categoria> listaCategorias = (List<Categoria>) categorias;
 				        for (Categoria categoria : listaCategorias) {
@@ -204,7 +204,7 @@ List<Inventario> cantInventario = (List<Inventario>) inventario;
 
 	 items.forEach(item => {
 			const itemCategory = item.getAttribute('data-categoria');
-			if (selectedCategory === "Selecciona categoria" || itemCategory === selectedCategory) {
+			if (selectedCategory === "Selecciona categoría" || itemCategory === selectedCategory) {
 				item.style.display = 'block';
 			} else {
 				item.style.display = 'none';

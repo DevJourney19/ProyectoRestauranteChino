@@ -72,7 +72,7 @@ public class MesaMozoProceso extends HttpServlet {
 											// creado
 		HttpSession sessionCliente = request.getSession();
 		sessionCliente.setAttribute("cliente", cliente);
-		
+
 		// POSTERIORMENTE SE PODRÁ EDITAR ESE PEDIDO EN ESPECIFICO pe.setMesa(mesa);
 		// Se le asigna la mesa al pedido pe.setCreated_at(new Date());
 		pe.setTrabajador(trabajador);

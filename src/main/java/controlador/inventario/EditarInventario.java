@@ -1,7 +1,6 @@
 package controlador.inventario;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -51,10 +50,9 @@ public class EditarInventario extends HttpServlet {
 			inventarioUpdated.setUnidad(Inventario.Unidad.valueOf(request.getParameter("unidad")));
 			inventarioUpdated.setCategoria(daoCategoria.obtener(Integer.parseInt(request.getParameter("categoria"))));
 
-			if (request.getParameter("file") != null) {
+			if (request.getPart("file") != null) {
 				Part imagenPart = request.getPart("file");
 				if (imagenPart != null && imagenPart.getSize() > 0) {
-					InputStream inputStream = imagenPart.getInputStream();
 					inventarioUpdated.setArchivoImagen(imagenPart);
 				}
 			} else {
@@ -63,7 +61,6 @@ public class EditarInventario extends HttpServlet {
 					inventarioUpdated.setImagen(imagenBase64);
 					inventarioUpdated.setTipoImagen(request.getParameter("tipo"));
 				}
-
 			}
 
 			boolean exito = daoInventario.editar(inventarioUpdated);

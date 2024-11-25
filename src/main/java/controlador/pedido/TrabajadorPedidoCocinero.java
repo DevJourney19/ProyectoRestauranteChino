@@ -1,21 +1,23 @@
-package controlador.menu;
+package controlador.pedido;
 
 import java.io.IOException;
 import java.util.List;
 
-import datos.DaoMenu;
-import datos.impl.DaoMenuImpl;
+import datos.DaoDetalle;
+import datos.DaoPedido;
+import datos.impl.DaoDetalleImpl;
+import datos.impl.DaoPedidoImpl;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import modelo.Menu;
+import modelo.DetallePedido;
+import modelo.Pedido;
 
-@WebServlet("/MoConsultarMenu")
-public class MoConsultarMenu extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@WebServlet(name = "TrabajadorPedidoCocinero", urlPatterns = { "/TrabajadorPedidoCocinero" })
+public class TrabajadorPedidoCocinero extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -31,19 +33,18 @@ public class MoConsultarMenu extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		// Proceso para mostrar todos los menus al mozo
-		DaoMenu menu = new DaoMenuImpl();
-		List<Menu> listaMenu = menu.consultar();
+		DaoPedido pedido = new DaoPedidoImpl();
+		List<Pedido> listaPedido = pedido.consultar();
 
-		request.setAttribute("listaMenu", listaMenu);
+		DaoDetalle detalle = new DaoDetalleImpl();
+		List<DetallePedido> listaDetallePedido = detalle.consultar();
 
-		// Obtenemos el id de pedido de la card de pedido
-		int id_pedido = Integer.parseInt(request.getParameter("id_pedido"));
-		request.setAttribute("id_pedido", id_pedido);
 
-		RequestDispatcher rd = request.getRequestDispatcher("vista/trabajadores/detalle_pedido/detalle_pedido.jsp");
+		request.setAttribute("listaPedido", listaPedido);
+		request.setAttribute("listaDetallePedido", listaDetallePedido);
+		RequestDispatcher rd = request.getRequestDispatcher("vista/trabajadores/pedidos_cocinero/pedidos_cocinero.jsp");
 		rd.forward(request, response);
-
 	}
+
 }

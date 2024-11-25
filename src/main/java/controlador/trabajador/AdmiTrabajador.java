@@ -42,10 +42,10 @@ public class AdmiTrabajador extends HttpServlet {
 		List<Rol> listaRol = rolDao.consultar();
 
 		// Verificar si hay un título de búsqueda
-		if (request.getParameter("tituloSearch") != null) {
-				String titulo = request.getParameter("tituloSearch");
+		if (request.getParameter("nombreSearch") != null) {
+				String nombre = request.getParameter("nombreSearch");
 					// Filtrar el menú basado en el título
-				lista = lista.stream().filter(m -> m.getNombre().toLowerCase().contains(titulo.toLowerCase()))
+				lista = lista.stream().filter(m -> m.getNombre().toLowerCase().contains(nombre.toLowerCase()))
 						.collect(Collectors.toList()); // Guardar el resultado del filtrado
 		}
 

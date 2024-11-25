@@ -1,16 +1,5 @@
 package controlador.pedido;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import modelo.Cliente;
-import modelo.DetallePedido;
-import modelo.Pedido;
-import modelo.Trabajador;
-import modelo.Menu;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +14,17 @@ import datos.impl.DaoClienteImpl;
 import datos.impl.DaoDetalleImpl;
 import datos.impl.DaoMenuImpl;
 import datos.impl.DaoPedidoImpl;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import modelo.Cliente;
+import modelo.DetallePedido;
+import modelo.Menu;
+import modelo.Pedido;
+import modelo.Trabajador;
 
 @WebServlet("/MoAsignarDetaPedi")
 public class MoAsignarDetaPedi extends HttpServlet {
@@ -33,11 +33,13 @@ public class MoAsignarDetaPedi extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		processRequest(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		processRequest(request, response);
