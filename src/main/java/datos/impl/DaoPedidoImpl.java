@@ -210,31 +210,33 @@ public class DaoPedidoImpl implements DaoPedido {
 
 	@Override
 	public List<Object[]> pedidoCocinero() {
-		List<Object[]> lista = null;
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT ").append("id, ").append("n_mesa, ").append("created_at, ").append("nombre, ")
-				.append("cantidad, ").append("estado ").append("FROM pedidococineroview");
+	    List<Object[]> lista = null;
+	    StringBuilder sql = new StringBuilder();
+	    sql.append("SELECT id, n_mesa, created_at, nombre, cantidad, estado ")
+	       .append("FROM pedidococineroview ")
+	       .append("WHERE DATE(created_at) = CURDATE()");
 
-		try (Connection c = con.getConexion();
-				PreparedStatement ps = c.prepareStatement(sql.toString());
-				ResultSet rs = ps.executeQuery()) {
+	    try (Connection c = con.getConexion();
+	         PreparedStatement ps = c.prepareStatement(sql.toString());
+	         ResultSet rs = ps.executeQuery()) {
 
-			lista = new ArrayList<>();
-			while (rs.next()) {
-				Object[] obj = new Object[6]; // Cambié el tamaño a 6, ya que son 6 columnas en la consulta
-				obj[0] = rs.getInt("id");
-				obj[1] = rs.getString("n_mesa");
-				obj[2] = rs.getTimestamp("created_at"); // Cambié esto para usar getTimestamp()
-				obj[3] = rs.getString("nombre");
-				obj[4] = rs.getInt("cantidad"); // Suponiendo que 'cantidad' es un entero
-				obj[5] = rs.getString("estado");
-				lista.add(obj);
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return lista;
+	        lista = new ArrayList<>();
+	        while (rs.next()) {
+	            Object[] obj = new Object[6];
+	            obj[0] = rs.getInt("id");
+	            obj[1] = rs.getString("n_mesa");
+	            obj[2] = rs.getTimestamp("created_at");
+	            obj[3] = rs.getString("nombre");
+	            obj[4] = rs.getInt("cantidad");
+	            obj[5] = rs.getString("estado");
+	            lista.add(obj);
+	        }
+	    } catch (Exception e) {
+	        System.out.println(e.getMessage());
+	    }
+	    return lista;
 	}
+
 
 	@Override
 	public boolean editarEstadoCocinero(Pedido ped) {
