@@ -27,11 +27,16 @@
 
 			<main>
 				<div class="container detalle_pedido_div"></div>
-				<button onclick="myFunction()" class=" d-flex justify-content-center mx-auto btn btn-warning my-3 boton_deta_pedi">Mostrar
+				<button onclick="myFunction()"
+					class=" d-flex justify-content-center mx-auto btn btn-warning my-3 boton_deta_pedi">Mostrar
 					resumen de pedido</button>
-				<div class="d-flex flex-column combinado_tabla_y_productos justify-content-center mx-4">
+				<div
+					class="d-flex flex-column combinado_tabla_y_productos justify-content-center mx-4">
 					<!-- Inicio TABLA Y CARDS -->
-					<div class="container d-flex flex-column flex-wrap mt-4 bg-white tabla_detalle_pedidos" style="border: 1px solid lightgray; border-radius: 10px;" id="tabla_detalle_pedidos">
+					<div
+						class="container d-flex flex-column flex-wrap mt-4 bg-white tabla_detalle_pedidos"
+						style="border: 1px solid lightgray; border-radius: 10px;"
+						id="tabla_detalle_pedidos">
 						<div class="p-3 fs-3">
 							<b>Resumen de Pedido</b> <br />#<%=String.format("%06d", id_pedido)%>
 							<span style="display: none" id="id_del_pedido"><%=id_pedido%></span>
@@ -113,11 +118,13 @@
 									for (Menu lm : listaMenu) {
 									%>
 									<div class="col">
-										<div class="shadow-sm card card_plato" style="border: 2px solid #FFD700; height: 370px; border-radius: 15px">
+										<div class="shadow-sm card card_plato"
+											style="border: 2px solid #FFD700; height: 370px; border-radius: 15px">
 											<!-- Formato para poder utilizar las imágenes tipo base 64 -->
 											<img
-												src="data:<%=lm.getTipoImagen()%>;base64, <%=lm.getImagen()%>" class="mx-auto card-img-top imgCard"
-												alt="<%=lm.getNombre()%>">
+												src="data:<%=lm.getTipoImagen()%>;base64, <%=lm.getImagen()%>"
+												class="mx-auto card-img-top imgCard"
+												alt="<%=lm.getNombre()%>" style="width: 80%">
 											<div class="contador_suma_resta" id="contador_suma_resta"></div>
 											<div class="card-body"
 												style="padding-bottom: 0px !important;">
