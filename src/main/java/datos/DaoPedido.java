@@ -8,4 +8,6 @@ import modelo.Pedido;
 public interface DaoPedido extends Dao<Pedido>  {
 	 List<Object[]> verData();
 	 Cliente dataCliente(Integer idPed);
+	 List<Object[]> pedidoCocinero();
+	 boolean editarEstadoCocinero(Pedido ped);
 }

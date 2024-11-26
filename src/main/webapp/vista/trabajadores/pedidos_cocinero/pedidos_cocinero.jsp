@@ -1,5 +1,11 @@
+<%@page import="modelo.Pedido"%>
+<%@page import="java.util.List"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<jsp:useBean id="listaPedido" class="java.util.ArrayList"
+	scope="request" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +14,9 @@
 <link href="pedidos_cocinero.css" rel="stylesheet" />
 </head>
 <body>
+	<%
+	List<Object[]> pedidos = (List<Object[]>) listaPedido;
+	%>
 	<div class="d-flex ">
 		<%@ include file="../fragmentos/sidebar.jsp"%>
 		<div class="main">
@@ -28,70 +37,52 @@
 							</tr>
 						</thead>
 						<tbody>
+							<%
+							for (Object[] pe : pedidos) {
+								java.sql.Timestamp timestamp = (java.sql.Timestamp) pe[2];
+								SimpleDateFormat sdf = new SimpleDateFormat("HH:mm a");
+								String hora = sdf.format(timestamp);
+								String estado = "estado-desconocido";
+								switch (Pedido.EstadoPedido.valueOf(pe[5].toString())) {
+									case Pendiente :
+								estado = "badge bg-warning";
+								break;
+									case Cancelado :
+								estado = "badge bg-primary";
+								break;
+									case Completado :
+								estado = "badge bg-success";
+								break;
+								}
+							%>
 							<tr>
-								<td>#0001</td>
-								<td>Mesa 01</td>
-								<td>12:30 PM</td>
-								<td>Chaufa</td>
-								<td>2</td>
-								<td><span class="badge bg-warning">Pendiente</span></td>
-								<td>
-									<form action="#" method="post">
-										<button type="submit" class="btn btn-primary">En
-											preparación</button>
-										<button type="submit" class="btn btn-success">Listo
-											para servir</button>
+								<td>#<%=pe[0]%></td>
+								<td>Mesa <%=pe[1]%></td>
+								<td><%=hora%></td>
+								<td><%=pe[3]%></td>
+								<td><%=pe[4]%></td>
+								<td><span class="<%=estado%>"><%=pe[5]%></span></td>
+								<td class="d-flex flex-wrap gap-2 justify-content-center">
+									<form action="EditarEstadoCocinero" method="post">
+										<input type="hidden" name="idDet" value="<%=pe[0]%>">
+										<input type="hidden" name="estado" value="Cancelado">
+										<button type="submit" class="btn btn-primary">Cancelado</button>
+									</form>
+									<form action="EditarEstadoCocinero" method="post">
+										<input type="hidden" name="idDet" value="<%=pe[0]%>">
+										<input type="hidden" name="estado" value="Completado">
+										<button type="submit" class="btn btn-success">Completado</button>
+									</form>
+									<form action="EditarEstadoCocinero" method="post">
+										<input type="hidden" name="idDet" value="<%=pe[0]%>">
+										<input type="hidden" name="estado" value="Pendiente">
+										<button type="submit" class="btn btn-warning">Pendiente</button>
 									</form>
 								</td>
 							</tr>
-							<tr>
-								<td>#0002</td>
-								<td>Mesa 01</td>
-								<td>2:30 PM</td>
-								<td>Chaufa</td>
-								<td>5</td>
-								<td><span class="badge bg-warning">Pendiente</span></td>
-								<td>
-									<form action="#" method="post">
-										<button type="submit" class="btn btn-primary">En
-											preparación</button>
-										<button type="submit" class="btn btn-success">Listo
-											para servir</button>
-									</form>
-								</td>
-							</tr>
-							<tr>
-								<td>#0003</td>
-								<td>Mesa 11</td>
-								<td>1:30 PM</td>
-								<td>Tallarines</td>
-								<td>3</td>
-								<td><span class="badge bg-warning">Pendiente</span></td>
-								<td>
-									<form action="#" method="post">
-										<button type="submit" class="btn btn-primary">En
-											preparación</button>
-										<button type="submit" class="btn btn-success">Listo
-											para servir</button>
-									</form>
-								</td>
-							</tr>
-							<tr>
-								<td>#0004</td>
-								<td>Mesa 21</td>
-								<td>4:00 PM</td>
-								<td>Combinado</td>
-								<td>10</td>
-								<td><span class="badge bg-warning">Pendiente</span></td>
-								<td>
-									<form action="#" method="post">
-										<button type="submit" class="btn btn-primary">En
-											preparación</button>
-										<button type="submit" class="btn btn-success">Listo
-											para servir</button>
-									</form>
-								</td>
-							</tr>
+							<%
+							}
+							%>
 						</tbody>
 					</table>
 				</div>
@@ -99,6 +90,21 @@
 		</div>
 	</div>
 	<script src="https://kit.fontawesome.com/c353473263.js"></script>
+	<script>
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const mensaje = urlParams.get('mensaje');
 
+        if (mensaje) {
+            alert(mensaje);
+
+            // Eliminar el parámetro 'mensaje' de la URL
+            urlParams.delete('mensaje');
+
+            // Actualizar la URL sin recargar la página
+            window.history.replaceState({}, document.title, window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : ''));
+        }
+    };
+    </script>
 </body>
 </html>

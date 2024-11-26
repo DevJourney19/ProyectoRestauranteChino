@@ -11,6 +11,7 @@ import datos.DaoDetalle;
 import datos.DaoMenu;
 import datos.DaoPedido;
 import modelo.DetallePedido;
+import modelo.Pedido;
 import util.Conexion;
 
 public class DaoDetalleImpl implements DaoDetalle {
@@ -103,6 +104,23 @@ public class DaoDetalleImpl implements DaoDetalle {
 
 	@Override
 	public DetallePedido obtener(int codigo) {
+		String sql = "SELECT id, id_menu, cantidad, subtotal, id_pedido FROM detallepedido WHERE id = ?";
+		try (Connection conn = con.getConexion(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, codigo);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					DetallePedido ped = new DetallePedido();
+					ped.setId(rs.getInt(1));
+					ped.setMenu(men.obtener(rs.getInt(2)));
+					ped.setCantidad(rs.getInt(3));
+					ped.setSubtotal(rs.getDouble(4));
+					ped.setPedido(pe.obtener(rs.getInt(5)));
+					return ped;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

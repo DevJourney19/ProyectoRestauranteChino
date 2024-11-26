@@ -57,7 +57,7 @@ public class Entradas implements Filter {
 
 	private static boolean validarCocinero(String ruta) {
 		return switch (ruta) {
-		case "TrabajadorMenu", "TrabajadorInventario", "EditarInventario", "TrabajadorPedidoCocinero", "EditarPedido" ->
+		case "TrabajadorMenu", "TrabajadorInventario", "EditarInventario", "TrabajadorPedidoCocinero", "EditarPedido", "EditarEstadoCocinero" ->
 			true;
 		default -> false;
 		};

@@ -207,4 +207,50 @@ public class DaoPedidoImpl implements DaoPedido {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Object[]> pedidoCocinero() {
+		List<Object[]> lista = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT ").append("id, ").append("n_mesa, ").append("created_at, ").append("nombre, ")
+				.append("cantidad, ").append("estado ").append("FROM pedidococineroview");
+
+		try (Connection c = con.getConexion();
+				PreparedStatement ps = c.prepareStatement(sql.toString());
+				ResultSet rs = ps.executeQuery()) {
+
+			lista = new ArrayList<>();
+			while (rs.next()) {
+				Object[] obj = new Object[6]; // Cambié el tamaño a 6, ya que son 6 columnas en la consulta
+				obj[0] = rs.getInt("id");
+				obj[1] = rs.getString("n_mesa");
+				obj[2] = rs.getTimestamp("created_at"); // Cambié esto para usar getTimestamp()
+				obj[3] = rs.getString("nombre");
+				obj[4] = rs.getInt("cantidad"); // Suponiendo que 'cantidad' es un entero
+				obj[5] = rs.getString("estado");
+				lista.add(obj);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return lista;
+	}
+
+	@Override
+	public boolean editarEstadoCocinero(Pedido ped) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("UPDATE pedido SET ").append(
+				"estado = ?")
+				.append(" WHERE id = ?");
+		try (Connection c = con.getConexion(); PreparedStatement ps = c.prepareStatement(sql.toString());) {
+			ps.setString(1, ped.getEstado().toString());
+			ps.setInt(2, ped.getId());
+			return (ps.executeUpdate() != 0);
+		} catch (Exception e) {
+			System.out.println("Error en editar el pedido: " + e.getMessage());
+		}
+		return false;
+
+	}
+
 }
