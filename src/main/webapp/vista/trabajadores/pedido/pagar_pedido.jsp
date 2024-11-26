@@ -31,12 +31,11 @@
 					<!-- Formulario de búsqueda de cliente -->
 					<div class="d-flex gap-2 align-items-center">
 						<h5>Buscar Cliente por DNI</h5>
-						<form id="buscarCliente" class="d-flex" action="BuscarCliente"
-							method="GET">
-							<input type="text" class="form-control me-2" id="dniCliente"
-								name="dni" placeholder="Ingrese DNI" required>
-							<button type="submit" class="btn btn-primary">Buscar</button>
-						</form>
+
+						<input type="text" class="form-control me-2" id="dniCliente"
+							name="dni" placeholder="Ingrese DNI" required>
+						<button id="buscar_dni" type="submit" class="btn btn-primary">Buscar</button>
+
 					</div>
 					<div class="d-flex align-items-center justify-content-end gap-4">
 						<button
@@ -59,33 +58,78 @@
 								<button type="button" class="btn-close" data-bs-dismiss="modal"
 									aria-label="Close"></button>
 							</div>
-							<div class="modal-body">
-
-								<form id="registrarClienteForm">
-									<div class="p-3">
-										<div class="mb-3">
-											<label for="telefonoCliente" class="form-label">Teléfono
-												del Cliente</label> <input type="tel" class="form-control"
-												id="telefonoCliente" name="telefonoCliente" required>
-										</div>
-										<div class="mb-3">
-											<label for="emailCliente" class="form-label">Email
-												del Cliente</label> <input type="email" class="form-control"
-												id="emailCliente" name="emailCliente" required>
-										</div>
-									</div>
-								</form>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-danger"
-									data-bs-dismiss="modal">Cerrar</button>
-								<button type="submit" class="btn btn-success">Registrar
-									Cliente</button>
-							</div>
 						</div>
 					</div>
 				</div>
+				<div class="modal-body">
 
+					<form id="registrarClienteForm">
+						
+
+							<!-- Modal para registrar nuevo cliente -->
+							<div class="modal fade" id="nuevoCliente" tabindex="-1">
+								<div class="modal-dialog-centered modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h2>Registrar Nuevo Cliente</h2>
+											<button type="button" class="btn-close"
+												data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+
+											<form id="registrarClienteForm">
+												<div class="p-3">
+													<div class="mb-3">
+														<label for="telefonoCliente" class="form-label">Teléfono
+															del Cliente</label> <input type="tel" class="form-control"
+															id="telefonoCliente" name="telefonoCliente" required>
+													</div>
+													<div class="mb-3">
+														<label for="emailCliente" class="form-label">Email
+															: 
+													</div>
+
+													<!-- Modal para registrar nuevo cliente -->
+													<div class="modal fade" id="nuevoCliente" tabindex="-1">
+														<div class="modal-dialog-centered modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h2>Registrar Nuevo Cliente</h2>
+																	<button type="button" class="btn-close"
+																		data-bs-dismiss="modal" aria-label="Close"></button>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="modal-body">
+
+														<form id="registrarClienteForm">
+															<div class="p-3">
+																<div class="mb-3">
+																	<label for="telefonoCliente" class="form-label">Teléfono
+																		del Cliente</label> <input type="tel" class="form-control"
+																		id="telefonoCliente" name="telefonoCliente" required>
+																</div>
+																<div class="mb-3">
+																	<label for="emailCliente" class="form-label">Email
+																		del Cliente</label> <input type="email" class="form-control"
+																		id="emailCliente" name="emailCliente" required>
+																</div>
+															</div>
+														</form>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-danger"
+															data-bs-dismiss="modal">Cerrar</button>
+														<button type="submit" class="btn btn-success">Registrar
+															Cliente</button>
+													</div>
+												</div>
+										</div>
+									</div>
+								</div>
+					</form>
+				</div>
 				<div class="row">
 					<div class="col-md-4">
 						<!-- Formulario de pago -->
@@ -104,14 +148,16 @@
 						<h2>Formulario de Pago</h2>
 						<form id="pagoForm">
 							<div class="mb-3">
-								<label for="telefonoCliente" class="form-label">Teléfono
-									del Cliente</label> <input type="tel" class="form-control"
+								<label for="nombreCompleto" class="form-label">Nombre
+									completo del Cliente</label> <input type="text" class="form-control"
+									id="nombreCompleto" name="nombreCompleto" required> <label
+									for="telefonoCliente" class="form-label">Teléfono del
+									Cliente</label> <input type="tel" class="form-control"
 									id="telefonoCliente" name="telefonoCliente"
 									value="<%=telefonoCliente%>" required> <label
 									for="emailCliente" class="form-label">Email del Cliente</label>
 								<input type="email" class="form-control" id="emailCliente"
 									name="emailCliente" value="<%=emailCliente%>" required>
-
 								<label for="montoPago" class="form-label">Monto a Pagar</label>
 								<input type="number" class="form-control" id="montoPago"
 									name="montoPago" required>
@@ -230,12 +276,14 @@
 	<script src="https://kit.fontawesome.com/c353473263.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/vista/trabajadores/pedido/buscar_dni.js"></script>
 	<script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function() {
             const pagoForm = document.getElementById("pagoForm");
 
             pagoForm.addEventListener("submit", async function(event) {
-                event.prevent Default();
+                event.preventDefault();
                 const montoPago = document.getElementById("montoPago").value;
                 const metodoPago = document.getElementById("metodoPago").value;
 
